@@ -1,5 +1,12 @@
 # Raw snapshots. Committed files are in data/raw/<source_id>/; the rest are re-downloadable (see url).
 files:
+- source_id: nbim-fondsverdi
+  file: nbim-fondsverdi/2026-10-27.html
+  url: https://www.nbim.no/en/investments/the-funds-value/
+  sha256: e97d702c16ba0f1b3a4b9c7c2c2ae0a92398af74e17d21cda94716f2cea30100
+  retrieved: '2026-10-27'
+  size: 97676
+  committed: true
 - source_id: ssb-06913
   file: ssb-06913/2026-10-27.json
   url: https://data.ssb.no/api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BRegion%5D=0&valuecodes%5BContentsCode%5D=Folkemengde&valuecodes%5BTid%5D=1990%2C1991%2C1992%2C1993%2C1994%2C1995%2C1996%2C1997%2C1998%2C1999%2C2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025%2C2026

@@ -1,0 +1,16 @@
+dimensions:
+  komponent:
+    label: Komponent
+    nodes:
+    - code: fondsverdi
+      label: Fondets verdi
+      parent: null
+    - code: netto_tilforsel
+      label: Netto tilførsel fra staten (akkumulert)
+      parent: fondsverdi
+    - code: avkastning
+      label: Avkastning (akkumulert)
+      parent: fondsverdi
+    - code: kronekurs
+      label: Endringer på grunn av kronekurs (akkumulert)
+      parent: fondsverdi

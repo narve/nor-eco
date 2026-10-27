@@ -26,6 +26,15 @@ def latest_snapshot(source_id: str, raw_dir: Path = RAW_DIR) -> tuple[JsonStat, 
     return parse_jsonstat2((raw_dir / e["file"]).read_bytes()), e
 
 
+def latest_snapshot_bytes(source_id: str, raw_dir: Path = RAW_DIR) -> tuple[bytes, dict]:
+    """Newest committed snapshot of any type, as raw bytes (for HTML sources). Returns (bytes, manifest entry)."""
+    manifest = yaml.safe_load((raw_dir / "MANIFEST.yaml").read_text(encoding="utf-8"))["files"]
+    entries = sorted((e for e in manifest if e["source_id"] == source_id and e["committed"]), key=lambda e: e["retrieved"])
+    if not entries:
+        raise FileNotFoundError(f"no committed snapshot for {source_id}; run `python -m fetch all`")
+    return (raw_dir / entries[-1]["file"]).read_bytes(), entries[-1]
+
+
 def mrd(mill_kr: float) -> float:
     """mill. kr -> mrd. kr (exact to the source's precision)."""
     return round(mill_kr / 1000, 3)

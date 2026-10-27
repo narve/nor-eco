@@ -55,7 +55,7 @@
   {% if caption %}<caption class="mono">{{ caption }}</caption>{% endif %}
   <thead>
     <tr>
-      <th scope="col">År</th>
+      <th scope="col">Periode</th>
       {% for h in t.headers %}<th scope="col">{{ h }}<br><span class="muted">{{ t.units[loop.index0] }}{% if t.claims[loop.index0] != "offisiell" %}, {{ t.claims[loop.index0] }}{% endif %}</span></th>{% endfor %}
     </tr>
   </thead>
@@ -63,7 +63,7 @@
     {% for p in t.periods %}
     {% set row = t.rows[loop.index0] %}
     <tr>
-      <th scope="row">{{ p }}</th>
+      <th scope="row">{{ period_label(p) }}</th>
       {% for c in row %}
       {% set d = 0 if t.units[loop.index0].startswith("kr per") else decimals %}
       <td>{% if c %}{{ fmt(c.value, d) }}{% if c.status == "foreløpig" %}<sup title="Foreløpig tall">f</sup>{% endif %}{% else %}–{% endif %}</td>

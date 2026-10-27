@@ -89,6 +89,31 @@
   </ul>
 </section>
 
+<section id="spu">
+  <h2>Statens pensjonsfond utland</h2>
+  {% set spu = datasets["okonomi.spu_fondsverdi"] %}
+  {% set spu_p = spu["meta"]["published_totals"][0] %}
+  <p><strong>Siste tall per {{ period_label(spu_p["period"]) }}.</strong> Bare det siste tallet fra NBIM vises. Historikk er ikke med.</p>
+  <div class="grid">
+    <div class="card">
+      <span class="mono">Fondets verdi</span>
+      <p class="num big">{{ fmt(spu_p["value"], 0) }} <span class="unit">mrd. kr</span></p>
+      {{ cite(spu["meta"]["source_ids"]) }}
+    </div>
+    {% for r in spu["rows"] %}
+    <div class="card">
+      <span class="mono">{{ spu["dimensions"]["komponent"]["nodes"][loop.index]["label"] }}</span>
+      <p class="num big">{{ fmt(r["value"] | float, 0) }} <span class="unit">mrd. kr</span></p>
+      {{ cite(spu["meta"]["source_ids"]) }}
+    </div>
+    {% endfor %}
+  </div>
+  <p class="muted small">Fondets verdi er summen av disse tre delene, slik NBIM oppgir det. Delene er avrundet av NBIM, så summen kan avvike fra totalen med noen få milliarder kroner. Tallene er halvårstall.</p>
+  {% call chart("spu-siste", "Statens pensjonsfond utland, siste tall", spu["meta"]["source_ids"], level=None) %}
+    {{ data_table(dataset_table("okonomi.spu_fondsverdi", dim="komponent"), 0) }}
+  {% endcall %}
+</section>
+
 <section id="forvekslinger">
   <h2>Ofte blandet sammen</h2>
   <article class="pair">

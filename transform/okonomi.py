@@ -9,9 +9,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from fetch import nbim
 from fetch.common import JsonStat
 
-from .common import PROCESSED, latest_snapshot, mrd, preliminary_after_year, write_dataset, write_series
+from .common import PROCESSED, latest_snapshot, latest_snapshot_bytes, mrd, preliminary_after_year, write_dataset, write_series
 
 TOPIC = "okonomi"
 NA, TRADE, POP = "ssb-09189", "ssb-08800", "ssb-06913"
@@ -185,3 +186,23 @@ def run(out: Path = PROCESSED) -> None:
             "notes": "Utenrikshandelsstatistikken for varer. Omfatter ikke nafta, propan og butan, som nasjonalregnskapets «råolje og naturgass» omfatter. Kondensat er ikke oppgitt (null) for 1990–2000."}
     dims = {"vare": {"label": "Vare", "nodes": dims_for("olje_gass_kondensat", "Råolje, naturgass og kondensater", [(c, l) for c, l, _ in leaves])}}
     write_dataset(TOPIC, "vareeksport_olje_gass_lopende", meta, dims, rows, out)
+
+
+def spu(out: Path = PROCESSED) -> None:
+    """Statens pensjonsfond utland: only the latest figures, as stated in NBIM's own sentence (no history)."""
+    content, entry = latest_snapshot_bytes(nbim.SOURCE_ID)
+    fv = nbim.parse(content)
+    parts = [("netto_tilforsel", "Netto tilførsel fra staten (akkumulert)", fv.net_inflow),
+             ("avkastning", "Avkastning (akkumulert)", fv.ret),
+             ("kronekurs", "Endringer på grunn av kronekurs (akkumulert)", fv.currency)]
+    rows = [{"period": fv.period, "value": v, "unit": "mrd. kr", "status": "foreløpig", "komponent": c,
+             "claim_level": "offisiell", "source_id": nbim.SOURCE_ID} for c, _, v in parts]
+    meta = {"id": f"{TOPIC}.spu_fondsverdi", "title": "Statens pensjonsfond utland: fondets verdi, siste tall", "unit": "mrd. kr",
+            "price_basis": "løpende", "claim_level": "offisiell", "source_ids": [nbim.SOURCE_ID], "dimensions": ["komponent"],
+            "default_dimension": "komponent",
+            "published_totals": [{"period": fv.period, "status": "foreløpig", "value": fv.value, "source_id": nbim.SOURCE_ID}],
+            "tolerance": 0.0001,
+            "notes": "Siste halvårstall fra NBIM; ingen historikk. Delene er avrundet av NBIM og kan avvike fra totalen med 1 mrd. kr."}
+    dims = {"komponent": {"label": "Komponent", "nodes": [{"code": "fondsverdi", "label": "Fondets verdi", "parent": None}]
+                          + [{"code": c, "label": l, "parent": "fondsverdi"} for c, l, _ in parts]}}
+    write_dataset(TOPIC, "spu_fondsverdi", meta, dims, rows, out)

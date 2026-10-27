@@ -15,6 +15,7 @@ def main(argv: list[str]) -> int:
         return 2
     shutil.rmtree(PROCESSED / okonomi.TOPIC, ignore_errors=True)
     okonomi.run()
+    okonomi.spu()
     print("okonomi: done")
     return 0
 

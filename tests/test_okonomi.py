@@ -94,3 +94,27 @@ def test_headline_numbers_match_ssb_page():
     for c in cfg["checks"]:
         got = series(c["series"].split(".")[-1])[c["period"]]["value"]
         assert got == pytest.approx(c["value_mill_kr"] / 1000, abs=0.0005), c
+
+
+# ---- Statens pensjonsfond utland (NBIM, latest figures only) ----
+
+def test_spu_parts_sum_to_published_total_within_rounding():
+    meta = yaml.safe_load((P / "spu_fondsverdi" / "dataset.yaml").read_text(encoding="utf-8"))
+    rows = facts("spu_fondsverdi")
+    assert len(rows) == 3 and len({r["period"] for r in rows}) == 1  # latest only, no history
+    total = meta["published_totals"][0]["value"]
+    assert abs(sum(float(r["value"]) for r in rows) - total) <= 2
+
+
+def test_spu_sentence_agrees_with_the_pages_own_table():
+    """Cross-check inside the NBIM page: the sentence we parse must match the first column of its table."""
+    import re
+    from fetch import nbim
+    from transform.common import latest_snapshot_bytes
+    content, _ = latest_snapshot_bytes(nbim.SOURCE_ID)
+    fv = nbim.parse(content)
+    html_ = content.decode("utf-8")
+    m = re.search(r"<td[^>]*><strong>Fund value</strong></td>\s*<td><strong>([\d,]+)</strong>", html_)
+    assert m, "NBIM's table layout changed; update this cross-check"
+    assert int(m.group(1).replace(",", "")) == fv.value
+    assert fv.value > fv.ret > fv.net_inflow > fv.currency > 0

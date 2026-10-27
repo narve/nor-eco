@@ -1,0 +1,18 @@
+id: okonomi.spu_fondsverdi
+title: 'Statens pensjonsfond utland: fondets verdi, siste tall'
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- nbim-fondsverdi
+dimensions:
+- komponent
+default_dimension: komponent
+published_totals:
+- period: 2026-06
+  status: foreløpig
+  value: 22683
+  source_id: nbim-fondsverdi
+tolerance: 0.0001
+notes: Siste halvårstall fra NBIM; ingen historikk. Delene er avrundet av NBIM og
+  kan avvike fra totalen med 1 mrd. kr.

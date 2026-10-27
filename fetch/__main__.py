@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import sys
 
-from . import okonomi, ssb
+from . import nbim, okonomi, ssb
 
 
 def main(argv: list[str]) -> int:
@@ -18,6 +18,7 @@ def main(argv: list[str]) -> int:
         return 0
     if cmd == "all":
         okonomi.run()
+        nbim.run()
         return 0
     print(__doc__)
     return 2

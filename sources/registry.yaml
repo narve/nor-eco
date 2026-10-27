@@ -47,3 +47,9 @@ sources:
     title: Utenrikshandel med varer – statistikkside og Om statistikken
     url: https://www.ssb.no/utenriksokonomi/utenrikshandel/statistikk/utenrikshandel-med-varer
     licence: CC BY 4.0
+  - id: nbim-fondsverdi
+    publisher: Norges Bank Investment Management (NBIM)
+    title: "The fund's value – Statens pensjonsfond utland"
+    url: https://www.nbim.no/en/investments/the-funds-value/
+    licence: Ingen åpen lisens oppgitt på siden. Bare enkelttall siteres, med kilde.
+    notes: Siste halvårs- eller årstall for fondets verdi, delt på netto tilførsel, avkastning og kronekurs. Ingen historikk vises.

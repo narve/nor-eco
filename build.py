@@ -10,6 +10,7 @@ The output has no timestamps, so rebuilding unchanged inputs gives identical fil
 from __future__ import annotations
 
 import argparse
+import calendar
 import csv
 import json
 import shutil
@@ -125,6 +126,17 @@ def dataset_value(datasets: dict[str, dict], dataset_id: str, code: str | None, 
     return round(sum(float(r["value"]) for r in rows), 3)
 
 
+MONTHS = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"]
+
+
+def period_label(period: str) -> str:
+    """'2025' -> '2025'; '2026-06' -> '30. juni 2026' (end of the month)."""
+    if len(period) == 7 and period[4] == "-":
+        year, month = int(period[:4]), int(period[5:])
+        return f"{calendar.monthrange(year, month)[1]}. {MONTHS[month - 1]} {year}"
+    return period
+
+
 def make_env() -> Environment:
     env = Environment(
         loader=FileSystemLoader(SRC / "templates"),
@@ -134,6 +146,7 @@ def make_env() -> Environment:
         lstrip_blocks=True,
     )
     env.globals["fmt"] = fmt
+    env.globals["period_label"] = period_label
     return env
 
 
@@ -238,6 +251,7 @@ def build(
             definitions=definitions,
             defs_by_id={d["id"]: d for d in definitions},
             series=series,
+            datasets=datasets,
             series_table=lambda ids, **kw: series_table(series, ids, **kw),
             dataset_table=lambda ds_id, **kw: dataset_table(datasets, ds_id, **kw),
             datasets_value=lambda ds_id, code, period: dataset_value(datasets, ds_id, code, period),
