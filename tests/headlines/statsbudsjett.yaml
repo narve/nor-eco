@@ -1,0 +1,8 @@
+# Headline numbers printed on SSB's statistics page «Offentlig forvaltnings inntekter og utgifter»
+# (table 2 «Offentlig forvaltnings utgifter etter formål», mill. kr), copied 2026-10-27 from
+# https://www.ssb.no/offentlig-sektor/offentlig-forvaltning/statistikk/offentlig-forvaltnings-inntekter-og-utgifter
+# The page shows five consecutive years, 2021-2025. If SSB revises them this test fails on purpose:
+# re-check the page, re-run fetch/transform and update this file.
+years: ["2021", "2022", "2023", "2024", "2025"]
+all_purposes: [2003431, 2157337, 2348721, 2532294, 2684551]
+purpose_04_naeringsokonomiske: [246614, 284344, 286656, 297062, 313851]

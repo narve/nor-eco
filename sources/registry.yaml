@@ -114,3 +114,21 @@ sources:
     url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
     licence: Ikke oppgitt på siden.
     notes: Tabell med blant annet strukturelt oljekorrigert underskudd i milliarder kroner (løpende priser), prosent av trend-BNP for Fastlands-Norge og bruk av fondsmidler som andel av Statens pensjonsfond utland. Engelsk side; tallene er de samme som i det norske nasjonalbudsjettet.
+  - id: ssb-14669
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 14669: Offentlig forvaltnings utgifter, etter sektor, art og formål (mill. kr) 1995-2025"
+    url: https://www.ssb.no/statbank/table/14669
+    table_id: "14669"
+    licence: CC BY 4.0
+    notes: Utgifter i offentlig forvaltning etter sektor (stat, kommune), utgiftsart og formål (COFOG).
+  - id: ssb-offinnut-om
+    publisher: Statistisk sentralbyrå (SSB)
+    title: Offentlig forvaltnings inntekter og utgifter – statistikkside og Om statistikken
+    url: https://www.ssb.no/offentlig-sektor/offentlig-forvaltning/statistikk/offentlig-forvaltnings-inntekter-og-utgifter
+    licence: CC BY 4.0
+  - id: fin-sb2027-inntekter-utgifter
+    publisher: Finansdepartementet (regjeringen.no)
+    title: "Statsbudsjettet 2027: Statens inntekter og utgifter"
+    url: https://www.regjeringen.no/no/statsbudsjett/2027/statsbudsjettet-2027-statens-inntekter-og-utgifter/id3173250/
+    licence: Ikke oppgitt på siden.
+    notes: Budsjettforslaget for 2027 med og uten petroleum (utenom lånetransaksjoner), og tabell 1 med inntekter og utgifter utenom petroleum.

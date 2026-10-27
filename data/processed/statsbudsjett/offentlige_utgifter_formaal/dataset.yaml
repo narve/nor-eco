@@ -1,0 +1,122 @@
+id: statsbudsjett.offentlige_utgifter_formaal
+title: Offentlig forvaltnings utgifter etter formål, sektor og art
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- ssb-14669
+dimensions:
+- formaal
+- sektor
+- art
+default_dimension: formaal
+published_totals:
+- period: '2000'
+  status: regnskap
+  value: 623.664
+  source_id: ssb-14669
+- period: '2001'
+  status: regnskap
+  value: 676.97
+  source_id: ssb-14669
+- period: '2002'
+  status: regnskap
+  value: 721.842
+  source_id: ssb-14669
+- period: '2003'
+  status: regnskap
+  value: 773.773
+  source_id: ssb-14669
+- period: '2004'
+  status: regnskap
+  value: 800.163
+  source_id: ssb-14669
+- period: '2005'
+  status: regnskap
+  value: 834.411
+  source_id: ssb-14669
+- period: '2006'
+  status: regnskap
+  value: 900.624
+  source_id: ssb-14669
+- period: '2007'
+  status: regnskap
+  value: 967.189
+  source_id: ssb-14669
+- period: '2008'
+  status: regnskap
+  value: 1042.982
+  source_id: ssb-14669
+- period: '2009'
+  status: regnskap
+  value: 1113.836
+  source_id: ssb-14669
+- period: '2010'
+  status: regnskap
+  value: 1160.371
+  source_id: ssb-14669
+- period: '2011'
+  status: regnskap
+  value: 1215.731
+  source_id: ssb-14669
+- period: '2012'
+  status: regnskap
+  value: 1265.275
+  source_id: ssb-14669
+- period: '2013'
+  status: regnskap
+  value: 1344.646
+  source_id: ssb-14669
+- period: '2014'
+  status: regnskap
+  value: 1428.981
+  source_id: ssb-14669
+- period: '2015'
+  status: regnskap
+  value: 1506.821
+  source_id: ssb-14669
+- period: '2016'
+  status: regnskap
+  value: 1568.694
+  source_id: ssb-14669
+- period: '2017'
+  status: regnskap
+  value: 1633.625
+  source_id: ssb-14669
+- period: '2018'
+  status: regnskap
+  value: 1706.539
+  source_id: ssb-14669
+- period: '2019'
+  status: regnskap
+  value: 1802.962
+  source_id: ssb-14669
+- period: '2020'
+  status: regnskap
+  value: 1969.726
+  source_id: ssb-14669
+- period: '2021'
+  status: regnskap
+  value: 2003.431
+  source_id: ssb-14669
+- period: '2022'
+  status: regnskap
+  value: 2157.337
+  source_id: ssb-14669
+- period: '2023'
+  status: regnskap
+  value: 2348.721
+  source_id: ssb-14669
+- period: '2024'
+  status: regnskap
+  value: 2532.294
+  source_id: ssb-14669
+- period: '2025'
+  status: regnskap
+  value: 2684.551
+  source_id: ssb-14669
+tolerance: 0.0005
+notes: Formål etter COFOG. Offentlig forvaltning samlet er ikke lik summen av stat
+  og kommune i tabellen; differansen er en egen post. Summen av de ti utgiftstypene
+  avviker også litt fra publisert total, og avviket er en egen post. Poster med null
+  er utelatt.

@@ -1,0 +1,304 @@
+dimensions:
+  formaal:
+    label: Formål (COFOG)
+    nodes:
+    - code: '0'
+      label: Alle formål
+      parent: null
+    - code: '01'
+      label: Alminnelig offentlig tjenesteyting
+      parent: '0'
+    - code: '02'
+      label: Forsvar
+      parent: '0'
+    - code: '03'
+      label: Offentlig orden og trygghet
+      parent: '0'
+    - code: '04'
+      label: Næringsøkonomiske formål
+      parent: '0'
+    - code: '05'
+      label: Miljøvern
+      parent: '0'
+    - code: '06'
+      label: Bolig og nærmiljø
+      parent: '0'
+    - code: '07'
+      label: Helse
+      parent: '0'
+    - code: 08
+      label: Fritid, kultur og religion
+      parent: '0'
+    - code: 09
+      label: Utdanning
+      parent: '0'
+    - code: '10'
+      label: Sosial beskyttelse
+      parent: '0'
+    - code: '011'
+      label: Utøvende og lovgivende organer, finansielle og fiskale formål, utenrikssaker
+      parent: '01'
+    - code: '012'
+      label: Internasjonal økonomisk bistand
+      parent: '01'
+    - code: '013'
+      label: Generell tjenesteyting
+      parent: '01'
+    - code: '014'
+      label: Grunnforskning
+      parent: '01'
+    - code: '015'
+      label: FoU Alminnelig tjenesteyting
+      parent: '01'
+    - code: '016'
+      label: Alminnelig tjenesteyting ellers
+      parent: '01'
+    - code: '017'
+      label: Offentlige gjeldstransaksjoner
+      parent: '01'
+    - code: 018
+      label: Overføringer av generell karakter mellom forvaltningsnivåene
+      parent: '01'
+    - code: '021'
+      label: Militært forsvar
+      parent: '02'
+    - code: '022'
+      label: Sivilforsvar
+      parent: '02'
+    - code: '023'
+      label: Utenlandsk militær bistand
+      parent: '02'
+    - code: '024'
+      label: FoU Forsvar
+      parent: '02'
+    - code: '025'
+      label: Forsvar ellers
+      parent: '02'
+    - code: '031'
+      label: Politi
+      parent: '03'
+    - code: '032'
+      label: Brannvern og redningstjenester
+      parent: '03'
+    - code: '033'
+      label: Domstoler
+      parent: '03'
+    - code: '034'
+      label: Fengsler
+      parent: '03'
+    - code: '035'
+      label: FoU offentlig orden og trygghet
+      parent: '03'
+    - code: '036'
+      label: Offentlig orden og trygghet ellers
+      parent: '03'
+    - code: '041'
+      label: Generelle næringsøkonomiske formål og arbeidsmarkedformål
+      parent: '04'
+    - code: '042'
+      label: Jordbruk, skogbruk, fiske og fangst
+      parent: '04'
+    - code: '043'
+      label: Brensel og energi
+      parent: '04'
+    - code: '044'
+      label: Bergverksdrift, industri og bygge- og anleggsvirksomhet
+      parent: '04'
+    - code: '045'
+      label: Transport
+      parent: '04'
+    - code: '046'
+      label: Post og telekommunikasjoner
+      parent: '04'
+    - code: '047'
+      label: Andre næringer
+      parent: '04'
+    - code: 048
+      label: FoU Næringsøkonomiske formål
+      parent: '04'
+    - code: 049
+      label: Næringsøkonomiske formål ellers
+      parent: '04'
+    - code: '051'
+      label: Avfallshåndtering
+      parent: '05'
+    - code: '052'
+      label: Avløp og spillvann
+      parent: '05'
+    - code: '053'
+      label: Forurensningsbekjempelse
+      parent: '05'
+    - code: '054'
+      label: Landskapsvern og biologisk mangfold
+      parent: '05'
+    - code: '055'
+      label: FoU Miljøvern
+      parent: '05'
+    - code: '056'
+      label: Miljøvern ellers
+      parent: '05'
+    - code: '061'
+      label: Boligutvikling
+      parent: '06'
+    - code: '062'
+      label: Nærmiljøutvikling
+      parent: '06'
+    - code: '063'
+      label: Vannforsyning
+      parent: '06'
+    - code: '064'
+      label: Gatebelysning
+      parent: '06'
+    - code: '065'
+      label: FoU Bolig og nærmiljø
+      parent: '06'
+    - code: '066'
+      label: Bolig og nærmiljø ellers
+      parent: '06'
+    - code: '071'
+      label: Legemidler, hjelpemidler og utstyr
+      parent: '07'
+    - code: '072'
+      label: Legetjenester mv.
+      parent: '07'
+    - code: '073'
+      label: Sykehustjenester
+      parent: '07'
+    - code: '074'
+      label: Forebyggende helsearbeid
+      parent: '07'
+    - code: '075'
+      label: FoU Helse
+      parent: '07'
+    - code: '076'
+      label: Helse ellers
+      parent: '07'
+    - code: 081
+      label: Fritid og sport
+      parent: 08
+    - code: 082
+      label: Kultur
+      parent: 08
+    - code: 083
+      label: Kringkasting og forlagsvirksomhet
+      parent: 08
+    - code: 084
+      label: Religiøse og fellesskapsaktiviteter
+      parent: 08
+    - code: 085
+      label: FoU Ffritid, kultur og religion
+      parent: 08
+    - code: 086
+      label: Fritid, kultur og religion ellers
+      parent: 08
+    - code: 091
+      label: Førskole og barneskole
+      parent: 09
+    - code: 092
+      label: Ungdomsskole og videregående skole
+      parent: 09
+    - code: 093
+      label: Påbygging til utdanning på videregående nivå
+      parent: 09
+    - code: 094
+      label: Universitets- og høgskoleutdanning
+      parent: 09
+    - code: 095
+      label: Utdanning, udefinert nivå
+      parent: 09
+    - code: 096
+      label: Støttetjenester tilknyttet utdanning
+      parent: 09
+    - code: 097
+      label: FoU utdanning
+      parent: 09
+    - code: 098
+      label: Utdanning ellers
+      parent: 09
+    - code: '101'
+      label: Sykdom og uførhet
+      parent: '10'
+    - code: '102'
+      label: Alderdom
+      parent: '10'
+    - code: '103'
+      label: Etterlatte
+      parent: '10'
+    - code: '104'
+      label: Barn og familie
+      parent: '10'
+    - code: '105'
+      label: Arbeidsledighet
+      parent: '10'
+    - code: '106'
+      label: Bostøtte
+      parent: '10'
+    - code: '107'
+      label: Sosial inkludering ellers
+      parent: '10'
+    - code: '108'
+      label: FoU Sosial beskyttelse
+      parent: '10'
+    - code: '109'
+      label: Sosial beskyttelse ellers
+      parent: '10'
+  sektor:
+    label: Forvaltningsnivå
+    nodes:
+    - code: C_OFF
+      label: Offentlig forvaltning
+      parent: null
+    - code: '6100'
+      label: Statsforvaltningen
+      parent: C_OFF
+    - code: '6500'
+      label: Kommuneforvaltningen
+      parent: C_OFF
+    - code: konsolidering
+      label: 'Differanse: offentlig forvaltning samlet minus stat og kommune'
+      parent: C_OFF
+      other: true
+      definition: 'SSB oppgir ikke årsaken til differansen i tabellen. SSB skriver
+        om kildene: «For eksempel er det vanskelig å få overføringene mellom stats-
+        og kommuneregnskapene til å stemme overens.»'
+      source_id: ssb-offinnut-om
+  art:
+    label: Utgiftsart
+    nodes:
+    - code: E
+      label: Totale utgifter
+      parent: null
+    - code: B1
+      label: Lønnskostnader
+      parent: E
+    - code: B2
+      label: Kjøp av varer og tjenester
+      parent: E
+    - code: B4
+      label: Formuesutgifter
+      parent: E
+    - code: B5
+      label: Stønader i naturalia (produktkjøp til husholdninger)
+      parent: E
+    - code: B6
+      label: Stønader i kontanter til husholdninger
+      parent: E
+    - code: B7
+      label: Subsidier
+      parent: E
+    - code: B8
+      label: Løpende overføringer
+      parent: E
+    - code: B9
+      label: Kapitaloverføringer
+      parent: E
+    - code: D1
+      label: Bruttoinvestering i fast realkapital og FoU
+      parent: E
+    - code: D3
+      label: Netto anskaffelse av ikke-finansiell ikke-produsert kapital
+      parent: E
+    - code: ikke_fordelt
+      label: 'Differanse: publisert total minus summen av utgiftsartene'
+      parent: E
+      other: true

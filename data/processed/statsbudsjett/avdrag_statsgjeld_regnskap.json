@@ -1,0 +1,143 @@
+{
+  "id": "statsbudsjett.avdrag_statsgjeld_regnskap",
+  "title": "Avdrag på statsgjelden (regnskap)",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-10486"
+  ],
+  "vintage": "2026-06-09",
+  "values": [
+    {
+      "period": "2000",
+      "value": 3.76,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 43.138,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 47.554,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 4.805,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 47.541,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 0.499,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 124.935,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 29.649,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 0.0,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 44.951,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 0.0,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 46.15,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 0.0,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 66.544,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 17.206,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 59.919,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 14.778,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 50.959,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 43.899,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 64.101,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 13.995,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 74.005,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 9.543,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 99.632,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 64.795,
+      "status": "regnskap"
+    },
+    {
+      "period": "2025",
+      "value": 77.832,
+      "status": "regnskap"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "statsbudsjett.oljekorrigert_balanse_kr_forslag",
+  "title": "Oljekorrigert overskudd i budsjettforslaget for 2027 (negativ = underskudd)",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "fin-sb2027-inntekter-utgifter"
+  ],
+  "values": [
+    {
+      "period": "2027",
+      "value": -561.7,
+      "status": "forslag"
+    }
+  ],
+  "notes": "Utenom lånetransaksjoner og petroleumsvirksomheten."
+}

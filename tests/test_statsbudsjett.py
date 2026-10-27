@@ -97,3 +97,76 @@ def test_structural_deficit_is_larger_than_the_oil_corrected_one_in_2025():
     """Official structural (kr) minus derived oil-corrected (kr) = the activity correction, a few tens of billions in 2025."""
     adj = series("strukturelt_underskudd_kr")["2025"]["value"] - (-series("oljekorrigert_balanse_kr")["2025"]["value"])
     assert 0 < adj < 60
+
+
+# ---- public expenditure by purpose (COFOG), SSB 14669 ----
+
+def _cofog():
+    with (P / "offentlige_utgifter_formaal" / "facts.csv").open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def test_cofog_headlines_match_ssb_page():
+    import yaml
+    h = yaml.safe_load((ROOT / "tests" / "headlines" / "statsbudsjett.yaml").read_text(encoding="utf-8"))
+    rows = _cofog()
+    for i, y in enumerate(h["years"]):
+        tot = sum(float(r["value"]) for r in rows if r["period"] == y)
+        n04 = sum(float(r["value"]) for r in rows if r["period"] == y and r["formaal"].startswith("04"))
+        assert tot == pytest.approx(h["all_purposes"][i] / 1000, abs=0.01), y
+        assert n04 == pytest.approx(h["purpose_04_naeringsokonomiske"][i] / 1000, abs=0.01), y
+
+
+def test_cofog_main_groups_agree_with_published_main_values_and_residuals_are_explicit():
+    from transform.common import latest_snapshot
+    js, _ = latest_snapshot("ssb-14669")
+    pub = {(r["Formaal"], r["Tid"]): r["value"] for r in js.rows() if r["Sektor"] == "C_OFF" and r["Art"] == "E"}
+    rows = _cofog()
+    for main in ("01", "07", "10"):
+        got = sum(float(r["value"]) for r in rows if r["period"] == "2023" and r["formaal"].startswith(main))
+        assert got == pytest.approx(pub[(main, "2023")] / 1000, abs=0.01), main
+    kons = [r for r in rows if r["sektor"] == "konsolidering" and r["period"] == "2023"]
+    assert kons and all(r["claim_level"] == "utledet" for r in kons)  # shown, never hidden
+    assert sum(float(r["value"]) for r in kons) == pytest.approx(-321.029, abs=0.01)  # C_OFF minus (stat + kommune), 2023
+
+
+def test_cofog_state_and_municipal_sums_are_the_published_sector_values():
+    from transform.common import latest_snapshot
+    js, _ = latest_snapshot("ssb-14669")
+    pub = {(r["Sektor"], r["Art"], r["Formaal"], r["Tid"]): r["value"] for r in js.rows()}
+    rows = _cofog()
+    for sec in ("6100", "6500"):
+        got = sum(float(r["value"]) for r in rows if r["period"] == "2024" and r["sektor"] == sec)
+        assert got == pytest.approx(pub[(sec, "E", "0", "2024")] / 1000, abs=0.01), sec
+
+
+# ---- budget proposal 2027 (Finansdepartementet page) ----
+
+def test_2027_with_and_without_petroleum_add_up_and_agree_with_table_1():
+    def val(ds, code, dim):
+        return next(float(r["value"]) for r in facts(ds) if r[dim] == code)
+    inn_u, inn_p = val("budsjettforslag_2027_inntekter_med_uten_petroleum", "utenom_petroleum", "petroleum"), val("budsjettforslag_2027_inntekter_med_uten_petroleum", "petroleum", "petroleum")
+    utg_u, utg_p = val("budsjettforslag_2027_utgifter_med_uten_petroleum", "utenom_petroleum", "petroleum"), val("budsjettforslag_2027_utgifter_med_uten_petroleum", "petroleum", "petroleum")
+    assert (inn_u + inn_p, utg_u + utg_p) == (2328, 2322)
+    tbl_inn = sum(float(r["value"]) for r in facts("budsjettforslag_2027_inntekter_detalj"))
+    tbl_utg = sum(float(r["value"]) for r in facts("budsjettforslag_2027_utgifter_detalj"))
+    assert tbl_inn == pytest.approx(inn_u, abs=1.0) and tbl_utg == pytest.approx(utg_u, abs=1.0)  # table 1 (one decimal) vs the sentence (whole billions)
+    official = series("oljekorrigert_balanse_kr_forslag")["2027"]["value"]
+    assert official == pytest.approx(inn_u - utg_u, abs=1.0)  # -561.7: income minus spending outside petroleum
+    # the overall surplus equals oil-corrected balance plus the net petroleum cash flow (603 - 35 = 568)
+    assert (inn_u + inn_p) - (utg_u + utg_p) == pytest.approx(official + (inn_p - utg_p), abs=1.0)
+
+
+def test_2027_structural_deficit_is_larger_than_the_oil_corrected_one_and_matches_the_page_text():
+    sobu = series("strukturelt_underskudd_kr")["2027"]["value"]
+    assert sobu == 608.4 and sobu > -series("oljekorrigert_balanse_kr_forslag")["2027"]["value"]
+    content, _ = latest_snapshot_bytes("fin-sb2027-inntekter-utgifter")
+    assert "608,4" in content.decode("utf-8")
+
+
+def test_folketrygden_details_sum_to_the_group_and_loan_lines_keep_gaps():
+    rows = {r["post"]: float(r["value"]) for r in facts("budsjettforslag_2027_utgifter_detalj")}
+    details = ["alderspensjon", "uforetrygd", "sykepenger", "arbeidsavklaringspenger", "ovrige_sosiale_formal", "helsetjenester", "foreldrepenger_mv", "arbeidsliv"]
+    assert sum(rows[d] for d in details) == pytest.approx(794.1, abs=0.15)  # «Sum folketrygden»
+    avdrag = series("avdrag_statsgjeld_budsjett")
+    assert "2016" not in avdrag and "2017" in avdrag  # SSB leaves 2016 empty; it stays a gap, not a zero

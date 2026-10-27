@@ -38,8 +38,14 @@ export function createDataset(bundle) {
   const periods = [...new Set(facts.map((f) => f.period))].sort();
   const statuses = [...new Set(facts.map((f) => f.status))].sort((a, b) => STATUS_ORDER.indexOf(a) - STATUS_ORDER.indexOf(b));
   const statusesByPeriod = {};
-  for (const f of facts) (statusesByPeriod[f.period] ??= new Set()).add(f.status);
-  return { meta, dims, dimIds: meta.dimensions, facts, periods, statuses, statusesByPeriod };
+  const index = new Map(); // "period|status" -> facts, so a node only scans one slice of the data
+  for (const f of facts) {
+    (statusesByPeriod[f.period] ??= new Set()).add(f.status);
+    const k = `${f.period}|${f.status}`;
+    if (!index.has(k)) index.set(k, []);
+    index.get(k).push(f);
+  }
+  return { meta, dims, dimIds: meta.dimensions, facts, periods, statuses, statusesByPeriod, index };
 }
 
 // ---- unit definitions -------------------------------------------------------------------------------
@@ -94,8 +100,7 @@ function aggregate(ds, sel, period, status) {
   let sum = 0, n = 0, claim = "offisiell";
   const sources = new Set();
   const rank = { offisiell: 0, utledet: 1, estimat: 2 };
-  for (const f of ds.facts) {
-    if (f.period !== period || f.status !== status) continue;
+  for (const f of ds.index.get(`${period}|${status}`) ?? []) {
     let ok = true;
     for (const d in sel) if (!ds.dims[d].leaves.get(sel[d]).has(f.codes[d])) { ok = false; break; }
     if (!ok) continue;

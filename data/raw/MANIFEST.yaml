@@ -21,6 +21,27 @@ files:
   retrieved: '2026-10-27'
   size: 58208
   committed: true
+- source_id: fin-nokkeltall-nb2027
+  file: fin-nokkeltall-nb2027/2026-10-27.html
+  url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
+  sha256: 3a95e5e15316975787b281ff30216d09b527587950ef6ca6c366970a5eb45470
+  retrieved: '2026-10-27'
+  size: 58218
+  committed: true
+- source_id: fin-nokkeltall-nb2027
+  file: fin-nokkeltall-nb2027/2026-10-27.html
+  url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
+  sha256: 96d9888d73110d9b09b6674a8d73230f6aa8ded551bd02f7dd5ad82d9a774d36
+  retrieved: '2026-10-27'
+  size: 58208
+  committed: true
+- source_id: fin-sb2027-inntekter-utgifter
+  file: fin-sb2027-inntekter-utgifter/2026-10-27.html
+  url: https://www.regjeringen.no/no/statsbudsjett/2027/statsbudsjettet-2027-statens-inntekter-og-utgifter/id3173250/
+  sha256: 23460b8c85d34db368ec1978c9aecc2c8c63ca10c93f114b767df15f5bb04e26
+  retrieved: '2026-10-27'
+  size: 84646
+  committed: true
 - source_id: nbim-fondsverdi
   file: nbim-fondsverdi/2026-10-27.html
   url: https://www.nbim.no/en/investments/the-funds-value/
@@ -75,4 +96,12 @@ files:
   retrieved: '2026-10-27'
   vintage: '2026-06-09T06:00:00Z'
   size: 4504
+  committed: true
+- source_id: ssb-14669
+  file: ssb-14669/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/14669/data?lang=no&outputFormat=json-stat2&valuecodes%5BSektor%5D=%2A&valuecodes%5BArt%5D=%2A&valuecodes%5BFormaal%5D=%2A&valuecodes%5BContentsCode%5D=Belop&valuecodes%5BTid%5D=2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 5bf9f2cbe298be920ed2b04fe781a5c781bac315765fa011e217f9d23b6c42c1
+  retrieved: '2026-10-27'
+  vintage: '2026-06-08T06:00:00Z'
+  size: 748856
   committed: true

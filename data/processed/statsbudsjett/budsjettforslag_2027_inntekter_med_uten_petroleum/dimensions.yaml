@@ -1,0 +1,13 @@
+dimensions:
+  petroleum:
+    label: Petroleum
+    nodes:
+    - code: samlet
+      label: Statens samlede inntekter
+      parent: null
+    - code: utenom_petroleum
+      label: Inntekter utenom petroleum
+      parent: samlet
+    - code: petroleum
+      label: Inntekter fra petroleumsvirksomheten
+      parent: samlet

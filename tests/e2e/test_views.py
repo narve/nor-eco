@@ -189,3 +189,41 @@ def test_derived_series_are_marked_in_legend_and_on_bars(desktop, site_url):
     assert not desktop.locator("#oljekorrigert-pst .ts-key").first.inner_text().startswith("ƒ")  # official series carry no mark
     desktop.locator("#oljekorrigert-pst").get_by_role("button", name="Søyler over tid").click()
     assert desktop.locator('#oljekorrigert-pst svg rect[fill="url(#ts-derived)"]').count() == 0
+
+
+def test_formaal_chart_switches_dimension_keeps_total_and_shows_residual_last(desktop, site_url):
+    desktop.goto(site_url + "statsbudsjett.html?chart=utgifter-formaal&view=hier-bars&year=2023")
+    desktop.wait_for_selector("#utgifter-formaal .hb-row")
+    total = num(desktop.locator("#utgifter-formaal .hb-ref .hb-value").inner_text())
+    assert total == pytest.approx(2348.721, abs=0.6)  # SSB: «Alle formål» 2023, 2 348 721 mill. kr
+    assert desktop.locator("#utgifter-formaal .hb-row").count() == 10  # the ten main purposes
+    desktop.locator("#utgifter-formaal .crumbs select").select_option("sektor")
+    desktop.wait_for_function("document.querySelector('#utgifter-formaal .hb-row')?.textContent.includes('Statsforvaltningen')")
+    labels = desktop.locator("#utgifter-formaal .hb-row .hb-label").all_inner_texts()
+    assert labels[-1].startswith("Differanse") and "is-other" in desktop.locator("#utgifter-formaal .hb-row").last.get_attribute("class")
+    vals = [num(v) for v in desktop.locator("#utgifter-formaal .hb-row .hb-value").all_inner_texts()]
+    assert sum(vals) == pytest.approx(total, abs=1.5)  # state + kommune + the (negative) difference
+    assert min(vals) < 0  # the difference is negative and drawn from a visible zero line
+    assert desktop.locator("#utgifter-formaal .hb-zero").count() >= 1
+
+
+def test_large_dataset_timeseries_renders_quickly(desktop, site_url):
+    desktop.goto(site_url + "statsbudsjett.html?chart=utgifter-formaal&view=timeseries-stacked")
+    t = desktop.evaluate("""async () => {
+      await new Promise((r) => { const i = setInterval(() => { if (document.querySelector('#utgifter-formaal .ts-plot svg rect')) { clearInterval(i); r(); } }, 20); });
+      return performance.now();
+    }""")
+    assert t < 6000, t
+    assert desktop.locator("#utgifter-formaal .ts-key").count() == 10
+
+
+def test_folketrygden_can_be_opened_to_its_benefits(desktop, site_url):
+    desktop.goto(site_url + "statsbudsjett.html")
+    desktop.wait_for_selector("#forslag-utgifter-detalj .hb-row")
+    desktop.locator('#forslag-utgifter-detalj .hb-row:has-text("Sum folketrygden")').click(click_count=2)
+    desktop.wait_for_selector('#forslag-utgifter-detalj .crumb:has-text("Sum folketrygden")')
+    labels = desktop.locator("#forslag-utgifter-detalj .hb-row .hb-label").all_inner_texts()
+    assert labels[:3] == ["Alderspensjon", "Uføretrygd", "Sykepenger"]
+    ref = num(desktop.locator("#forslag-utgifter-detalj .hb-ref .hb-value").inner_text())
+    assert ref == pytest.approx(794.1, abs=0.6)
+    assert "path=" in desktop.url and "chart=forslag-utgifter-detalj" in desktop.url

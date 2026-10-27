@@ -1,0 +1,18 @@
+id: statsbudsjett.budsjettforslag_2027_inntekter_detalj
+title: 'Statsbudsjettet 2027: inntekter utenom petroleum og lånetransaksjoner'
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- fin-sb2027-inntekter-utgifter
+dimensions:
+- post
+default_dimension: post
+published_totals:
+- period: '2027'
+  status: forslag
+  value: 1725.1
+  source_id: fin-sb2027-inntekter-utgifter
+tolerance: 0.0005
+notes: Tabell 1 hos Finansdepartementet. «Andre utgifter» er en residual hos kilden.
+  Avrundet til én desimal, så delene kan avvike fra totalen med noen tideler.

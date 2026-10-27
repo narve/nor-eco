@@ -1,0 +1,43 @@
+dimensions:
+  post:
+    label: Post
+    nodes:
+    - code: samlet
+      label: Statsbudsjettets inntekter (utenom petroleum)
+      parent: null
+    - code: sum_skatter_og_avgifter_fra_fastlands_norge
+      label: Sum skatter og avgifter fra Fastlands-Norge
+      parent: samlet
+    - code: arbeidsgiveravgift_og_trygdeavgift
+      label: Arbeidsgiveravgift og trygdeavgift
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: skatt_pa_formue_og_inntekt
+      label: Skatt på formue og inntekt
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: merverdiavgift
+      label: Merverdiavgift
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: avgifter_pa_tobakk_og_alkohol
+      label: Avgifter på tobakk og alkohol
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: avgifter_pa_motorvogner
+      label: Avgifter på motorvogner
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: elektrisitetsavgift
+      label: Elektrisitetsavgift
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: tollinntekter
+      label: Tollinntekter
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: andre_avgifter
+      label: Andre avgifter
+      parent: sum_skatter_og_avgifter_fra_fastlands_norge
+    - code: renter_og_aksjeutbytte_mv
+      label: Renter og aksjeutbytte mv.
+      parent: samlet
+    - code: inntekter_fra_statens_forvaltningsbedrifter
+      label: Inntekter fra statens forvaltningsbedrifter
+      parent: samlet
+    - code: andre_inntekter
+      label: Andre inntekter
+      parent: samlet

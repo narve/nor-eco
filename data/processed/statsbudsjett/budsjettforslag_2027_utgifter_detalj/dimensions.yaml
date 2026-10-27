@@ -1,0 +1,67 @@
+dimensions:
+  post:
+    label: Post
+    nodes:
+    - code: samlet
+      label: Statsbudsjettets utgifter (utenom petroleum)
+      parent: null
+    - code: sum_folketrygden
+      label: Sum folketrygden
+      parent: samlet
+    - code: alderspensjon
+      label: Alderspensjon
+      parent: sum_folketrygden
+    - code: uforetrygd
+      label: Uføretrygd
+      parent: sum_folketrygden
+    - code: sykepenger
+      label: Sykepenger
+      parent: sum_folketrygden
+    - code: arbeidsavklaringspenger
+      label: Arbeidsavklaringspenger
+      parent: sum_folketrygden
+    - code: ovrige_sosiale_formal
+      label: Øvrige sosiale formål
+      parent: sum_folketrygden
+    - code: helsetjenester
+      label: Helsetjenester
+      parent: sum_folketrygden
+    - code: foreldrepenger_mv
+      label: Foreldrepenger mv.
+      parent: sum_folketrygden
+    - code: arbeidsliv
+      label: Arbeidsliv
+      parent: sum_folketrygden
+    - code: rammetilskudd_til_kommuner_og_fylkeskommuner
+      label: Rammetilskudd til kommuner og fylkeskommuner
+      parent: samlet
+    - code: regionale_helseforetak
+      label: Regionale helseforetak
+      parent: samlet
+    - code: forsvar
+      label: Forsvar
+      parent: samlet
+    - code: samferdsel
+      label: Samferdsel
+      parent: samlet
+    - code: hoyere_utdanning_forskning_og_fagskoler
+      label: Høyere utdanning, forskning og fagskoler
+      parent: samlet
+    - code: bistand
+      label: Bistand
+      parent: samlet
+    - code: politi_og_patalemyndighet
+      label: Politi og påtalemyndighet
+      parent: samlet
+    - code: jordbruksavtalen
+      label: Jordbruksavtalen
+      parent: samlet
+    - code: barnetrygd_og_kontantstotte
+      label: Barnetrygd og kontantstøtte
+      parent: samlet
+    - code: renter_pa_statsgjeld
+      label: Renter på statsgjeld
+      parent: samlet
+    - code: andre_utgifter
+      label: Andre utgifter
+      parent: samlet

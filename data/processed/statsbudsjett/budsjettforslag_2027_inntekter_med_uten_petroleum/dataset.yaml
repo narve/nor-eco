@@ -1,0 +1,18 @@
+id: statsbudsjett.budsjettforslag_2027_inntekter_med_uten_petroleum
+title: 'Statsbudsjettet 2027: inntekter med og uten petroleum'
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- fin-sb2027-inntekter-utgifter
+dimensions:
+- petroleum
+default_dimension: petroleum
+published_totals:
+- period: '2027'
+  status: forslag
+  value: 2328.0
+  source_id: fin-sb2027-inntekter-utgifter
+tolerance: 0.0005
+notes: Budsjettforslaget for 2027, utenom lånetransaksjoner. Hele milliarder, slik
+  Finansdepartementet oppgir dem.

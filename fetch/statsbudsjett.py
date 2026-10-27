@@ -15,6 +15,7 @@ from . import common, ssb
 
 START_YEAR = 2000
 PAGE = "https://www.regjeringen.no/no/statsbudsjett/2027/nasjonalbudsjettet-2027-tallene-bak-figurene/id3173281/"
+SB_PAGE = "https://www.regjeringen.no/no/statsbudsjett/2027/statsbudsjettet-2027-statens-inntekter-og-utgifter/id3173250/"
 KEY_FIGURES = "https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/"
 EXCEL = {"fin-nb2027-kap3": "kap_3_nb_", "fin-nb2027-vedlegg1": "vedlegg_1_nb_"}
 
@@ -42,6 +43,7 @@ def run() -> list[common.Snapshot]:
         ("ssb-10486", "10486", {"Hovedpost": ["*"], "ContentsCode": ["Belop"], "Tid": _years("10486")}),
         ("ssb-10487", "10487", {"Hovedpost": ["*"], "ContentsCode": ["Belop"], "Tid": _years("10487")}),
         ("ssb-11012", "11012", {"ContentsCode": ["*"], "Tid": _years("11012")}),
+        ("ssb-14669", "14669", {"Sektor": ["*"], "Art": ["*"], "Formaal": ["*"], "ContentsCode": ["Belop"], "Tid": _years("14669")}),
     ):
         snap, js = ssb.fetch_and_snapshot(source_id, table, selection)
         print(f"{source_id}: {'unchanged' if snap.unchanged else 'new snapshot'} ({snap.path.name}), updated {js.updated}")
@@ -49,6 +51,10 @@ def run() -> list[common.Snapshot]:
     kf = common.http_get(KEY_FIGURES)
     snap = common.write_snapshot("fin-nokkeltall-nb2027", kf.content, ".html", url=KEY_FIGURES)
     print(f"fin-nokkeltall-nb2027: {'unchanged' if snap.unchanged else 'new snapshot'} ({len(kf.content) // 1024} KB)")
+    snaps.append(snap)
+    sb = common.http_get(SB_PAGE)
+    snap = common.write_snapshot("fin-sb2027-inntekter-utgifter", sb.content, ".html", url=SB_PAGE)
+    print(f"fin-sb2027-inntekter-utgifter: {'unchanged' if snap.unchanged else 'new snapshot'} ({len(sb.content) // 1024} KB)")
     snaps.append(snap)
     links = excel_links(common.http_get(PAGE).text)
     for source_id, prefix in EXCEL.items():

@@ -72,12 +72,68 @@
   {% endcall %}
 </section>
 
+<section id="formaal">
+  <h2>Utgifter etter formål</h2>
+  <p>Statsbudsjettets hovedposter sier hva pengene brukes på (lønn, overføringer, bygg). Fordelingen etter formål (helse, forsvar, utdanning ...) kommer fra SSBs statistikk over offentlig forvaltning, som omfatter både stat og kommuner:</p>
+  {{ quote("offinnut-omfang") }}
+  {{ quote("cofog") }}
+  {% set tot_off = datasets_value(S ~ "offentlige_utgifter_formaal", None, yr, "formaal") %}
+  {% set tot_stat = datasets_value(S ~ "offentlige_utgifter_formaal", "6100", yr, "sektor") %}
+  {% set tot_kom = datasets_value(S ~ "offentlige_utgifter_formaal", "6500", yr, "sektor") %}
+  <p>For {{ yr }} er utgiftene {{ fmt(tot_stat, 0) }} mrd. kr i statsforvaltningen og {{ fmt(tot_kom, 0) }} mrd. kr i kommuneforvaltningen. Offentlig forvaltning samlet er {{ fmt(tot_off, 0) }} mrd. kr. Summen av stat og kommune er ikke lik det samlede tallet; differansen vises som egen post i visningen, ikke skjult.</p>
+  {% call chart("utgifter-formaal", "Offentlig forvaltnings utgifter etter formål, sektor og art", ["ssb-14669"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-total", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+    {{ data_table(dataset_table(S ~ "offentlige_utgifter_formaal", dim="formaal", depth=1), 0, caption="Hovedformål, alle sektorer og arter") }}
+  {% endcall %}
+  <p class="muted small">I visningen kan du dele hvert nivå etter forvaltningsnivå eller utgiftsart. Tallene summerer alltid til samme total.</p>
+  {{ quote("offinnut-overforinger") }}
+</section>
+
 <section id="petroleum">
   <h2>Med og uten petroleum</h2>
   <p>Statsregnskapets hovedposter viser petroleumsinntekter og andre inntekter side om side, og skatter på petroleum ligger inne i «Skatter og avgifter». Statens netto kontantstrøm fra petroleumsvirksomhet er derfor vist som egen tabell, delt på skatter, avgifter, SDØE og utbytte fra Equinor.</p>
   {% call chart("petroleum-kontantstrom", "Statens netto kontantstrøm fra petroleumsvirksomhet, etter komponent", ["ssb-11012"], level=None,
       config={"kind": "dataset", "url": root ~ "data/statsbudsjett/petroleum_kontantstrom.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn"], "unitDefs": [U_BNP, U_FN], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "petroleum_kontantstrom", dim="komponent"), 1) }}
+  {% endcall %}
+</section>
+
+<section id="forslag-2027">
+  <h2>Budsjettforslaget for 2027</h2>
+  {% set sb_inn = datasets["statsbudsjett.budsjettforslag_2027_inntekter_med_uten_petroleum"] %}
+  {% set sb_utg = datasets["statsbudsjett.budsjettforslag_2027_utgifter_med_uten_petroleum"] %}
+  <p>Finansdepartementet viser budsjettforslaget for 2027 både med og uten petroleumsvirksomheten. Lånetransaksjoner er holdt utenfor:</p>
+  {{ quote("lanetransaksjoner-ikke-medregnet") }}
+  {% call chart("forslag-inntekter-petroleum", "Statens inntekter 2027 (forslag), med og uten petroleum", ["fin-sb2027-inntekter-utgifter"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/budsjettforslag_2027_inntekter_med_uten_petroleum.json", "views": ["hier-bars"]}) %}
+    {{ data_table(dataset_table(S ~ "budsjettforslag_2027_inntekter_med_uten_petroleum", dim="petroleum"), 0) }}
+  {% endcall %}
+  {% call chart("forslag-utgifter-petroleum", "Statens utgifter 2027 (forslag), med og uten petroleum", ["fin-sb2027-inntekter-utgifter"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/budsjettforslag_2027_utgifter_med_uten_petroleum.json", "views": ["hier-bars"]}) %}
+    {{ data_table(dataset_table(S ~ "budsjettforslag_2027_utgifter_med_uten_petroleum", dim="petroleum"), 0) }}
+  {% endcall %}
+  <p>Det oljekorrigerte underskuddet i forslaget er {{ fmt(0 - series[S ~ "oljekorrigert_balanse_kr_forslag"]["values"][-1].value, 1) }} mrd. kr. Finansdepartementet skriver om dekningen:</p>
+  {{ quote("oljekorrigert-dekkes-av-spu") }}
+  <h3>Hva pengene går til, utenom petroleum</h3>
+  <p>Finansdepartementets tabell over statsbudsjettets inntekter og utgifter viser utgiftene utenom petroleum og lånetransaksjoner etter hovedområde. Folketrygden kan åpnes for å se alderspensjon, uføretrygd, sykepenger og de andre ytelsene.</p>
+  {% call chart("forslag-utgifter-detalj", "Statens utgifter 2027 (forslag) utenom petroleum og lånetransaksjoner", ["fin-sb2027-inntekter-utgifter"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/budsjettforslag_2027_utgifter_detalj.json", "views": ["hier-bars"], "units": ["pct-parent", "pct-bnp-fn"], "unitDefs": [U_FN], "denominators": DEN}) %}
+    {{ data_table(dataset_table(S ~ "budsjettforslag_2027_utgifter_detalj", dim="post", depth=1), 1) }}
+  {% endcall %}
+  {{ quote("andre-utgifter-residual") }}
+  {% call chart("forslag-inntekter-detalj", "Statens inntekter 2027 (forslag) utenom petroleum", ["fin-sb2027-inntekter-utgifter"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/budsjettforslag_2027_inntekter_detalj.json", "views": ["hier-bars"], "units": ["pct-parent", "pct-bnp-fn"], "unitDefs": [U_FN], "denominators": DEN}) %}
+    {{ data_table(dataset_table(S ~ "budsjettforslag_2027_inntekter_detalj", dim="post", depth=1), 1) }}
+  {% endcall %}
+</section>
+
+<section id="lanetransaksjoner">
+  <h2>Lånetransaksjoner holdt utenfor</h2>
+  <p>Netto utlån og avdrag på statsgjelden er ikke utgifter i budsjettbalansen, men inngår i finansieringsbehovet. Her vises de som egne linjer, slik at de ikke blandes inn i utgiftene over:</p>
+  {{ quote("finansieringsbehov") }}
+  {% call chart("lanetransaksjoner-regnskap", "Netto utlån mv., avdrag på statsgjelden og finansieringsbehov, regnskap", ["ssb-10486"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/statsbudsjett/netto_utlan_regnskap.json", root ~ "data/statsbudsjett/avdrag_statsgjeld_regnskap.json", root ~ "data/statsbudsjett/finansieringsbehov_regnskap.json"], "labels": ["Netto utlån mv.", "Avdrag på statsgjelden", "Finansieringsbehov"], "views": ["timeseries-lines", "timeseries-bars"]}) %}
+    {{ data_table(series_table([S ~ "netto_utlan_regnskap", S ~ "avdrag_statsgjeld_regnskap", S ~ "finansieringsbehov_regnskap"]), 1) }}
   {% endcall %}
 </section>
 
@@ -149,6 +205,11 @@
   <article class="pair">
     <h3>Budsjettbalansen med og uten overføring fra fondet</h3>
     {{ quote("budsjettbalanse") }}
+  </article>
+  <article class="pair">
+    <h3>Statens utgifter og offentlig forvaltnings utgifter</h3>
+    <p>Statsregnskapets utgifter og SSBs offentlig forvaltning er ulike avgrensninger. For {{ yr }} er «Utgifter i alt» i statsregnskapet {{ fmt(utg, 0) }} mrd. kr, utgiftene i statsforvaltningen {{ fmt(datasets_value(S ~ "offentlige_utgifter_formaal", "6100", yr, "sektor"), 0) }} mrd. kr og i offentlig forvaltning samlet {{ fmt(datasets_value(S ~ "offentlige_utgifter_formaal", None, yr, "formaal"), 0) }} mrd. kr. SSB beskriver den siste statistikken slik:</p>
+    {{ quote("offinnut-omfang") }}
   </article>
   <article class="pair">
     <h3>Inntekter i statsregnskapet og tilbakeføringer fra fondet</h3>

@@ -1,0 +1,13 @@
+dimensions:
+  petroleum:
+    label: Petroleum
+    nodes:
+    - code: samlet
+      label: Statens samlede utgifter
+      parent: null
+    - code: utenom_petroleum
+      label: Utgifter utenom petroleum
+      parent: samlet
+    - code: petroleum
+      label: Utgifter til petroleumsvirksomheten
+      parent: samlet

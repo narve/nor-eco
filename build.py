@@ -99,26 +99,55 @@ def series_table(series: dict[str, dict], ids: list[str], newest_first: bool = T
             "periods": periods, "rows": rows}
 
 
-def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare", newest_first: bool = True, status: str | None = None) -> dict:
-    """Periods as rows, one column per leaf of `dim` plus the sum («I alt»)."""
+def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare", newest_first: bool = True, status: str | None = None,
+                  depth: int | None = None) -> dict:
+    """Periods as rows, one column per node of `dim` (leaves, or the nodes at `depth` below the root) plus the sum.
+
+    Each column sums the facts under that node; the claim level of a cell is the worst of the facts in it. Other
+    dimensions are summed over, so a node column always equals what the view shows at that level."""
     ds = datasets[dataset_id]
     nodes = ds["dimensions"][dim]["nodes"]
-    leaves = [n for n in nodes if n["parent"] is not None and not any(m["parent"] == n["code"] for m in nodes)]
+    by_code = {n["code"]: n for n in nodes}
+    kids: dict[str, list[str]] = {}
+    for n in nodes:
+        if n["parent"] is not None:
+            kids.setdefault(n["parent"], []).append(n["code"])
     root = next(n for n in nodes if n["parent"] is None)
-    cell: dict[tuple[str, str], dict] = {}
+
+    def leaves_under(code: str) -> set[str]:
+        return {code} if code not in kids else {x for c in kids[code] for x in leaves_under(c)}
+
+    if depth is None:
+        cols = [n for n in nodes if n["parent"] is not None and n["code"] not in kids]
+    else:
+        level = [root["code"]]
+        for _ in range(depth):
+            level = [c for p in level for c in kids.get(p, [])]
+        cols = [by_code[c] for c in level]
+    members = {n["code"]: leaves_under(n["code"]) for n in cols}
+    rank = {"offisiell": 0, "utledet": 1, "estimat": 2}
+    acc: dict[tuple[str, str], dict] = {}
     for r in ds["rows"]:
         if status and r["status"] != status:
             continue
-        cell[(r["period"], r[dim])] = {"value": float(r["value"]), "status": r["status"], "claim": r["claim_level"]}
+        for n in cols:
+            if r[dim] in members[n["code"]]:
+                c = acc.setdefault((r["period"], n["code"]), {"value": 0.0, "status": r["status"], "claim": r["claim_level"]})
+                c["value"] += float(r["value"])
+                if rank[r["claim_level"]] > rank[c["claim"]]:
+                    c["claim"] = r["claim_level"]
     periods = sorted({r["period"] for r in ds["rows"] if not status or r["status"] == status}, reverse=newest_first)
     rows = []
     for p in periods:
-        row = [cell.get((p, n["code"])) for n in leaves]
+        row = []
+        for n in cols:
+            c = acc.get((p, n["code"]))
+            row.append(None if c is None else {**c, "value": round(c["value"], 3)})
         have = [c for c in row if c]
         total = {"value": round(sum(c["value"] for c in have), 3), "status": have[0]["status"], "claim": "offisiell"} if have else None
         rows.append(row + [total])
-    return {"headers": [n["label"] for n in leaves] + [root["label"]], "units": [ds["meta"]["unit"]] * (len(leaves) + 1),
-            "claims": [("utledet" if n["code"] == "kjedingsavvik" else "offisiell") for n in leaves] + ["offisiell"],
+    return {"headers": [n["label"] for n in cols] + [root["label"]], "units": [ds["meta"]["unit"]] * (len(cols) + 1),
+            "claims": [("utledet" if n.get("other") else "offisiell") for n in cols] + ["offisiell"],
             "periods": periods, "rows": rows}
 
 

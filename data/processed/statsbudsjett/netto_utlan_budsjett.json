@@ -1,0 +1,148 @@
+{
+  "id": "statsbudsjett.netto_utlan_budsjett",
+  "title": "Netto utlån mv. (budsjett)",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-10487"
+  ],
+  "vintage": "2026-03-09",
+  "values": [
+    {
+      "period": "2000",
+      "value": 7.184,
+      "status": "budsjett"
+    },
+    {
+      "period": "2001",
+      "value": 17.361,
+      "status": "budsjett"
+    },
+    {
+      "period": "2002",
+      "value": 32.488,
+      "status": "budsjett"
+    },
+    {
+      "period": "2003",
+      "value": 8.573,
+      "status": "budsjett"
+    },
+    {
+      "period": "2004",
+      "value": -3.276,
+      "status": "budsjett"
+    },
+    {
+      "period": "2005",
+      "value": 5.797,
+      "status": "budsjett"
+    },
+    {
+      "period": "2006",
+      "value": -76.862,
+      "status": "budsjett"
+    },
+    {
+      "period": "2007",
+      "value": 29.584,
+      "status": "budsjett"
+    },
+    {
+      "period": "2008",
+      "value": 20.228,
+      "status": "budsjett"
+    },
+    {
+      "period": "2009",
+      "value": 25.186,
+      "status": "budsjett"
+    },
+    {
+      "period": "2010",
+      "value": 66.74,
+      "status": "budsjett"
+    },
+    {
+      "period": "2011",
+      "value": 13.389,
+      "status": "budsjett"
+    },
+    {
+      "period": "2012",
+      "value": -57.863,
+      "status": "budsjett"
+    },
+    {
+      "period": "2013",
+      "value": 58.178,
+      "status": "budsjett"
+    },
+    {
+      "period": "2014",
+      "value": 62.79,
+      "status": "budsjett"
+    },
+    {
+      "period": "2015",
+      "value": 71.536,
+      "status": "budsjett"
+    },
+    {
+      "period": "2016",
+      "value": 54.43,
+      "status": "budsjett"
+    },
+    {
+      "period": "2017",
+      "value": -5.054,
+      "status": "budsjett"
+    },
+    {
+      "period": "2018",
+      "value": -62.451,
+      "status": "budsjett"
+    },
+    {
+      "period": "2019",
+      "value": 0.639,
+      "status": "budsjett"
+    },
+    {
+      "period": "2020",
+      "value": 10.113,
+      "status": "budsjett"
+    },
+    {
+      "period": "2021",
+      "value": 9.793,
+      "status": "budsjett"
+    },
+    {
+      "period": "2022",
+      "value": 95.596,
+      "status": "budsjett"
+    },
+    {
+      "period": "2023",
+      "value": -74.081,
+      "status": "budsjett"
+    },
+    {
+      "period": "2024",
+      "value": 33.874,
+      "status": "budsjett"
+    },
+    {
+      "period": "2025",
+      "value": 112.519,
+      "status": "budsjett"
+    },
+    {
+      "period": "2026",
+      "value": 34.573,
+      "status": "budsjett"
+    }
+  ]
+}

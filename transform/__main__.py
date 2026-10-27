@@ -18,6 +18,8 @@ def main(argv: list[str]) -> int:
     okonomi.spu()
     shutil.rmtree(PROCESSED / statsbudsjett.TOPIC, ignore_errors=True)
     statsbudsjett.run()
+    statsbudsjett.cofog()
+    statsbudsjett.sb2027()
     print("statsbudsjett: done")
     print("okonomi: done")
     return 0

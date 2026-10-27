@@ -32,3 +32,31 @@ definitions:
     term: Budsjettall i statistikkbanken
     quote: "Budsjettall oppdateres i statistikkbanken ved publisering av tall for 3. og 4. kvartal."
     source_id: ssb-statsregnskap-om
+  - id: cofog
+    term: Utgifter etter formål (COFOG)
+    quote: "Gruppering av utgifter etter formål er basert på FNs Classification of the Functions of Government"
+    source_id: ssb-offinnut-om
+  - id: offinnut-omfang
+    term: Offentlig forvaltnings utgifter
+    quote: "Statistikken gir informasjon om utgiftene i stats- og kommuneforvaltningen, fordelt på utgiftstyper og formål."
+    source_id: ssb-offinnut-om
+  - id: offinnut-overforinger
+    term: Overføringer mellom stats- og kommuneregnskapene
+    quote: "For eksempel er det vanskelig å få overføringene mellom stats- og kommuneregnskapene til å stemme overens."
+    source_id: ssb-offinnut-om
+  - id: lanetransaksjoner-ikke-medregnet
+    term: Lånetransaksjoner i budsjettforslaget
+    quote: "Lånetransaksjoner er ikke medregnet i tallene."
+    source_id: fin-sb2027-inntekter-utgifter
+  - id: oljekorrigert-dekkes-av-spu
+    term: Dekning av oljekorrigert underskudd
+    quote: "Dette oljekorrigerte underskuddet dekkes ved en tilsvarende overføring fra Statens pensjonsfond utland."
+    source_id: fin-sb2027-inntekter-utgifter
+  - id: andre-utgifter-residual
+    term: «Andre utgifter» i tabell 1
+    quote: "Andre utgifter er en residual som består av utgiftene til alle formål som ikke inngår i de opplistede kategoriene."
+    source_id: fin-sb2027-inntekter-utgifter
+  - id: finansieringsbehov
+    term: Finansieringsbehov
+    quote: "Finansieringsbehov: Underskudd før lånetransaksjoner pluss netto utlån mv. og avdrag på statsgjelden."
+    source_id: ssb-statsregnskap-om
