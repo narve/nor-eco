@@ -1,0 +1,50 @@
+{# Shared macros. Import with context so `root` and `sources_by_id` are available:
+   {% from "macros.html" import chart, cite, claim_badge with context %} #}
+
+{% macro claim_badge(level) %}
+{% set labels = {"offisiell": "Offisielt tall", "utledet": "Utledet", "estimat": "Estimat"} %}
+{% set marks = {"offisiell": "", "utledet": "ƒ ", "estimat": "≈ "} %}
+<span class="claim claim-{{ level }}" title="{{ labels[level] }}">{{ marks[level] }}{{ labels[level] }}</span>
+{% endmacro %}
+
+{% macro claim_legend() %}
+<ul class="claim-legend" aria-label="Tre nivåer av påstander">
+  <li>{{ claim_badge("offisiell") }} <span class="muted">publisert slik av kilden</span></li>
+  <li>{{ claim_badge("utledet") }} <span class="muted">vår egen regning på offisielle tall, formelen vises</span></li>
+  <li>{{ claim_badge("estimat") }} <span class="muted">vår egen metode med forutsetninger, metodenotat vises</span></li>
+</ul>
+{% endmacro %}
+
+{# «Kilde:» line. Every number on the site is followed by one of these. #}
+{% macro cite(source_ids) %}
+<p class="source mono">Kilde:
+  {% for sid in source_ids %}
+  {% set s = sources_by_id[sid] %}
+  <a href="{{ s.url }}" rel="noopener">{{ s.publisher }}: {{ s.title }}{% if s.table_id %} (tabell {{ s.table_id }}){% endif %}</a>
+  <a class="src-detail" href="{{ root }}kilder.html#kilde-{{ sid }}" aria-label="Om kilden {{ sid }}">[{{ loop.index }}]</a>{% if not loop.last %}; {% endif %}
+  {% endfor %}
+</p>
+{% endmacro %}
+
+{# A chart frame: title, «Hva telles?» box, mount point for a view module, table fallback, source line.
+   `caller()` should render the <table> with the exact numbers shown. #}
+{% macro chart(id, title, source_ids, definition=None, level="offisiell") %}
+<figure class="chart" id="{{ id }}">
+  <figcaption>
+    <h3>{{ title }}</h3>
+    {{ claim_badge(level) }}
+  </figcaption>
+  {% if definition %}
+  <details class="definition">
+    <summary class="mono">Hva telles?</summary>
+    <div>{{ definition }}</div>
+  </details>
+  {% endif %}
+  <div class="chart-mount" data-chart="{{ id }}"></div>
+  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">{{ caller() }}</div>
+  </details>
+  {{ cite(source_ids) }}
+</figure>
+{% endmacro %}

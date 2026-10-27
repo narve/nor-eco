@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "View data contract: Node",
+  "description": "What every view module receives. `value` is already in the chosen unit; conversion happens in the dimension engine, never inside a view. Each node equals the sum of its children (including `other`).",
+  "$ref": "#/$defs/Node",
+  "$defs": {
+    "Node": {
+      "type": "object",
+      "required": ["path", "dim", "label", "value", "unit", "status", "claim_level", "source_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string", "description": "URL path grammar: segments «dimension:code» joined by «/». Empty string for the root."},
+        "dim": {"type": "string", "description": "The dimension the children are split by (empty if leaf)."},
+        "label": {"type": "string"},
+        "value": {"type": ["number", "null"]},
+        "unit": {"type": "string"},
+        "status": {"enum": ["regnskap", "saldert", "vedtatt", "anslag", "foreløpig"]},
+        "claim_level": {"enum": ["offisiell", "utledet", "estimat"]},
+        "source_ids": {"type": "array", "items": {"type": "string"}},
+        "definition_id": {"type": "string"},
+        "children": {"type": "array", "items": {"$ref": "#/$defs/Node"}},
+        "other": {"$ref": "#/$defs/Node", "description": "The «Øvrig / ikke fordelt» node. Always shown, never hidden."},
+        "breaks": {"type": "array", "items": {"type": "object", "required": ["period", "note"], "properties": {"period": {"type": "string"}, "note": {"type": "string"}}}}
+      }
+    }
+  }
+}

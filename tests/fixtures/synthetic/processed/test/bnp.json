@@ -1,0 +1,52 @@
+{
+  "id": "test.bnp",
+  "title": "SYNTETISK: Eksempelserie med brudd og anslag",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "test-kilde-a"
+  ],
+  "vintage": "2024-01-01",
+  "values": [
+    {
+      "period": "2019",
+      "value": 100.0,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 96.5,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 104.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": null,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 112.0,
+      "status": "foreløpig"
+    },
+    {
+      "period": "2024",
+      "value": 118.5,
+      "status": "anslag",
+      "claim_level": "estimat"
+    }
+  ],
+  "notes": "Syntetiske tall. 2022 mangler med vilje (hull i serien).",
+  "breaks": [
+    {
+      "period": "2021",
+      "note": "Syntetisk omklassifisering",
+      "source_id": "test-kilde-b"
+    }
+  ]
+}

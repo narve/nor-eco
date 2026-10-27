@@ -1,0 +1,16 @@
+# Register EVERY source here before it is fetched or cited. Fields:
+#   id         stable slug, used in source_ids everywhere
+#   publisher  who publishes it
+#   title      title of the table / document
+#   url        https link to the exact table or publication
+#   table_id   (optional) table or document id at the publisher
+#   licence    licence as stated by the publisher
+#   notes      (optional) scope, caveats
+# The retrieval date and the pages that use a source are filled in at build time (kilder.html).
+sources:
+  - id: ssb-pxwebapi
+    publisher: Statistisk sentralbyrå (SSB)
+    title: PxWebApi v2 – åpent API for SSBs statistikktabeller
+    url: https://data.ssb.no/api/pxwebapi/v2/config
+    licence: CC BY 4.0 (https://www.ssb.no/en/diverse/lisens)
+    notes: Teknisk inngang til SSB-tabellene. Hver tabell som brukes får en egen kilde-id med tabellnummer.

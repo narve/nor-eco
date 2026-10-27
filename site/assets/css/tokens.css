@@ -1,0 +1,49 @@
+/* Design tokens. Dark is the default; light follows prefers-color-scheme unless the user chose a theme
+   with the toggle (html[data-theme]). Values taken from https://narve.github.io, plus site-specific tokens. */
+:root {
+  --bg: #07090d;
+  --bg-card: rgba(18, 24, 33, 0.72);
+  --line: rgba(120, 200, 230, 0.12);
+  --line-strong: rgba(120, 200, 230, 0.32);
+  --text: #d6dde6;
+  --muted: #7d8a99;
+  --accent: #6fd6e8;
+  --accent-2: #b59cff;
+  --grid: rgba(111, 214, 232, 0.045);
+  --glow: rgba(111, 214, 232, 0.08);
+
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --measure: 60rem;
+  --gutter: 1rem;
+  --radius: 6px;
+  --tap: 44px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3f5f8;
+    --bg-card: rgba(255, 255, 255, 0.78);
+    --line: rgba(20, 70, 100, 0.12);
+    --line-strong: rgba(20, 110, 140, 0.35);
+    --text: #18202b;
+    --muted: #5b6776;
+    --accent: #0b7f95;
+    --accent-2: #6a4fd1;
+    --grid: rgba(11, 127, 149, 0.06);
+    --glow: rgba(11, 127, 149, 0.07);
+  }
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f5f8;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --line: rgba(20, 70, 100, 0.12);
+  --line-strong: rgba(20, 110, 140, 0.35);
+  --text: #18202b;
+  --muted: #5b6776;
+  --accent: #0b7f95;
+  --accent-2: #6a4fd1;
+  --grid: rgba(11, 127, 149, 0.06);
+  --glow: rgba(11, 127, 149, 0.07);
+}

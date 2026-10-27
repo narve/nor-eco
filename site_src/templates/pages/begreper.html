@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "macros.html" import cite with context %}
+{% block main %}
+<header class="page-head">
+  <p class="mono">Ordliste</p>
+  <h1>Begreper</h1>
+  <p class="lede">Offisielle definisjoner, sitert ordrett og med kilde.</p>
+</header>
+<section id="ordliste">
+  <h2>Ordliste</h2>
+  {% if definitions %}
+  <dl class="glossary">
+    {% for d in definitions %}
+    <dt id="begrep-{{ d.id }}">{{ d.term }}</dt>
+    <dd><blockquote>{{ d.quote }}</blockquote>{{ cite([d.source_id]) }}</dd>
+    {% endfor %}
+  </dl>
+  {% else %}
+  <p class="muted">Ingen definisjoner er lagt inn ennå.</p>
+  {% endif %}
+</section>
+{% endblock %}

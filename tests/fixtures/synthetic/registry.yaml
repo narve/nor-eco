@@ -1,0 +1,13 @@
+sources:
+- id: test-kilde-a
+  publisher: Syntetisk utgiver
+  title: Syntetisk kilde A (ikke ekte tall)
+  url: https://example.org/kilde-a
+  licence: Ingen (testdata)
+  notes: Brukes kun i tester.
+- id: test-kilde-b
+  publisher: Syntetisk utgiver
+  title: Syntetisk kilde B (ikke ekte tall)
+  url: https://example.org/kilde-b
+  licence: Ingen (testdata)
+  notes: Brukes kun i tester.

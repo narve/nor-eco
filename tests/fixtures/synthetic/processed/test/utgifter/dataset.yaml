@@ -1,0 +1,27 @@
+id: test.utgifter
+title: 'SYNTETISK: Utgifter etter formål og nivå'
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- test-kilde-a
+- test-kilde-b
+dimensions:
+- formaal
+- niva
+default_dimension: formaal
+tolerance: 0.001
+notes: Syntetiske tall for å teste hierarki, «Øvrig»-noder, estimat og brudd.
+published_totals:
+- period: '2022'
+  status: regnskap
+  value: 210.0
+  source_id: test-kilde-a
+- period: '2023'
+  status: regnskap
+  value: 220.5
+  source_id: test-kilde-a
+- period: '2024'
+  status: vedtatt
+  value: 231.0
+  source_id: test-kilde-a

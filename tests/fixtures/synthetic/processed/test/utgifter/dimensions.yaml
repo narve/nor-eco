@@ -1,0 +1,47 @@
+dimensions:
+  formaal:
+    label: Formål
+    definition: Syntetisk formålsinndeling.
+    nodes:
+    - code: utgifter
+      label: Utgifter
+      parent: null
+    - code: helse
+      label: Helse
+      parent: utgifter
+    - code: behandling
+      label: Behandling
+      parent: helse
+    - code: forebygging
+      label: Forebygging
+      parent: helse
+    - code: helse_ovrig
+      label: Øvrig / ikke fordelt i kilden
+      parent: helse
+      other: true
+    - code: forsvar
+      label: Forsvar
+      parent: utgifter
+    - code: utdanning
+      label: Utdanning
+      parent: utgifter
+    - code: ovrig_formaal
+      label: Øvrig / ikke fordelt i kilden
+      parent: utgifter
+      other: true
+  niva:
+    label: Forvaltningsnivå
+    nodes:
+    - code: alle_nivaer
+      label: Alle nivåer
+      parent: null
+    - code: stat
+      label: Stat
+      parent: alle_nivaer
+    - code: kommune
+      label: Kommune
+      parent: alle_nivaer
+    - code: niva_ovrig
+      label: Øvrig / ikke fordelt i kilden
+      parent: alle_nivaer
+      other: true

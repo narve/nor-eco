@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "macros.html" import claim_legend with context %}
+{% block main %}
+<header class="page-head">
+  <p class="mono">Offisielle kilder</p>
+  <h1>Norsk <span>statsøkonomi</span> – fra kildene</h1>
+  <p class="lede">Tall om statsbudsjettet, økonomien og sysselsettingen, hentet fra offisielle kilder. Hvert tall har en kildehenvisning, og hvert begrep vises med den offisielle definisjonen.</p>
+</header>
+
+<section id="temaer">
+  <h2>Temaer</h2>
+  <div class="grid">
+    {% for p in pages if not p.secondary and p.path != "index.html" %}
+    <a class="card" href="{{ root }}{{ p.path }}">
+      <span class="mono">Tema</span>
+      <h3>{{ p.title }}</h3>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="kildepolitikk">
+  <h2>Kildepolitikk</h2>
+  <p>Alle tall kommer fra offisielle kilder og står sammen med en kildehenvisning. Nettstedet er ikke en offisiell kilde, og tilbyr ingen nedlasting av data.</p>
+  <p>Hvert tall har ett av tre nivåer:</p>
+  {{ claim_legend() }}
+</section>
+{% endblock %}

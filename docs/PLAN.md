@@ -70,7 +70,7 @@ nor-eco/
 
 **Processed series schema**, defined in WS0, for plain time series:
 ```json
-{ "id": "budget.oljekorrigert_underskudd", "title": "...", "unit": "mrd. kr", "price_basis": "løpende|faste-2024",
+{ "id": "budget.oljekorrigert_underskudd", "title": "...", "unit": "mrd. kr", "price_basis": "løpende|faste|ikke-relevant", "base_year": 2024,
   "claim_level": "offisiell|utledet|estimat", "derivation": "A - B (se metode)",
   "source_ids": ["fin-gulbok-2026", "ssb-12163"], "values": [{"period":"2024","value":...,"status":"regnskap|vedtatt|anslag"}],
   "notes": "...", "breaks": [{"period":"2017","note":"ny kontoplan"}] }

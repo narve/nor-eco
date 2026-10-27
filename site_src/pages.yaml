@@ -1,0 +1,11 @@
+# Page order = navigation order. `path` is relative to the site root; `template` is under templates/pages/.
+pages:
+  - {path: "index.html", template: "index.html", title: "Oversikt", nav: "Oversikt"}
+  - {path: "statsbudsjett.html", template: "statsbudsjett.html", title: "Statsbudsjettet", nav: "Statsbudsjettet"}
+  - {path: "okonomi.html", template: "okonomi.html", title: "Norges økonomi med og uten olje og gass", nav: "Økonomi"}
+  - {path: "sysselsetting.html", template: "sysselsetting.html", title: "Hva betyr «sysselsatt»?", nav: "Sysselsetting"}
+  - {path: "staten-som-arbeidsgiver.html", template: "staten-som-arbeidsgiver.html", title: "Hvor mange jobber for staten?", nav: "Staten som arbeidsgiver"}
+  - {path: "begreper.html", template: "begreper.html", title: "Begreper", nav: "Begreper", secondary: true}
+  - {path: "kilder.html", template: "kilder.html", title: "Kilder", nav: "Kilder", secondary: true}
+  - {path: "metode.html", template: "metode.html", title: "Metode", nav: "Metode", secondary: true}
+  - {path: "galleri/index.html", template: "galleri.html", title: "Galleri over visninger", nav: "Galleri", secondary: true}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block main %}
+<header class="page-head">
+  <p class="mono">Oversikt</p>
+  <h1>Kilder</h1>
+  <p class="lede">Alle kilder som brukes på nettstedet, med utgiver, lenke, tabell-id, lisens og når dataene sist ble hentet.</p>
+</header>
+<section id="liste">
+  <h2>Kildeliste</h2>
+  <ul class="source-list">
+    {% for s in sources %}
+    <li id="kilde-{{ s.id }}">
+      <h3><a href="{{ s.url }}" rel="noopener">{{ s.title }}</a></h3>
+      <dl class="mono">
+        <dt>Utgiver</dt><dd>{{ s.publisher }}</dd>
+        {% if s.table_id %}<dt>Tabell</dt><dd>{{ s.table_id }}</dd>{% endif %}
+        <dt>Lisens</dt><dd>{{ s.licence }}</dd>
+        <dt>Hentet</dt><dd>{{ s.retrieved or "ikke hentet ennå" }}</dd>
+      </dl>
+      {% if s.notes %}<p class="muted">{{ s.notes }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

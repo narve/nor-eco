@@ -1,0 +1,6 @@
+# Numbers that may appear literally in template text. Everything else must come from processed data.
+year: '(19|20)\d\d'          # a bare year, for example in a heading
+allow_phrases:
+  - 'CC BY 4\.0'
+  - '[Rr]ing(en|er)? [1-7]'  # ring numbers on the «staten som arbeidsgiver» page
+  - '\b3 ?%'                 # the 3 % rule, if mentioned in text

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+node_modules/
+# re-downloadable raw files are listed in data/raw/MANIFEST.yaml, not committed
+data/raw/**/*.pdf
+data/raw/_large/
+# local build scratch
+.build-tmp/
