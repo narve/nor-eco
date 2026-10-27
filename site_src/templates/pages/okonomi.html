@@ -66,7 +66,7 @@
   <h2>Eksport med og uten råolje og naturgass</h2>
   <p>Nasjonalregnskapet deler eksporten i tradisjonelle varer, råolje og naturgass, skip, plattformer og fly, og tjenester.</p>
   {% call chart("eksport-lopende", "Eksport etter type, løpende priser", ["ssb-09189"], definition=defs_by_id["rolje-naturgass-samlebegrep"].quote,
-      config={"kind": "dataset", "url": root ~ "data/okonomi/eksport_lopende.json", "views": ["hier-bars", "timeseries-stacked", "timeseries-lines"], "units": ["pct-parent", "pct-bnp", "per-innb"], "unitDefs": [U_BNP, U_INNB], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/okonomi/eksport_lopende.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "timeseries-lines", "slope"], "units": ["pct-parent", "pct-bnp", "per-innb"], "unitDefs": [U_BNP, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table("okonomi.eksport_lopende"), 1) }}
   {% endcall %}
 

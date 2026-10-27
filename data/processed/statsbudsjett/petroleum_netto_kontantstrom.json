@@ -1,0 +1,143 @@
+{
+  "id": "statsbudsjett.petroleum_netto_kontantstrom",
+  "title": "Statens netto kontantstrøm fra petroleumsvirksomhet",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-11012"
+  ],
+  "vintage": "2026-06-09",
+  "values": [
+    {
+      "period": "2000",
+      "value": 161.373,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 243.235,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 169.233,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 173.662,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 203.405,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 275.544,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 355.377,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 316.389,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 415.865,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 279.794,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 275.957,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 350.803,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 395.483,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 345.151,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 311.667,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 218.256,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 124.779,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 167.847,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 250.959,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 256.915,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 106.825,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 287.513,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 1285.223,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 978.064,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 702.159,
+      "status": "regnskap"
+    },
+    {
+      "period": "2025",
+      "value": 664.005,
+      "status": "regnskap"
+    }
+  ]
+}

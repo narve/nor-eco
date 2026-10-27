@@ -59,7 +59,7 @@
   <p>Inntektene er delt etter SSBs hovedposter. «Inntekter i alt» er regnet før eventuelle tilbakeføringer fra Statens pensjonsfond utland:</p>
   {{ quote("inntekter-i-alt") }}
   {% call chart("inntekter-hovedpost", "Statens inntekter etter hovedpost", ["ssb-10486", "ssb-10487"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "inntekter", dim="hovedpost", status="regnskap"), 1, caption="Regnskap") }}
   {% endcall %}
 </section>
@@ -67,7 +67,7 @@
 <section id="utgifter">
   <h2>Utgifter</h2>
   {% call chart("utgifter-hovedpost", "Statens utgifter etter hovedpost", ["ssb-10486", "ssb-10487"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "utgifter", dim="hovedpost", status="regnskap"), 1, caption="Regnskap") }}
   {% endcall %}
 </section>
@@ -82,7 +82,7 @@
   {% set tot_kom = datasets_value(S ~ "offentlige_utgifter_formaal", "6500", yr, "sektor") %}
   <p>For {{ yr }} er utgiftene {{ fmt(tot_stat, 0) }} mrd. kr i statsforvaltningen og {{ fmt(tot_kom, 0) }} mrd. kr i kommuneforvaltningen. Offentlig forvaltning samlet er {{ fmt(tot_off, 0) }} mrd. kr. Summen av stat og kommune er ikke lik det samlede tallet; differansen vises som egen post i visningen, ikke skjult.</p>
   {% call chart("utgifter-formaal", "Offentlig forvaltnings utgifter etter formål, sektor og art", ["ssb-14669"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-total", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-total", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "offentlige_utgifter_formaal", dim="formaal", depth=1), 0, caption="Hovedformål, alle sektorer og arter") }}
   {% endcall %}
   <p class="muted small">I visningen kan du dele hvert nivå etter forvaltningsnivå eller utgiftsart. Tallene summerer alltid til samme total.</p>
@@ -117,7 +117,7 @@
   <h3>Hva pengene går til, utenom petroleum</h3>
   <p>Finansdepartementets tabell over statsbudsjettets inntekter og utgifter viser utgiftene utenom petroleum og lånetransaksjoner etter hovedområde. Folketrygden kan åpnes for å se alderspensjon, uføretrygd, sykepenger og de andre ytelsene.</p>
   {% call chart("forslag-utgifter-detalj", "Statens utgifter 2027 (forslag) utenom petroleum og lånetransaksjoner", ["fin-sb2027-inntekter-utgifter"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/budsjettforslag_2027_utgifter_detalj.json", "views": ["hier-bars"], "units": ["pct-parent", "pct-bnp-fn"], "unitDefs": [U_FN], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/budsjettforslag_2027_utgifter_detalj.json", "views": ["hier-bars", "treemap"], "units": ["pct-parent", "pct-bnp-fn"], "unitDefs": [U_FN], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "budsjettforslag_2027_utgifter_detalj", dim="post", depth=1), 1) }}
   {% endcall %}
   {{ quote("andre-utgifter-residual") }}
@@ -141,8 +141,16 @@
   <h2>Oljekorrigert og strukturelt underskudd</h2>
   <p>Budsjettbalansen utenom petroleum kalles oljekorrigert. Den er regnet slik:</p>
   {{ quote("oljekorrigert-underskudd") }}
-  <p>Slik henger tallene sammen for {{ yr }}, i milliarder kroner:</p>
-  <div class="table-wrap">
+  <p>Slik henger tallene sammen for {{ yr }}, i milliarder kroner. Hvert trinn er forskjellen fra summen før trinnet, og de to summene er kontrollpunkter mot publiserte tall:</p>
+  {% set W = {"kind": "waterfall", "steps": [
+      {"label": "Overskudd før netto avsetning til Statens pensjonsfond utland", "role": "start", "url": root ~ "data/statsbudsjett/overskudd_for_avsetning_regnskap.json", "period": yr},
+      {"label": "Statens netto kontantstrøm fra petroleumsvirksomhet (trekkes fra)", "role": "delta", "mult": -1, "url": root ~ "data/statsbudsjett/petroleum_netto_kontantstrom.json", "period": yr},
+      {"label": "Oljekorrigert budsjettbalanse", "role": "total", "claim": "utledet", "url": root ~ "data/statsbudsjett/oljekorrigert_balanse_kr.json", "period": yr, "expected": {"url": root ~ "data/statsbudsjett/oljekorrigert_balanse_kr.json", "period": yr}},
+      {"label": "Aktivitetskorreksjon og andre justeringer", "role": "delta", "mult": -1, "url": root ~ "data/statsbudsjett/aktivitetskorreksjon_kr.json", "period": yr},
+      {"label": "Strukturell oljekorrigert budsjettbalanse (Finansdepartementet)", "role": "total", "claim": "offisiell", "url": root ~ "data/statsbudsjett/strukturelt_underskudd_kr.json", "period": yr, "mult": -1, "expected": {"url": root ~ "data/statsbudsjett/strukturelt_underskudd_kr.json", "period": yr, "mult": -1}}
+    ], "views": ["waterfall"]} %}
+  {% call chart("kjede-waterfall", "Fra statsregnskapet til strukturelt underskudd, " ~ yr, ["ssb-10486", "ssb-11012", "fin-nokkeltall-nb2027"], level=None, config=W) %}
+    <div class="table-wrap">
     <table>
       <caption class="mono">Fra statsregnskapet til strukturelt underskudd, {{ yr }}</caption>
       <tbody>
@@ -154,7 +162,7 @@
       </tbody>
     </table>
   </div>
-  {{ cite(["ssb-10486", "ssb-11012", "fin-nokkeltall-nb2027"]) }}
+  {% endcall %}
   <p>Formlene: {{ ok_kr.derivation }} Aktivitetskorreksjonen: {{ series[S ~ "aktivitetskorreksjon_kr"].derivation }}</p>
   <p>Det strukturelle underskuddet er definert slik:</p>
   {{ quote("strukturelt-underskudd") }}

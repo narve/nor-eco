@@ -105,7 +105,11 @@ function aggregate(ds, sel, period, status) {
     for (const d in sel) if (!ds.dims[d].leaves.get(sel[d]).has(f.codes[d])) { ok = false; break; }
     if (!ok) continue;
     sum += f.value; n++; sources.add(f.source);
-    if (rank[f.claim] > rank[claim]) claim = f.claim;
+    // A derived «Øvrig / difference» fact only reconciles the parts to a published total. It counts towards the claim
+    // level when that difference itself is being looked at (its dimension is selected), not when the whole dimension
+    // is summed, where the total is the published one.
+    const reconciling = f.claim !== "offisiell" && ds.dimIds.some((d) => ds.dims[d].byCode.get(f.codes[d]).other && sel[d] === undefined);
+    if (!reconciling && rank[f.claim] > rank[claim]) claim = f.claim;
   }
   return { value: n ? Math.round(sum * 1e6) / 1e6 : null, claim, status, sources: [...sources].sort() };
 }

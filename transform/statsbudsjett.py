@@ -160,6 +160,10 @@ def run(out: Path = PROCESSED) -> None:
                           + [{"code": c, "label": l, "parent": "statens_netto_kontantstrom"} for c, l, _ in PETROLEUM_PARTS]}}
     write_dataset(TOPIC, "petroleum_kontantstrom", meta, dims, rows, out)
 
+    write_series(TOPIC, {"id": f"{TOPIC}.petroleum_netto_kontantstrom", "title": "Statens netto kontantstrøm fra petroleumsvirksomhet", "unit": "mrd. kr",
+                         "price_basis": "løpende", "claim_level": "offisiell", "source_ids": [PET], "vintage": pet_js.updated[:10],
+                         "values": [{"period": t, "value": mrd(pv[("StatensNettoKont", t)]), "status": "regnskap"} for t in pyears]}, out)
+
     # ---- derived: oil-corrected balance in kroner (accounts) ----
     both = [t for t in periods["regnskap"] if t in pyears]
     write_series(TOPIC, {
