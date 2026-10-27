@@ -2,7 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "dimensions.yaml: one tree per dimension",
   "type": "object",
-  "required": ["dimensions"],
+  "required": [
+    "dimensions"
+  ],
   "additionalProperties": false,
   "properties": {
     "dimensions": {
@@ -10,26 +12,64 @@
       "minProperties": 1,
       "additionalProperties": {
         "type": "object",
-        "required": ["label", "nodes"],
+        "required": [
+          "label",
+          "nodes"
+        ],
         "additionalProperties": false,
         "properties": {
-          "label": {"type": "string"},
-          "definition": {"type": "string"},
-          "source_id": {"type": "string"},
+          "label": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
           "nodes": {
             "type": "array",
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["code", "label", "parent"],
+              "required": [
+                "code",
+                "label",
+                "parent"
+              ],
               "additionalProperties": false,
               "properties": {
-                "code": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
-                "label": {"type": "string"},
-                "parent": {"type": ["string", "null"], "description": "null for the root"},
-                "definition": {"type": "string"},
-                "source_id": {"type": "string"},
-                "other": {"type": "boolean", "description": "True for an explicit «Øvrig / ikke fordelt i kilden» node."}
+                "code": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.-]+$"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "null for the root"
+                },
+                "definition": {
+                  "type": "string"
+                },
+                "source_id": {
+                  "type": "string"
+                },
+                "other": {
+                  "type": "boolean",
+                  "description": "True for an explicit «Øvrig / ikke fordelt i kilden» node."
+                },
+                "overlap": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Codes of other leaves of the same dimension that this leaf also belongs to (a person counted here is also in these groups). The leaf stays one partition cell; views may draw it striped."
+                }
               }
             }
           }

@@ -1,0 +1,86 @@
+dimensions:
+  statusgruppe:
+    label: Status
+    nodes:
+    - code: TOT
+      label: Bosatte 20–66 år
+      parent: null
+    - code: A
+      label: Arbeidsstyrken
+      parent: TOT
+    - code: A.01
+      label: Sysselsatte
+      parent: A
+      definition: Se definisjonen av sysselsatte i SSBs registerstatistikk (sitat
+        på siden).
+      source_id: ssb-arbstatus-om
+    - code: A.01x00
+      label: Kun sysselsatte
+      parent: A.01
+    - code: A.01xU03
+      label: Sysselsatte og under ordinær utdanning
+      parent: A.01
+      overlap:
+      - U.03.00
+    - code: A.01xU04
+      label: Sysselsatte og mottar arbeidsavklaringspenger
+      parent: A.01
+      overlap:
+      - U.04.00
+    - code: A.01xU05
+      label: Sysselsatte og mottar uføretrygd
+      parent: A.01
+      overlap:
+      - U.05.00
+    - code: A.01xU06-07
+      label: Sysselsatte og mottar AFP/ alderspensjon
+      parent: A.01
+      overlap:
+      - U.06.00
+      - U.07.00
+    - code: A.01.90A
+      label: Sysselsatte ellers
+      parent: A.01
+    - code: A.09.00
+      label: Registrerte arbeidsledige (Nav)
+      parent: A
+      source_id: ssb-arbstatus-om
+    - code: U
+      label: Utenfor arbeidsstyrken
+      parent: TOT
+    - code: U.01.00
+      label: Deltakere på arbeidsmarkedstiltak
+      parent: U
+    - code: U.03.00
+      label: Under ordinær utdanning
+      parent: U
+    - code: U.04.00
+      label: Mottakere av arbeidsavklaringspenger
+      parent: U
+    - code: U.05.00
+      label: Mottakere av uføretrygd
+      parent: U
+    - code: U.06.00
+      label: Mottakere av AFP
+      parent: U
+    - code: U.07.00
+      label: Mottakere av alderspensjon
+      parent: U
+    - code: U.90A.00
+      label: Andre ordninger
+      parent: U
+    - code: UX.00
+      label: Ukjent status
+      parent: U
+  kjonn:
+    label: Kjønn
+    nodes:
+    - code: '0'
+      label: Begge kjønn
+      parent: null
+    - code: '2'
+      label: Kvinner
+      parent: '0'
+    - code: '1'
+      label: Menn
+      parent: '0'

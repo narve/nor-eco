@@ -106,15 +106,17 @@ def test_spu_parts_sum_to_published_total_within_rounding():
     assert abs(sum(float(r["value"]) for r in rows) - total) <= 2
 
 
-def test_spu_sentence_agrees_with_the_pages_own_table():
-    """Cross-check inside the NBIM page: the sentence we parse must match the first column of its table."""
+def test_spu_sentence_is_consistent_and_agrees_with_the_pages_table_when_the_period_matches():
+    """The sentence we parse must add up; and when it reports a half-year or year-end, it must equal the table's first column."""
     import re
     from fetch import nbim
     from transform.common import latest_snapshot_bytes
-    content, _ = latest_snapshot_bytes(nbim.SOURCE_ID)
-    fv = nbim.parse(content)
-    html_ = content.decode("utf-8")
-    m = re.search(r"<td[^>]*><strong>Fund value</strong></td>\s*<td><strong>([\d,]+)</strong>", html_)
-    assert m, "NBIM's table layout changed; update this cross-check"
-    assert int(m.group(1).replace(",", "")) == fv.value
+    fv = nbim.newest_stored()
+    content = next((ROOT / "data" / "raw" / e["file"]).read_bytes() for e in __import__("yaml").safe_load((ROOT / "data" / "raw" / "MANIFEST.yaml").read_text(encoding="utf-8"))["files"]
+                   if e["source_id"] == nbim.SOURCE_ID and nbim.parse((ROOT / "data" / "raw" / e["file"]).read_bytes()).period == fv.period)
     assert fv.value > fv.ret > fv.net_inflow > fv.currency > 0
+    assert abs(fv.value - (fv.ret + fv.net_inflow + fv.currency)) <= 3  # NBIM's own rounding
+    if fv.period[5:] in ("06", "12"):
+        m = re.search(r"<td[^>]*><strong>Fund value</strong></td>\s*<td><strong>([\d,]+)</strong>", content.decode("utf-8"))
+        assert m, "NBIM's table layout changed; update this cross-check"
+        assert int(m.group(1).replace(",", "")) == fv.value

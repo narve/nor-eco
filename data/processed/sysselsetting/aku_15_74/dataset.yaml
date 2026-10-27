@@ -1,0 +1,65 @@
+id: sysselsetting.aku_15_74
+title: 'AKU: personer 15–74 år etter arbeidsstyrkestatus'
+unit: 1000 personer
+price_basis: ikke-relevant
+claim_level: offisiell
+source_ids:
+- ssb-13618
+dimensions:
+- statusgruppe
+- kjonn
+default_dimension: statusgruppe
+published_totals:
+- period: '2015'
+  status: regnskap
+  value: 3884
+  source_id: ssb-13618
+- period: '2016'
+  status: regnskap
+  value: 3924
+  source_id: ssb-13618
+- period: '2017'
+  status: regnskap
+  value: 3954
+  source_id: ssb-13618
+- period: '2018'
+  status: regnskap
+  value: 3981
+  source_id: ssb-13618
+- period: '2019'
+  status: regnskap
+  value: 4003
+  source_id: ssb-13618
+- period: '2020'
+  status: regnskap
+  value: 4019
+  source_id: ssb-13618
+- period: '2021'
+  status: regnskap
+  value: 4024
+  source_id: ssb-13618
+- period: '2022'
+  status: regnskap
+  value: 4054
+  source_id: ssb-13618
+- period: '2023'
+  status: regnskap
+  value: 4101
+  source_id: ssb-13618
+- period: '2024'
+  status: regnskap
+  value: 4142
+  source_id: ssb-13618
+- period: '2025'
+  status: regnskap
+  value: 4170
+  source_id: ssb-13618
+tolerance: 0.002
+notes: 'Utvalgsundersøkelse: tallene er anslag med feilmargin. Bruddjustert for omleggingen
+  mellom 2020 og 2021; for undergrupper bygger justeringen på en forutsetning om proporsjonal
+  fordeling og bør tolkes varsomt.'
+breaks:
+- period: '2021'
+  note: Brudd mellom 2020 og 2021 (omlegging av AKU). Tallene før 2021 er justert
+    til nivået etter bruddet.
+  source_id: ssb-aku-om

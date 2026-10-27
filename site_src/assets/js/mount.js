@@ -14,12 +14,14 @@ import { renderTimeseries } from "./views/timeseries.js";
 import { renderTreemap } from "./views/treemap.js";
 import { renderSlope } from "./views/slope.js";
 import { renderWaterfall } from "./views/waterfall.js";
+import { renderWaffle } from "./views/waffle.js";
 
 const STATUS_UI = { regnskap: "Regnskap", budsjett: "Budsjett", saldert: "Saldert", vedtatt: "Vedtatt", forslag: "Forslag", anslag: "Anslag", foreløpig: "Foreløpig" };
 
 const VIEWS = {
   "hier-bars": { label: "Søyler", snapshot: true },
   treemap: { label: "Flisekart", snapshot: true },
+  waffle: { label: "Rutenett", snapshot: true },
   slope: { label: "Før og nå", snapshot: false, compare: true },
   waterfall: { label: "Trinn for trinn", snapshot: false, steps: true },
   "timeseries-lines": { label: "Linjer", snapshot: false, mode: "lines" },
@@ -69,7 +71,9 @@ async function init(el) {
   const periods = ds ? ds.periods : lines ? seriesSet(cfg.title, lines).periods : [];
   const defaultStatus = ds?.statuses[0];
   // default year: the latest one that has the default status (accounts), so the first view is not a budget year
-  const defaultYear = ds ? [...periods].reverse().find((p) => ds.statusesByPeriod[p].has(defaultStatus)) ?? periods[periods.length - 1] : undefined;
+  // «foreløpig» counts as actual data (it is the latest measurement); budget, proposal and forecast statuses do not.
+  const ACTUAL = ["regnskap", "foreløpig"];
+  const defaultYear = ds ? [...periods].reverse().find((p) => ACTUAL.some((a) => ds.statusesByPeriod[p].has(a))) ?? periods[periods.length - 1] : undefined;
   const defaults = { view: cfg.defaultView ?? views[0], year: defaultYear ?? periods[periods.length - 1], year2: periods[0], unit: "raw", path: "", dim: ds?.meta.default_dimension, status: defaultStatus };
   let state = { ...defaults, ...readState(cfg.id) };
   if (!views.includes(state.view)) state.view = defaults.view;
@@ -170,7 +174,11 @@ async function init(el) {
       current = renderWaterfall(body, steps, { unit: cfg.unit ?? "mrd. kr", tol: cfg.tol });
       return;
     }
-    if (state.view === "hier-bars" || state.view === "treemap") {
+    if (state.view === "waffle") {
+      const node = nodeFor(ds, { ...base, unit: BUILTIN_UNITS.raw, depth: 6 });
+      current = renderWaffle(body, node, { groups: cfg.groups });
+      status.textContent = node.status === "foreløpig" ? "Foreløpige tall." : "";
+    } else if (state.view === "hier-bars" || state.view === "treemap") {
       const node = nodeFor(ds, base);
       const dimNow = node.dim;
       const canDrill = (r) => {
@@ -179,16 +187,16 @@ async function init(el) {
       };
       const draw = state.view === "treemap" ? renderTreemap : renderHierBars;
       current = draw(body, node, { canDrill, onDrill: (path) => push({ path }) });
-      status.textContent = node.status !== state.status && ds.statuses.length > 1
+      status.textContent = node.status !== state.status && ds.statuses.length > 1 && node.status !== "foreløpig"
         ? `${STATUS_UI[state.status] ?? state.status} finnes ikke for ${periodLabel(state.year)}. Viser ${STATUS_UI[node.status] ?? node.status}.`
         : node.status === "foreløpig" ? "Foreløpige tall." : "";
     } else if (state.view === "slope") {
-      const set = ds ? timeline(ds, base) : seriesSet(cfg.title, lines, { labels: cfg.labels });
+      const set = ds ? timeline(ds, base) : seriesSet(cfg.title, lines, { labels: cfg.labels, unit: cfg.unit });
       current = renderSlope(body, set, { from: state.year2, to: state.year });
     } else if (ds) {
       current = renderTimeseries(body, timeline(ds, base), { mode: view.mode, period: state.year, onPeriod: (p) => { state.year = p; } });
     } else {
-      current = renderTimeseries(body, seriesSet(cfg.title, lines, { labels: cfg.labels }), { mode: view.mode });
+      current = renderTimeseries(body, seriesSet(cfg.title, lines, { labels: cfg.labels, unit: cfg.unit }), { mode: view.mode });
     }
   }
   render();

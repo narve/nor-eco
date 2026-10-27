@@ -1,0 +1,12 @@
+# Numbers printed on SSB's page «Tilknytning til arbeid, utdanning og velferdsordninger» (bosatte 15 år og over, 2025,
+# foreløpige tall), copied 2026-10-27 from
+# https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/tilknytning-til-arbeid-utdanning-og-velferdsordninger
+# SSB rounds cells with one or two persons, so a few persons of difference between page and statbank are expected.
+year: "2025"
+tolerance_persons: 5
+page_values:
+  A.01xU03: 394507      # Sysselsatte og under ordinær utdanning
+  A.01xU04: 41927       # Sysselsatte og mottar arbeidsavklaringspenger
+  A.01xU06-07: 183247   # Sysselsatte og mottar AFP/ alderspensjon
+  U.01.00: 47692        # Deltakere på arbeidsmarkedstiltak
+  U.04.00: 83824        # Mottakere av arbeidsavklaringspenger

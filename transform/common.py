@@ -9,7 +9,7 @@ from pathlib import Path
 
 import yaml
 
-from fetch.common import JsonStat, parse_jsonstat2
+from fetch.common import JsonStat, parse_jsonstat2, snapshot_order
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "data" / "raw"
@@ -19,7 +19,7 @@ PROCESSED = ROOT / "data" / "processed"
 def latest_snapshot(source_id: str, raw_dir: Path = RAW_DIR) -> tuple[JsonStat, dict]:
     """Parse the newest committed JSON snapshot of a source. Returns (JsonStat, manifest entry)."""
     manifest = yaml.safe_load((raw_dir / "MANIFEST.yaml").read_text(encoding="utf-8"))["files"]
-    entries = sorted((e for e in manifest if e["source_id"] == source_id and e["committed"]), key=lambda e: e["retrieved"])
+    entries = sorted((e for e in manifest if e["source_id"] == source_id and e["committed"]), key=snapshot_order)
     if not entries:
         raise FileNotFoundError(f"no committed snapshot for {source_id}; run `python -m fetch all`")
     e = entries[-1]
@@ -29,7 +29,7 @@ def latest_snapshot(source_id: str, raw_dir: Path = RAW_DIR) -> tuple[JsonStat, 
 def latest_snapshot_bytes(source_id: str, raw_dir: Path = RAW_DIR) -> tuple[bytes, dict]:
     """Newest committed snapshot of any type, as raw bytes (for HTML sources). Returns (bytes, manifest entry)."""
     manifest = yaml.safe_load((raw_dir / "MANIFEST.yaml").read_text(encoding="utf-8"))["files"]
-    entries = sorted((e for e in manifest if e["source_id"] == source_id and e["committed"]), key=lambda e: e["retrieved"])
+    entries = sorted((e for e in manifest if e["source_id"] == source_id and e["committed"]), key=snapshot_order)
     if not entries:
         raise FileNotFoundError(f"no committed snapshot for {source_id}; run `python -m fetch all`")
     return (raw_dir / entries[-1]["file"]).read_bytes(), entries[-1]

@@ -50,6 +50,8 @@ export function valueText(value, unit, decimals = 1) {
 
 export function decimalsFor(unit, values) {
   if (unit === "prosent") return 1;
+  const real = values.filter((v) => v !== null && v !== undefined);
+  if (real.length && real.every(Number.isInteger)) return 0; // counts published as whole numbers stay whole
   if (unit.startsWith("kr per") || unit === "personer") return 0;
   const m = Math.max(0, ...values.filter((v) => v !== null).map(Math.abs));
   return m >= 1000 ? 0 : m >= 100 ? 1 : 2;

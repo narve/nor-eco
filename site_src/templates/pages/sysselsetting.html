@@ -1,13 +1,154 @@
 {% extends "base.html" %}
-{% block description %}Hvordan sysselsetting telles, og hvorfor tallene er ulike.{% endblock %}
+{% from "macros.html" import chart, cite, data_table, claim_badge, quote, chart_scripts with context %}
+{% block description %}Hva «sysselsatt» betyr i AKU og i registerstatistikken, hvem som regnes med, og hvor mange som er i arbeid målt som personer, årsverk og timeverk.{% endblock %}
+{% set S = "sysselsetting." %}
+{% set GROUPS = [
+  {"label": "Kun sysselsatte og sysselsatte ellers", "codes": ["A.01x00", "A.01.90A"], "color": 1},
+  {"label": "Sysselsatte og under ordinær utdanning", "codes": ["A.01xU03"], "color": 1, "stripe": 3},
+  {"label": "Sysselsatte og mottar arbeidsavklaringspenger", "codes": ["A.01xU04"], "color": 1, "stripe": 5},
+  {"label": "Sysselsatte og mottar uføretrygd", "codes": ["A.01xU05"], "color": 1, "stripe": 6},
+  {"label": "Sysselsatte og mottar AFP/alderspensjon", "codes": ["A.01xU06-07"], "color": 1, "stripe": 7},
+  {"label": "Registrerte arbeidsledige", "codes": ["A.09.00"], "color": 2},
+  {"label": "Deltakere på arbeidsmarkedstiltak", "codes": ["U.01.00"], "color": 4},
+  {"label": "Under ordinær utdanning", "codes": ["U.03.00"], "color": 3},
+  {"label": "Mottar arbeidsavklaringspenger", "codes": ["U.04.00"], "color": 5},
+  {"label": "Mottar uføretrygd", "codes": ["U.05.00"], "color": 6},
+  {"label": "Mottar AFP eller alderspensjon", "codes": ["U.06.00", "U.07.00"], "color": 7},
+  {"label": "Andre ordninger og ukjent status", "codes": ["U.90A.00", "UX.00"], "color": "other"}
+] %}
+{% set AKU_GROUPS = [
+  {"label": "Sysselsatte", "codes": ["1"], "color": 1},
+  {"label": "Arbeidsledige", "codes": ["2"], "color": 2},
+  {"label": "Utenfor arbeidsstyrken", "codes": ["6"], "color": 3}
+] %}
+{% set emp_r = series[S ~ "sysselsatte_register_tusen"]["values"][-1] %}
+{% set yr = emp_r.period %}
+{% set emp_a = series[S ~ "sysselsatte_aku_tusen"].by_period[yr] %}
+{% set led_r = series[S ~ "ledige_register_tusen"].by_period[yr] %}
+{% set led_a = series[S ~ "ledige_aku_tusen"].by_period[yr] %}
+{% set m_emp = series[S ~ "aku_sysselsatte_feilmargin"].by_period[yr] %}
+{% set m_led = series[S ~ "aku_arbeidsledige_feilmargin"].by_period[yr] %}
+{% set pop = datasets_value(S ~ "registerstatus_15_74", None, yr, "statusgruppe") %}
 {% block main %}
 <header class="page-head">
   <p class="mono">Tema</p>
-  <h1>Hva betyr «sysselsatt»?</h1>
-  <p class="lede">Hvordan sysselsetting telles, og hvorfor tallene er ulike.</p>
+  <h1>Hva betyr <span>«sysselsatt»</span>?</h1>
+  <p class="lede">Hvor mange som er i arbeid avhenger av hva som telles: en spørreundersøkelse (AKU) eller registre, personer eller årsverk. Her vises hver definisjon med SSBs egen ordlyd, og hvor store forskjellene er.</p>
 </header>
-<section id="innhold">
-  <h2>Innhold</h2>
-  <p class="muted">Denne siden er ikke bygget ennå.</p>
+
+<section id="nokkeltall">
+  <h2>Nøkkeltall {{ yr }}</h2>
+  <p class="muted small">Personer 15–74 år, i tusen. Tall for {{ yr }}{% if emp_r.status == "foreløpig" %} er foreløpige i registerstatistikken{% endif %}.</p>
+  <div class="grid">
+    <div class="card"><span class="mono">Sysselsatte, registerbasert {{ claim_badge("utledet") }}</span>
+      <p class="num big">{{ fmt(emp_r.value, 0) }} <span class="unit">tusen</span></p>{{ cite(series[S ~ "sysselsatte_register_tusen"].source_ids) }}</div>
+    <div class="card"><span class="mono">Sysselsatte, AKU</span>
+      <p class="num big">{{ fmt(emp_a.value, 0) }} <span class="unit">tusen ± {{ fmt(m_emp.value, 0) }}</span></p>{{ cite(series[S ~ "sysselsatte_aku_tusen"].source_ids) }}</div>
+    <div class="card"><span class="mono">Registrerte arbeidsledige (Nav) {{ claim_badge("utledet") }}</span>
+      <p class="num big">{{ fmt(led_r.value, 0) }} <span class="unit">tusen</span></p>{{ cite(series[S ~ "ledige_register_tusen"].source_ids) }}</div>
+    <div class="card"><span class="mono">Arbeidsledige, AKU</span>
+      <p class="num big">{{ fmt(led_a.value, 0) }} <span class="unit">tusen ± {{ fmt(m_led.value, 0) }}</span></p>{{ cite(series[S ~ "ledige_aku_tusen"].source_ids) }}</div>
+  </div>
+</section>
+
+<section id="definisjoner">
+  <h2>To definisjoner av sysselsatt</h2>
+  <p>AKU er en spørreundersøkelse som SSB bruker for internasjonalt sammenlignbare tall. Registerstatistikken bygger på rapporterte data fra arbeidsgivere, utdanningsinstitusjoner og Nav.</p>
+  <h3>AKU</h3>
+  {{ quote("aku-omfang") }}
+  {{ quote("aku-sysselsatt") }}
+  {{ quote("aku-arbeidsledig") }}
+  {{ quote("aku-arbeidsstyrken") }}
+  {{ quote("aku-utenfor") }}
+  <h3>Registerstatistikken</h3>
+  {{ quote("reg-sysselsatte") }}
+  {{ quote("reg-ledige") }}
+</section>
+
+<section id="befolkningen">
+  <h2>Hva gjør de 15–74-åringene?</h2>
+  <p>Registerstatistikken gir hver person én status. Det gjør at «sysselsatt» kan deles videre: de som kun er i arbeid, og de som også er under utdanning eller mottar en ytelse.</p>
+  {{ quote("reg-prioritert") }}
+  <p>Gruppene med to statuser er tegnet med stripete ruter. Resten av befolkningen er fordelt etter den høyest prioriterte statusen:</p>
+  {{ quote("reg-eksempel") }}
+  {% call chart("register-15-74", "Befolkningen 15–74 år etter prioritert arbeidsstyrkestatus (registerbasert)", ["ssb-12423"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/sysselsetting/registerstatus_15_74.json", "views": ["waffle", "hier-bars", "treemap", "timeseries-stacked"], "groups": GROUPS}) %}
+    {{ data_table(dataset_table(S ~ "registerstatus_15_74", dim="statusgruppe", depth=2, status="regnskap"), 0, caption="Hovedgrupper (endelige tall)") }}
+  {% endcall %}
+  <p class="muted small">{{ datasets[S ~ "registerstatus_15_74"]["meta"]["notes"] }}</p>
+  {% call chart("register-20-66", "Befolkningen 20–66 år etter prioritert arbeidsstyrkestatus (registerbasert)", ["ssb-12423"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/sysselsetting/registerstatus_20_66.json", "views": ["waffle", "hier-bars"], "groups": GROUPS}) %}
+    {{ data_table(dataset_table(S ~ "registerstatus_20_66", dim="statusgruppe", depth=2, status="regnskap"), 0, caption="Hovedgrupper (endelige tall)") }}
+  {% endcall %}
+  <p>Noen grupper ligger utenfor det man vanligvis tenker på som «jobb», men er likevel regnet med i tallene:</p>
+  {{ quote("reg-laerlinger") }}
+  {{ quote("reg-sykepenger") }}
+</section>
+
+<section id="aku-og-register">
+  <h2>AKU og registerstatistikk</h2>
+  <p>De to kildene gir nesten samme antall sysselsatte, men svært ulikt antall arbeidsledige. SSB oppgir flere årsaker til at tallene ikke er like:</p>
+  {{ quote("aku-vs-register-kilde") }}
+  {{ quote("aku-vs-register-metode") }}
+  {{ quote("aku-vs-register-permittering") }}
+  {{ quote("aku-vs-register-forstegang") }}
+  {% call chart("sysselsatte-aku-register", "Sysselsatte 15–74 år: AKU og registerbasert", ["ssb-13618", "ssb-12423"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/sysselsetting/sysselsatte_aku_tusen.json", root ~ "data/sysselsetting/sysselsatte_register_tusen.json"], "labels": ["AKU", "Registerbasert"], "views": ["timeseries-lines", "slope"]}) %}
+    {{ data_table(series_table([S ~ "sysselsatte_aku_tusen", S ~ "sysselsatte_register_tusen", S ~ "aku_sysselsatte_feilmargin"]), 0) }}
+  {% endcall %}
+  {% call chart("ledige-aku-register", "Arbeidsledige 15–74 år: AKU og registrerte ledige hos Nav", ["ssb-13618", "ssb-12423"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/sysselsetting/ledige_aku_tusen.json", root ~ "data/sysselsetting/ledige_register_tusen.json"], "labels": ["AKU", "Registrerte (Nav)"], "views": ["timeseries-lines", "timeseries-bars", "slope"]}) %}
+    {{ data_table(series_table([S ~ "ledige_aku_tusen", S ~ "ledige_register_tusen", S ~ "aku_arbeidsledige_feilmargin"]), 0) }}
+  {% endcall %}
+  <p>AKU er et utvalg, og tallene er anslag:</p>
+  {{ quote("aku-feilmargin") }}
+  <p>AKU-tallene er justert for et brudd i serien:</p>
+  {{ quote("aku-brudd") }}
+  <p>Registerserien starter i 2015:</p>
+  {{ quote("reg-a-ordningen") }}
+  {% call chart("aku-15-74", "AKU: personer 15–74 år etter arbeidsstyrkestatus", ["ssb-13618"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/sysselsetting/aku_15_74.json", "views": ["waffle", "hier-bars", "timeseries-stacked"], "groups": AKU_GROUPS}) %}
+    {{ data_table(dataset_table(S ~ "aku_15_74", dim="statusgruppe"), 0) }}
+  {% endcall %}
+</section>
+
+<section id="arsverk">
+  <h2>Personer, årsverk og timeverk</h2>
+  <p>Én sysselsatt person er ikke ett årsverk: deltid og fravær gjør at antall årsverk (heltidsekvivalenter) er lavere enn antall personer. Tallene her kommer fra nasjonalregnskapet.</p>
+  {% call chart("personer-arsverk", "Sysselsatte personer og årsverk, nasjonalregnskapet", ["ssb-09174"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/sysselsetting/sysselsatte_personer_na.json", root ~ "data/sysselsetting/arsverk_na.json"], "labels": ["Sysselsatte personer (1 000)", "Årsverk (1 000)"], "views": ["timeseries-lines", "slope"], "unit": "tusen"}) %}
+    {{ data_table(series_table([S ~ "sysselsatte_personer_na", S ~ "arsverk_na", S ~ "timeverk_na", S ~ "arsverk_per_sysselsatt"]), 1) }}
+  {% endcall %}
+  <p class="muted small">Årsverk per sysselsatt er utledet: {{ series[S ~ "arsverk_per_sysselsatt"].derivation }}.</p>
+</section>
+
+<section id="forvekslinger">
+  <h2>Ofte blandet sammen</h2>
+  <article class="pair">
+    <h3>Sysselsatte i AKU og i registeret</h3>
+    <p>For {{ yr }} er antallet {{ fmt(emp_a.value, 0) }} tusen i AKU og {{ fmt(emp_r.value, 0) }} tusen i registerstatistikken.</p>
+    {{ quote("aku-vs-register-kilde") }}
+  </article>
+  <article class="pair">
+    <h3>Arbeidsledige i AKU og registrerte ledige</h3>
+    <p>For {{ yr }} er det {{ fmt(led_a.value, 0) }} tusen arbeidsledige i AKU og {{ fmt(led_r.value, 0) }} tusen registrerte ledige hos Nav. De to bruker ulike definisjoner:</p>
+    {{ quote("aku-arbeidsledig") }}
+    {{ quote("reg-ledige") }}
+  </article>
+  <article class="pair">
+    <h3>Arbeidsstyrken og befolkningen</h3>
+    <p>Av {{ fmt(pop / 1000, 0) }} tusen personer i alderen 15–74 år i registerstatistikken er bare en del i arbeidsstyrken:</p>
+    {{ quote("aku-arbeidsstyrken") }}
+  </article>
+  <article class="pair">
+    <h3>Sysselsatt og samtidig under utdanning eller på ytelser</h3>
+    <p>En person kan være i arbeid og samtidig studere eller motta en ytelse. Registerstatistikken viser sysselsatte kombinert med den nest høyest prioriterte statusen:</p>
+    {{ quote("reg-prioritert") }}
+  </article>
+  <article class="pair">
+    <h3>Uføretrygd i tidsserien</h3>
+    {{ quote("reg-uforetrygd-navn") }}
+  </article>
 </section>
 {% endblock %}
+{% block scripts %}{{ chart_scripts() }}{% endblock %}

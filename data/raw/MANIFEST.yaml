@@ -17,30 +17,23 @@ files:
 - source_id: fin-nokkeltall-nb2027
   file: fin-nokkeltall-nb2027/2026-10-27.html
   url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
-  sha256: f3e2d9a64fcce255c5af7724ecf06517d352d883e1405d3a833bc18b047061ba
+  sha256: e41d82166ca444631d1a211c7f30982a7ab4f6242fa4cf7f562fb4ddc3da6efc
   retrieved: '2026-10-27'
-  size: 58208
-  committed: true
-- source_id: fin-nokkeltall-nb2027
-  file: fin-nokkeltall-nb2027/2026-10-27.html
-  url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
-  sha256: 3a95e5e15316975787b281ff30216d09b527587950ef6ca6c366970a5eb45470
-  retrieved: '2026-10-27'
-  size: 58218
-  committed: true
-- source_id: fin-nokkeltall-nb2027
-  file: fin-nokkeltall-nb2027/2026-10-27.html
-  url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
-  sha256: 96d9888d73110d9b09b6674a8d73230f6aa8ded551bd02f7dd5ad82d9a774d36
-  retrieved: '2026-10-27'
-  size: 58208
+  size: 58170
   committed: true
 - source_id: fin-sb2027-inntekter-utgifter
   file: fin-sb2027-inntekter-utgifter/2026-10-27.html
   url: https://www.regjeringen.no/no/statsbudsjett/2027/statsbudsjettet-2027-statens-inntekter-og-utgifter/id3173250/
-  sha256: 23460b8c85d34db368ec1978c9aecc2c8c63ca10c93f114b767df15f5bb04e26
+  sha256: 174072da777a78bd00cbc4bc80fa894e954c792c443aeb713b3e67a0ea4a7b98
   retrieved: '2026-10-27'
-  size: 84646
+  size: 84416
+  committed: true
+- source_id: nbim-fondsverdi
+  file: nbim-fondsverdi/2026-10-27-2.html
+  url: https://www.nbim.no/en/investments/the-funds-value/
+  sha256: 5eeb6d03aa0ca55714a142340c6d0c57ff077bc267d7fc72b1b5c07898b509bd
+  retrieved: '2026-10-27'
+  size: 97693
   committed: true
 - source_id: nbim-fondsverdi
   file: nbim-fondsverdi/2026-10-27.html
@@ -64,6 +57,14 @@ files:
   retrieved: '2026-10-27'
   vintage: '2026-05-15T06:00:00Z'
   size: 4839
+  committed: true
+- source_id: ssb-09174
+  file: ssb-09174/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/09174/data?lang=no&outputFormat=json-stat2&valuecodes%5BNACE%5D=nr23_6&valuecodes%5BContentsCode%5D=Sysselsatte%2CSysselsattNorm%2CTimeverk&valuecodes%5BTid%5D=2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 6b503b9d9b805d8b1527d4e0dfcd8f26185cdae42bf978340e784420c440fcc0
+  retrieved: '2026-10-27'
+  vintage: '2026-05-28T06:00:00Z'
+  size: 3777
   committed: true
 - source_id: ssb-09189
   file: ssb-09189/2026-10-27.json
@@ -96,6 +97,30 @@ files:
   retrieved: '2026-10-27'
   vintage: '2026-06-09T06:00:00Z'
   size: 4504
+  committed: true
+- source_id: ssb-12423
+  file: ssb-12423/2026-10-27-2.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/12423/data?lang=no&outputFormat=json-stat2&valuecodes%5BKjonn%5D=0%2C1%2C2&valuecodes%5BAlder%5D=15-74%2C20-66%2C15%2B&valuecodes%5BUtdNivaa%5D=TOT&valuecodes%5BInnvandrKat%5D=A-G&valuecodes%5BHovArbStyrkStatus%5D=%2A&valuecodes%5BContentsCode%5D=Bosatte&valuecodes%5BTid%5D=2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 01536f5139e16010d068011465eb08a2b16aa035260fa90e16ffb970ed89dbfa
+  retrieved: '2026-10-27'
+  vintage: '2026-09-04T06:00:00Z'
+  size: 27481
+  committed: true
+- source_id: ssb-12423
+  file: ssb-12423/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/12423/data?lang=no&outputFormat=json-stat2&valuecodes%5BKjonn%5D=0%2C1%2C2&valuecodes%5BAlder%5D=15-74%2C20-66&valuecodes%5BUtdNivaa%5D=TOT&valuecodes%5BInnvandrKat%5D=A-G&valuecodes%5BHovArbStyrkStatus%5D=%2A&valuecodes%5BContentsCode%5D=Bosatte&valuecodes%5BTid%5D=2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 5e85d9081b54490bfbec62fac08cc75b145cfa102405c1d5dec349426d9ed2f3
+  retrieved: '2026-10-27'
+  vintage: '2026-09-04T06:00:00Z'
+  size: 20559
+  committed: true
+- source_id: ssb-13618
+  file: ssb-13618/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/13618/data?lang=no&outputFormat=json-stat2&valuecodes%5BArbStyrkStatus%5D=%2A&valuecodes%5BKjonn%5D=0%2C1%2C2&valuecodes%5BAlder%5D=15-74%2C20-66&valuecodes%5BContentsCode%5D=Personer%2CFeilmargin&valuecodes%5BTid%5D=2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 0bafb148ff521f322b18be89d919b00bf4d1406d00cd71ac2ed172a8eb1669ea
+  retrieved: '2026-10-27'
+  vintage: '2026-02-11T07:00:00Z'
+  size: 10430
   committed: true
 - source_id: ssb-14669
   file: ssb-14669/2026-10-27.json

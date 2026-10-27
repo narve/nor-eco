@@ -193,8 +193,9 @@ def run(out: Path = PROCESSED) -> None:
 
 def spu(out: Path = PROCESSED) -> None:
     """Statens pensjonsfond utland: only the latest figures, as stated in NBIM's own sentence (no history)."""
-    content, entry = latest_snapshot_bytes(nbim.SOURCE_ID)
-    fv = nbim.parse(content)
+    fv = nbim.newest_stored()  # newest period, not newest download (the site can serve an older page version)
+    if fv is None:
+        raise FileNotFoundError("no NBIM snapshot; run `python -m fetch all`")
     parts = [("netto_tilforsel", "Netto tilførsel fra staten (akkumulert)", fv.net_inflow),
              ("avkastning", "Avkastning (akkumulert)", fv.ret),
              ("kronekurs", "Endringer på grunn av kronekurs (akkumulert)", fv.currency)]
@@ -205,7 +206,7 @@ def spu(out: Path = PROCESSED) -> None:
             "default_dimension": "komponent",
             "published_totals": [{"period": fv.period, "status": "foreløpig", "value": fv.value, "source_id": nbim.SOURCE_ID}],
             "tolerance": 0.0001,
-            "notes": "Siste halvårstall fra NBIM; ingen historikk. Delene er avrundet av NBIM og kan avvike fra totalen med 1 mrd. kr."}
+            "notes": "Siste tall fra NBIM (kvartals- eller halvårstall); ingen historikk. Delene er avrundet av NBIM og kan avvike fra totalen med noen få mrd. kr."}
     dims = {"komponent": {"label": "Komponent", "nodes": [{"code": "fondsverdi", "label": "Fondets verdi", "parent": None}]
                           + [{"code": c, "label": l, "parent": "fondsverdi"} for c, l, _ in parts]}}
     write_dataset(TOPIC, "spu_fondsverdi", meta, dims, rows, out)

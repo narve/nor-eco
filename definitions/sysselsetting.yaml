@@ -1,0 +1,80 @@
+# Verbatim quotes from SSB. `python -m checks` (online step) verifies each quote still appears at its source.
+definitions:
+  - id: aku-omfang
+    term: Arbeidskraftundersøkelsen (AKU)
+    quote: "Arbeidskraftundersøkelsen (AKU) er en undersøkelse som måler sysselsetting og arbeidsledighet i Norge. Den inkluderer personer i alderen 15-89 år og gir statistikk om arbeidsmarkedets utvikling."
+    source_id: ssb-aku-om
+  - id: aku-sysselsatt
+    term: Sysselsatte (AKU)
+    quote: "Sysselsatte er personer som utførte betalt arbeid i minst én time i referanseuka eller som var midlertidig fraværende fra jobben sin på grunn av sykdom, ferie, lønnet permisjon eller lignende. Personer på sysselsettingstiltak med lønn fra arbeidsgiver regnes også som sysselsatte. Personer på andre typer tiltak (kvalifiseringstiltak) hvor det bare utbetales en kursstønad eller lignende regnes ikke som sysselsatt. Personer som har vært permittert fra jobben sammenhengende i inntil 3 måneder blir også regnet som sysselsatte."
+    source_id: ssb-aku-om
+  - id: aku-arbeidsledig
+    term: Arbeidsledige (AKU)
+    quote: "Arbeidsledige er personer som ikke utførte betalt arbeid og som aktivt forsøkte å skaffe seg arbeid i løpet av de siste fire ukene og som kunne ha påtatt seg arbeid i løpet av referanseuka eller de to påfølgende ukene. Alle de tre kriteriene må være oppfylt samtidig."
+    source_id: ssb-aku-om
+  - id: aku-arbeidsstyrken
+    term: Arbeidsstyrken
+    quote: "Arbeidsstyrken er summen av de sysselsatte og de arbeidsledige, det vil si alle personer som aktivt tilbyr arbeidskraften sin på arbeidsmarkedet. Disse omtales også ofte som yrkesaktive."
+    source_id: ssb-aku-om
+  - id: aku-utenfor
+    term: Personer utenfor arbeidsstyrken (AKU)
+    quote: "Personer utenfor arbeidsstyrken er personer som verken er sysselsatte eller arbeidsledige. Dette omfatter altså personer som verken jobber eller aktivt forsøker å skaffe seg jobb."
+    source_id: ssb-aku-om
+  - id: reg-prioritert
+    term: Prioritert arbeidsstyrkestatus
+    quote: "I denne statistikken beregnes det én status for den enkelte persons forhold til arbeidsmarkedet, utdanning og ytelser. For personer som er aktive i flere statuser samtidig, synliggjøres den høyest prioriterte statusen (for sysselsatte de to høyest prioriterte statusene)."
+    source_id: ssb-arbstatus-om
+  - id: reg-eksempel
+    term: Eksempel på prioritering
+    quote: "Prioriteringsrekkefølgen som beskrevet ovenfor betyr at en person som for eksempel både er under ordinær utdanning og mottar uføretrygd blir regnet som under ordinær utdanning."
+    source_id: ssb-arbstatus-om
+  - id: reg-sysselsatte
+    term: Sysselsatte (registerstatistikken)
+    quote: "Sysselsatte, som omfatter lønnstakere, oppdragstakere, frilansere og selvstendig næringsdrivende, er definert som personer som utførte inntektsgivende arbeid av minst én times varighet i referanseuken, samt personer som har et slikt arbeid, men som var midlertidig fraværende pga. sykdom, ferie, lønnet permisjon e.l."
+    source_id: ssb-arbstatus-om
+  - id: reg-ledige
+    term: Registrerte arbeidsledige
+    quote: "Registrerte arbeidsledige er arbeidsføre personer som søker inntektsgivende arbeid ved Nav og ellers er disponible for det arbeidet som søkes. I tillegg må vedkommende ha vært uten inntektsgivende arbeid de siste to ukene."
+    source_id: ssb-arbstatus-om
+  - id: reg-laerlinger
+    term: Lærlinger
+    quote: "Lærlinger vil med andre ord både være regnet som sysselsatte, men også være under utdanning."
+    source_id: ssb-arbstatus-om
+  - id: reg-sykepenger
+    term: Sykepenger og sysselsetting
+    quote: "I praksis vil de fleste som mottar sykepenger få sysselsetting som prioritert arbeidsstyrkestatus, i tråd med ILO sin definisjon av sysselsatte."
+    source_id: ssb-arbstatus-om
+  - id: reg-uforetrygd-navn
+    term: Uføretrygd i tidsserien
+    quote: "I denne statistikken brukes betegnelsen «uføretrygd» i hele tidsserien og omfatter også uførepensjon i årene før 2015."
+    source_id: ssb-arbstatus-om
+  - id: reg-a-ordningen
+    term: Overgang til a-ordningen
+    quote: "Fra og med 2015 ble Aa- og LTO-registrene erstattet av a-ordningen."
+    source_id: ssb-arbstatus-om
+  - id: aku-vs-register-kilde
+    term: Hvorfor AKU og registerstatistikk ikke er like
+    quote: "Arbeidskraftsundersøkelsen (AKU) er en spørreundersøkelse som er basert på et utvalg av personer, mens registerstatistikkene nevnt i delen ovenfor er basert på data rapportert av blant annet arbeidsgivere, utdanningsinstitusjoner og Nav."
+    source_id: ssb-arbstatus-om
+  - id: aku-vs-register-metode
+    term: Forskjeller i målemetode
+    quote: "Forskjeller i målemetode: AKU er en intervjuundersøkelse blant personer mellom 15 og 74 år (15 til 89 fra 2021), mens a-ordningen er basert på bedriftenes rapportering av ansatte og lønn gjennom a-ordningen."
+    source_id: ssb-arbstatus-om
+  - id: aku-vs-register-forstegang
+    term: Førstegangstjeneste
+    quote: "Den registerbaserte sysselsettingsstatistikken omfatter også personer i førstegangstjeneste, mens denne gruppen ikke er med i AKU fra og med 2021."
+    source_id: ssb-arbstatus-om
+  - id: aku-vs-register-permittering
+    term: Permitteringer
+    quote: "AKU og statistikker basert på a-ordningen klassifiserer permitteringer og endringer i permitteringer på litt ulik måte."
+    source_id: ssb-arbstatus-om
+  - id: aku-brudd
+    term: Brudd i AKU mellom 2020 og 2021
+    quote: "Tallene er bruddjustert grunnet et brudd mellom 2020 og 2021"
+    source_id: ssb-13618
+    note: Merknad til tabell 13618.
+  - id: aku-feilmargin
+    term: Feilmargin i AKU
+    quote: "Feilmarginen uttrykker hvor nøyaktig et estimat er."
+    source_id: ssb-13618
+    note: Merknad til tabell 13618.

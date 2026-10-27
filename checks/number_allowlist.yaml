@@ -4,3 +4,5 @@ allow_phrases:
   - 'CC BY 4\.0'
   - '[Rr]ing(en|er)? [1-7]'  # ring numbers on the «staten som arbeidsgiver» page
   - '\b3 ?%'                 # the 3 % rule, if mentioned in text
+  - '\b15[–-]74\b'           # age groups the employment datasets are defined for (a population definition, not a statistic)
+  - '\b20[–-]66\b'

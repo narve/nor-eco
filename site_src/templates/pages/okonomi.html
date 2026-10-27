@@ -117,7 +117,7 @@
     </div>
     {% endfor %}
   </div>
-  <p class="muted small">Fondets verdi er summen av disse tre delene, slik NBIM oppgir det. Delene er avrundet av NBIM, så summen kan avvike fra totalen med noen få milliarder kroner. Tallene er halvårstall.</p>
+  <p class="muted small">Fondets verdi er summen av disse tre delene, slik NBIM oppgir det. Delene er avrundet av NBIM, så summen kan avvike fra totalen med noen få milliarder kroner. Tallene gjelder siste periode NBIM har oppgitt (kvartal eller halvår).</p>
   {% call chart("spu-siste", "Statens pensjonsfond utland, siste tall", spu["meta"]["source_ids"], level=None,
       config={"kind": "dataset", "url": root ~ "data/okonomi/spu_fondsverdi.json", "views": ["hier-bars"]}) %}
     {{ data_table(dataset_table("okonomi.spu_fondsverdi", dim="komponent"), 0) }}

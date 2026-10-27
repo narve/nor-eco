@@ -1,0 +1,143 @@
+{
+  "id": "sysselsetting.timeverk_na",
+  "title": "Utførte timeverk, nasjonalregnskapet",
+  "unit": "mill. timeverk",
+  "price_basis": "ikke-relevant",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-09174"
+  ],
+  "vintage": "2026-05-28",
+  "values": [
+    {
+      "period": "2000",
+      "value": 3350.4,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 3293.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 3265.1,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 3190.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 3248.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 3297.4,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 3399.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 3560,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 3686.5,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 3616.5,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 3628.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 3691,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 3754.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 3768.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 3809.1,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 3827.8,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 3845.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 3858.6,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 3917.8,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 3974.8,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 3891,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 3980.6,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 4122.3,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 4136.1,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 4154.7,
+      "status": "foreløpig"
+    },
+    {
+      "period": "2025",
+      "value": 4172.9,
+      "status": "foreløpig"
+    }
+  ]
+}

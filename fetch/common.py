@@ -12,6 +12,7 @@ from __future__ import annotations
 import datetime as dt
 import hashlib
 import json
+import re
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -124,6 +125,12 @@ class Snapshot:
     unchanged: bool  # True if identical to the previous snapshot (nothing new was written)
 
 
+def snapshot_order(entry: dict) -> tuple[str, int]:
+    """Sort key: retrieval date, then the same-day sequence number («…-2.json» is newer than «….json»)."""
+    m = re.search(r"\d{4}-\d{2}-\d{2}-(\d+)\.\w+$", entry["file"])
+    return entry["retrieved"], int(m.group(1)) if m else 1
+
+
 def _load_manifest(path: Path) -> list[dict]:
     if path.exists():
         return (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("files", [])
@@ -131,7 +138,7 @@ def _load_manifest(path: Path) -> list[dict]:
 
 
 def _write_manifest(path: Path, entries: list[dict]) -> None:
-    entries = sorted(entries, key=lambda e: (e["source_id"], e["retrieved"], e["file"]))
+    entries = sorted(entries, key=lambda e: (e["source_id"], *snapshot_order(e)))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         "# Raw snapshots. Committed files are in data/raw/<source_id>/; the rest are re-downloadable (see url).\n"
@@ -163,9 +170,10 @@ def write_snapshot(
 
     manifest = raw_dir / "MANIFEST.yaml"
     entries = _load_manifest(manifest)
-    prev = sorted((e for e in entries if e["source_id"] == source_id and e["url"] == url), key=lambda e: e["retrieved"])
-    if prev and prev[-1]["sha256"] == sha:
-        last = prev[-1]
+    prev = sorted((e for e in entries if e["source_id"] == source_id and e["url"] == url), key=snapshot_order)
+    same = [e for e in prev if e["sha256"] == sha]  # identical to ANY earlier snapshot (a source can flip between versions)
+    if same:
+        last = same[-1]
         return Snapshot(source_id, raw_dir / last["file"], sha, last["retrieved"], last["committed"], True)
 
     redownloadable = ext in REDOWNLOADABLE_EXT
@@ -178,6 +186,10 @@ def write_snapshot(
     rel = f"{source_id}/{retrieved}{ext}"
     if not committed:
         rel = f"_large/{rel}"
+    n = 1
+    while (raw_dir / rel).exists():  # same day, different content: never overwrite an earlier snapshot
+        n += 1
+        rel = f"{source_id}/{retrieved}-{n}{ext}" if committed else f"_large/{source_id}/{retrieved}-{n}{ext}"
     target = raw_dir / rel
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(content)
@@ -303,10 +315,24 @@ def parse_jsonstat2(obj: dict | str | bytes, *, metadata_only: bool = False) -> 
     )
 
 
+_VOLATILE = [
+    (re.compile(rb'(<meta name="csp-nonce" content=")[^"]*(")'), rb"\1NONCE\2"),
+    (re.compile(rb'(nonce=")[^"]*(")'), rb"\1NONCE\2"),
+    (re.compile(rb"(fin-figur-)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"), rb"\1UUID"),
+]
+
+
+def normalize_html(content: bytes) -> bytes:
+    """Replace per-request values (CSP nonces, generated chart ids) so an unchanged page hashes the same every time."""
+    for pat, repl in _VOLATILE:
+        content = pat.sub(repl, content)
+    return content
+
+
 def ensure_local(source_id: str, raw_dir: Path = RAW_DIR) -> Path:
     """Path of the newest snapshot of a source. Files that are not committed (PDF, Excel ...) are
     re-downloaded from the manifest url when missing, and verified against the recorded sha256."""
-    entries = sorted((e for e in _load_manifest(raw_dir / "MANIFEST.yaml") if e["source_id"] == source_id), key=lambda e: e["retrieved"])
+    entries = sorted((e for e in _load_manifest(raw_dir / "MANIFEST.yaml") if e["source_id"] == source_id), key=snapshot_order)
     if not entries:
         raise FileNotFoundError(f"no snapshot of {source_id} in the manifest; run `python -m fetch all`")
     e = entries[-1]

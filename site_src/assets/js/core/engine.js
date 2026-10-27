@@ -114,6 +114,13 @@ function aggregate(ds, sel, period, status) {
   return { value: n ? Math.round(sum * 1e6) / 1e6 : null, claim, status, sources: [...sources].sort() };
 }
 
+// The dimension node a path ends at (null at the root).
+function labelNode(ds, segments) {
+  if (!segments.length) return null;
+  const last = segments[segments.length - 1];
+  return ds.dims[last.dim].byCode.get(last.code);
+}
+
 function labelFor(ds, segments, sel) {
   if (segments.length) {
     const last = segments[segments.length - 1];
@@ -146,6 +153,7 @@ export function nodeFor(ds, state) {
       status,
       claim_level: agg.claim,
       source_ids: agg.sources,
+      ...(labelNode(ds, segs, nodeDim)?.overlap ? { overlap: labelNode(ds, segs, nodeDim).overlap } : {}),
     };
     const base = sel[nodeDim] ?? ds.dims[nodeDim].root.code;
     const kids = ds.dims[nodeDim].byCode.get(base).children;

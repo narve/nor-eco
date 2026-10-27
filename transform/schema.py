@@ -106,6 +106,10 @@ def _check_tree(dim_id: str, dim: dict, registry_ids: set[str], where: str, rep:
     for c, n in nodes.items():
         if n.get("other") and c in children:
             rep.add(where, f"dimension {dim_id}: 'other' node '{c}' must be a leaf")
+    for c, n in nodes.items():
+        for o in n.get("overlap", []):
+            if o not in nodes or o in children or c in children:
+                rep.add(where, f"dimension {dim_id}: overlap '{o}' of '{c}' must name another leaf of the same dimension")
     return nodes
 
 

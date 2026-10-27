@@ -132,3 +132,36 @@ sources:
     url: https://www.regjeringen.no/no/statsbudsjett/2027/statsbudsjettet-2027-statens-inntekter-og-utgifter/id3173250/
     licence: Ikke oppgitt på siden.
     notes: Budsjettforslaget for 2027 med og uten petroleum (utenom lånetransaksjoner), og tabell 1 med inntekter og utgifter utenom petroleum.
+
+  # ---- WS3 Sysselsetting ----
+  - id: ssb-12423
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 12423: Prioritert arbeidsstyrkestatus (inkl. NEET) for personer 15 år og eldre, etter kjønn, alder, utdanningsnivå og innvandringskategori 2008-2025"
+    url: https://www.ssb.no/statbank/table/12423
+    table_id: "12423"
+    licence: CC BY 4.0
+    notes: Registerbasert. Én status per person (høyest prioriterte), for sysselsatte kombinert med den nest høyest prioriterte. Tall for siste år er foreløpige.
+  - id: ssb-13618
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 13618: Personer, etter arbeidsstyrkestatus, kjønn og alder. Bruddjusterte tall 2009-2025"
+    url: https://www.ssb.no/statbank/table/13618
+    table_id: "13618"
+    licence: CC BY 4.0
+    notes: Arbeidskraftundersøkelsen (AKU), årstall i 1000 personer, bruddjustert for omleggingen mellom 2020 og 2021. Utvalgsundersøkelse med feilmargin.
+  - id: ssb-09174
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 09174: Lønn, sysselsetting og produktivitet, etter næring 1970-2025"
+    url: https://www.ssb.no/statbank/table/09174
+    table_id: "09174"
+    licence: CC BY 4.0
+    notes: Nasjonalregnskapet. Sysselsatte personer, årsverk (heltidsekvivalenter) og utførte timeverk.
+  - id: ssb-aku-om
+    publisher: Statistisk sentralbyrå (SSB)
+    title: Arbeidskraftundersøkelsen – statistikkside og Om statistikken
+    url: https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/arbeidskraftundersokelsen
+    licence: CC BY 4.0
+  - id: ssb-arbstatus-om
+    publisher: Statistisk sentralbyrå (SSB)
+    title: Tilknytning til arbeid, utdanning og velferdsordninger – statistikkside og Om statistikken
+    url: https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/tilknytning-til-arbeid-utdanning-og-velferdsordninger
+    licence: CC BY 4.0

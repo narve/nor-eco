@@ -1,0 +1,66 @@
+id: sysselsetting.registerstatus_15_74
+title: Befolkningen 15–74 år etter prioritert arbeidsstyrkestatus (registerbasert)
+unit: personer
+price_basis: ikke-relevant
+claim_level: offisiell
+source_ids:
+- ssb-12423
+dimensions:
+- statusgruppe
+- kjonn
+default_dimension: statusgruppe
+published_totals:
+- period: '2015'
+  status: regnskap
+  value: 3913647
+  source_id: ssb-12423
+- period: '2016'
+  status: regnskap
+  value: 3948935
+  source_id: ssb-12423
+- period: '2017'
+  status: regnskap
+  value: 3976657
+  source_id: ssb-12423
+- period: '2018'
+  status: regnskap
+  value: 4004820
+  source_id: ssb-12423
+- period: '2019'
+  status: regnskap
+  value: 4026656
+  source_id: ssb-12423
+- period: '2020'
+  status: regnskap
+  value: 4041372
+  source_id: ssb-12423
+- period: '2021'
+  status: regnskap
+  value: 4056152
+  source_id: ssb-12423
+- period: '2022'
+  status: regnskap
+  value: 4099528
+  source_id: ssb-12423
+- period: '2023'
+  status: regnskap
+  value: 4148029
+  source_id: ssb-12423
+- period: '2024'
+  status: regnskap
+  value: 4185729
+  source_id: ssb-12423
+- period: '2025'
+  status: foreløpig
+  value: 4211607
+  source_id: ssb-12423
+tolerance: 0.0005
+notes: 'Registerbasert, én status per person: for personer som er aktive i flere statuser
+  vises den høyest prioriterte (for sysselsatte de to høyest prioriterte). SSB avrunder
+  celler med én eller to personer til null eller tre, så summen kan avvike litt fra
+  totalen. Tall for siste år er foreløpige. Serien starter i 2015, da a-ordningen
+  erstattet Aa- og LTO-registrene.'
+breaks:
+- period: '2015'
+  note: Serien starter i 2015, da a-ordningen erstattet Aa- og LTO-registrene.
+  source_id: ssb-arbstatus-om

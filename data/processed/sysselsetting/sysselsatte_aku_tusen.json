@@ -1,0 +1,67 @@
+{
+  "id": "sysselsetting.sysselsatte_aku_tusen",
+  "title": "Sysselsatte 15–74 år, AKU",
+  "unit": "1000 personer",
+  "price_basis": "ikke-relevant",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-13618"
+  ],
+  "values": [
+    {
+      "period": "2015",
+      "value": 2660,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 2659,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 2668,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 2716,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 2746,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 2732,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 2774,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 2849,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 2876,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 2889,
+      "status": "regnskap"
+    },
+    {
+      "period": "2025",
+      "value": 2903,
+      "status": "regnskap"
+    }
+  ]
+}

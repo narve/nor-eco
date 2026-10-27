@@ -1,0 +1,31 @@
+dimensions:
+  statusgruppe:
+    label: Status
+    nodes:
+    - code: '99'
+      label: Personer 15–74 år
+      parent: null
+    - code: '0'
+      label: Arbeidsstyrken
+      parent: '99'
+    - code: '1'
+      label: Sysselsatte
+      parent: '0'
+    - code: '2'
+      label: Arbeidsledige
+      parent: '0'
+    - code: '6'
+      label: Utenfor arbeidsstyrken
+      parent: '99'
+  kjonn:
+    label: Kjønn
+    nodes:
+    - code: '0'
+      label: Begge kjønn
+      parent: null
+    - code: '2'
+      label: Kvinner
+      parent: '0'
+    - code: '1'
+      label: Menn
+      parent: '0'

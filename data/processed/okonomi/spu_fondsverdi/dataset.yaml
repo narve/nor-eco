@@ -9,10 +9,10 @@ dimensions:
 - komponent
 default_dimension: komponent
 published_totals:
-- period: 2026-06
+- period: 2026-09
   status: foreløpig
-  value: 22683
+  value: 22014
   source_id: nbim-fondsverdi
 tolerance: 0.0001
-notes: Siste halvårstall fra NBIM; ingen historikk. Delene er avrundet av NBIM og
-  kan avvike fra totalen med 1 mrd. kr.
+notes: Siste tall fra NBIM (kvartals- eller halvårstall); ingen historikk. Delene
+  er avrundet av NBIM og kan avvike fra totalen med noen få mrd. kr.

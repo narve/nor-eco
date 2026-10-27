@@ -97,6 +97,13 @@
             "null"
           ],
           "description": "The node's value in the dataset's own unit, before any unit conversion."
+        },
+        "overlap": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Codes of the other groups this node's people also belong to."
         }
       }
     }

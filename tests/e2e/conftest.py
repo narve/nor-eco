@@ -28,6 +28,16 @@ def browser():
 
     with sync_playwright() as p:
         b = p.chromium.launch()
+        original = b.new_context
+
+        def new_context(*args, **kwargs):
+            """Tests talk only to the local server: external requests (analytics) are aborted, so tests are
+            deterministic, cannot stall on the network, and never send hits to the real counter."""
+            ctx = original(*args, **kwargs)
+            ctx.route(lambda url: not url.startswith("http://127.0.0.1"), lambda route: route.abort())
+            return ctx
+
+        b.new_context = new_context
         yield b
         b.close()
 
