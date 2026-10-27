@@ -1,0 +1,146 @@
+{
+  "id": "statsbudsjett.oljekorrigert_balanse_kr",
+  "title": "Oljekorrigert budsjettbalanse, regnskap (negativ = underskudd)",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "utledet",
+  "derivation": "Overskudd før netto avsetning til Statens pensjonsfond utland (statsregnskapet) minus statens netto kontantstrøm fra petroleumsvirksomhet. Dette er budsjettbalansen utenom netto inntekter fra petroleumsvirksomheten.",
+  "source_ids": [
+    "ssb-10486",
+    "ssb-11012"
+  ],
+  "vintage": "2026-06-09",
+  "values": [
+    {
+      "period": "2000",
+      "value": -7.939,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": -1.636,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": -62.393,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": -66.146,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": -79.242,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": -64.761,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": -44.004,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": -1.343,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": -11.796,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": -96.557,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": -104.074,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": -79.401,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": -100.892,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": -116.453,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": -160.005,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": -185.309,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": -208.388,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": -222.825,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": -218.512,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": -227.624,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": -370.526,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": -368.969,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": -282.742,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": -290.463,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": -331.702,
+      "status": "regnskap"
+    },
+    {
+      "period": "2025",
+      "value": -475.708,
+      "status": "regnskap"
+    }
+  ],
+  "notes": "Avviker fra Finansdepartementets prosenttall bare ved at nevneren er faktisk BNP Fastlands-Norge, ikke trend-BNP."
+}

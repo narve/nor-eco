@@ -1,0 +1,34 @@
+# Verbatim quotes. `python -m checks` (online step) verifies each quote still appears at its source.
+definitions:
+  - id: oljekorrigert-underskudd
+    term: Oljekorrigert budsjettunderskudd
+    quote: "Oljekorrigert budsjettunderskudd er statsbudsjettets underskudd når inntekter og utgifter fra petroleumsvirksomheten er holdt utenom. Det oljekorrigerte budsjettunderskuddet dekkes av overføringer fra Statens pensjonsfond utland."
+    source_id: fin-ord-begreper
+  - id: budsjettbalanse
+    term: Budsjettbalanse
+    quote: "Den faktiske budsjettbalansen er differansen mellom inntektene og utgiftene i statsbudsjettet. I Norge måles denne ved det oljekorrigerte underskuddet, som er budsjettbalansen utenom netto inntekter fra petroleumsvirksomheten. Ifølge rammeverket for budsjettpolitikken skal det oljekorrigerte underskuddet, slik det blir anslått i nysaldert budsjett, dekkes inn gjennom en overføring fra Statens pensjonsfond utland. Medregnet denne overføringen går statsbudsjettet i balanse."
+    source_id: fin-ord-budsjettbalanse
+  - id: strukturelt-underskudd
+    term: Strukturelt oljekorrigert budsjettunderskudd
+    quote: "Det strukturelle oljekorrigerte budsjettunderskuddet er det oljekorrigerte budsjettunderskuddet korrigert for konjunktursvingninger og andre mer tilfeldige svingninger i enkelte inntekst- og utgiftsposter, såkalt aktivitetskorrigering."
+    source_id: fin-ord-sobu
+  - id: handlingsregel-rettesnor
+    term: Handlingsregelens rettesnor
+    quote: "Det strukturelle oljekorrigerte budsjettunderskuddet skal ifølge handlingsregelen over tid følge den langsiktige rettesnoren på tre prosent av fondsverdien. Selv om det faktiske uttaket fra fondet tilsvarer det oljekorrigerte budsjettunderskuddet, er det det strukturelle oljekorrigerte budsjettunderskuddet som gjerne omtales som «bruk av fondsmidler» eller «bruk av oljepenger»."
+    source_id: fin-ord-sobu
+  - id: handlingsregelen
+    term: Handlingsregelen
+    quote: "Handlingsregelen er et begrep som benyttes om retningslinjene for bruk av midler fra Statens pensjonsfond utland over statsbudsjettet. Etter at handlingsregelen kom i bruk i 2002 er statens oljeinntekter i sin helhet tilført Statens pensjonsfond utland."
+    source_id: fin-ord-begreper
+  - id: inntekter-i-alt
+    term: Inntekter i alt (statsregnskapet)
+    quote: "Inntekter i alt: Totale inntekter før eventuelle tilbakeføringer fra Statens pensjonsfond - Utland."
+    source_id: ssb-statsregnskap-om
+  - id: overskudd-for-avsetning
+    term: Overskudd før netto avsetning til Statens pensjonsfond utland
+    quote: "Overskudd før netto avsetning til Statens pensjonsfond - Utland: Inntekter i alt fratrukket utgifter i alt."
+    source_id: ssb-statsregnskap-om
+  - id: budsjettall-oppdateres
+    term: Budsjettall i statistikkbanken
+    quote: "Budsjettall oppdateres i statistikkbanken ved publisering av tall for 3. og 4. kvartal."
+    source_id: ssb-statsregnskap-om

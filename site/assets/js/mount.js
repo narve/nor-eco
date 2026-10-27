@@ -6,10 +6,12 @@
 //          denominators: {seriesId: url}}
 import { fmt, periodLabel } from "./core/format.js";
 import { readState, writeState, formatPath, parsePath } from "./core/url.js";
-import { BUILTIN_UNITS, createDataset, nodeFor, timeline, breadcrumb, splittableDims, seriesSet, unitDisabledReason } from "./core/engine.js";
+import { BUILTIN_UNITS, STATUS_ORDER, statusFor, createDataset, nodeFor, timeline, breadcrumb, splittableDims, seriesSet, unitDisabledReason } from "./core/engine.js";
 import { h } from "./views/common.js";
 import { renderHierBars } from "./views/hier-bars.js";
 import { renderTimeseries } from "./views/timeseries.js";
+
+const STATUS_UI = { regnskap: "Regnskap", budsjett: "Budsjett", saldert: "Saldert", vedtatt: "Vedtatt", forslag: "Forslag", anslag: "Anslag", foreløpig: "Foreløpig" };
 
 const VIEWS = {
   "hier-bars": { label: "Søyler", snapshot: true },
@@ -46,10 +48,14 @@ async function init(el) {
   const unitById = Object.fromEntries(unitDefs.map((u) => [u.id, u]));
   const views = cfg.views.filter((v) => VIEWS[v]);
   const periods = ds ? ds.periods : [];
-  const defaults = { view: cfg.defaultView ?? views[0], year: periods[periods.length - 1], unit: "raw", path: "", dim: ds?.meta.default_dimension };
+  const defaultStatus = ds?.statuses[0];
+  // default year: the latest one that has the default status (accounts), so the first view is not a budget year
+  const defaultYear = ds ? [...periods].reverse().find((p) => ds.statusesByPeriod[p].has(defaultStatus)) ?? periods[periods.length - 1] : undefined;
+  const defaults = { view: cfg.defaultView ?? views[0], year: defaultYear, unit: "raw", path: "", dim: ds?.meta.default_dimension, status: defaultStatus };
   let state = { ...defaults, ...readState(cfg.id) };
   if (!views.includes(state.view)) state.view = defaults.view;
   if (ds && !periods.includes(state.year)) state.year = defaults.year;
+  if (ds && !ds.statuses.includes(state.status)) state.status = defaults.status;
   if (!unitById[state.unit] || (ds && unitDisabledReason(ds, unitById[state.unit]))) state.unit = "raw";
 
   const crumbs = h("nav", { class: "crumbs", "aria-label": "Sti" });
@@ -85,7 +91,12 @@ async function init(el) {
           views.map((v) => h("button", { type: "button", "aria-pressed": String(v === state.view), onclick: () => push({ view: v }) }, VIEWS[v].label)))));
     }
     if (ds && view.snapshot) {
-      parts.push(select("År", state.year, [...periods].reverse().map((p) => ({ value: p, label: periodLabel(p) + (ds.statusByPeriod[p] === "foreløpig" ? " (foreløpig)" : "") })), (v) => push({ year: v })));
+      parts.push(select("År", state.year, [...periods].reverse().map((p) => ({ value: p, label: periodLabel(p) + (statusFor(ds, p, state.status) === "foreløpig" ? " (foreløpig)" : "") })), (v) => push({ year: v })));
+    }
+    if (ds && ds.statuses.length > 1) {
+      parts.push(h("div", { class: "ctl" }, h("span", { class: "mono" }, "Tall"),
+        h("div", { class: "seg", role: "group", "aria-label": "Tall" },
+          ds.statuses.map((st) => h("button", { type: "button", "aria-pressed": String(st === state.status), onclick: () => push({ status: st }) }, STATUS_UI[st] ?? st)))));
     }
     if (ds && unitDefs.length > 1) {
       parts.push(select("Enhet", state.unit, unitDefs.map((u) => {
@@ -94,7 +105,7 @@ async function init(el) {
       }), (v) => push({ unit: v })));
     }
     parts.push(h("button", { type: "button", class: "btn", onclick: copyLink }, "Kopier lenke"));
-    const active = [VIEWS[state.view].label, ds && view.snapshot ? periodLabel(state.year) : null, ds ? (state.unit === "raw" ? ds.meta.unit : unitById[state.unit].label) : null].filter(Boolean);
+    const active = [VIEWS[state.view].label, ds && view.snapshot ? periodLabel(state.year) : null, ds && ds.statuses.length > 1 ? (STATUS_UI[state.status] ?? state.status) : null, ds ? (state.unit === "raw" ? ds.meta.unit : unitById[state.unit].label) : null].filter(Boolean);
     chips.replaceChildren(...active.map((a) => h("span", { class: "chip" }, a)));
     settings.replaceChildren(h("summary", { class: "mono" }, "Innstillinger ", chips), h("div", { class: "ctl-row" }, parts));
   }
@@ -130,7 +141,7 @@ async function init(el) {
     crumbsUI();
     body.replaceChildren();
     const unit = ds ? unitById[state.unit] : null;
-    const base = ds ? { path: state.path, dim: state.dim, unit, denominators, period: state.year } : null;
+    const base = ds ? { path: state.path, dim: state.dim, unit, denominators, period: state.year, status: state.status } : null;
     if (state.view === "hier-bars") {
       const node = nodeFor(ds, base);
       const dimNow = node.dim;
@@ -139,7 +150,9 @@ async function init(el) {
         return ds.dims[dimNow]?.byCode.get(sel[sel.length - 1].code)?.children.length > 0;
       };
       current = renderHierBars(body, node, { canDrill, onDrill: (path) => push({ path }) });
-      status.textContent = node.status === "foreløpig" ? "Foreløpige tall." : "";
+      status.textContent = node.status !== state.status && ds.statuses.length > 1
+        ? `${STATUS_UI[state.status] ?? state.status} finnes ikke for ${periodLabel(state.year)}. Viser ${STATUS_UI[node.status] ?? node.status}.`
+        : node.status === "foreløpig" ? "Foreløpige tall." : "";
     } else if (ds) {
       current = renderTimeseries(body, timeline(ds, base), { mode: view.mode, period: state.year, onPeriod: (p) => { state.year = p; } });
     } else {

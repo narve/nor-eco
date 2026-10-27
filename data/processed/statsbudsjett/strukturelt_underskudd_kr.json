@@ -1,0 +1,28 @@
+{
+  "id": "statsbudsjett.strukturelt_underskudd_kr",
+  "title": "Strukturelt oljekorrigert budsjettunderskudd, løpende priser",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "fin-nokkeltall-nb2027"
+  ],
+  "values": [
+    {
+      "period": "2025",
+      "value": 507.4,
+      "status": "regnskap"
+    },
+    {
+      "period": "2026",
+      "value": 583.4,
+      "status": "anslag"
+    },
+    {
+      "period": "2027",
+      "value": 608.4,
+      "status": "forslag"
+    }
+  ],
+  "notes": "Tabellen i nasjonalbudsjettet 2027 viser bare disse årene. Anslag for 2026 og forslag for 2027."
+}

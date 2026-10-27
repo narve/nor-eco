@@ -33,14 +33,14 @@ export function observeSize(el, cb) {
   return () => ro.disconnect();
 }
 
-export const PRELIMINARY = new Set(["foreløpig", "anslag", "vedtatt"]);
+export const PRELIMINARY = new Set(["foreløpig", "anslag", "vedtatt", "budsjett", "forslag"]);
 export const isPreliminary = (status) => PRELIMINARY.has(status);
 
 // Categorical colour for series i; «Øvrig / ikke fordelt» is always the same neutral grey.
 export const colorVar = (i, other = false) => (other ? "var(--other)" : `var(--c${(i % 8) + 1})`);
 
 export const CLAIM_LABEL = { offisiell: "Offisielt tall", utledet: "Utledet", estimat: "Estimat" };
-export const STATUS_LABEL = { foreløpig: "foreløpig", anslag: "anslag", vedtatt: "vedtatt", saldert: "saldert", regnskap: "regnskap" };
+export const STATUS_LABEL = { foreløpig: "foreløpig", anslag: "anslag", vedtatt: "vedtatt", saldert: "saldert", regnskap: "regnskap", budsjett: "budsjett", forslag: "forslag" };
 
 // «5 511,3 mrd. kr»
 export function valueText(value, unit, decimals = 1) {

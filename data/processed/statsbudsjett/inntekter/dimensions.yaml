@@ -1,0 +1,49 @@
+dimensions:
+  hovedpost:
+    label: Hovedpost
+    nodes:
+    - code: INNT.IALT
+      label: Inntekter i alt
+      parent: null
+    - code: INNT.SALG
+      label: Salg av varer og tjenester
+      parent: INNT.IALT
+    - code: INNT.DR_RES_PETROL
+      label: Driftsresultat i statens petroleumsvirksomhet
+      parent: INNT.IALT
+    - code: INNT.AVSKR_PETROL
+      label: Avskrivninger og inntekter av statens petroleumsvirksomhet
+      parent: INNT.IALT
+    - code: INNT.AVSKR_FORRETN
+      label: Avskrivninger og inntekter av statens forretningsdrift ellers
+      parent: INNT.IALT
+    - code: INNT.ANDRE_BYGG
+      label: Andre inntekter i samband med bygg og anlegg
+      parent: INNT.IALT
+    - code: INNT.OVERF_IALT
+      label: Overføringer i alt
+      parent: INNT.IALT
+    - code: INNT.SKATT_AVG
+      label: Skatter og avgifter
+      parent: INNT.OVERF_IALT
+    - code: INNT.MEDL_PR
+      label: Medlemspremier til folketrygden
+      parent: INNT.OVERF_IALT
+    - code: INNT.ARB_G_AVG
+      label: Arbeidsgiveravgift til folketrygden
+      parent: INNT.OVERF_IALT
+    - code: INNT.RENTER_UTB
+      label: Renter og utbytte
+      parent: INNT.OVERF_IALT
+    - code: INNT.ANDRE_STATL
+      label: Overføringer fra andre statlige regnskaper
+      parent: INNT.OVERF_IALT
+    - code: INNT.KOMM_FYLK
+      label: Overføringer fra kommuner og fylkeskommuner
+      parent: INNT.OVERF_IALT
+    - code: INNT.NORGES_BANK
+      label: Overføringer fra Norges bank
+      parent: INNT.OVERF_IALT
+    - code: INNT.ANDRE_OVERF
+      label: Andre overføringer
+      parent: INNT.OVERF_IALT

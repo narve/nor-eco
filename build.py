@@ -99,7 +99,7 @@ def series_table(series: dict[str, dict], ids: list[str], newest_first: bool = T
             "periods": periods, "rows": rows}
 
 
-def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare", newest_first: bool = True) -> dict:
+def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare", newest_first: bool = True, status: str | None = None) -> dict:
     """Periods as rows, one column per leaf of `dim` plus the sum («I alt»)."""
     ds = datasets[dataset_id]
     nodes = ds["dimensions"][dim]["nodes"]
@@ -107,8 +107,10 @@ def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare",
     root = next(n for n in nodes if n["parent"] is None)
     cell: dict[tuple[str, str], dict] = {}
     for r in ds["rows"]:
+        if status and r["status"] != status:
+            continue
         cell[(r["period"], r[dim])] = {"value": float(r["value"]), "status": r["status"], "claim": r["claim_level"]}
-    periods = sorted({r["period"] for r in ds["rows"]}, reverse=newest_first)
+    periods = sorted({r["period"] for r in ds["rows"] if not status or r["status"] == status}, reverse=newest_first)
     rows = []
     for p in periods:
         row = [cell.get((p, n["code"])) for n in leaves]
@@ -120,9 +122,9 @@ def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare",
             "periods": periods, "rows": rows}
 
 
-def dataset_value(datasets: dict[str, dict], dataset_id: str, code: str | None, period: str, dim: str = "vare") -> float:
-    """One fact (code given) or the sum over all leaves (code None) for a period, as a number."""
-    rows = [r for r in datasets[dataset_id]["rows"] if r["period"] == period and (code is None or r[dim] == code)]
+def dataset_value(datasets: dict[str, dict], dataset_id: str, code: str | None, period: str, dim: str = "vare", status: str | None = None) -> float:
+    """One fact (code given) or the sum over all leaves (code None) for a period, as a number. `status` picks one status."""
+    rows = [r for r in datasets[dataset_id]["rows"] if r["period"] == period and (code is None or r[dim] == code) and (status is None or r["status"] == status)]
     return round(sum(float(r["value"]) for r in rows), 3)
 
 
@@ -257,7 +259,7 @@ def build(
             datasets=datasets,
             series_table=lambda ids, **kw: series_table(series, ids, **kw),
             dataset_table=lambda ds_id, **kw: dataset_table(datasets, ds_id, **kw),
-            datasets_value=lambda ds_id, code, period: dataset_value(datasets, ds_id, code, period),
+            datasets_value=lambda ds_id, code, period, dim="vare", status=None: dataset_value(datasets, ds_id, code, period, dim, status),
         )
         dest = out / page["path"]
         write_text(dest, html)

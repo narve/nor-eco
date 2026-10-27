@@ -27,3 +27,8 @@ definitions:
     quote: "Statistikk for årstall publiseres for første gang i januar måned påfølgende år (t+1). Deretter revideres tallene to ganger: Første gang i mai påfølgende år (år t+1), før endelige tall publiseres i mai ett år senere (år t+2)."
     source_id: ssb-08800
     note: Merknad til tabell 08800.
+  - id: bnp-fastland
+    term: BNP Fastlands-Norge (fastlandsøkonomien)
+    quote: "Ved analyser av konjunkturutviklingen ser vi på BNP fratrukket verdiskapingen i petroleumsvirksomheten og utenriks sjøfart, det vil si fastlandsøkonomien."
+    source_id: fin-ord-begreper
+    note: Finansdepartementets forklaring av begrepet.

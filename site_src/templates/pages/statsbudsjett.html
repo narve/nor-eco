@@ -1,13 +1,159 @@
 {% extends "base.html" %}
-{% block description %}Inntekter og utgifter, med og uten petroleum.{% endblock %}
+{% from "macros.html" import chart, cite, data_table, claim_badge, quote, chart_scripts with context %}
+{% block description %}Statens inntekter og utgifter, med og uten petroleum, oljekorrigert og strukturelt underskudd og handlingsregelen, fra SSB og Finansdepartementet.{% endblock %}
+{% set U_BNP = {"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "unit": "prosent", "series": "okonomi.bnp_lopende", "scale": 100, "price_basis": "løpende"} %}
+{% set U_FN = {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "unit": "prosent", "series": "okonomi.bnp_fastland_lopende", "scale": 100, "price_basis": "løpende"} %}
+{% set U_INNB = {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "unit": "kr per innbygger", "series": "okonomi.befolkning_gjennomsnitt", "scale": 1000000000} %}
+{% set DEN = {"okonomi.bnp_lopende": root ~ "data/okonomi/bnp_lopende.json", "okonomi.bnp_fastland_lopende": root ~ "data/okonomi/bnp_fastland_lopende.json", "okonomi.befolkning_gjennomsnitt": root ~ "data/okonomi/befolkning_gjennomsnitt.json"} %}
+{% set S = "statsbudsjett." %}
+{% set ok_kr = series[S ~ "oljekorrigert_balanse_kr"] %}
+{% set ok_last = ok_kr["values"][-1] %}
+{% set yr = ok_last.period %}
+{% set sobu_kr = series[S ~ "strukturelt_underskudd_kr"].by_period[yr] %}
+{% set adj = series[S ~ "aktivitetskorreksjon_kr"].by_period[yr] %}
+{% set c_acc = series[S ~ "overskudd_for_avsetning_regnskap"].by_period[yr] %}
+{% set pet = series[S ~ "oljekorrigert_balanse_kr"].by_period[yr] %}
+{% set inn = datasets_value(S ~ "inntekter", None, yr, "hovedpost", "regnskap") %}
+{% set utg = datasets_value(S ~ "utgifter", None, yr, "hovedpost", "regnskap") %}
+{% set pet_cf = datasets_value(S ~ "petroleum_kontantstrom", None, yr, "komponent", "regnskap") %}
+{% set fond_pct = series[S ~ "fondsbruk_pst_av_spu"].by_period[yr] %}
 {% block main %}
 <header class="page-head">
   <p class="mono">Tema</p>
-  <h1>Statsbudsjettet</h1>
-  <p class="lede">Inntekter og utgifter, med og uten petroleum.</p>
+  <h1>Statsbudsjettet <span>med og uten</span> petroleum</h1>
+  <p class="lede">Statens inntekter og utgifter, vist med og uten petroleumsvirksomheten, og hvordan oljekorrigert og strukturelt underskudd henger sammen med uttaket fra Statens pensjonsfond utland. Tallene kommer fra SSB og Finansdepartementet, og hvert tall har kilde.</p>
 </header>
-<section id="innhold">
-  <h2>Innhold</h2>
-  <p class="muted">Denne siden er ikke bygget ennå.</p>
+
+<section id="nokkeltall">
+  <h2>Nøkkeltall {{ yr }} (regnskap)</h2>
+  <div class="grid">
+    <div class="card"><span class="mono">Inntekter i alt</span>
+      <p class="num big">{{ fmt(inn, 0) }} <span class="unit">mrd. kr</span></p>{{ cite(["ssb-10486"]) }}</div>
+    <div class="card"><span class="mono">Utgifter i alt</span>
+      <p class="num big">{{ fmt(utg, 0) }} <span class="unit">mrd. kr</span></p>{{ cite(["ssb-10486"]) }}</div>
+    <div class="card"><span class="mono">Statens netto kontantstrøm fra petroleumsvirksomhet</span>
+      <p class="num big">{{ fmt(pet_cf, 0) }} <span class="unit">mrd. kr</span></p>{{ cite(["ssb-11012"]) }}</div>
+    <div class="card"><span class="mono">Oljekorrigert budsjettbalanse {{ claim_badge("utledet") }}</span>
+      <p class="num big">{{ fmt(pet.value, 0) }} <span class="unit">mrd. kr</span></p>{{ cite(ok_kr.source_ids) }}</div>
+    <div class="card"><span class="mono">Strukturelt oljekorrigert underskudd</span>
+      <p class="num big">{{ fmt(sobu_kr.value, 0) }} <span class="unit">mrd. kr</span></p>{{ cite(series[S ~ "strukturelt_underskudd_kr"].source_ids) }}</div>
+    <div class="card"><span class="mono">Strukturelt underskudd, andel av fondet</span>
+      <p class="num big">{{ fmt(fond_pct.value, 1) }} <span class="unit">prosent</span></p>{{ cite(series[S ~ "fondsbruk_pst_av_spu"].source_ids) }}</div>
+  </div>
+</section>
+
+<section id="regnskap-budsjett">
+  <h2>Regnskap og budsjett</h2>
+  <p>SSB viser både statsregnskapet og statsbudsjettet etter de samme hovedpostene. De to settene vises aldri sammenblandet: du velger «Regnskap» eller «Budsjett» i visningen. Budsjettall kan ha en annen status enn et fast vedtaksnivå:</p>
+  {{ quote("budsjettall-oppdateres") }}
+  {% call chart("overskudd-for-avsetning", "Overskudd før netto avsetning til Statens pensjonsfond utland, regnskap og budsjett", ["ssb-10486", "ssb-10487"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/statsbudsjett/overskudd_for_avsetning_regnskap.json", root ~ "data/statsbudsjett/overskudd_for_avsetning_budsjett.json"], "labels": ["Regnskap", "Budsjett"], "views": ["timeseries-lines", "timeseries-bars"]}) %}
+    {{ data_table(series_table([S ~ "overskudd_for_avsetning_regnskap", S ~ "overskudd_for_avsetning_budsjett", S ~ "netto_avsetning_spu_regnskap", S ~ "netto_avsetning_spu_budsjett"]), 1) }}
+  {% endcall %}
+  <p class="muted small">Definisjon:</p>
+  {{ quote("overskudd-for-avsetning") }}
+</section>
+
+<section id="inntekter">
+  <h2>Inntekter</h2>
+  <p>Inntektene er delt etter SSBs hovedposter. «Inntekter i alt» er regnet før eventuelle tilbakeføringer fra Statens pensjonsfond utland:</p>
+  {{ quote("inntekter-i-alt") }}
+  {% call chart("inntekter-hovedpost", "Statens inntekter etter hovedpost", ["ssb-10486", "ssb-10487"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+    {{ data_table(dataset_table(S ~ "inntekter", dim="hovedpost", status="regnskap"), 1, caption="Regnskap") }}
+  {% endcall %}
+</section>
+
+<section id="utgifter">
+  <h2>Utgifter</h2>
+  {% call chart("utgifter-hovedpost", "Statens utgifter etter hovedpost", ["ssb-10486", "ssb-10487"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+    {{ data_table(dataset_table(S ~ "utgifter", dim="hovedpost", status="regnskap"), 1, caption="Regnskap") }}
+  {% endcall %}
+</section>
+
+<section id="petroleum">
+  <h2>Med og uten petroleum</h2>
+  <p>Statsregnskapets hovedposter viser petroleumsinntekter og andre inntekter side om side, og skatter på petroleum ligger inne i «Skatter og avgifter». Statens netto kontantstrøm fra petroleumsvirksomhet er derfor vist som egen tabell, delt på skatter, avgifter, SDØE og utbytte fra Equinor.</p>
+  {% call chart("petroleum-kontantstrom", "Statens netto kontantstrøm fra petroleumsvirksomhet, etter komponent", ["ssb-11012"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/petroleum_kontantstrom.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn"], "unitDefs": [U_BNP, U_FN], "denominators": DEN}) %}
+    {{ data_table(dataset_table(S ~ "petroleum_kontantstrom", dim="komponent"), 1) }}
+  {% endcall %}
+</section>
+
+<section id="oljekorrigert">
+  <h2>Oljekorrigert og strukturelt underskudd</h2>
+  <p>Budsjettbalansen utenom petroleum kalles oljekorrigert. Den er regnet slik:</p>
+  {{ quote("oljekorrigert-underskudd") }}
+  <p>Slik henger tallene sammen for {{ yr }}, i milliarder kroner:</p>
+  <div class="table-wrap">
+    <table>
+      <caption class="mono">Fra statsregnskapet til strukturelt underskudd, {{ yr }}</caption>
+      <tbody>
+        <tr><th scope="row">Overskudd før netto avsetning til Statens pensjonsfond utland</th><td>{{ fmt(c_acc.value, 1) }}</td></tr>
+        <tr><th scope="row">minus statens netto kontantstrøm fra petroleumsvirksomhet</th><td>{{ fmt(0 - pet_cf, 1) }}</td></tr>
+        <tr><th scope="row">= Oljekorrigert budsjettbalanse {{ claim_badge("utledet") }}</th><td>{{ fmt(pet.value, 1) }}</td></tr>
+        <tr><th scope="row">Aktivitetskorreksjon og andre justeringer {{ claim_badge("utledet") }}</th><td>{{ fmt(0 - adj.value, 1) }}</td></tr>
+        <tr><th scope="row">= Strukturell oljekorrigert budsjettbalanse (Finansdepartementet)</th><td>{{ fmt(0 - sobu_kr.value, 1) }}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  {{ cite(["ssb-10486", "ssb-11012", "fin-nokkeltall-nb2027"]) }}
+  <p>Formlene: {{ ok_kr.derivation }} Aktivitetskorreksjonen: {{ series[S ~ "aktivitetskorreksjon_kr"].derivation }}</p>
+  <p>Det strukturelle underskuddet er definert slik:</p>
+  {{ quote("strukturelt-underskudd") }}
+  {% call chart("oljekorrigert-pst", "Oljekorrigert og strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge", ["fin-nb2027-vedlegg1"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/statsbudsjett/oljekorrigert_balanse_pst.json", root ~ "data/statsbudsjett/strukturell_balanse_pst.json"], "labels": ["Oljekorrigert", "Strukturell oljekorrigert"], "views": ["timeseries-lines", "timeseries-bars"]}) %}
+    {{ data_table(series_table([S ~ "oljekorrigert_balanse_pst", S ~ "strukturell_balanse_pst"]), 1) }}
+  {% endcall %}
+  <p class="muted small">Negative tall er underskudd. Tall for {{ series[S ~ "strukturell_balanse_pst"]["values"][-2].period }} er anslag og for {{ series[S ~ "strukturell_balanse_pst"]["values"][-1].period }} budsjettforslaget.</p>
+  {% call chart("oljekorrigert-kr", "Oljekorrigert budsjettbalanse regnet fra statsregnskapet, milliarder kroner", ok_kr.source_ids, level="utledet",
+      config={"kind": "series", "urls": [root ~ "data/statsbudsjett/oljekorrigert_balanse_kr.json"], "labels": ["Oljekorrigert budsjettbalanse"], "views": ["timeseries-bars", "timeseries-lines"]}) %}
+    {{ data_table(series_table([S ~ "oljekorrigert_balanse_kr"]), 1) }}
+  {% endcall %}
+</section>
+
+<section id="handlingsregelen">
+  <h2>Handlingsregelen</h2>
+  {{ quote("handlingsregelen") }}
+  {{ quote("handlingsregel-rettesnor") }}
+  {% call chart("handlingsregel", "Strukturelt oljekorrigert underskudd som andel av Statens pensjonsfond utland, og rettesnoren", ["fin-nb2027-kap3"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/statsbudsjett/fondsbruk_pst_av_spu.json", root ~ "data/statsbudsjett/handlingsregel_realavkastning.json"], "labels": ["Uttaksprosent", "Forventet realavkastning (rettesnor)"], "views": ["timeseries-lines"]}) %}
+    {{ data_table(series_table([S ~ "fondsbruk_pst_av_spu", S ~ "handlingsregel_realavkastning"]), 1) }}
+  {% endcall %}
+  <p class="muted small">{{ series[S ~ "handlingsregel_realavkastning"].breaks[0].note }}</p>
+  {% call chart("fondsbruk-utgifter", "Bruk av fondsmidler som andel av utgiftene i statsbudsjettet", ["fin-nb2027-kap3"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/statsbudsjett/fondsbruk_pst_av_utgifter.json"], "labels": ["Andel av utgiftene"], "views": ["timeseries-lines", "timeseries-bars"]}) %}
+    {{ data_table(series_table([S ~ "fondsbruk_pst_av_utgifter"]), 1) }}
+  {% endcall %}
+</section>
+
+<section id="forvekslinger">
+  <h2>Ofte blandet sammen</h2>
+  <article class="pair">
+    <h3>Regnskap og budsjett</h3>
+    <p>Statsregnskapet viser hva som faktisk er betalt inn og ut. Budsjettet viser planlagte tall. SSBs budsjettall endres også i løpet av året:</p>
+    {{ quote("budsjettall-oppdateres") }}
+  </article>
+  <article class="pair">
+    <h3>Oljekorrigert og strukturelt underskudd</h3>
+    <p>Det oljekorrigerte underskuddet er budsjettbalansen utenom petroleum. Det strukturelle underskuddet er korrigert for konjunkturer og andre svingninger:</p>
+    {{ quote("oljekorrigert-underskudd") }}
+    {{ quote("strukturelt-underskudd") }}
+  </article>
+  <article class="pair">
+    <h3>Faktisk uttak og «bruk av oljepenger»</h3>
+    <p>Finansdepartementet beskriver forholdet mellom det faktiske uttaket og det strukturelle underskuddet slik:</p>
+    {{ quote("handlingsregel-rettesnor") }}
+  </article>
+  <article class="pair">
+    <h3>Budsjettbalansen med og uten overføring fra fondet</h3>
+    {{ quote("budsjettbalanse") }}
+  </article>
+  <article class="pair">
+    <h3>Inntekter i statsregnskapet og tilbakeføringer fra fondet</h3>
+    {{ quote("inntekter-i-alt") }}
+  </article>
 </section>
 {% endblock %}
+{% block scripts %}{{ chart_scripts() }}{% endblock %}

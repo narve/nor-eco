@@ -1,0 +1,19 @@
+dimensions:
+  komponent:
+    label: Komponent
+    nodes:
+    - code: statens_netto_kontantstrom
+      label: Statens netto kontantstrøm fra petroleumsvirksomhet
+      parent: null
+    - code: skatt_utvinning
+      label: Skatter på utvinning av petroleum
+      parent: statens_netto_kontantstrom
+    - code: avgift_utvinning
+      label: Avgifter på utvinning av petroleum
+      parent: statens_netto_kontantstrom
+    - code: sdoe
+      label: Netto kontantstrøm fra SDØE
+      parent: statens_netto_kontantstrom
+    - code: equinor_utbytte
+      label: Utbytte fra Equinor
+      parent: statens_netto_kontantstrom

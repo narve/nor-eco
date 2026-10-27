@@ -78,14 +78,15 @@ def test_leaf_cannot_be_drilled_and_shows_readout(fx):
     assert "path=" not in fx.url
 
 
-def test_estimat_and_preliminary_are_marked_and_year_switch_changes_status(fx):
-    assert fx.locator(".hb-bar.is-prelim").count() > 0  # default year is the vedtatt year
+def test_estimat_and_preliminary_are_marked_and_status_fallback_is_explained(fx):
+    assert fx.locator(".hb-bar.is-prelim").count() == 0  # default: accounts, latest accounts year
+    fx.locator('select:near(:text("År"))').first.select_option("2024")  # only «vedtatt» exists for 2024
+    assert fx.locator(".hb-bar.is-prelim").count() > 0
+    assert "Regnskap finnes ikke for 2024. Viser Vedtatt." in fx.locator(".chart-note").inner_text()
     fx.locator('.hb-row[data-path="formaal:helse"]').click(click_count=2)
     fx.wait_for_selector('.crumb:has-text("Helse")')
     assert fx.locator(".hb-ref .hb-bar.claim-estimat").count() == 1  # the parent is as weak as its weakest part
     assert fx.locator(".hb-row .hb-bar.claim-estimat").count() == 1  # forebygging contains the estimat fact
-    fx.locator('select:near(:text("År"))').first.select_option("2023")
-    assert fx.locator(".hb-bar.is-prelim").count() == 0
 
 
 def test_timeseries_views_render_series_legend_and_readout(fx):
@@ -93,8 +94,10 @@ def test_timeseries_views_render_series_legend_and_readout(fx):
     fx.wait_for_selector(".ts-plot svg")
     assert fx.locator(".ts-key").count() == 4  # helse, forsvar, utdanning, øvrig
     assert fx.locator(".ts-plot svg rect").count() >= 12
-    assert "2024" in fx.locator(".readout strong").first.inner_text()
+    assert "2023" in fx.locator(".readout strong").first.inner_text()  # default year = latest accounts year
     fx.locator(".ts-plot svg").focus()
+    fx.keyboard.press("ArrowRight")
+    assert "2024" in fx.locator(".readout strong").first.inner_text()
     fx.keyboard.press("ArrowLeft")
     assert "2023" in fx.locator(".readout strong").first.inner_text()
     fx.get_by_role("button", name="Linjer").click()
@@ -161,3 +164,28 @@ def test_chart_controls_have_44px_tap_targets_on_mobile(mobile, site_url):
     mobile.get_by_role("button", name="Stablet").click()
     mobile.wait_for_selector(".ts-key")
     assert all(h >= 43.5 for h in mobile.locator(".ts-key").evaluate_all("els => els.map(e => e.getBoundingClientRect().height)"))
+
+
+def test_status_toggle_never_adds_statuses_together(fx):
+    """Synthetic data: leaves sum to 210 in 2022; 2023 is 5 % higher (accounts); 2024 is 10 % higher (vedtatt only)."""
+    ref = lambda: num(fx.locator(".hb-ref .hb-value").inner_text())  # noqa: E731
+    assert ref() == pytest.approx(210 * 1.05, abs=0.1)  # default: accounts, latest accounts year (2023)
+    fx.get_by_role("button", name="Vedtatt").click()
+    fx.wait_for_function("location.search.includes('status=vedtatt')")
+    assert ref() == pytest.approx(210 * 1.05, abs=0.1)  # no vedtatt for 2023: falls back, never 441 (= both added)
+    assert "Vedtatt finnes ikke for 2023. Viser Regnskap." in fx.locator(".chart-note").inner_text()
+    fx.locator('select:near(:text("År"))').first.select_option("2024")
+    assert ref() == pytest.approx(210 * 1.10, abs=0.1)
+    fx.get_by_role("button", name="Regnskap").click()
+    assert ref() == pytest.approx(210 * 1.10, abs=0.1)  # accounts do not exist for 2024: shows vedtatt, says so
+    assert "Regnskap finnes ikke for 2024. Viser Vedtatt." in fx.locator(".chart-note").inner_text()
+
+
+def test_derived_series_are_marked_in_legend_and_on_bars(desktop, site_url):
+    desktop.goto(site_url + "statsbudsjett.html")
+    desktop.wait_for_selector("#oljekorrigert-kr svg")
+    assert desktop.locator("#oljekorrigert-kr .ts-key").first.inner_text().startswith("ƒ ")
+    assert desktop.locator('#oljekorrigert-kr svg rect[fill="url(#ts-derived)"]').count() >= 20
+    assert not desktop.locator("#oljekorrigert-pst .ts-key").first.inner_text().startswith("ƒ")  # official series carry no mark
+    desktop.locator("#oljekorrigert-pst").get_by_role("button", name="Søyler over tid").click()
+    assert desktop.locator('#oljekorrigert-pst svg rect[fill="url(#ts-derived)"]').count() == 0

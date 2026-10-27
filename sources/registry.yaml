@@ -53,3 +53,64 @@ sources:
     url: https://www.nbim.no/en/investments/the-funds-value/
     licence: Ingen åpen lisens oppgitt på siden. Bare enkelttall siteres, med kilde.
     notes: Siste halvårs- eller årstall for fondets verdi, delt på netto tilførsel, avkastning og kronekurs. Ingen historikk vises.
+
+  # ---- WS1 Statsbudsjett ----
+  - id: ssb-10486
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 10486: Inntekter og utgifter i statsregnskapet, etter hovedpost (mill. kr) 1985-2025"
+    url: https://www.ssb.no/statbank/table/10486
+    table_id: "10486"
+    licence: CC BY 4.0
+    notes: Statsregnskapet, kontantbasert, etter hovedpost. Inntekter før eventuelle tilbakeføringer fra Statens pensjonsfond utland.
+  - id: ssb-10487
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 10487: Inntekter og utgifter i statsbudsjettet, etter hovedpost (mill. kr) 1991-2026"
+    url: https://www.ssb.no/statbank/table/10487
+    table_id: "10487"
+    licence: CC BY 4.0
+    notes: Statsbudsjettet etter samme hovedposter som statsregnskapet. SSB oppdaterer budsjettallene ved publisering av tall for 3. og 4. kvartal, så tallene er «budsjett», ikke et fast vedtaksnivå.
+  - id: ssb-11012
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 11012: Netto kontantstrøm fra petroleumsvirksomhet (mill. kr) 1985-2025"
+    url: https://www.ssb.no/statbank/table/11012
+    table_id: "11012"
+    licence: CC BY 4.0
+    notes: Skatter og avgifter på utvinning, SDØE, utbytte fra Equinor og statens samlede netto kontantstrøm fra petroleumsvirksomheten.
+  - id: ssb-statsregnskap-om
+    publisher: Statistisk sentralbyrå (SSB)
+    title: Statsregnskapets inntekter og utgifter – statistikkside og Om statistikken
+    url: https://www.ssb.no/offentlig-sektor/statlige-finanser/statistikk/statsregnskapets-inntekter-og-utgifter
+    licence: CC BY 4.0
+  - id: fin-nb2027-kap3
+    publisher: Finansdepartementet (regjeringen.no)
+    title: "Nasjonalbudsjettet 2027: Tallene bak figurene, kapittel 3 Budsjettpolitikken (Excel)"
+    url: https://www.regjeringen.no/no/statsbudsjett/2027/nasjonalbudsjettet-2027-tallene-bak-figurene/id3173281/
+    licence: Ikke oppgitt på siden.
+    notes: Excel-fil med tallene bak figurene i kapittel 3 (blant annet bruk av fondsmidler som andel av Statens pensjonsfond utland og av statsbudsjettets utgifter). 2026 er anslag og 2027 er budsjettforslaget.
+  - id: fin-nb2027-vedlegg1
+    publisher: Finansdepartementet (regjeringen.no)
+    title: "Nasjonalbudsjettet 2027: Tallene bak figurene, vedlegg 1 Beregning av strukturell oljekorrigert budsjettbalanse (Excel)"
+    url: https://www.regjeringen.no/no/statsbudsjett/2027/nasjonalbudsjettet-2027-tallene-bak-figurene/id3173281/
+    licence: Ikke oppgitt på siden.
+    notes: Oljekorrigert og strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge, 2000–2027.
+  - id: fin-ord-budsjettbalanse
+    publisher: Finansdepartementet (regjeringen.no)
+    title: Budsjettbalanse (Ord og begreper i statsbudsjettet)
+    url: https://www.regjeringen.no/no/tema/okonomi-og-budsjett/statsbudsjett/ord-og-begreper-i-statsbudsjettet/budsjettbalanse/id2860040/
+    licence: Ikke oppgitt på siden.
+  - id: fin-ord-sobu
+    publisher: Finansdepartementet (regjeringen.no)
+    title: Strukturelt oljekorrigert budsjettunderskudd (Ord og begreper i statsbudsjettet)
+    url: https://www.regjeringen.no/no/tema/okonomi-og-budsjett/statsbudsjett/ord-og-begreper-i-statsbudsjettet/strukturelt-oljekorrigert-budsjettunderskudd/id2860071/
+    licence: Ikke oppgitt på siden.
+  - id: fin-ord-begreper
+    publisher: Finansdepartementet (regjeringen.no)
+    title: Ord og begreper i statsbudsjettet
+    url: https://www.regjeringen.no/no/tema/okonomi-og-budsjett/statsbudsjett/ord-og-begreper-i-statsbudsjettet/id2859954/
+    licence: Ikke oppgitt på siden.
+  - id: fin-nokkeltall-nb2027
+    publisher: Regjeringen / Finansdepartementet
+    title: Nøkkeltall i nasjonalbudsjettet 2027 (Key figures in the national budget for 2027)
+    url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
+    licence: Ikke oppgitt på siden.
+    notes: Tabell med blant annet strukturelt oljekorrigert underskudd i milliarder kroner (løpende priser), prosent av trend-BNP for Fastlands-Norge og bruk av fondsmidler som andel av Statens pensjonsfond utland. Engelsk side; tallene er de samme som i det norske nasjonalbudsjettet.

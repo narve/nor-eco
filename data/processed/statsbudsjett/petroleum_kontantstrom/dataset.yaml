@@ -1,0 +1,118 @@
+id: statsbudsjett.petroleum_kontantstrom
+title: Statens netto kontantstrøm fra petroleumsvirksomhet, etter komponent
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- ssb-11012
+dimensions:
+- komponent
+default_dimension: komponent
+published_totals:
+- period: '2000'
+  status: regnskap
+  value: 161.373
+  source_id: ssb-11012
+- period: '2001'
+  status: regnskap
+  value: 243.235
+  source_id: ssb-11012
+- period: '2002'
+  status: regnskap
+  value: 169.233
+  source_id: ssb-11012
+- period: '2003'
+  status: regnskap
+  value: 173.662
+  source_id: ssb-11012
+- period: '2004'
+  status: regnskap
+  value: 203.405
+  source_id: ssb-11012
+- period: '2005'
+  status: regnskap
+  value: 275.544
+  source_id: ssb-11012
+- period: '2006'
+  status: regnskap
+  value: 355.377
+  source_id: ssb-11012
+- period: '2007'
+  status: regnskap
+  value: 316.389
+  source_id: ssb-11012
+- period: '2008'
+  status: regnskap
+  value: 415.865
+  source_id: ssb-11012
+- period: '2009'
+  status: regnskap
+  value: 279.794
+  source_id: ssb-11012
+- period: '2010'
+  status: regnskap
+  value: 275.957
+  source_id: ssb-11012
+- period: '2011'
+  status: regnskap
+  value: 350.803
+  source_id: ssb-11012
+- period: '2012'
+  status: regnskap
+  value: 395.483
+  source_id: ssb-11012
+- period: '2013'
+  status: regnskap
+  value: 345.151
+  source_id: ssb-11012
+- period: '2014'
+  status: regnskap
+  value: 311.667
+  source_id: ssb-11012
+- period: '2015'
+  status: regnskap
+  value: 218.256
+  source_id: ssb-11012
+- period: '2016'
+  status: regnskap
+  value: 124.779
+  source_id: ssb-11012
+- period: '2017'
+  status: regnskap
+  value: 167.847
+  source_id: ssb-11012
+- period: '2018'
+  status: regnskap
+  value: 250.959
+  source_id: ssb-11012
+- period: '2019'
+  status: regnskap
+  value: 256.915
+  source_id: ssb-11012
+- period: '2020'
+  status: regnskap
+  value: 106.825
+  source_id: ssb-11012
+- period: '2021'
+  status: regnskap
+  value: 287.513
+  source_id: ssb-11012
+- period: '2022'
+  status: regnskap
+  value: 1285.223
+  source_id: ssb-11012
+- period: '2023'
+  status: regnskap
+  value: 978.064
+  source_id: ssb-11012
+- period: '2024'
+  status: regnskap
+  value: 702.159
+  source_id: ssb-11012
+- period: '2025'
+  status: regnskap
+  value: 664.005
+  source_id: ssb-11012
+tolerance: 0.001
+notes: SDØE er netto kontantstrøm (ikke brutto). Skatter og avgifter på utvinning
+  er også regnet med i «Skatter og avgifter» i statsregnskapets hovedposter.

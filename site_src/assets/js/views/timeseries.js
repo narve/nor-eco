@@ -28,11 +28,13 @@ export function renderTimeseries(container, set, opts = {}) {
   container.append(holder, legend, readout);
   let focus = null; // series id isolated by legend hover/focus
 
+  const worst = (x) => x.values.reduce((w, v) => ({ offisiell: 0, utledet: 1, estimat: 2 }[v.claim] > ({ offisiell: 0, utledet: 1, estimat: 2 }[w]) ? v.claim : w), "offisiell");
+  const mark = (x) => ({ utledet: "ƒ ", estimat: "≈ " }[worst(x)] ?? "");
   series.forEach((x, i) => {
     const item = h("li", {}, h("button", { type: "button", class: "ts-key",
       onmouseenter: () => { focus = x.id; draw(); }, onmouseleave: () => { focus = null; draw(); },
       onfocus: () => { focus = x.id; draw(); }, onblur: () => { focus = null; draw(); } },
-      h("span", { class: "ts-swatch", style: `--bar:${colorVar(i, x.other)}` }), x.label));
+      h("span", { class: "ts-swatch", style: `--bar:${colorVar(i, x.other)}` }), mark(x) + x.label));
     legend.append(item);
   });
 
@@ -41,7 +43,7 @@ export function renderTimeseries(container, set, opts = {}) {
       const v = x.values.find((q) => q.period === selected);
       return h("li", {},
         h("span", { class: "ts-swatch", style: `--bar:${colorVar(i, x.other)}` }),
-        h("span", { class: "ro-label" }, x.label),
+        h("span", { class: "ro-label" }, mark(x) + x.label),
         h("span", { class: "num" }, valueText(v?.value ?? null, set.unit, dec)),
         v && v.claim !== "offisiell" ? h("span", { class: `claim claim-${v.claim}` }, CLAIM_LABEL[v.claim]) : null,
         v && isPreliminary(v.status) ? h("span", { class: "muted small" }, STATUS_LABEL[v.status]) : null);
@@ -77,7 +79,10 @@ export function renderTimeseries(container, set, opts = {}) {
       "aria-label": `${set.title}. Bruk piltastene for å velge periode.` });
     svg.append(s("defs", {},
       s("pattern", { id: "ts-hatch", width: 6, height: 6, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" },
-        s("line", { x1: 0, y1: 0, x2: 0, y2: 6, stroke: "var(--bg)", "stroke-width": 2.5 }))));
+        s("line", { x1: 0, y1: 0, x2: 0, y2: 6, stroke: "var(--bg)", "stroke-width": 2.5 })),
+      // utledet: thin stripes the other way round, so it is never confused with a preliminary (wide stripes) value
+      s("pattern", { id: "ts-derived", width: 4, height: 4, patternUnits: "userSpaceOnUse", patternTransform: "rotate(-45)" },
+        s("line", { x1: 0, y1: 0, x2: 0, y2: 4, stroke: "var(--bg)", "stroke-width": 1.3 }))));
     const g = s("g", { transform: `translate(${M.left},${M.top})` });
     svg.append(g);
 
@@ -104,6 +109,12 @@ export function renderTimeseries(container, set, opts = {}) {
     for (const b of set.breaks ?? []) if (periods.includes(b.period)) g.append(s("line", { x1: xAt(b.period), x2: xAt(b.period), y1: 0, y2: ih, class: "ts-break" }));
 
     const dim = (id) => (focus && focus !== id ? 0.18 : 1);
+    // claim-level marks on bars: utledet = thin counter-stripes, estimat = dotted outline (offisiell stays solid)
+    const claimMarks = (grp, v, x0, w, yTop, hh) => {
+      if (!v) return;
+      if (v.claim === "utledet") grp.append(s("rect", { x: x0, width: w, y: yTop, height: hh, fill: "url(#ts-derived)" }));
+      if (v.claim === "estimat") grp.append(s("rect", { x: x0, width: w, y: yTop, height: hh, fill: "none", stroke: "var(--bg)", "stroke-dasharray": "2 2" }));
+    };
     if (stacked) {
       layers.forEach((layer, i) => {
         const x = series[i];
@@ -113,6 +124,7 @@ export function renderTimeseries(container, set, opts = {}) {
           const r = s("rect", { x: xBand(periods[j]), width: xBand.bandwidth(), y: y(d[1]), height: Math.max(0, y(d[0]) - y(d[1])) });
           grp.append(r);
           if (v && isPreliminary(v.status)) grp.append(s("rect", { x: xBand(periods[j]), width: xBand.bandwidth(), y: y(d[1]), height: Math.max(0, y(d[0]) - y(d[1])), fill: "url(#ts-hatch)" }));
+          claimMarks(grp, v, xBand(periods[j]), xBand.bandwidth(), y(d[1]), Math.max(0, y(d[0]) - y(d[1])));
         });
         g.append(grp);
       });
@@ -125,6 +137,7 @@ export function renderTimeseries(container, set, opts = {}) {
           const bx = xBand(v.period) + i * bw;
           grp.append(s("rect", { x: bx, width: bw, y: Math.min(y(0), y(v.value)), height: Math.abs(y(v.value) - y(0)) }));
           if (isPreliminary(v.status)) grp.append(s("rect", { x: bx, width: bw, y: Math.min(y(0), y(v.value)), height: Math.abs(y(v.value) - y(0)), fill: "url(#ts-hatch)" }));
+          claimMarks(grp, v, bx, bw, Math.min(y(0), y(v.value)), Math.abs(y(v.value) - y(0)));
         });
         g.append(grp);
       });

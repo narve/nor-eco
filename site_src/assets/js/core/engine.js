@@ -6,6 +6,18 @@
 // order (the last code per dimension wins), `dim` is the dimension the next level is split by.
 import { parsePath, formatPath } from "./url.js";
 
+// Several statuses can exist for one period (for example «budsjett» and «regnskap»). A view shows one at a time;
+// facts of different statuses are never added together. Order = which one is shown when none is asked for.
+export const STATUS_ORDER = ["regnskap", "saldert", "vedtatt", "budsjett", "forslag", "anslag", "foreløpig"];
+
+// The status actually shown for a period: the requested one if it exists there, else the best available.
+export function statusFor(ds, period, requested) {
+  const have = ds.statusesByPeriod[period];
+  if (!have) return null;
+  if (requested && have.has(requested)) return requested;
+  return STATUS_ORDER.find((s) => have.has(s)) ?? [...have][0];
+}
+
 export function createDataset(bundle) {
   const { meta, dimensions, columns, rows } = bundle;
   const col = Object.fromEntries(columns.map((c, i) => [c, i]));
@@ -24,9 +36,10 @@ export function createDataset(bundle) {
     codes: Object.fromEntries(meta.dimensions.map((d) => [d, r[col[d]]])),
   }));
   const periods = [...new Set(facts.map((f) => f.period))].sort();
-  const statusByPeriod = {};
-  for (const f of facts) statusByPeriod[f.period] ??= f.status;
-  return { meta, dims, dimIds: meta.dimensions, facts, periods, statusByPeriod };
+  const statuses = [...new Set(facts.map((f) => f.status))].sort((a, b) => STATUS_ORDER.indexOf(a) - STATUS_ORDER.indexOf(b));
+  const statusesByPeriod = {};
+  for (const f of facts) (statusesByPeriod[f.period] ??= new Set()).add(f.status);
+  return { meta, dims, dimIds: meta.dimensions, facts, periods, statuses, statusesByPeriod };
 }
 
 // ---- unit definitions -------------------------------------------------------------------------------
@@ -77,16 +90,16 @@ function selection(ds, segments) {
   return sel;
 }
 
-function aggregate(ds, sel, period) {
-  let sum = 0, n = 0, claim = "offisiell", status = null;
+function aggregate(ds, sel, period, status) {
+  let sum = 0, n = 0, claim = "offisiell";
   const sources = new Set();
   const rank = { offisiell: 0, utledet: 1, estimat: 2 };
   for (const f of ds.facts) {
-    if (f.period !== period) continue;
+    if (f.period !== period || f.status !== status) continue;
     let ok = true;
     for (const d in sel) if (!ds.dims[d].leaves.get(sel[d]).has(f.codes[d])) { ok = false; break; }
     if (!ok) continue;
-    sum += f.value; n++; status = status ?? f.status; sources.add(f.source);
+    sum += f.value; n++; sources.add(f.source);
     if (rank[f.claim] > rank[claim]) claim = f.claim;
   }
   return { value: n ? Math.round(sum * 1e6) / 1e6 : null, claim, status, sources: [...sources].sort() };
@@ -106,12 +119,13 @@ export function nodeFor(ds, state) {
   const segments = parsePath(state.path ?? "");
   const dim = state.dim ?? ds.meta.default_dimension ?? ds.dimIds[0];
   const unit = state.unit ?? BUILTIN_UNITS.raw;
-  const total = aggregate(ds, {}, state.period).value;
-  const here = aggregate(ds, selection(ds, segments), state.period);
+  const status = statusFor(ds, state.period, state.status);
+  const total = aggregate(ds, {}, state.period, status).value;
+  const here = aggregate(ds, selection(ds, segments), state.period, status);
 
   const build = (segs, nodeDim, depth, parentValue) => {
     const sel = selection(ds, segs);
-    const agg = aggregate(ds, sel, state.period);
+    const agg = aggregate(ds, sel, state.period, status);
     const ctx = { parentValue, totalValue: total, denominators: state.denominators, period: state.period };
     const node = {
       path: formatPath(segs),
@@ -120,7 +134,7 @@ export function nodeFor(ds, state) {
       value: toUnit(agg.value, unit, { ...ctx, parentValue: parentValue ?? agg.value }),
       raw: agg.value,
       unit: unitLabel(ds, unit),
-      status: agg.status ?? ds.statusByPeriod[state.period] ?? "regnskap",
+      status,
       claim_level: agg.claim,
       source_ids: agg.sources,
     };
@@ -173,10 +187,11 @@ export function timeline(ds, state) {
   for (const k of ds.dims[dim].byCode.get(base).children) {
     const childSel = { ...sel, [dim]: k.code };
     const values = ds.periods.map((period) => {
-      const agg = aggregate(ds, childSel, period);
-      const parent = aggregate(ds, sel, period).value;
-      const total = aggregate(ds, {}, period).value;
-      return { period, raw: agg.value, status: agg.status ?? ds.statusByPeriod[period], claim: agg.claim,
+      const status = statusFor(ds, period, state.status);
+      const agg = aggregate(ds, childSel, period, status);
+      const parent = aggregate(ds, sel, period, status).value;
+      const total = aggregate(ds, {}, period, status).value;
+      return { period, raw: agg.value, status, claim: agg.claim,
                value: toUnit(agg.value, unit, { parentValue: parent, totalValue: total, denominators: state.denominators, period }) };
     });
     series.push({ id: k.code, label: k.label, other: !!k.other, path: formatPath([...segments, { dim, code: k.code }]), values });

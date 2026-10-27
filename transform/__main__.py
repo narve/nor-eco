@@ -5,7 +5,7 @@ from __future__ import annotations
 import shutil
 import sys
 
-from . import okonomi
+from . import okonomi, statsbudsjett
 from .common import PROCESSED
 
 
@@ -16,6 +16,9 @@ def main(argv: list[str]) -> int:
     shutil.rmtree(PROCESSED / okonomi.TOPIC, ignore_errors=True)
     okonomi.run()
     okonomi.spu()
+    shutil.rmtree(PROCESSED / statsbudsjett.TOPIC, ignore_errors=True)
+    statsbudsjett.run()
+    print("statsbudsjett: done")
     print("okonomi: done")
     return 0
 

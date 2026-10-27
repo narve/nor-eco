@@ -1,0 +1,147 @@
+{
+  "id": "statsbudsjett.fondsbruk_pst_av_utgifter",
+  "title": "Bruk av fondsmidler, prosent av utgiftene i statsbudsjettet",
+  "unit": "prosent",
+  "price_basis": "ikke-relevant",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "fin-nb2027-kap3"
+  ],
+  "values": [
+    {
+      "period": "2001",
+      "value": 3.0,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 5.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 5.8,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 6.4,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 6.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 6.3,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 6.1,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 6.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 10.3,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 11.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 9.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 11.6,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 12.3,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 13.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 14.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 16.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 17.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 15.8,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 17.1,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 23.6,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 21.9,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 19.7,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 20.1,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 21.5,
+      "status": "regnskap"
+    },
+    {
+      "period": "2025",
+      "value": 24.5,
+      "status": "regnskap"
+    },
+    {
+      "period": "2026",
+      "value": 26.5,
+      "status": "anslag"
+    },
+    {
+      "period": "2027",
+      "value": 26.6,
+      "status": "forslag"
+    }
+  ]
+}

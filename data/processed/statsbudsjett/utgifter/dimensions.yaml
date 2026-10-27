@@ -1,0 +1,52 @@
+dimensions:
+  hovedpost:
+    label: Hovedpost
+    nodes:
+    - code: UTG.IALT
+      label: Utgifter i alt
+      parent: null
+    - code: UTG.DRIFT_IALT
+      label: Statens egne driftsutgifter i alt
+      parent: UTG.IALT
+    - code: UTG.LONN
+      label: Lønn og godtgjørelser
+      parent: UTG.DRIFT_IALT
+    - code: UTG.VARER_TJ
+      label: Varer og tjenester
+      parent: UTG.DRIFT_IALT
+    - code: UTG.ANDRE_DRIFT
+      label: Andre driftsutgifter
+      parent: UTG.DRIFT_IALT
+    - code: UTG.DR_RES_FORRETN
+      label: Driftsresultat i statens forretningsdrift
+      parent: UTG.IALT
+    - code: UTG.BYGG_IALT
+      label: Nybygg, anlegg mv i alt
+      parent: UTG.IALT
+    - code: UTG.BYGG_PETROL
+      label: Nybygg mv statens petroleumsvirksomhet
+      parent: UTG.BYGG_IALT
+    - code: UTG.BYGG_FORRETN
+      label: Nybygg mv statens forretningsdrift ellers
+      parent: UTG.BYGG_IALT
+    - code: UTG.BYGG_ELLERS
+      label: Nybygg, anlegg mv ellers
+      parent: UTG.BYGG_IALT
+    - code: UTG.OVERF_IALT
+      label: Overføringer i alt
+      parent: UTG.IALT
+    - code: UTG.ANDRE_STATL
+      label: Overføringer til andre statlige regnskaper
+      parent: UTG.OVERF_IALT
+    - code: UTG.KOMM_FYLK
+      label: Overføringer til kommuner og fylkeskommuner
+      parent: UTG.OVERF_IALT
+    - code: UTG.PENSJ_TRYGD
+      label: Pensjoner, trygder mv, folketrygden
+      parent: UTG.OVERF_IALT
+    - code: UTG.RENTER
+      label: Renteutgifter vedr. statsgjelden
+      parent: UTG.OVERF_IALT
+    - code: UTG.ANDRE_OVERF
+      label: Andre overføringer
+      parent: UTG.OVERF_IALT

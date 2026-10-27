@@ -1,0 +1,143 @@
+{
+  "id": "statsbudsjett.overskudd_for_avsetning_regnskap",
+  "title": "Overskudd før netto avsetning til Statens pensjonsfond utland (regnskap)",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-10486"
+  ],
+  "vintage": "2026-06-09",
+  "values": [
+    {
+      "period": "2000",
+      "value": 153.434,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 241.599,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 106.84,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 107.516,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 124.163,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 210.783,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 311.373,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 315.046,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 404.069,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 183.237,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 171.883,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 271.402,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 294.591,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 228.698,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 151.662,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 32.947,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": -83.609,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": -54.978,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 32.447,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 29.291,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": -263.701,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": -81.456,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 1002.481,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 687.601,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 370.457,
+      "status": "regnskap"
+    },
+    {
+      "period": "2025",
+      "value": 188.297,
+      "status": "regnskap"
+    }
+  ]
+}

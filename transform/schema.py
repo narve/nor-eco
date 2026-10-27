@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_DIR = ROOT / "schema"
 FACT_FIXED_COLUMNS = ["period", "value", "unit", "status"]
 FACT_TAIL_COLUMNS = ["claim_level", "source_id"]
-STATUSES = {"regnskap", "saldert", "vedtatt", "anslag", "foreløpig"}
+STATUSES = {"regnskap", "saldert", "vedtatt", "budsjett", "forslag", "anslag", "foreløpig"}
 CLAIM_LEVELS = {"offisiell", "utledet", "estimat"}
 
 

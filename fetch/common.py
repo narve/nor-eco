@@ -301,3 +301,21 @@ def parse_jsonstat2(obj: dict | str | bytes, *, metadata_only: bool = False) -> 
         values=values,
         status=status,
     )
+
+
+def ensure_local(source_id: str, raw_dir: Path = RAW_DIR) -> Path:
+    """Path of the newest snapshot of a source. Files that are not committed (PDF, Excel ...) are
+    re-downloaded from the manifest url when missing, and verified against the recorded sha256."""
+    entries = sorted((e for e in _load_manifest(raw_dir / "MANIFEST.yaml") if e["source_id"] == source_id), key=lambda e: e["retrieved"])
+    if not entries:
+        raise FileNotFoundError(f"no snapshot of {source_id} in the manifest; run `python -m fetch all`")
+    e = entries[-1]
+    path = raw_dir / e["file"]
+    if path.exists():
+        return path
+    r = http_get(e["url"])
+    if hashlib.sha256(r.content).hexdigest() != e["sha256"]:
+        raise FetchError(f"{source_id}: {e['url']} no longer matches the recorded sha256 (the source changed); run `python -m fetch all` to take a new snapshot")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(r.content)
+    return path

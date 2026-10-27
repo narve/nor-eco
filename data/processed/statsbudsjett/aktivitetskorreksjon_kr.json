@@ -1,0 +1,21 @@
+{
+  "id": "statsbudsjett.aktivitetskorreksjon_kr",
+  "title": "Aktivitetskorreksjon og andre justeringer: strukturelt minus oljekorrigert underskudd",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "utledet",
+  "derivation": "Strukturelt oljekorrigert underskudd (Finansdepartementet, løpende priser) minus oljekorrigert underskudd regnet fra statsregnskapet (se serien «Oljekorrigert budsjettbalanse, regnskap»). Positivt tall = det strukturelle underskuddet er større.",
+  "source_ids": [
+    "fin-nokkeltall-nb2027",
+    "ssb-10486",
+    "ssb-11012"
+  ],
+  "values": [
+    {
+      "period": "2025",
+      "value": 31.692,
+      "status": "regnskap"
+    }
+  ],
+  "notes": "Finansdepartementet publiserer ikke oljekorrigert underskudd i kroner i denne tabellen; differansen kan derfor også romme avvik mellom vår regning og Finansdepartementets."
+}

@@ -1,5 +1,26 @@
 # Raw snapshots. Committed files are in data/raw/<source_id>/; the rest are re-downloadable (see url).
 files:
+- source_id: fin-nb2027-kap3
+  file: _large/fin-nb2027-kap3/2026-10-27.xlsx
+  url: https://www.regjeringen.no/contentassets/fdb5389765e64c1b9d09eeec9d9bffc4/kap_3_nb_2027.xlsx
+  sha256: a14d84565deb3b9008b93988f1d01706483941e081da4e97e6237cfacb05cdbf
+  retrieved: '2026-10-27'
+  size: 109520
+  committed: false
+- source_id: fin-nb2027-vedlegg1
+  file: _large/fin-nb2027-vedlegg1/2026-10-27.xlsx
+  url: https://www.regjeringen.no/contentassets/fdb5389765e64c1b9d09eeec9d9bffc4/vedlegg_1_nb_2027.xlsx
+  sha256: d55f8a8950003e97ff8ff63f06828f115a703b68d0bdf12a66ea857548af0935
+  retrieved: '2026-10-27'
+  size: 37193
+  committed: false
+- source_id: fin-nokkeltall-nb2027
+  file: fin-nokkeltall-nb2027/2026-10-27.html
+  url: https://www.regjeringen.no/en/whats-new/key-figures-in-the-national-budget-for-2027/id3174610/
+  sha256: f3e2d9a64fcce255c5af7724ecf06517d352d883e1405d3a833bc18b047061ba
+  retrieved: '2026-10-27'
+  size: 58208
+  committed: true
 - source_id: nbim-fondsverdi
   file: nbim-fondsverdi/2026-10-27.html
   url: https://www.nbim.no/en/investments/the-funds-value/
@@ -30,4 +51,28 @@ files:
   retrieved: '2026-10-27'
   vintage: '2026-05-28T06:00:00Z'
   size: 13004
+  committed: true
+- source_id: ssb-10486
+  file: ssb-10486/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/10486/data?lang=no&outputFormat=json-stat2&valuecodes%5BHovedpost%5D=%2A&valuecodes%5BContentsCode%5D=Belop&valuecodes%5BTid%5D=2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: fc6167e66587e3004a6143d6c5cfd43a7f78514e05f8085de56ba3c56f0e620e
+  retrieved: '2026-10-27'
+  vintage: '2026-06-09T06:00:00Z'
+  size: 12486
+  committed: true
+- source_id: ssb-10487
+  file: ssb-10487/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/10487/data?lang=no&outputFormat=json-stat2&valuecodes%5BHovedpost%5D=%2A&valuecodes%5BContentsCode%5D=Belop&valuecodes%5BTid%5D=2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025%2C2026
+  sha256: 0d4922f1caaed7c4f1636b18dc193c1d9e87fd2662fe5eb094085cf723871fcf
+  retrieved: '2026-10-27'
+  vintage: '2026-03-09T07:00:00Z'
+  size: 12735
+  committed: true
+- source_id: ssb-11012
+  file: ssb-11012/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/11012/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=%2A&valuecodes%5BTid%5D=2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: f18b3fb03a945d0c3bb66a43ccb0373debabb11fa055dc8d4a5140694a49ad94
+  retrieved: '2026-10-27'
+  vintage: '2026-06-09T06:00:00Z'
+  size: 4504
   committed: true

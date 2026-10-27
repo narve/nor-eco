@@ -1,14 +1,14 @@
 """`python -m fetch <command>`.
 
   check   report which SSB API version is live (v2 preferred)
-  all     run every fetcher (okonomi; WS1, WS3, WS4 add theirs)
+  all     run every fetcher (okonomi, statsbudsjett; WS3, WS4 add theirs)
 """
 
 from __future__ import annotations
 
 import sys
 
-from . import nbim, okonomi, ssb
+from . import nbim, okonomi, ssb, statsbudsjett
 
 
 def main(argv: list[str]) -> int:
@@ -19,6 +19,7 @@ def main(argv: list[str]) -> int:
     if cmd == "all":
         okonomi.run()
         nbim.run()
+        statsbudsjett.run()
         return 0
     print(__doc__)
     return 2
