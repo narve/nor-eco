@@ -152,6 +152,33 @@ Taken from the CSS of https://narve.github.io, so the look is the same:
 - **Restraint:** the effects must never compete with the data. The plot area has no glow and no 3D, and the gridlines in charts use `--line`. Animation is only for drill-down transitions (≤300ms) and is turned off with `prefers-reduced-motion`.
 - No tracking by default. The GoatCounter snippet from narve.github.io is only added if the user wants it.
 
+## Responsivt og mobilvennlig
+**The data and visualisations come first.** Navigation is secondary on a phone.
+- **Mobile first.** Base CSS is written for ~360px, with breakpoints at about 640px (tablet) and 1024px (desktop). There is no horizontal scrolling on the page; only the inside of a chart may pan, and only where the chart asks for it.
+- **Navigation:**
+  - On desktop, a slim top bar holds the page links.
+  - On mobile, a **collapsible hamburger** opens a panel that overlays the page. Plain `<details>`/`<button>` with `aria-expanded` and no framework. The top bar is low and becomes sticky only on scroll-up, so the chart gets the height.
+  - The page's own sections are in an «I denne siden» list inside the same panel.
+- **Charts get the full width.** On mobile the side margin is 12–16px, and each chart can be expanded to **fullscreen** (`requestFullscreen`, with a fallback to a fixed overlay), with a hint to rotate to landscape where that helps.
+- **Each view module defines its mobile variant**, as described per view in `docs/VISUALIZATIONS.md`:
+  - sankey, icicle and waterfall turn vertical
+  - Marimekko becomes stacked bars
+  - the treemap gets a list drawer
+  - UpSet becomes a vertical list
+- The modules take their size from a `ResizeObserver` on the container, not from the window, so the same component works in the gallery, on the pages and in fullscreen.
+- **Interaction:**
+  - Tap targets are at least 44px.
+  - A tap selects and shows a tooltip, which is anchored as a **bottom sheet** on mobile, not following the finger. A second tap, or a button in the sheet, drills down.
+  - The breadcrumb scrolls horizontally on its own line.
+  - Back-swipe and the browser's back button move up one level, because the drill state is in the URL.
+- **Controls** (year, unit, definition, status, «Vis som») collapse into one «Innstillinger»-row above the chart, which opens as a bottom sheet on mobile. The active choices are shown as small chips, so the reader can always see which unit, year and status are on screen.
+- The «vis tallene» table drawer under each chart is the mobile fallback for dense charts. It is responsive, with a sticky first column and horizontal scrolling only inside the table.
+- **Performance on mobile:**
+  - Each page loads only the view modules and data it uses (ES modules + lazy `import()` per view).
+  - The JSON is small per node.
+  - Fonts are subsetted woff2 with `font-display: swap`.
+  - The background grid and blur are switched off on weak devices and with `prefers-reduced-transparency`.
+
 ## Pages and content
 
 ### 1. `index.html`: Oversikt
@@ -214,7 +241,7 @@ Concentric rings, each counted separately and shown with an accumulated total. D
 | **WS4 Staten som arbeidsgiver** | Same, for the rings 1–7, including the list of state companies with ownership shares and employee counts | WS0 (shares definitions with WS3) |
 | **WS5a Visningsbibliotek** | One JS module per view type (A–E above) against the shared data contract; the drill-down/dimension engine; URL state; units; table fallback and CSV export. Developed against **test data** that WS0 defines, so it doesn't wait for real data | WS0 (runs in parallel with WS1–4) |
 | **WS5b Galleri** | **All proposals are implemented** (3–6 per data type, snapshot and timeline). `site/galleri/<datatype>/` shows each dataset in every view, side by side and with the same data. The topic pages get a view switcher with every view available. After user feedback, `site_src/views.yaml` marks the default, the views to keep, the views to improve and the views to remove | WS5a + the first real data from WS1–4 |
-| **WS5c Design** | The theme as described under «Tema» (tokens, fonts, cards, grid background), the validated chart palette, claim-level styling, mobile (drill-down via tap and breadcrumb), index page. **WS0 delivers the tokens and base CSS first**, so WS5a/b use them from the start | WS0; finished last |
+| **WS5c Design** | The theme as described under «Tema» (tokens, fonts, cards, grid background), the validated chart palette, claim-level styling, responsive layout and hamburger navigation (see «Responsivt og mobilvennlig»), index page. **WS0 delivers the tokens and base CSS first**, so WS5a/b use them from the start | WS0; finished last |
 | **WS6 Verifisering** (independent agent) | For each page: sample the numbers and check them against the original sources by hand; check the definition quotes; cover reconciliation tests, the link checker, and Norwegian language and tone | WS1–5 |
 
 Rules for WS1–4 agents:
@@ -239,6 +266,7 @@ Rules for WS1–4 agents:
   - **view consistency:** a JS test (node + jsdom, or Playwright) renders the same node in every view and checks that the numbers shown in the table fallback are identical
   - **headline check:** a short list of known headline numbers from Gul bok, AKU and SSB press releases is checked against our processed values.
 - The link checker verifies that all source URLs in the registry return 200.
-- Manual check: run `python -m http.server -d site` and inspect every page on desktop and mobile width, in light and dark mode. Every chart must have a source line and a table fallback.
+- Manual check: run `python -m http.server -d site` and inspect every page at 360px, 768px and 1280px width, in light and dark mode. Every chart must have a source line and a table fallback.
+- Mobile, automated: Playwright with an iPhone/Pixel profile renders every view in the gallery. It checks that there is no horizontal page scroll and that tap targets are at least 44px, takes screenshots, and confirms that drill-down + back works via tap and history.
 - WS6 sample check: at least 5 numbers per page are traced by hand all the way to the original source.
 - Deploy: the Action publishes to GitHub Pages. If that fails, rsync to the VPS.
