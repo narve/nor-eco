@@ -1,0 +1,29 @@
+# Verbatim quotes from SSB. `python -m checks` (online step) verifies each quote still appears at its source.
+definitions:
+  - id: olje-sjofart
+    term: Oljevirksomhet og utenriks sjøfart
+    quote: "Omfatter utvinning av råolje og naturgass, rørtransport og utenriks sjøfart."
+    source_id: ssb-nasjonalregnskap-om
+    note: Fotnote til posten «Oljevirksomhet og utenriks sjøfart» i SSBs nasjonalregnskap. BNP Fastlands-Norge er BNP uten denne posten.
+  - id: kjedingsavvik
+    term: Kjedingsavvik
+    quote: "De enkelte tallene i faste priser summerer seg ikke opp til del- og totalsummene på grunn av kjedingsavvik."
+    source_id: ssb-09189
+    note: Merknad til tabell 09189.
+  - id: fastlandseksport
+    term: Fastlandseksport
+    quote: "Fra mars 2013 er \"fastlandseksport\" brukt om eksport av andre varer enn råolje, naturgass, naturlige gasskondensater, skip og oljeplattformer. \"Fastlandseksport\" erstattet begrepet \"tradisjonelle varer\", som ble brukt tidligere."
+    source_id: ssb-utenrikshandel-varer-om
+  - id: rorledning-tjenesteeksport
+    term: Eksport av råolje og naturgass i rørledning
+    quote: "Når det gjelder råolje og naturgass som føres til utlandet gjennom rørledning, regnes den statistiske verdien ved passering ut fra norsk kontinentalsokkel. Verdien av transport over internasjonale farvann og inn til terminal i utlandet regnes som en tjenesteeksport og faller dermed inn under statistikken Utenrikshandel med tjenester."
+    source_id: ssb-utenrikshandel-varer-om
+  - id: rolje-naturgass-samlebegrep
+    term: «Råolje og naturgass» i utenriksregnskapet
+    quote: "I publiseringen av tall for utenrikshandelen med varer gir vi tall for råolje, naturgass og naturlige gasskondensater, mens utenriksregnskapet bruker samlebegrepet ”råolje og naturgass” for varene råolje, naturgass, naturlige gasskondensater, nafta, propan og butan."
+    source_id: ssb-utenrikshandel-varer-om
+  - id: statistikk-foreloepige-tall
+    term: Revisjon av tall for utenrikshandel med varer
+    quote: "Statistikk for årstall publiseres for første gang i januar måned påfølgende år (t+1). Deretter revideres tallene to ganger: Første gang i mai påfølgende år (år t+1), før endelige tall publiseres i mai ett år senere (år t+2)."
+    source_id: ssb-08800
+    note: Merknad til tabell 08800.

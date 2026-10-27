@@ -19,7 +19,32 @@
   <p>Nettstedet bruker <a href="https://www.goatcounter.com/" rel="noopener">GoatCounter</a> til å telle sidevisninger. Det brukes ingen informasjonskapsler, og det lagres ingen personopplysninger om besøkende. Det er ingen annen sporing.</p>
 </section>
 <section id="avledninger">
-  <h2>Avledninger, estimater og brudd</h2>
-  <p class="muted">Fylles ut sammen med datasettene.</p>
+  <h2>Avledninger og estimater</h2>
+  {% set derived = series.values() | selectattr("claim_level", "ne", "offisiell") | list %}
+  {% if derived %}
+  <p>Disse tallene er vår egen regning på offisielle tall. Formelen står ved hvert tall.</p>
+  <ul>
+    {% for s in derived %}
+    <li><strong>{{ s.title }}</strong> ({{ s.claim_level }}): {{ s.derivation }}. Kilde: {% for sid in s.source_ids %}<a href="{{ root }}kilder.html#kilde-{{ sid }}">{{ sid }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">Ingen utledede tall ennå.</p>
+  {% endif %}
+</section>
+<section id="valg">
+  <h2>Valg i fremstillingen</h2>
+  <ul>
+    <li>Tidsserier starter der kilden er hentet fra, og kortes ned når eldre år ikke trengs.</li>
+    <li>Faste priser er kjedede. Delene summerer ikke til totalen, og kjedingsavviket vises som egen post der delene vises.</li>
+    <li>Andeler av BNP beregnes bare i løpende priser.</li>
+    <li>Tall per innbygger bruker gjennomsnittet av folkemengden ved starten av året og ved starten av året etter.</li>
+  </ul>
+</section>
+<section id="hull">
+  <h2>Kjente hull</h2>
+  <ul>
+    <li>Statens pensjonsfond utland (markedsverdi, avkastning, tilførsel og valutaeffekt) er ikke med ennå. Vi har ikke funnet en maskinlesbar kilde med markedsverdi per år.</li>
+  </ul>
 </section>
 {% endblock %}

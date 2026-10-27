@@ -1,0 +1,160 @@
+id: okonomi.vareeksport_olje_gass_lopende
+title: Eksport av råolje, naturgass og kondensater (varehandelsstatistikken), løpende
+  priser
+unit: mrd. kr
+price_basis: løpende
+claim_level: offisiell
+source_ids:
+- ssb-08800
+dimensions:
+- vare
+default_dimension: vare
+published_totals:
+- period: '1990'
+  status: regnskap
+  value: 88.54
+  source_id: ssb-08800
+- period: '1991'
+  status: regnskap
+  value: 96.704
+  source_id: ssb-08800
+- period: '1992'
+  status: regnskap
+  value: 97.158
+  source_id: ssb-08800
+- period: '1993'
+  status: regnskap
+  value: 104.069
+  source_id: ssb-08800
+- period: '1994'
+  status: regnskap
+  value: 106.44
+  source_id: ssb-08800
+- period: '1995'
+  status: regnskap
+  value: 113.23
+  source_id: ssb-08800
+- period: '1996'
+  status: regnskap
+  value: 156.689
+  source_id: ssb-08800
+- period: '1997'
+  status: regnskap
+  value: 163.674
+  source_id: ssb-08800
+- period: '1998'
+  status: regnskap
+  value: 118.303
+  source_id: ssb-08800
+- period: '1999'
+  status: regnskap
+  value: 159.227
+  source_id: ssb-08800
+- period: '2000'
+  status: regnskap
+  value: 306.625
+  source_id: ssb-08800
+- period: '2001'
+  status: regnskap
+  value: 303.67
+  source_id: ssb-08800
+- period: '2002'
+  status: regnskap
+  value: 264.381
+  source_id: ssb-08800
+- period: '2003'
+  status: regnskap
+  value: 268.518
+  source_id: ssb-08800
+- period: '2004'
+  status: regnskap
+  value: 322.779
+  source_id: ssb-08800
+- period: '2005'
+  status: regnskap
+  value: 407.379
+  source_id: ssb-08800
+- period: '2006'
+  status: regnskap
+  value: 473.64
+  source_id: ssb-08800
+- period: '2007'
+  status: regnskap
+  value: 451.77
+  source_id: ssb-08800
+- period: '2008'
+  status: regnskap
+  value: 583.868
+  source_id: ssb-08800
+- period: '2009'
+  status: regnskap
+  value: 415.989
+  source_id: ssb-08800
+- period: '2010'
+  status: regnskap
+  value: 447.581
+  source_id: ssb-08800
+- period: '2011'
+  status: regnskap
+  value: 532.361
+  source_id: ssb-08800
+- period: '2012'
+  status: regnskap
+  value: 569.858
+  source_id: ssb-08800
+- period: '2013'
+  status: regnskap
+  value: 545.171
+  source_id: ssb-08800
+- period: '2014'
+  status: regnskap
+  value: 514.388
+  source_id: ssb-08800
+- period: '2015'
+  status: regnskap
+  value: 422.356
+  source_id: ssb-08800
+- period: '2016'
+  status: regnskap
+  value: 352.542
+  source_id: ssb-08800
+- period: '2017'
+  status: regnskap
+  value: 431.163
+  source_id: ssb-08800
+- period: '2018'
+  status: regnskap
+  value: 533.545
+  source_id: ssb-08800
+- period: '2019'
+  status: regnskap
+  value: 433.764
+  source_id: ssb-08800
+- period: '2020'
+  status: regnskap
+  value: 330.78
+  source_id: ssb-08800
+- period: '2021'
+  status: regnskap
+  value: 931.525
+  source_id: ssb-08800
+- period: '2022'
+  status: regnskap
+  value: 1968.966
+  source_id: ssb-08800
+- period: '2023'
+  status: regnskap
+  value: 1171.344
+  source_id: ssb-08800
+- period: '2024'
+  status: regnskap
+  value: 1085.623
+  source_id: ssb-08800
+- period: '2025'
+  status: foreløpig
+  value: 1010.476
+  source_id: ssb-08800
+tolerance: 0.001
+notes: Utenrikshandelsstatistikken for varer. Omfatter ikke nafta, propan og butan,
+  som nasjonalregnskapets «råolje og naturgass» omfatter. Kondensat er ikke oppgitt
+  (null) for 1990–2000.

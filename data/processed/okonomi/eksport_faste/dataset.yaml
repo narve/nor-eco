@@ -1,0 +1,160 @@
+id: okonomi.eksport_faste
+title: Eksport av varer og tjenester, faste 2023-priser
+unit: mrd. kr
+price_basis: faste
+base_year: 2023
+claim_level: offisiell
+source_ids:
+- ssb-09189
+dimensions:
+- vare
+default_dimension: vare
+published_totals:
+- period: '1990'
+  status: regnskap
+  value: 1171.978
+  source_id: ssb-09189
+- period: '1991'
+  status: regnskap
+  value: 1244.567
+  source_id: ssb-09189
+- period: '1992'
+  status: regnskap
+  value: 1303.144
+  source_id: ssb-09189
+- period: '1993'
+  status: regnskap
+  value: 1343.689
+  source_id: ssb-09189
+- period: '1994'
+  status: regnskap
+  value: 1455.276
+  source_id: ssb-09189
+- period: '1995'
+  status: regnskap
+  value: 1533.667
+  source_id: ssb-09189
+- period: '1996'
+  status: regnskap
+  value: 1688.178
+  source_id: ssb-09189
+- period: '1997'
+  status: regnskap
+  value: 1818.415
+  source_id: ssb-09189
+- period: '1998'
+  status: regnskap
+  value: 1842.256
+  source_id: ssb-09189
+- period: '1999'
+  status: regnskap
+  value: 1896.524
+  source_id: ssb-09189
+- period: '2000'
+  status: regnskap
+  value: 1970.559
+  source_id: ssb-09189
+- period: '2001'
+  status: regnskap
+  value: 2060.828
+  source_id: ssb-09189
+- period: '2002'
+  status: regnskap
+  value: 2048.831
+  source_id: ssb-09189
+- period: '2003'
+  status: regnskap
+  value: 2042.011
+  source_id: ssb-09189
+- period: '2004'
+  status: regnskap
+  value: 2065.644
+  source_id: ssb-09189
+- period: '2005'
+  status: regnskap
+  value: 2077.168
+  source_id: ssb-09189
+- period: '2006'
+  status: regnskap
+  value: 2065.307
+  source_id: ssb-09189
+- period: '2007'
+  status: regnskap
+  value: 2085.374
+  source_id: ssb-09189
+- period: '2008'
+  status: regnskap
+  value: 2112.03
+  source_id: ssb-09189
+- period: '2009'
+  status: regnskap
+  value: 2022.912
+  source_id: ssb-09189
+- period: '2010'
+  status: regnskap
+  value: 2032.219
+  source_id: ssb-09189
+- period: '2011'
+  status: regnskap
+  value: 2024.007
+  source_id: ssb-09189
+- period: '2012'
+  status: regnskap
+  value: 2067.184
+  source_id: ssb-09189
+- period: '2013'
+  status: regnskap
+  value: 2034.882
+  source_id: ssb-09189
+- period: '2014'
+  status: regnskap
+  value: 2113.765
+  source_id: ssb-09189
+- period: '2015'
+  status: regnskap
+  value: 2197.697
+  source_id: ssb-09189
+- period: '2016'
+  status: regnskap
+  value: 2199.072
+  source_id: ssb-09189
+- period: '2017'
+  status: regnskap
+  value: 2233.54
+  source_id: ssb-09189
+- period: '2018'
+  status: regnskap
+  value: 2203.173
+  source_id: ssb-09189
+- period: '2019'
+  status: regnskap
+  value: 2253.035
+  source_id: ssb-09189
+- period: '2020'
+  status: regnskap
+  value: 2198.254
+  source_id: ssb-09189
+- period: '2021'
+  status: regnskap
+  value: 2326.001
+  source_id: ssb-09189
+- period: '2022'
+  status: regnskap
+  value: 2438.992
+  source_id: ssb-09189
+- period: '2023'
+  status: regnskap
+  value: 2461.728
+  source_id: ssb-09189
+- period: '2024'
+  status: foreløpig
+  value: 2604.461
+  source_id: ssb-09189
+- period: '2025'
+  status: foreløpig
+  value: 2673.535
+  source_id: ssb-09189
+tolerance: 0.001
+notes: 'Nasjonalregnskapets inndeling. Totalen er publisert av SSB; i løpende priser
+  kan avrunding gi avvik på 1 mill. kr. I faste priser er kjedingsavviket tatt med
+  som egen post (utledet: total minus summen av delene).'

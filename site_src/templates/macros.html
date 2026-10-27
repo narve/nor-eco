@@ -28,11 +28,11 @@
 
 {# A chart frame: title, «Hva telles?» box, mount point for a view module, table fallback, source line.
    `caller()` should render the <table> with the exact numbers shown. #}
-{% macro chart(id, title, source_ids, definition=None, level="offisiell") %}
+{% macro chart(id, title, source_ids, definition=None, level="offisiell", mount=False) %}
 <figure class="chart" id="{{ id }}">
   <figcaption>
     <h3>{{ title }}</h3>
-    {{ claim_badge(level) }}
+    {% if level %}{{ claim_badge(level) }}{% endif %}
   </figcaption>
   {% if definition %}
   <details class="definition">
@@ -40,11 +40,44 @@
     <div>{{ definition }}</div>
   </details>
   {% endif %}
-  <div class="chart-mount" data-chart="{{ id }}"></div>
+  {% if mount %}<div class="chart-mount" data-chart="{{ id }}"></div>{% endif %}
   <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">{{ caller() }}</div>
   </details>
   {{ cite(source_ids) }}
 </figure>
+{% endmacro %}
+
+{# Table of exact numbers: periods as rows. `t` comes from series_table()/dataset_table(). Each cell carries its status. #}
+{% macro data_table(t, decimals=None, caption=None) %}
+<table>
+  {% if caption %}<caption class="mono">{{ caption }}</caption>{% endif %}
+  <thead>
+    <tr>
+      <th scope="col">År</th>
+      {% for h in t.headers %}<th scope="col">{{ h }}<br><span class="muted">{{ t.units[loop.index0] }}{% if t.claims[loop.index0] != "offisiell" %}, {{ t.claims[loop.index0] }}{% endif %}</span></th>{% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in t.periods %}
+    {% set row = t.rows[loop.index0] %}
+    <tr>
+      <th scope="row">{{ p }}</th>
+      {% for c in row %}
+      {% set d = 0 if t.units[loop.index0].startswith("kr per") else decimals %}
+      <td>{% if c %}{{ fmt(c.value, d) }}{% if c.status == "foreløpig" %}<sup title="Foreløpig tall">f</sup>{% endif %}{% else %}–{% endif %}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+{% endmacro %}
+
+{# A verbatim quote with its source line. `id` is a definition id from definitions/*.yaml. #}
+{% macro quote(id) %}
+{% set d = defs_by_id[id] %}
+<blockquote>{{ d.quote }}</blockquote>
+{{ cite([d.source_id]) }}
 {% endmacro %}

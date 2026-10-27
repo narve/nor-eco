@@ -1,0 +1,26 @@
+# Raw snapshots. Committed files are in data/raw/<source_id>/; the rest are re-downloadable (see url).
+files:
+- source_id: ssb-06913
+  file: ssb-06913/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BRegion%5D=0&valuecodes%5BContentsCode%5D=Folkemengde&valuecodes%5BTid%5D=1990%2C1991%2C1992%2C1993%2C1994%2C1995%2C1996%2C1997%2C1998%2C1999%2C2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025%2C2026
+  sha256: ce1a761d3e4c8145cd24061b1d9987d608fc4355794930dd827f07e49f9a3217
+  retrieved: '2026-10-27'
+  vintage: '2026-04-15T06:00:00Z'
+  size: 3650
+  committed: true
+- source_id: ssb-08800
+  file: ssb-08800/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/08800/data?lang=no&outputFormat=json-stat2&valuecodes%5BHovedVareStrommer%5D=Eoljegass%2CEolje%2CEgass%2CEkondens%2CEtot%2CEtotusorn&valuecodes%5BContentsCode%5D=Verdi&valuecodes%5BTid%5D=1990%2C1991%2C1992%2C1993%2C1994%2C1995%2C1996%2C1997%2C1998%2C1999%2C2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 177d52dbe78962d4638026eeea8f64b91e596912f81f2da307f93d023d2c22cf
+  retrieved: '2026-10-27'
+  vintage: '2026-05-15T06:00:00Z'
+  size: 4839
+  committed: true
+- source_id: ssb-09189
+  file: ssb-09189/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/09189/data?lang=no&outputFormat=json-stat2&valuecodes%5BMakrost%5D=bnpb.nr23_9%2Cbnpb.nr23_9fn%2Cbnpb.nr23oljsj%2Ceks.nrtot%2Ceks.nrtradvare%2Ceks.puboljegs%2Ceks.nrskiplfly%2Ceks.nrtjen%2Cimp.nrtot%2Cimp.nrtradvare%2Cimp.puboljegs%2Cimp.nrskiplfly%2Cimp.nrtjen&valuecodes%5BContentsCode%5D=Priser%2CFaste%2CVolum&valuecodes%5BTid%5D=1990%2C1991%2C1992%2C1993%2C1994%2C1995%2C1996%2C1997%2C1998%2C1999%2C2000%2C2001%2C2002%2C2003%2C2004%2C2005%2C2006%2C2007%2C2008%2C2009%2C2010%2C2011%2C2012%2C2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: e8abf82c645c13ce116443209b7b2732d40276c0c5c47bcb175d5a4e22ee6db3
+  retrieved: '2026-10-27'
+  vintage: '2026-05-28T06:00:00Z'
+  size: 13004
+  committed: true

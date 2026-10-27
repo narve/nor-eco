@@ -14,3 +14,36 @@ sources:
     url: https://data.ssb.no/api/pxwebapi/v2/config
     licence: CC BY 4.0 (https://www.ssb.no/en/diverse/lisens)
     notes: Teknisk inngang til SSB-tabellene. Hver tabell som brukes får en egen kilde-id med tabellnummer.
+
+  # ---- WS2 Økonomi ----
+  - id: ssb-09189
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025"
+    url: https://www.ssb.no/statbank/table/09189
+    table_id: "09189"
+    licence: CC BY 4.0
+    notes: Nasjonalregnskapet, årlig. BNP, BNP Fastlands-Norge, eksport og import, i løpende og faste priser.
+  - id: ssb-08800
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 08800: Utenrikshandel med varer, hovedtall (mill. kr) 1960-2025"
+    url: https://www.ssb.no/statbank/table/08800
+    table_id: "08800"
+    licence: CC BY 4.0
+    notes: Utenrikshandelsstatistikken for varer. Eksport av råolje, naturgass og kondensater hver for seg.
+  - id: ssb-06913
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 06913: Endringer i kommuner, fylker og hele landets befolkning (K) 1951-2026"
+    url: https://www.ssb.no/statbank/table/06913
+    table_id: "06913"
+    licence: CC BY 4.0
+    notes: Folkemengde 1. januar, hele landet. Brukes til tall per innbygger.
+  - id: ssb-nasjonalregnskap-om
+    publisher: Statistisk sentralbyrå (SSB)
+    title: Nasjonalregnskap – statistikkside og Om statistikken
+    url: https://www.ssb.no/nasjonalregnskap-og-konjunkturer/nasjonalregnskap/statistikk/nasjonalregnskap
+    licence: CC BY 4.0
+  - id: ssb-utenrikshandel-varer-om
+    publisher: Statistisk sentralbyrå (SSB)
+    title: Utenrikshandel med varer – statistikkside og Om statistikken
+    url: https://www.ssb.no/utenriksokonomi/utenrikshandel/statistikk/utenrikshandel-med-varer
+    licence: CC BY 4.0

@@ -1,13 +1,122 @@
 {% extends "base.html" %}
-{% block description %}BNP, eksport og Statens pensjonsfond utland.{% endblock %}
+{% from "macros.html" import chart, cite, data_table, claim_badge, quote with context %}
+{% block description %}BNP og BNP Fastlands-Norge, eksport og handelsbalanse, med og uten råolje og naturgass, fra SSBs nasjonalregnskap og utenrikshandelsstatistikk.{% endblock %}
+{% set bnp = series["okonomi.bnp_lopende"]["values"][-1] %}
+{% set fn = series["okonomi.bnp_fastland_lopende"]["values"][-1] %}
+{% set andel = series["okonomi.olje_sjofart_andel_av_bnp"]["values"][-1] %}
+{% set hb = series["okonomi.handelsbalanse_uten_olje_gass"]["values"][-1] %}
 {% block main %}
 <header class="page-head">
   <p class="mono">Tema</p>
-  <h1>Norges økonomi med og uten olje og gass</h1>
-  <p class="lede">BNP, eksport og Statens pensjonsfond utland.</p>
+  <h1>Norges økonomi <span>med og uten</span> olje og gass</h1>
+  <p class="lede">BNP, eksport og handelsbalanse, vist med og uten olje og gass. Tallene kommer fra SSBs nasjonalregnskap og utenrikshandelsstatistikk, og hvert tall har kilde.</p>
 </header>
-<section id="innhold">
-  <h2>Innhold</h2>
-  <p class="muted">Denne siden er ikke bygget ennå.</p>
+
+<section id="nokkeltall">
+  <h2>Nøkkeltall {{ bnp.period }}</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="mono">BNP, løpende priser</span>
+      <p class="num big">{{ fmt(bnp.value, 0) }} <span class="unit">mrd. kr</span></p>
+      {{ cite(series["okonomi.bnp_lopende"].source_ids) }}
+    </div>
+    <div class="card">
+      <span class="mono">BNP Fastlands-Norge</span>
+      <p class="num big">{{ fmt(fn.value, 0) }} <span class="unit">mrd. kr</span></p>
+      {{ cite(series["okonomi.bnp_fastland_lopende"].source_ids) }}
+    </div>
+    <div class="card">
+      <span class="mono">Oljevirksomhet og utenriks sjøfart, andel av BNP {{ claim_badge("utledet") }}</span>
+      <p class="num big">{{ fmt(andel.value, 1) }} <span class="unit">prosent</span></p>
+      {{ cite(series["okonomi.olje_sjofart_andel_av_bnp"].source_ids) }}
+    </div>
+    <div class="card">
+      <span class="mono">Handelsbalanse uten råolje og naturgass {{ claim_badge("utledet") }}</span>
+      <p class="num big">{{ fmt(hb.value, 0) }} <span class="unit">mrd. kr</span></p>
+      {{ cite(series["okonomi.handelsbalanse_uten_olje_gass"].source_ids) }}
+    </div>
+  </div>
+  {% if bnp.status == "foreløpig" %}<p class="muted small">Tall for {{ bnp.period }} er foreløpige og kan bli revidert.</p>{% endif %}
+</section>
+
+<section id="bnp">
+  <h2>BNP og BNP Fastlands-Norge</h2>
+  <p>I løpende priser er BNP lik BNP Fastlands-Norge pluss posten «Oljevirksomhet og utenriks sjøfart». Posten er definert slik:</p>
+  {{ quote("olje-sjofart") }}
+
+  {% call chart("bnp-lopende", "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart, løpende priser", ["ssb-09189"], level=None) %}
+    {{ data_table(series_table(["okonomi.bnp_lopende", "okonomi.bnp_fastland_lopende", "okonomi.olje_sjofart_lopende", "okonomi.olje_sjofart_andel_av_bnp"]), 1) }}
+  {% endcall %}
+
+  <h3>Faste priser og tall per innbygger</h3>
+  <p>I faste priser er tallene korrigert for prisvekst, men delene summerer ikke til totalen:</p>
+  {{ quote("kjedingsavvik") }}
+  {% call chart("bnp-faste", "BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger", ["ssb-09189", "ssb-06913"], level=None) %}
+    {{ data_table(series_table(["okonomi.bnp_faste", "okonomi.bnp_fastland_faste", "okonomi.bnp_volumvekst", "okonomi.bnp_fastland_volumvekst", "okonomi.bnp_per_innbygger_faste", "okonomi.bnp_fastland_per_innbygger_faste"]), 1) }}
+  {% endcall %}
+  <p class="muted small">Tall per innbygger er utledet: {{ series["okonomi.bnp_per_innbygger_faste"].derivation }}.</p>
+</section>
+
+<section id="eksport">
+  <h2>Eksport med og uten råolje og naturgass</h2>
+  <p>Nasjonalregnskapet deler eksporten i tradisjonelle varer, råolje og naturgass, skip, plattformer og fly, og tjenester.</p>
+  {% call chart("eksport-lopende", "Eksport etter type, løpende priser", ["ssb-09189"], definition=defs_by_id["rolje-naturgass-samlebegrep"].quote) %}
+    {{ data_table(dataset_table("okonomi.eksport_lopende"), 1) }}
+  {% endcall %}
+
+  <h3>Råolje, naturgass og kondensater i varehandelsstatistikken</h3>
+  <p>Utenrikshandelsstatistikken for varer viser råolje, naturgass og kondensater hver for seg. Rørledningstransport behandles slik:</p>
+  {{ quote("rorledning-tjenesteeksport") }}
+  {% call chart("vareeksport-olje-gass", "Eksport av råolje, naturgass og kondensater, løpende priser", ["ssb-08800"]) %}
+    {{ data_table(dataset_table("okonomi.vareeksport_olje_gass_lopende"), 1) }}
+  {% endcall %}
+
+  <h3>Faste priser</h3>
+  {% call chart("eksport-faste", "Eksport etter type, faste priser, med kjedingsavvik som egen post", ["ssb-09189"], level=None) %}
+    {{ data_table(dataset_table("okonomi.eksport_faste"), 1) }}
+  {% endcall %}
+</section>
+
+<section id="handelsbalanse">
+  <h2>Handelsbalanse med og uten råolje og naturgass</h2>
+  <p>Handelsbalansen er eksport minus import av varer og tjenester. Den er regnet to ganger, med og uten råolje og naturgass.</p>
+  {% call chart("handelsbalanse", "Handelsbalanse, løpende priser", ["ssb-09189"], level="utledet") %}
+    {{ data_table(series_table(["okonomi.handelsbalanse_i_alt", "okonomi.handelsbalanse_uten_olje_gass"]), 1) }}
+  {% endcall %}
+  <ul class="muted small">
+    <li>Alle varer og tjenester: {{ series["okonomi.handelsbalanse_i_alt"].derivation }}.</li>
+    <li>Uten råolje og naturgass: {{ series["okonomi.handelsbalanse_uten_olje_gass"].derivation }}.</li>
+  </ul>
+</section>
+
+<section id="forvekslinger">
+  <h2>Ofte blandet sammen</h2>
+  <article class="pair">
+    <h3>BNP og BNP Fastlands-Norge</h3>
+    <p>BNP omfatter all verdiskaping i Norge. BNP Fastlands-Norge er BNP uten posten oljevirksomhet og utenriks sjøfart:</p>
+    {{ quote("olje-sjofart") }}
+  </article>
+  <article class="pair">
+    <h3>Løpende og faste priser</h3>
+    <p>Tall i løpende priser er verdier i hvert års prisnivå. Tall i faste priser er korrigert for prisvekst, og kjedingen gjør at delene ikke summerer til totalen:</p>
+    {{ quote("kjedingsavvik") }}
+  </article>
+  <article class="pair">
+    <h3>«Råolje og naturgass» i nasjonalregnskapet og i varehandelsstatistikken</h3>
+    {% set na = datasets_value("okonomi.eksport_lopende", "rolje_naturgass", bnp.period) %}
+    {% set vh = datasets_value("okonomi.vareeksport_olje_gass_lopende", None, bnp.period) %}
+    <p>De to statistikkene bruker ulik avgrensning. For {{ bnp.period }} er eksporten {{ fmt(na, 1) }} mrd. kr i nasjonalregnskapet og {{ fmt(vh, 1) }} mrd. kr i varehandelsstatistikken. SSB beskriver forskjellen slik:</p>
+    {{ quote("rolje-naturgass-samlebegrep") }}
+  </article>
+  <article class="pair">
+    <h3>Fastlandseksport og eksport uten råolje og naturgass</h3>
+    <p>Fastlandseksport er et begrep i varehandelsstatistikken, og er snevrere enn bare «uten råolje og naturgass»:</p>
+    {{ quote("fastlandseksport") }}
+  </article>
+  <article class="pair">
+    <h3>Varer og tjenester ved rørledningstransport</h3>
+    <p>Transport av råolje og naturgass i rør til utlandet deles mellom varer og tjenester:</p>
+    {{ quote("rorledning-tjenesteeksport") }}
+  </article>
 </section>
 {% endblock %}

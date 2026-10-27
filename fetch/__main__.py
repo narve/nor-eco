@@ -1,14 +1,14 @@
 """`python -m fetch <command>`.
 
   check   report which SSB API version is live (v2 preferred)
-  all     run every registered fetcher (none yet: WS1-4 add theirs)
+  all     run every fetcher (okonomi; WS1, WS3, WS4 add theirs)
 """
 
 from __future__ import annotations
 
 import sys
 
-from . import ssb
+from . import okonomi, ssb
 
 
 def main(argv: list[str]) -> int:
@@ -17,7 +17,7 @@ def main(argv: list[str]) -> int:
         print("SSB PxWebApi:", ssb.api_version())
         return 0
     if cmd == "all":
-        print("no fetchers registered yet")
+        okonomi.run()
         return 0
     print(__doc__)
     return 2

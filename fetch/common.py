@@ -251,7 +251,7 @@ def _ordered_codes(category: dict) -> list[str]:
     return [c for c, _ in sorted(index.items(), key=lambda kv: kv[1])]
 
 
-def parse_jsonstat2(obj: dict | str | bytes) -> JsonStat:
+def parse_jsonstat2(obj: dict | str | bytes, *, metadata_only: bool = False) -> JsonStat:
     if isinstance(obj, (str, bytes)):
         obj = json.loads(obj)
     if obj.get("class", "dataset") != "dataset":
@@ -275,6 +275,8 @@ def parse_jsonstat2(obj: dict | str | bytes) -> JsonStat:
     for s in sizes:
         total *= s
     raw_values = obj.get("value", [])
+    if metadata_only and not raw_values:  # metadata responses carry dimensions but no values
+        raw_values = {}
     if isinstance(raw_values, dict):  # sparse form
         values: list[Any] = [None] * total
         for k, v in raw_values.items():

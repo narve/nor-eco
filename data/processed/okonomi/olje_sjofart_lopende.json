@@ -1,0 +1,193 @@
+{
+  "id": "okonomi.olje_sjofart_lopende",
+  "title": "Oljevirksomhet og utenriks sjøfart, løpende priser",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-09189"
+  ],
+  "vintage": "2026-05-28",
+  "values": [
+    {
+      "period": "1990",
+      "value": 110.128,
+      "status": "regnskap"
+    },
+    {
+      "period": "1991",
+      "value": 120.071,
+      "status": "regnskap"
+    },
+    {
+      "period": "1992",
+      "value": 115.675,
+      "status": "regnskap"
+    },
+    {
+      "period": "1993",
+      "value": 124.357,
+      "status": "regnskap"
+    },
+    {
+      "period": "1994",
+      "value": 127.355,
+      "status": "regnskap"
+    },
+    {
+      "period": "1995",
+      "value": 134.488,
+      "status": "regnskap"
+    },
+    {
+      "period": "1996",
+      "value": 178.246,
+      "status": "regnskap"
+    },
+    {
+      "period": "1997",
+      "value": 194.773,
+      "status": "regnskap"
+    },
+    {
+      "period": "1998",
+      "value": 143.636,
+      "status": "regnskap"
+    },
+    {
+      "period": "1999",
+      "value": 191.986,
+      "status": "regnskap"
+    },
+    {
+      "period": "2000",
+      "value": 366.332,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 358.118,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 307.515,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 318.233,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 382.548,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 485.423,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 566.369,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 534.596,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 682.376,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 481.897,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 534.717,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 658.077,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 696.235,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 680.091,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 636.86,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 524.071,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 431.688,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 534.25,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 655.634,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 539.601,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 401.399,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 1022.392,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 2070.157,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 1283.27,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 1190.647,
+      "status": "foreløpig"
+    },
+    {
+      "period": "2025",
+      "value": 1113.618,
+      "status": "foreløpig"
+    }
+  ]
+}

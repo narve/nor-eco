@@ -1,0 +1,9 @@
+# Headline numbers printed on SSB's statistics page (not read through the API), copied 2026-10-27.
+# Source: https://www.ssb.no/nasjonalregnskap-og-konjunkturer/nasjonalregnskap/statistikk/nasjonalregnskap
+# (table «Hovedtall», løpende priser, mill. kr). If SSB revises these figures this test fails on purpose:
+# re-check the page, then update both the processed data (re-run fetch/transform) and this file.
+checks:
+  - {series: okonomi.bnp_fastland_lopende, period: "2024", value_mill_kr: 4191794}
+  - {series: okonomi.bnp_fastland_lopende, period: "2025", value_mill_kr: 4397716}
+  - {series: okonomi.olje_sjofart_lopende, period: "2024", value_mill_kr: 1190647}
+  - {series: okonomi.olje_sjofart_lopende, period: "2025", value_mill_kr: 1113618}

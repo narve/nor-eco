@@ -1,0 +1,193 @@
+{
+  "id": "okonomi.bnp_fastland_lopende",
+  "title": "BNP Fastlands-Norge, markedsverdi, løpende priser",
+  "unit": "mrd. kr",
+  "price_basis": "løpende",
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-09189"
+  ],
+  "vintage": "2026-05-28",
+  "values": [
+    {
+      "period": "1990",
+      "value": 636.932,
+      "status": "regnskap"
+    },
+    {
+      "period": "1991",
+      "value": 665.328,
+      "status": "regnskap"
+    },
+    {
+      "period": "1992",
+      "value": 692.203,
+      "status": "regnskap"
+    },
+    {
+      "period": "1993",
+      "value": 725.812,
+      "status": "regnskap"
+    },
+    {
+      "period": "1994",
+      "value": 764.192,
+      "status": "regnskap"
+    },
+    {
+      "period": "1995",
+      "value": 822.657,
+      "status": "regnskap"
+    },
+    {
+      "period": "1996",
+      "value": 869.379,
+      "status": "regnskap"
+    },
+    {
+      "period": "1997",
+      "value": 937.067,
+      "status": "regnskap"
+    },
+    {
+      "period": "1998",
+      "value": 1010.432,
+      "status": "regnskap"
+    },
+    {
+      "period": "1999",
+      "value": 1066.061,
+      "status": "regnskap"
+    },
+    {
+      "period": "2000",
+      "value": 1135.434,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 1202.76,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 1252.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 1304.497,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 1408.233,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 1520.883,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 1676.832,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 1855.886,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 1980.044,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 2006.16,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 2125.515,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 2216.35,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 2358.435,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 2493.186,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 2613.726,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 2706.992,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 2787.898,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 2904.06,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 3041.31,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 3193.754,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 3197.827,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 3458.085,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 3864.878,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 4021.611,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 4191.794,
+      "status": "foreløpig"
+    },
+    {
+      "period": "2025",
+      "value": 4397.716,
+      "status": "foreløpig"
+    }
+  ]
+}

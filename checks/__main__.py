@@ -19,7 +19,7 @@ import httpx
 import build as site_build
 from transform.schema import validate_tree
 
-from . import links, numbers, sizes
+from . import links, numbers, quotes, sizes
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -85,6 +85,7 @@ def run(skip_online: bool, skip_tests: bool) -> int:
         print("skip registry URL check (--skip-online)")
     else:
         step("registry URLs return 200", check_registry_urls())
+        step("definition quotes appear at their source", quotes.verify_definitions())
 
     if skip_tests:
         print("skip pytest (--skip-tests)")

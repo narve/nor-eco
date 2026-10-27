@@ -1,0 +1,196 @@
+{
+  "id": "okonomi.bnp_per_innbygger_faste",
+  "title": "BNP per innbygger, faste 2023-priser",
+  "unit": "kr per innbygger",
+  "price_basis": "faste",
+  "base_year": 2023,
+  "claim_level": "utledet",
+  "derivation": "BNP (faste 2023-priser, mill. kr) × 1 000 000 / gjennomsnitt av folkemengden 1. januar i året og 1. januar året etter (tilnærming til gjennomsnittsbefolkning)",
+  "source_ids": [
+    "ssb-09189",
+    "ssb-06913"
+  ],
+  "vintage": "2026-05-28",
+  "values": [
+    {
+      "period": "1990",
+      "value": 576550,
+      "status": "regnskap"
+    },
+    {
+      "period": "1991",
+      "value": 590213,
+      "status": "regnskap"
+    },
+    {
+      "period": "1992",
+      "value": 607731,
+      "status": "regnskap"
+    },
+    {
+      "period": "1993",
+      "value": 621481,
+      "status": "regnskap"
+    },
+    {
+      "period": "1994",
+      "value": 649094,
+      "status": "regnskap"
+    },
+    {
+      "period": "1995",
+      "value": 672549,
+      "status": "regnskap"
+    },
+    {
+      "period": "1996",
+      "value": 702402,
+      "status": "regnskap"
+    },
+    {
+      "period": "1997",
+      "value": 734177,
+      "status": "regnskap"
+    },
+    {
+      "period": "1998",
+      "value": 749713,
+      "status": "regnskap"
+    },
+    {
+      "period": "1999",
+      "value": 760849,
+      "status": "regnskap"
+    },
+    {
+      "period": "2000",
+      "value": 781956,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 794840,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 802088,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 806140,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 836092,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 855077,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 872370,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 892920,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 889116,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 863810,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 861689,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 862365,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 875147,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 875542,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 883922,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 892874,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 896417,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 913229,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 917294,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 924514,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 906582,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 939108,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 968685,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 961100,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 965568,
+      "status": "foreløpig"
+    },
+    {
+      "period": "2025",
+      "value": 969070,
+      "status": "foreløpig"
+    }
+  ]
+}

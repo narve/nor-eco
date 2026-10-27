@@ -1,0 +1,195 @@
+{
+  "id": "okonomi.bnp_fastland_faste",
+  "title": "BNP Fastlands-Norge, markedsverdi, faste 2023-priser",
+  "unit": "mrd. kr",
+  "price_basis": "faste",
+  "base_year": 2023,
+  "claim_level": "offisiell",
+  "source_ids": [
+    "ssb-09189"
+  ],
+  "vintage": "2026-05-28",
+  "values": [
+    {
+      "period": "1990",
+      "value": 1645.896,
+      "status": "regnskap"
+    },
+    {
+      "period": "1991",
+      "value": 1666.026,
+      "status": "regnskap"
+    },
+    {
+      "period": "1992",
+      "value": 1708.835,
+      "status": "regnskap"
+    },
+    {
+      "period": "1993",
+      "value": 1756.2,
+      "status": "regnskap"
+    },
+    {
+      "period": "1994",
+      "value": 1819.275,
+      "status": "regnskap"
+    },
+    {
+      "period": "1995",
+      "value": 1880.196,
+      "status": "regnskap"
+    },
+    {
+      "period": "1996",
+      "value": 1955.572,
+      "status": "regnskap"
+    },
+    {
+      "period": "1997",
+      "value": 2052.484,
+      "status": "regnskap"
+    },
+    {
+      "period": "1998",
+      "value": 2132.374,
+      "status": "regnskap"
+    },
+    {
+      "period": "1999",
+      "value": 2185.574,
+      "status": "regnskap"
+    },
+    {
+      "period": "2000",
+      "value": 2252.774,
+      "status": "regnskap"
+    },
+    {
+      "period": "2001",
+      "value": 2294.897,
+      "status": "regnskap"
+    },
+    {
+      "period": "2002",
+      "value": 2331.247,
+      "status": "regnskap"
+    },
+    {
+      "period": "2003",
+      "value": 2364.124,
+      "status": "regnskap"
+    },
+    {
+      "period": "2004",
+      "value": 2491.75,
+      "status": "regnskap"
+    },
+    {
+      "period": "2005",
+      "value": 2616.91,
+      "status": "regnskap"
+    },
+    {
+      "period": "2006",
+      "value": 2761.159,
+      "status": "regnskap"
+    },
+    {
+      "period": "2007",
+      "value": 2937.12,
+      "status": "regnskap"
+    },
+    {
+      "period": "2008",
+      "value": 3003.065,
+      "status": "regnskap"
+    },
+    {
+      "period": "2009",
+      "value": 2962.831,
+      "status": "regnskap"
+    },
+    {
+      "period": "2010",
+      "value": 3028.872,
+      "status": "regnskap"
+    },
+    {
+      "period": "2011",
+      "value": 3095.352,
+      "status": "regnskap"
+    },
+    {
+      "period": "2012",
+      "value": 3214.491,
+      "status": "regnskap"
+    },
+    {
+      "period": "2013",
+      "value": 3296.928,
+      "status": "regnskap"
+    },
+    {
+      "period": "2014",
+      "value": 3371.36,
+      "status": "regnskap"
+    },
+    {
+      "period": "2015",
+      "value": 3427.83,
+      "status": "regnskap"
+    },
+    {
+      "period": "2016",
+      "value": 3463.644,
+      "status": "regnskap"
+    },
+    {
+      "period": "2017",
+      "value": 3546.172,
+      "status": "regnskap"
+    },
+    {
+      "period": "2018",
+      "value": 3622.277,
+      "status": "regnskap"
+    },
+    {
+      "period": "2019",
+      "value": 3719.997,
+      "status": "regnskap"
+    },
+    {
+      "period": "2020",
+      "value": 3618.563,
+      "status": "regnskap"
+    },
+    {
+      "period": "2021",
+      "value": 3788.134,
+      "status": "regnskap"
+    },
+    {
+      "period": "2022",
+      "value": 3986.321,
+      "status": "regnskap"
+    },
+    {
+      "period": "2023",
+      "value": 4021.611,
+      "status": "regnskap"
+    },
+    {
+      "period": "2024",
+      "value": 4047.656,
+      "status": "foreløpig"
+    },
+    {
+      "period": "2025",
+      "value": 4117.384,
+      "status": "foreløpig"
+    }
+  ],
+  "notes": "Kjedede faste priser: delene summerer ikke til totalen (kjedingsavvik), så forskjellen mellom BNP og BNP Fastlands-Norge i faste priser er ikke lik oljevirksomhet og utenriks sjøfart."
+}

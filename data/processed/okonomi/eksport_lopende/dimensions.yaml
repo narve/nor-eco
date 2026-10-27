@@ -1,0 +1,24 @@
+dimensions:
+  vare:
+    label: Type
+    nodes:
+    - code: eks_i_alt
+      label: Eksport i alt
+      parent: null
+    - code: tradisjonelle_varer
+      label: Tradisjonelle varer
+      parent: eks_i_alt
+    - code: rolje_naturgass
+      label: Råolje og naturgass
+      parent: eks_i_alt
+      definition: I publiseringen av tall for utenrikshandelen med varer gir vi tall
+        for råolje, naturgass og naturlige gasskondensater, mens utenriksregnskapet
+        bruker samlebegrepet ”råolje og naturgass” for varene råolje, naturgass, naturlige
+        gasskondensater, nafta, propan og butan.
+      source_id: ssb-utenrikshandel-varer-om
+    - code: skip_plattformer_fly
+      label: Skip, plattformer og fly
+      parent: eks_i_alt
+    - code: tjenester
+      label: Tjenester
+      parent: eks_i_alt

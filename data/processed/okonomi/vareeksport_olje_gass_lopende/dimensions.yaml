@@ -1,0 +1,16 @@
+dimensions:
+  vare:
+    label: Vare
+    nodes:
+    - code: olje_gass_kondensat
+      label: Råolje, naturgass og kondensater
+      parent: null
+    - code: rolje
+      label: Råolje
+      parent: olje_gass_kondensat
+    - code: naturgass
+      label: Naturgass
+      parent: olje_gass_kondensat
+    - code: kondensat
+      label: Naturlige gasskondensater
+      parent: olje_gass_kondensat
