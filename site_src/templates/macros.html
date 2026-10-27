@@ -28,6 +28,34 @@
 
 {# A chart frame: title, «Hva telles?» box, mount point for a view module, table fallback, source line.
    `caller()` should render the <table> with the exact numbers shown. #}
+{# How each view is read. Wording is about the figure itself, so it carries no numbers. #}
+{% set VIEW_HELP = {
+  "hier-bars": "Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.",
+  "treemap": "Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.",
+  "waffle": "Hele gruppen er ett rutenett der alle ruter er like store. Antall ruter er avrundet; de nøyaktige tallene står i listen. Stripete ruter er personer med to statuser. Hold musen over en rad i listen for å fremheve gruppen.",
+  "timeseries-lines": "Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.",
+  "timeseries-stacked": "Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.",
+  "timeseries-bars": "Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.",
+  "slope": "Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.",
+  "waterfall": "Hvert trinn er forskjellen fra summen før trinnet, og summene er kontrollpunkter mot publiserte tall. Stemmer ikke summen, vises differansen som «Ikke forklart»."
+} %}
+{% set VIEW_LABEL = {} %}
+{% for v in views_cfg %}{% set _ = VIEW_LABEL.update({v.id: v.label}) %}{% endfor %}
+
+{# «Slik leser du figuren»: generated how-to per view, plus the chart's own notes from explainers.yaml. #}
+{% macro explainer(id, config) %}
+{% set ex = explainers.get(id) %}
+<aside class="explain" aria-labelledby="ex-{{ id }}">
+  <p class="mono" id="ex-{{ id }}">Slik leser du figuren</p>
+  {% if ex %}{% for t in ex.text %}<p>{{ t }}</p>{% endfor %}{% endif %}
+  <ul>
+    {% for v in config.views %}<li><strong>{{ VIEW_LABEL[v] }}:</strong> {{ VIEW_HELP[v] }}</li>{% endfor %}
+    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+  {% if ex and ex.get("quotes") %}{% for q in ex.get("quotes") %}{{ quote(q) }}{% endfor %}{% endif %}
+</aside>
+{% endmacro %}
+
 {% macro chart(id, title, source_ids, definition=None, level="offisiell", config=None) %}
 <figure class="chart" id="{{ id }}">
   <figcaption>
@@ -41,6 +69,7 @@
   </details>
   {% endif %}
   {% if config %}<div class="chart-mount" data-chart="{{ id }}" data-config='{{ dict(config, id=id, title=title) | tojson }}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>{% endif %}
+  {% if config %}{{ explainer(id, config) }}{% endif %}
   <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">{{ caller() }}</div>

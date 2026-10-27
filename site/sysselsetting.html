@@ -161,7 +161,23 @@
   <figcaption>
     <h3>Befolkningen 15–74 år etter prioritert arbeidsstyrkestatus (registerbasert)</h3>
   </figcaption>
-<div class="chart-mount" data-chart="register-15-74" data-config='{"groups": [{"codes": ["A.01x00", "A.01.90A"], "color": 1, "label": "Kun sysselsatte og sysselsatte ellers"}, {"codes": ["A.01xU03"], "color": 1, "label": "Sysselsatte og under ordin\u00e6r utdanning", "stripe": 3}, {"codes": ["A.01xU04"], "color": 1, "label": "Sysselsatte og mottar arbeidsavklaringspenger", "stripe": 5}, {"codes": ["A.01xU05"], "color": 1, "label": "Sysselsatte og mottar uf\u00f8retrygd", "stripe": 6}, {"codes": ["A.01xU06-07"], "color": 1, "label": "Sysselsatte og mottar AFP/alderspensjon", "stripe": 7}, {"codes": ["A.09.00"], "color": 2, "label": "Registrerte arbeidsledige"}, {"codes": ["U.01.00"], "color": 4, "label": "Deltakere p\u00e5 arbeidsmarkedstiltak"}, {"codes": ["U.03.00"], "color": 3, "label": "Under ordin\u00e6r utdanning"}, {"codes": ["U.04.00"], "color": 5, "label": "Mottar arbeidsavklaringspenger"}, {"codes": ["U.05.00"], "color": 6, "label": "Mottar uf\u00f8retrygd"}, {"codes": ["U.06.00", "U.07.00"], "color": 7, "label": "Mottar AFP eller alderspensjon"}, {"codes": ["U.90A.00", "UX.00"], "color": "other", "label": "Andre ordninger og ukjent status"}], "id": "register-15-74", "kind": "dataset", "title": "Befolkningen 15\u201374 \u00e5r etter prioritert arbeidsstyrkestatus (registerbasert)", "url": "data/sysselsetting/registerstatus_15_74.json", "views": ["waffle", "hier-bars", "treemap", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="register-15-74" data-config='{"groups": [{"codes": ["A.01x00", "A.01.90A"], "color": 1, "label": "Kun sysselsatte og sysselsatte ellers"}, {"codes": ["A.01xU03"], "color": 1, "label": "Sysselsatte og under ordin\u00e6r utdanning", "stripe": 3}, {"codes": ["A.01xU04"], "color": 1, "label": "Sysselsatte og mottar arbeidsavklaringspenger", "stripe": 5}, {"codes": ["A.01xU05"], "color": 1, "label": "Sysselsatte og mottar uf\u00f8retrygd", "stripe": 6}, {"codes": ["A.01xU06-07"], "color": 1, "label": "Sysselsatte og mottar AFP/alderspensjon", "stripe": 7}, {"codes": ["A.09.00"], "color": 2, "label": "Registrerte arbeidsledige"}, {"codes": ["U.01.00"], "color": 4, "label": "Deltakere p\u00e5 arbeidsmarkedstiltak"}, {"codes": ["U.03.00"], "color": 3, "label": "Under ordin\u00e6r utdanning"}, {"codes": ["U.04.00"], "color": 5, "label": "Mottar arbeidsavklaringspenger"}, {"codes": ["U.05.00"], "color": 6, "label": "Mottar uf\u00f8retrygd"}, {"codes": ["U.06.00", "U.07.00"], "color": 7, "label": "Mottar AFP eller alderspensjon"}, {"codes": ["U.90A.00", "UX.00"], "color": "other", "label": "Andre ordninger og ukjent status"}], "id": "register-15-74", "kind": "dataset", "title": "Befolkningen 15\u201374 \u00e5r etter prioritert arbeidsstyrkestatus (registerbasert)", "url": "data/sysselsetting/registerstatus_15_74.json", "views": ["waffle", "hier-bars", "treemap", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-register-15-74">
+  <p class="mono" id="ex-register-15-74">Slik leser du figuren</p>
+<p>Alle bosatte i aldersgruppen i ett rutenett. Hver person har én status, og sysselsatte vises også med sin nest høyest prioriterte status (stripete ruter). Arbeidsstyrken er sysselsatte pluss registrerte arbeidsledige hos Nav; alle andre er utenfor arbeidsstyrken.</p><p>Registrerte arbeidsledige hos Nav og arbeidsledige i AKU er definert ulikt og gir ulike tall. Se avsnittet om AKU og registerstatistikk lenger ned.</p>  <ul>
+<li><strong>Rutenett:</strong> Hele gruppen er ett rutenett der alle ruter er like store. Antall ruter er avrundet; de nøyaktige tallene står i listen. Stripete ruter er personer med to statuser. Hold musen over en rad i listen for å fremheve gruppen.</li><li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Flisekart:</strong> Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Arbeidsstyrken er summen av de sysselsatte og de arbeidsledige, det vil si personer med tilknytning til arbeidsmarkedet (omtales ofte som de yrkesaktive).</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/tilknytning-til-arbeid-utdanning-og-velferdsordninger" rel="noopener">Statistisk sentralbyrå (SSB): Tilknytning til arbeid, utdanning og velferdsordninger – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-arbstatus-om" aria-label="Om kilden ssb-arbstatus-om">[1]</a></p>
+
+<blockquote>Personer utenfor arbeidsstyrken er dermed personer som verken var sysselsatte eller arbeidsledige i referanseuken.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/tilknytning-til-arbeid-utdanning-og-velferdsordninger" rel="noopener">Statistisk sentralbyrå (SSB): Tilknytning til arbeid, utdanning og velferdsordninger – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-arbstatus-om" aria-label="Om kilden ssb-arbstatus-om">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
 <caption class="mono">Hovedgrupper (endelige tall)</caption>  <thead>
@@ -326,7 +342,13 @@
   <figcaption>
     <h3>Befolkningen 20–66 år etter prioritert arbeidsstyrkestatus (registerbasert)</h3>
   </figcaption>
-<div class="chart-mount" data-chart="register-20-66" data-config='{"groups": [{"codes": ["A.01x00", "A.01.90A"], "color": 1, "label": "Kun sysselsatte og sysselsatte ellers"}, {"codes": ["A.01xU03"], "color": 1, "label": "Sysselsatte og under ordin\u00e6r utdanning", "stripe": 3}, {"codes": ["A.01xU04"], "color": 1, "label": "Sysselsatte og mottar arbeidsavklaringspenger", "stripe": 5}, {"codes": ["A.01xU05"], "color": 1, "label": "Sysselsatte og mottar uf\u00f8retrygd", "stripe": 6}, {"codes": ["A.01xU06-07"], "color": 1, "label": "Sysselsatte og mottar AFP/alderspensjon", "stripe": 7}, {"codes": ["A.09.00"], "color": 2, "label": "Registrerte arbeidsledige"}, {"codes": ["U.01.00"], "color": 4, "label": "Deltakere p\u00e5 arbeidsmarkedstiltak"}, {"codes": ["U.03.00"], "color": 3, "label": "Under ordin\u00e6r utdanning"}, {"codes": ["U.04.00"], "color": 5, "label": "Mottar arbeidsavklaringspenger"}, {"codes": ["U.05.00"], "color": 6, "label": "Mottar uf\u00f8retrygd"}, {"codes": ["U.06.00", "U.07.00"], "color": 7, "label": "Mottar AFP eller alderspensjon"}, {"codes": ["U.90A.00", "UX.00"], "color": "other", "label": "Andre ordninger og ukjent status"}], "id": "register-20-66", "kind": "dataset", "title": "Befolkningen 20\u201366 \u00e5r etter prioritert arbeidsstyrkestatus (registerbasert)", "url": "data/sysselsetting/registerstatus_20_66.json", "views": ["waffle", "hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="register-20-66" data-config='{"groups": [{"codes": ["A.01x00", "A.01.90A"], "color": 1, "label": "Kun sysselsatte og sysselsatte ellers"}, {"codes": ["A.01xU03"], "color": 1, "label": "Sysselsatte og under ordin\u00e6r utdanning", "stripe": 3}, {"codes": ["A.01xU04"], "color": 1, "label": "Sysselsatte og mottar arbeidsavklaringspenger", "stripe": 5}, {"codes": ["A.01xU05"], "color": 1, "label": "Sysselsatte og mottar uf\u00f8retrygd", "stripe": 6}, {"codes": ["A.01xU06-07"], "color": 1, "label": "Sysselsatte og mottar AFP/alderspensjon", "stripe": 7}, {"codes": ["A.09.00"], "color": 2, "label": "Registrerte arbeidsledige"}, {"codes": ["U.01.00"], "color": 4, "label": "Deltakere p\u00e5 arbeidsmarkedstiltak"}, {"codes": ["U.03.00"], "color": 3, "label": "Under ordin\u00e6r utdanning"}, {"codes": ["U.04.00"], "color": 5, "label": "Mottar arbeidsavklaringspenger"}, {"codes": ["U.05.00"], "color": 6, "label": "Mottar uf\u00f8retrygd"}, {"codes": ["U.06.00", "U.07.00"], "color": 7, "label": "Mottar AFP eller alderspensjon"}, {"codes": ["U.90A.00", "UX.00"], "color": "other", "label": "Andre ordninger og ukjent status"}], "id": "register-20-66", "kind": "dataset", "title": "Befolkningen 20\u201366 \u00e5r etter prioritert arbeidsstyrkestatus (registerbasert)", "url": "data/sysselsetting/registerstatus_20_66.json", "views": ["waffle", "hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-register-20-66">
+  <p class="mono" id="ex-register-20-66">Slik leser du figuren</p>
+<p>Samme inndeling som over, for aldersgruppen som ofte brukes når sysselsettingsandeler sammenlignes. Gruppene er de samme.</p>  <ul>
+<li><strong>Rutenett:</strong> Hele gruppen er ett rutenett der alle ruter er like store. Antall ruter er avrundet; de nøyaktige tallene står i listen. Stripete ruter er personer med to statuser. Hold musen over en rad i listen for å fremheve gruppen.</li><li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
 <caption class="mono">Hovedgrupper (endelige tall)</caption>  <thead>
@@ -532,7 +554,13 @@
   <figcaption>
     <h3>Sysselsatte 15–74 år: AKU og registerbasert</h3>
   </figcaption>
-<div class="chart-mount" data-chart="sysselsatte-aku-register" data-config='{"id": "sysselsatte-aku-register", "kind": "series", "labels": ["AKU", "Registerbasert"], "title": "Sysselsatte 15\u201374 \u00e5r: AKU og registerbasert", "urls": ["data/sysselsetting/sysselsatte_aku_tusen.json", "data/sysselsetting/sysselsatte_register_tusen.json"], "views": ["timeseries-lines", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="sysselsatte-aku-register" data-config='{"id": "sysselsatte-aku-register", "kind": "series", "labels": ["AKU", "Registerbasert"], "title": "Sysselsatte 15\u201374 \u00e5r: AKU og registerbasert", "urls": ["data/sysselsetting/sysselsatte_aku_tusen.json", "data/sysselsetting/sysselsatte_register_tusen.json"], "views": ["timeseries-lines", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-sysselsatte-aku-register">
+  <p class="mono" id="ex-sysselsatte-aku-register">Slik leser du figuren</p>
+<p>Antall sysselsatte etter AKU og etter registerstatistikken, i samme enhet. De to kildene er ulikt bygget opp, men gir nesten samme tall. AKU er et utvalg med feilmargin; registertallet er regnet om til tusen av oss (ƒ).</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -623,7 +651,23 @@
   <figcaption>
     <h3>Arbeidsledige 15–74 år: AKU og registrerte ledige hos Nav</h3>
   </figcaption>
-<div class="chart-mount" data-chart="ledige-aku-register" data-config='{"id": "ledige-aku-register", "kind": "series", "labels": ["AKU", "Registrerte (Nav)"], "title": "Arbeidsledige 15\u201374 \u00e5r: AKU og registrerte ledige hos Nav", "urls": ["data/sysselsetting/ledige_aku_tusen.json", "data/sysselsetting/ledige_register_tusen.json"], "views": ["timeseries-lines", "timeseries-bars", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="ledige-aku-register" data-config='{"id": "ledige-aku-register", "kind": "series", "labels": ["AKU", "Registrerte (Nav)"], "title": "Arbeidsledige 15\u201374 \u00e5r: AKU og registrerte ledige hos Nav", "urls": ["data/sysselsetting/ledige_aku_tusen.json", "data/sysselsetting/ledige_register_tusen.json"], "views": ["timeseries-lines", "timeseries-bars", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-ledige-aku-register">
+  <p class="mono" id="ex-ledige-aku-register">Slik leser du figuren</p>
+<p>Arbeidsledige etter AKU og registrerte arbeidsledige hos Nav. De to kildene bruker ulike definisjoner og gir ulike tall, og begge er riktige for sin definisjon.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Arbeidsledige er personer som ikke utførte betalt arbeid og som aktivt forsøkte å skaffe seg arbeid i løpet av de siste fire ukene og som kunne ha påtatt seg arbeid i løpet av referanseuka eller de to påfølgende ukene. Alle de tre kriteriene må være oppfylt samtidig.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/arbeidskraftundersokelsen" rel="noopener">Statistisk sentralbyrå (SSB): Arbeidskraftundersøkelsen – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-aku-om" aria-label="Om kilden ssb-aku-om">[1]</a></p>
+
+<blockquote>Registrerte arbeidsledige er arbeidsføre personer som søker inntektsgivende arbeid ved Nav og ellers er disponible for det arbeidet som søkes. I tillegg må vedkommende ha vært uten inntektsgivende arbeid de siste to ukene.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/tilknytning-til-arbeid-utdanning-og-velferdsordninger" rel="noopener">Statistisk sentralbyrå (SSB): Tilknytning til arbeid, utdanning og velferdsordninger – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-arbstatus-om" aria-label="Om kilden ssb-arbstatus-om">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -735,7 +779,13 @@
   <figcaption>
     <h3>AKU: personer 15–74 år etter arbeidsstyrkestatus</h3>
   </figcaption>
-<div class="chart-mount" data-chart="aku-15-74" data-config='{"groups": [{"codes": ["1"], "color": 1, "label": "Sysselsatte"}, {"codes": ["2"], "color": 2, "label": "Arbeidsledige"}, {"codes": ["6"], "color": 3, "label": "Utenfor arbeidsstyrken"}], "id": "aku-15-74", "kind": "dataset", "title": "AKU: personer 15\u201374 \u00e5r etter arbeidsstyrkestatus", "url": "data/sysselsetting/aku_15_74.json", "views": ["waffle", "hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="aku-15-74" data-config='{"groups": [{"codes": ["1"], "color": 1, "label": "Sysselsatte"}, {"codes": ["2"], "color": 2, "label": "Arbeidsledige"}, {"codes": ["6"], "color": 3, "label": "Utenfor arbeidsstyrken"}], "id": "aku-15-74", "kind": "dataset", "title": "AKU: personer 15\u201374 \u00e5r etter arbeidsstyrkestatus", "url": "data/sysselsetting/aku_15_74.json", "views": ["waffle", "hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-aku-15-74">
+  <p class="mono" id="ex-aku-15-74">Slik leser du figuren</p>
+<p>AKU viser tre grupper: sysselsatte, arbeidsledige og utenfor arbeidsstyrken. AKU har ikke de samme overlappene som registerstatistikken. Tallene er anslag og er justert for et brudd i serien.</p>  <ul>
+<li><strong>Rutenett:</strong> Hele gruppen er ett rutenett der alle ruter er like store. Antall ruter er avrundet; de nøyaktige tallene står i listen. Stripete ruter er personer med to statuser. Hold musen over en rad i listen for å fremheve gruppen.</li><li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -841,7 +891,13 @@
   <figcaption>
     <h3>Sysselsatte personer og årsverk, nasjonalregnskapet</h3>
   </figcaption>
-<div class="chart-mount" data-chart="personer-arsverk" data-config='{"id": "personer-arsverk", "kind": "series", "labels": ["Sysselsatte personer (1 000)", "\u00c5rsverk (1 000)"], "title": "Sysselsatte personer og \u00e5rsverk, nasjonalregnskapet", "unit": "tusen", "urls": ["data/sysselsetting/sysselsatte_personer_na.json", "data/sysselsetting/arsverk_na.json"], "views": ["timeseries-lines", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="personer-arsverk" data-config='{"id": "personer-arsverk", "kind": "series", "labels": ["Sysselsatte personer (1 000)", "\u00c5rsverk (1 000)"], "title": "Sysselsatte personer og \u00e5rsverk, nasjonalregnskapet", "unit": "tusen", "urls": ["data/sysselsetting/sysselsatte_personer_na.json", "data/sysselsetting/arsverk_na.json"], "views": ["timeseries-lines", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-personer-arsverk">
+  <p class="mono" id="ex-personer-arsverk">Slik leser du figuren</p>
+<p>Sysselsatte personer og årsverk (heltidsekvivalenter) fra nasjonalregnskapet. En person som jobber deltid teller som én person, men som en del av et årsverk, så årsverkene er færre enn personene. Begge seriene vises i tusen.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>

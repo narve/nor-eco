@@ -11,7 +11,7 @@ def test_cite_and_chart_macros_render(tmp_path):
         '{% from "macros.html" import chart, cite with context %}'
         '{% call chart("c1", "Tittel", ["test-kilde-a"], definition="Slik telles det.", level="utledet") %}<table></table>{% endcall %}'
     )
-    html = tpl.render(root="../", sources_by_id={s["id"]: s for s in srcs})
+    html = tpl.render(root="../", sources_by_id={s["id"]: s for s in srcs}, views_cfg=[], explainers={})
     assert 'href="https://example.org/kilde-a"' in html
     assert 'href="../kilder.html#kilde-test-kilde-a"' in html
     assert "Vis tallene" in html and "Hva telles?" in html and "claim-utledet" in html

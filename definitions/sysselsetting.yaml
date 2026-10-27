@@ -78,3 +78,11 @@ definitions:
     quote: "Feilmarginen uttrykker hvor nøyaktig et estimat er."
     source_id: ssb-13618
     note: Merknad til tabell 13618.
+  - id: reg-arbeidsstyrken
+    term: Arbeidsstyrken (registerstatistikken)
+    quote: "Arbeidsstyrken er summen av de sysselsatte og de arbeidsledige, det vil si personer med tilknytning til arbeidsmarkedet (omtales ofte som de yrkesaktive)."
+    source_id: ssb-arbstatus-om
+  - id: reg-utenfor
+    term: Utenfor arbeidsstyrken (registerstatistikken)
+    quote: "Personer utenfor arbeidsstyrken er dermed personer som verken var sysselsatte eller arbeidsledige i referanseuken."
+    source_id: ssb-arbstatus-om

@@ -2,7 +2,7 @@
 // areas are hard to compare, so every tile with room prints its value and share, and a sorted list of the same
 // numbers sits in the readout; negative values cannot be drawn as area and are reported, never silently dropped;
 // «Øvrig / ikke fordelt» is always grey. A tap selects a tile, a second tap drills.
-import { h, observeSize, colorVar, isPreliminary, valueText, decimalsFor, CLAIM_LABEL, STATUS_LABEL } from "./common.js";
+import { h, fill, observeSize, colorVar, isPreliminary, valueText, decimalsFor, CLAIM_LABEL, STATUS_LABEL } from "./common.js";
 import { fmt } from "../core/format.js";
 
 export function renderTreemap(container, node, opts = {}) {
@@ -27,7 +27,7 @@ export function renderTreemap(container, node, opts = {}) {
   container.append(plot, readout, ...notes, h("p", { class: "muted small" }, "Flatene er vanskelige å sammenligne når forskjellen er liten. Bytt til søyler for å lese tallene nøyaktig."));
 
   const show = (n) => {
-    readout.replaceChildren(
+    fill(readout, 
       h("strong", {}, n.label), ": ", h("span", { class: "num" }, valueText(n.value, n.unit, dec)),
       h("span", { class: "muted" }, ` (${fmt((100 * n.value) / total, 1)} % av ${node.label})`), " ",
       h("span", { class: `claim claim-${n.claim_level}` }, CLAIM_LABEL[n.claim_level]),

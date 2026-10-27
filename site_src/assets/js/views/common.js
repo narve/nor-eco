@@ -14,6 +14,12 @@ export function h(tag, attrs = {}, ...children) {
   return el;
 }
 
+// Replace an element's children, skipping null/undefined/false. The DOM's own replaceChildren turns null into the
+// text «null», so optional parts must go through this (or through h()).
+export function fill(el, ...children) {
+  el.replaceChildren(...children.flat().filter((c) => c !== null && c !== undefined && c !== false));
+}
+
 const SVG = "http://www.w3.org/2000/svg";
 export function s(tag, attrs = {}, ...children) {
   const el = document.createElementNS(SVG, tag);

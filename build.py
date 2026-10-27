@@ -264,6 +264,7 @@ def build(
     for p in pages_cfg:
         p.setdefault("secondary", False)
     definitions = load_definitions(definitions_dir)
+    explainers = (yaml.safe_load((SRC / "explainers.yaml").read_text(encoding="utf-8")) or {}).get("explainers", {})
     views_cfg = yaml.safe_load((SRC / "views.yaml").read_text(encoding="utf-8"))["views"]
     gallery_cfg = yaml.safe_load((SRC / "gallery.yaml").read_text(encoding="utf-8"))["items"]
     series, datasets = load_processed(processed)
@@ -298,6 +299,7 @@ def build(
             datasets=datasets,
             views_cfg=views_cfg,
             gallery_cfg=gallery_cfg,
+            explainers=explainers,
             series_table=lambda ids, **kw: series_table(series, ids, **kw),
             dataset_table=lambda ds_id, **kw: dataset_table(datasets, ds_id, **kw),
             datasets_value=lambda ds_id, code, period, dim="vare", status=None: dataset_value(datasets, ds_id, code, period, dim, status),

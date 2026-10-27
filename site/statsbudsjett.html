@@ -114,7 +114,18 @@
   <figcaption>
     <h3>Overskudd før netto avsetning til Statens pensjonsfond utland, regnskap og budsjett</h3>
   </figcaption>
-<div class="chart-mount" data-chart="overskudd-for-avsetning" data-config='{"id": "overskudd-for-avsetning", "kind": "series", "labels": ["Regnskap", "Budsjett"], "title": "Overskudd f\u00f8r netto avsetning til Statens pensjonsfond utland, regnskap og budsjett", "urls": ["data/statsbudsjett/overskudd_for_avsetning_regnskap.json", "data/statsbudsjett/overskudd_for_avsetning_budsjett.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="overskudd-for-avsetning" data-config='{"id": "overskudd-for-avsetning", "kind": "series", "labels": ["Regnskap", "Budsjett"], "title": "Overskudd f\u00f8r netto avsetning til Statens pensjonsfond utland, regnskap og budsjett", "urls": ["data/statsbudsjett/overskudd_for_avsetning_regnskap.json", "data/statsbudsjett/overskudd_for_avsetning_budsjett.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-overskudd-for-avsetning">
+  <p class="mono" id="ex-overskudd-for-avsetning">Slik leser du figuren</p>
+<p>Regnskap og budsjett er to separate serier og blandes aldri. Positivt tall er overskudd før avsetning til Statens pensjonsfond utland.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Overskudd før netto avsetning til Statens pensjonsfond - Utland: Inntekter i alt fratrukket utgifter i alt.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/offentlig-sektor/statlige-finanser/statistikk/statsregnskapets-inntekter-og-utgifter" rel="noopener">Statistisk sentralbyrå (SSB): Statsregnskapets inntekter og utgifter – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-statsregnskap-om" aria-label="Om kilden ssb-statsregnskap-om">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -346,7 +357,13 @@
   <figcaption>
     <h3>Statens inntekter etter hovedpost</h3>
   </figcaption>
-<div class="chart-mount" data-chart="inntekter-hovedpost" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "inntekter-hovedpost", "kind": "dataset", "title": "Statens inntekter etter hovedpost", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "url": "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="inntekter-hovedpost" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "inntekter-hovedpost", "kind": "dataset", "title": "Statens inntekter etter hovedpost", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "url": "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-inntekter-hovedpost">
+  <p class="mono" id="ex-inntekter-hovedpost">Slik leser du figuren</p>
+<p>Statens inntekter etter SSBs hovedposter. Velg «Regnskap» eller «Budsjett» under «Tall». Petroleumsinntekter ligger i flere poster, og skatt på petroleum ligger inne i «Skatter og avgifter».</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Flisekart:</strong> Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
 <caption class="mono">Regnskap</caption>  <thead>
@@ -817,7 +834,13 @@
   <figcaption>
     <h3>Statens utgifter etter hovedpost</h3>
   </figcaption>
-<div class="chart-mount" data-chart="utgifter-hovedpost" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "utgifter-hovedpost", "kind": "dataset", "title": "Statens utgifter etter hovedpost", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "url": "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="utgifter-hovedpost" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "utgifter-hovedpost", "kind": "dataset", "title": "Statens utgifter etter hovedpost", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "url": "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-utgifter-hovedpost">
+  <p class="mono" id="ex-utgifter-hovedpost">Slik leser du figuren</p>
+<p>Statens utgifter etter SSBs hovedposter, uten lånetransaksjoner. Velg «Regnskap» eller «Budsjett» under «Tall».</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Flisekart:</strong> Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
 <caption class="mono">Regnskap</caption>  <thead>
@@ -1276,7 +1299,18 @@
   <figcaption>
     <h3>Offentlig forvaltnings utgifter etter formål, sektor og art</h3>
   </figcaption>
-<div class="chart-mount" data-chart="utgifter-formaal" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "utgifter-formaal", "kind": "dataset", "title": "Offentlig forvaltnings utgifter etter form\u00e5l, sektor og art", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-total", "pct-bnp", "pct-bnp-fn", "per-innb"], "url": "data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="utgifter-formaal" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "utgifter-formaal", "kind": "dataset", "title": "Offentlig forvaltnings utgifter etter form\u00e5l, sektor og art", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-total", "pct-bnp", "pct-bnp-fn", "per-innb"], "url": "data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-utgifter-formaal">
+  <p class="mono" id="ex-utgifter-formaal">Slik leser du figuren</p>
+<p>Offentlig forvaltnings utgifter etter formål (COFOG) for stat og kommuner. Bruk «Del etter» for å bytte mellom formål, forvaltningsnivå og utgiftsart; summen er alltid den samme.</p><p>Offentlig forvaltning samlet er ikke lik summen av stat og kommune. Differansen vises som en egen, grå post når du deler etter forvaltningsnivå, og som et utledet tall.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Flisekart:</strong> Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Gruppering av utgifter etter formål er basert på FNs Classification of the Functions of Government</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/offentlig-sektor/offentlig-forvaltning/statistikk/offentlig-forvaltnings-inntekter-og-utgifter" rel="noopener">Statistisk sentralbyrå (SSB): Offentlig forvaltnings inntekter og utgifter – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-offinnut-om" aria-label="Om kilden ssb-offinnut-om">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
 <caption class="mono">Hovedformål, alle sektorer og arter</caption>  <thead>
@@ -1676,7 +1710,13 @@
   <figcaption>
     <h3>Statens netto kontantstrøm fra petroleumsvirksomhet, etter komponent</h3>
   </figcaption>
-<div class="chart-mount" data-chart="petroleum-kontantstrom" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "petroleum-kontantstrom", "kind": "dataset", "title": "Statens netto kontantstr\u00f8m fra petroleumsvirksomhet, etter komponent", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn"], "url": "data/statsbudsjett/petroleum_kontantstrom.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="petroleum-kontantstrom" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "petroleum-kontantstrom", "kind": "dataset", "title": "Statens netto kontantstr\u00f8m fra petroleumsvirksomhet, etter komponent", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn"], "url": "data/statsbudsjett/petroleum_kontantstrom.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-petroleum-kontantstrom">
+  <p class="mono" id="ex-petroleum-kontantstrom">Slik leser du figuren</p>
+<p>Statens netto kontantstrøm fra petroleumsvirksomheten delt på skatter, avgifter, SDØE og utbytte fra Equinor. SDØE er regnet netto, ikke brutto.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1919,7 +1959,18 @@
   <figcaption>
     <h3>Statens inntekter 2027 (forslag), med og uten petroleum</h3>
   </figcaption>
-<div class="chart-mount" data-chart="forslag-inntekter-petroleum" data-config='{"id": "forslag-inntekter-petroleum", "kind": "dataset", "title": "Statens inntekter 2027 (forslag), med og uten petroleum", "url": "data/statsbudsjett/budsjettforslag_2027_inntekter_med_uten_petroleum.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="forslag-inntekter-petroleum" data-config='{"id": "forslag-inntekter-petroleum", "kind": "dataset", "title": "Statens inntekter 2027 (forslag), med og uten petroleum", "url": "data/statsbudsjett/budsjettforslag_2027_inntekter_med_uten_petroleum.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-forslag-inntekter-petroleum">
+  <p class="mono" id="ex-forslag-inntekter-petroleum">Slik leser du figuren</p>
+<p>Budsjettforslaget for ett år, delt i inntekter utenom petroleum og fra petroleumsvirksomheten. Lånetransaksjoner er ikke med.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Lånetransaksjoner er ikke medregnet i tallene.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.regjeringen.no/no/statsbudsjett/2027/statsbudsjettet-2027-statens-inntekter-og-utgifter/id3173250/" rel="noopener">Finansdepartementet (regjeringen.no): Statsbudsjettet 2027: Statens inntekter og utgifter</a>
+  <a class="src-detail" href="kilder.html#kilde-fin-sb2027-inntekter-utgifter" aria-label="Om kilden fin-sb2027-inntekter-utgifter">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1949,7 +2000,13 @@
   <figcaption>
     <h3>Statens utgifter 2027 (forslag), med og uten petroleum</h3>
   </figcaption>
-<div class="chart-mount" data-chart="forslag-utgifter-petroleum" data-config='{"id": "forslag-utgifter-petroleum", "kind": "dataset", "title": "Statens utgifter 2027 (forslag), med og uten petroleum", "url": "data/statsbudsjett/budsjettforslag_2027_utgifter_med_uten_petroleum.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="forslag-utgifter-petroleum" data-config='{"id": "forslag-utgifter-petroleum", "kind": "dataset", "title": "Statens utgifter 2027 (forslag), med og uten petroleum", "url": "data/statsbudsjett/budsjettforslag_2027_utgifter_med_uten_petroleum.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-forslag-utgifter-petroleum">
+  <p class="mono" id="ex-forslag-utgifter-petroleum">Slik leser du figuren</p>
+<p>Samme inndeling for utgiftene. Forskjellen mellom petroleumsinntektene og -utgiftene er statens netto kontantstrøm fra petroleumsvirksomheten.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1988,7 +2045,13 @@
   <figcaption>
     <h3>Statens utgifter 2027 (forslag) utenom petroleum og lånetransaksjoner</h3>
   </figcaption>
-<div class="chart-mount" data-chart="forslag-utgifter-detalj" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "forslag-utgifter-detalj", "kind": "dataset", "title": "Statens utgifter 2027 (forslag) utenom petroleum og l\u00e5netransaksjoner", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp-fn"], "url": "data/statsbudsjett/budsjettforslag_2027_utgifter_detalj.json", "views": ["hier-bars", "treemap"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="forslag-utgifter-detalj" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "forslag-utgifter-detalj", "kind": "dataset", "title": "Statens utgifter 2027 (forslag) utenom petroleum og l\u00e5netransaksjoner", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp-fn"], "url": "data/statsbudsjett/budsjettforslag_2027_utgifter_detalj.json", "views": ["hier-bars", "treemap"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-forslag-utgifter-detalj">
+  <p class="mono" id="ex-forslag-utgifter-detalj">Slik leser du figuren</p>
+<p>Utgifter utenom petroleum og lånetransaksjoner etter hovedområde. Åpne «Sum folketrygden» for å se ytelsene. «Andre utgifter» er en restpost hos kilden.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Flisekart:</strong> Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2034,7 +2097,13 @@
   <figcaption>
     <h3>Statens inntekter 2027 (forslag) utenom petroleum</h3>
   </figcaption>
-<div class="chart-mount" data-chart="forslag-inntekter-detalj" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "forslag-inntekter-detalj", "kind": "dataset", "title": "Statens inntekter 2027 (forslag) utenom petroleum", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp-fn"], "url": "data/statsbudsjett/budsjettforslag_2027_inntekter_detalj.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="forslag-inntekter-detalj" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "forslag-inntekter-detalj", "kind": "dataset", "title": "Statens inntekter 2027 (forslag) utenom petroleum", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp-fn"], "url": "data/statsbudsjett/budsjettforslag_2027_inntekter_detalj.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-forslag-inntekter-detalj">
+  <p class="mono" id="ex-forslag-inntekter-detalj">Slik leser du figuren</p>
+<p>Inntekter utenom petroleum. Åpne «Sum skatter og avgifter fra Fastlands-Norge» for å se hvilke skatter og avgifter det består av.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2077,7 +2146,13 @@
   <figcaption>
     <h3>Netto utlån mv., avdrag på statsgjelden og finansieringsbehov, regnskap</h3>
   </figcaption>
-<div class="chart-mount" data-chart="lanetransaksjoner-regnskap" data-config='{"id": "lanetransaksjoner-regnskap", "kind": "series", "labels": ["Netto utl\u00e5n mv.", "Avdrag p\u00e5 statsgjelden", "Finansieringsbehov"], "title": "Netto utl\u00e5n mv., avdrag p\u00e5 statsgjelden og finansieringsbehov, regnskap", "urls": ["data/statsbudsjett/netto_utlan_regnskap.json", "data/statsbudsjett/avdrag_statsgjeld_regnskap.json", "data/statsbudsjett/finansieringsbehov_regnskap.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="lanetransaksjoner-regnskap" data-config='{"id": "lanetransaksjoner-regnskap", "kind": "series", "labels": ["Netto utl\u00e5n mv.", "Avdrag p\u00e5 statsgjelden", "Finansieringsbehov"], "title": "Netto utl\u00e5n mv., avdrag p\u00e5 statsgjelden og finansieringsbehov, regnskap", "urls": ["data/statsbudsjett/netto_utlan_regnskap.json", "data/statsbudsjett/avdrag_statsgjeld_regnskap.json", "data/statsbudsjett/finansieringsbehov_regnskap.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-lanetransaksjoner-regnskap">
+  <p class="mono" id="ex-lanetransaksjoner-regnskap">Slik leser du figuren</p>
+<p>Netto utlån, avdrag på statsgjelden og finansieringsbehov er egne linjer. De er ikke utgifter i budsjettbalansen. Mangler SSB et tall for et år, er det et hull i linjen.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2269,7 +2344,18 @@
   <figcaption>
     <h3>Fra statsregnskapet til strukturelt underskudd, 2025</h3>
   </figcaption>
-<div class="chart-mount" data-chart="kjede-waterfall" data-config='{"id": "kjede-waterfall", "kind": "waterfall", "steps": [{"label": "Overskudd f\u00f8r netto avsetning til Statens pensjonsfond utland", "period": "2025", "role": "start", "url": "data/statsbudsjett/overskudd_for_avsetning_regnskap.json"}, {"label": "Statens netto kontantstr\u00f8m fra petroleumsvirksomhet (trekkes fra)", "mult": -1, "period": "2025", "role": "delta", "url": "data/statsbudsjett/petroleum_netto_kontantstrom.json"}, {"claim": "utledet", "expected": {"period": "2025", "url": "data/statsbudsjett/oljekorrigert_balanse_kr.json"}, "label": "Oljekorrigert budsjettbalanse", "period": "2025", "role": "total", "url": "data/statsbudsjett/oljekorrigert_balanse_kr.json"}, {"label": "Aktivitetskorreksjon og andre justeringer", "mult": -1, "period": "2025", "role": "delta", "url": "data/statsbudsjett/aktivitetskorreksjon_kr.json"}, {"claim": "offisiell", "expected": {"mult": -1, "period": "2025", "url": "data/statsbudsjett/strukturelt_underskudd_kr.json"}, "label": "Strukturell oljekorrigert budsjettbalanse (Finansdepartementet)", "mult": -1, "period": "2025", "role": "total", "url": "data/statsbudsjett/strukturelt_underskudd_kr.json"}], "title": "Fra statsregnskapet til strukturelt underskudd, 2025", "views": ["waterfall"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="kjede-waterfall" data-config='{"id": "kjede-waterfall", "kind": "waterfall", "steps": [{"label": "Overskudd f\u00f8r netto avsetning til Statens pensjonsfond utland", "period": "2025", "role": "start", "url": "data/statsbudsjett/overskudd_for_avsetning_regnskap.json"}, {"label": "Statens netto kontantstr\u00f8m fra petroleumsvirksomhet (trekkes fra)", "mult": -1, "period": "2025", "role": "delta", "url": "data/statsbudsjett/petroleum_netto_kontantstrom.json"}, {"claim": "utledet", "expected": {"period": "2025", "url": "data/statsbudsjett/oljekorrigert_balanse_kr.json"}, "label": "Oljekorrigert budsjettbalanse", "period": "2025", "role": "total", "url": "data/statsbudsjett/oljekorrigert_balanse_kr.json"}, {"label": "Aktivitetskorreksjon og andre justeringer", "mult": -1, "period": "2025", "role": "delta", "url": "data/statsbudsjett/aktivitetskorreksjon_kr.json"}, {"claim": "offisiell", "expected": {"mult": -1, "period": "2025", "url": "data/statsbudsjett/strukturelt_underskudd_kr.json"}, "label": "Strukturell oljekorrigert budsjettbalanse (Finansdepartementet)", "mult": -1, "period": "2025", "role": "total", "url": "data/statsbudsjett/strukturelt_underskudd_kr.json"}], "title": "Fra statsregnskapet til strukturelt underskudd, 2025", "views": ["waterfall"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-kjede-waterfall">
+  <p class="mono" id="ex-kjede-waterfall">Slik leser du figuren</p>
+<p>Hvert trinn er forskjellen fra summen før trinnet. De to summene er kontrollpunkter mot publiserte tall. Det første kontrollpunktet er regnet ut av oss (utledet), det andre er Finansdepartementets tall.</p>  <ul>
+<li><strong>Trinn for trinn:</strong> Hvert trinn er forskjellen fra summen før trinnet, og summene er kontrollpunkter mot publiserte tall. Stemmer ikke summen, vises differansen som «Ikke forklart».</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Det strukturelle oljekorrigerte budsjettunderskuddet er det oljekorrigerte budsjettunderskuddet korrigert for konjunktursvingninger og andre mer tilfeldige svingninger i enkelte inntekst- og utgiftsposter, såkalt aktivitetskorrigering.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.regjeringen.no/no/tema/okonomi-og-budsjett/statsbudsjett/ord-og-begreper-i-statsbudsjettet/strukturelt-oljekorrigert-budsjettunderskudd/id2860071/" rel="noopener">Finansdepartementet (regjeringen.no): Strukturelt oljekorrigert budsjettunderskudd (Ord og begreper i statsbudsjettet)</a>
+  <a class="src-detail" href="kilder.html#kilde-fin-ord-sobu" aria-label="Om kilden fin-ord-sobu">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <div class="table-wrap">
     <table>
@@ -2306,7 +2392,13 @@
   <figcaption>
     <h3>Oljekorrigert og strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge</h3>
   </figcaption>
-<div class="chart-mount" data-chart="oljekorrigert-pst" data-config='{"id": "oljekorrigert-pst", "kind": "series", "labels": ["Oljekorrigert", "Strukturell oljekorrigert"], "title": "Oljekorrigert og strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge", "urls": ["data/statsbudsjett/oljekorrigert_balanse_pst.json", "data/statsbudsjett/strukturell_balanse_pst.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="oljekorrigert-pst" data-config='{"id": "oljekorrigert-pst", "kind": "series", "labels": ["Oljekorrigert", "Strukturell oljekorrigert"], "title": "Oljekorrigert og strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge", "urls": ["data/statsbudsjett/oljekorrigert_balanse_pst.json", "data/statsbudsjett/strukturell_balanse_pst.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-oljekorrigert-pst">
+  <p class="mono" id="ex-oljekorrigert-pst">Slik leser du figuren</p>
+<p>Negative tall er underskudd, målt som andel av trend-BNP for Fastlands-Norge. Oljekorrigert og strukturelt er ikke det samme. Tall for året etter siste regnskapsår er anslag, og budsjettåret er forslag.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2472,7 +2564,13 @@
     <h3>Oljekorrigert budsjettbalanse regnet fra statsregnskapet, milliarder kroner</h3>
 <span class="claim claim-utledet" title="Utledet">ƒ Utledet</span>
   </figcaption>
-<div class="chart-mount" data-chart="oljekorrigert-kr" data-config='{"id": "oljekorrigert-kr", "kind": "series", "labels": ["Oljekorrigert budsjettbalanse"], "title": "Oljekorrigert budsjettbalanse regnet fra statsregnskapet, milliarder kroner", "urls": ["data/statsbudsjett/oljekorrigert_balanse_kr.json"], "views": ["timeseries-bars", "timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="oljekorrigert-kr" data-config='{"id": "oljekorrigert-kr", "kind": "series", "labels": ["Oljekorrigert budsjettbalanse"], "title": "Oljekorrigert budsjettbalanse regnet fra statsregnskapet, milliarder kroner", "urls": ["data/statsbudsjett/oljekorrigert_balanse_kr.json"], "views": ["timeseries-bars", "timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-oljekorrigert-kr">
+  <p class="mono" id="ex-oljekorrigert-kr">Slik leser du figuren</p>
+<p>Samme størrelse som over, men i kroner og regnet ut av oss fra statsregnskapet. Ved å regne i kroner i stedet for prosent av trend-BNP kan tallene avvike litt fra Finansdepartementets prosenttall.</p>  <ul>
+<li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2617,7 +2715,18 @@
   <figcaption>
     <h3>Strukturelt oljekorrigert underskudd som andel av Statens pensjonsfond utland, og rettesnoren</h3>
   </figcaption>
-<div class="chart-mount" data-chart="handlingsregel" data-config='{"id": "handlingsregel", "kind": "series", "labels": ["Uttaksprosent", "Forventet realavkastning (rettesnor)"], "title": "Strukturelt oljekorrigert underskudd som andel av Statens pensjonsfond utland, og rettesnoren", "urls": ["data/statsbudsjett/fondsbruk_pst_av_spu.json", "data/statsbudsjett/handlingsregel_realavkastning.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="handlingsregel" data-config='{"id": "handlingsregel", "kind": "series", "labels": ["Uttaksprosent", "Forventet realavkastning (rettesnor)"], "title": "Strukturelt oljekorrigert underskudd som andel av Statens pensjonsfond utland, og rettesnoren", "urls": ["data/statsbudsjett/fondsbruk_pst_av_spu.json", "data/statsbudsjett/handlingsregel_realavkastning.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-handlingsregel">
+  <p class="mono" id="ex-handlingsregel">Slik leser du figuren</p>
+<p>Uttaksprosenten er det strukturelle underskuddet som andel av fondets verdi. Den andre linjen er rettesnoren. Den endrer seg ett år, og endringen er markert i serien.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>Det strukturelle oljekorrigerte budsjettunderskuddet skal ifølge handlingsregelen over tid følge den langsiktige rettesnoren på tre prosent av fondsverdien. Selv om det faktiske uttaket fra fondet tilsvarer det oljekorrigerte budsjettunderskuddet, er det det strukturelle oljekorrigerte budsjettunderskuddet som gjerne omtales som «bruk av fondsmidler» eller «bruk av oljepenger».</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.regjeringen.no/no/tema/okonomi-og-budsjett/statsbudsjett/ord-og-begreper-i-statsbudsjettet/strukturelt-oljekorrigert-budsjettunderskudd/id2860071/" rel="noopener">Finansdepartementet (regjeringen.no): Strukturelt oljekorrigert budsjettunderskudd (Ord og begreper i statsbudsjettet)</a>
+  <a class="src-detail" href="kilder.html#kilde-fin-ord-sobu" aria-label="Om kilden fin-ord-sobu">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2777,7 +2886,13 @@
   <figcaption>
     <h3>Bruk av fondsmidler som andel av utgiftene i statsbudsjettet</h3>
   </figcaption>
-<div class="chart-mount" data-chart="fondsbruk-utgifter" data-config='{"id": "fondsbruk-utgifter", "kind": "series", "labels": ["Andel av utgiftene"], "title": "Bruk av fondsmidler som andel av utgiftene i statsbudsjettet", "urls": ["data/statsbudsjett/fondsbruk_pst_av_utgifter.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="fondsbruk-utgifter" data-config='{"id": "fondsbruk-utgifter", "kind": "series", "labels": ["Andel av utgiftene"], "title": "Bruk av fondsmidler som andel av utgiftene i statsbudsjettet", "urls": ["data/statsbudsjett/fondsbruk_pst_av_utgifter.json"], "views": ["timeseries-lines", "timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-fondsbruk-utgifter">
+  <p class="mono" id="ex-fondsbruk-utgifter">Slik leser du figuren</p>
+<p>Bruk av fondsmidler som andel av statsbudsjettets utgifter. Dette er et annet mål enn andelen av fondets verdi.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>

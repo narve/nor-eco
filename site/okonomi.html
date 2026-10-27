@@ -117,7 +117,13 @@
   <figcaption>
     <h3>BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart, løpende priser</h3>
   </figcaption>
-<div class="chart-mount" data-chart="bnp-lopende" data-config='{"id": "bnp-lopende", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sj\u00f8fart"], "title": "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sj\u00f8fart, l\u00f8pende priser", "urls": ["data/okonomi/bnp_lopende.json", "data/okonomi/bnp_fastland_lopende.json", "data/okonomi/olje_sjofart_lopende.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="bnp-lopende" data-config='{"id": "bnp-lopende", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sj\u00f8fart"], "title": "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sj\u00f8fart, l\u00f8pende priser", "urls": ["data/okonomi/bnp_lopende.json", "data/okonomi/bnp_fastland_lopende.json", "data/okonomi/olje_sjofart_lopende.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-bnp-lopende">
+  <p class="mono" id="ex-bnp-lopende">Slik leser du figuren</p>
+<p>Tre linjer i løpende priser: BNP, BNP Fastlands-Norge og posten oljevirksomhet og utenriks sjøfart. I løpende priser er BNP lik BNP Fastlands-Norge pluss den siste posten.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -402,7 +408,13 @@
   <figcaption>
     <h3>BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger</h3>
   </figcaption>
-<div class="chart-mount" data-chart="bnp-faste" data-config='{"id": "bnp-faste", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge"], "title": "BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger", "urls": ["data/okonomi/bnp_faste.json", "data/okonomi/bnp_fastland_faste.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="bnp-faste" data-config='{"id": "bnp-faste", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge"], "title": "BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger", "urls": ["data/okonomi/bnp_faste.json", "data/okonomi/bnp_fastland_faste.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-bnp-faste">
+  <p class="mono" id="ex-bnp-faste">Slik leser du figuren</p>
+<p>Faste priser fjerner prisvekst, men delene summerer ikke til totalen (kjedingsavvik). Derfor vises bare BNP og BNP Fastlands-Norge, og forskjellen mellom dem er ikke lik oljevirksomhet og utenriks sjøfart.</p>  <ul>
+<li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -762,7 +774,18 @@
     <summary class="mono">Hva telles?</summary>
     <div>I publiseringen av tall for utenrikshandelen med varer gir vi tall for råolje, naturgass og naturlige gasskondensater, mens utenriksregnskapet bruker samlebegrepet ”råolje og naturgass” for varene råolje, naturgass, naturlige gasskondensater, nafta, propan og butan.</div>
   </details>
-<div class="chart-mount" data-chart="eksport-lopende" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "eksport-lopende", "kind": "dataset", "title": "Eksport etter type, l\u00f8pende priser", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "data/okonomi/eksport_lopende.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "timeseries-lines", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="eksport-lopende" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "eksport-lopende", "kind": "dataset", "title": "Eksport etter type, l\u00f8pende priser", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "data/okonomi/eksport_lopende.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "timeseries-lines", "slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-eksport-lopende">
+  <p class="mono" id="ex-eksport-lopende">Slik leser du figuren</p>
+<p>Eksporten delt etter type for året du velger. Velg «% av BNP» eller «kr per innbygger» for å sette tallene i forhold til økonomiens størrelse.</p><p>«Råolje og naturgass» er nasjonalregnskapets avgrensning. Varehandelsstatistikken under bruker en annen, og tallene kan derfor ikke sammenlignes én til én.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Flisekart:</strong> Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li><li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Før og nå:</strong> Samme størrelse i to år du velger selv, på felles skala fra null. Valget av år påvirker bildet, så prøv gjerne andre år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+<blockquote>I publiseringen av tall for utenrikshandelen med varer gir vi tall for råolje, naturgass og naturlige gasskondensater, mens utenriksregnskapet bruker samlebegrepet ”råolje og naturgass” for varene råolje, naturgass, naturlige gasskondensater, nafta, propan og butan.</blockquote>
+<p class="source mono">Kilde:
+  <a href="https://www.ssb.no/utenriksokonomi/utenrikshandel/statistikk/utenrikshandel-med-varer" rel="noopener">Statistisk sentralbyrå (SSB): Utenrikshandel med varer – statistikkside og Om statistikken</a>
+  <a class="src-detail" href="kilder.html#kilde-ssb-utenrikshandel-varer-om" aria-label="Om kilden ssb-utenrikshandel-varer-om">[1]</a></p>
+
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1084,7 +1107,13 @@
     <h3>Eksport av råolje, naturgass og kondensater, løpende priser</h3>
 <span class="claim claim-offisiell" title="Offisielt tall">Offisielt tall</span>
   </figcaption>
-<div class="chart-mount" data-chart="vareeksport-olje-gass" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "vareeksport-olje-gass", "kind": "dataset", "title": "Eksport av r\u00e5olje, naturgass og kondensater, l\u00f8pende priser", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp"], "url": "data/okonomi/vareeksport_olje_gass_lopende.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="vareeksport-olje-gass" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "vareeksport-olje-gass", "kind": "dataset", "title": "Eksport av r\u00e5olje, naturgass og kondensater, l\u00f8pende priser", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp"], "url": "data/okonomi/vareeksport_olje_gass_lopende.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-vareeksport-olje-gass">
+  <p class="mono" id="ex-vareeksport-olje-gass">Slik leser du figuren</p>
+<p>Råolje, naturgass og kondensater hver for seg, slik varehandelsstatistikken viser dem. Kondensat er ikke oppgitt for de første årene.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1362,7 +1391,13 @@
   <figcaption>
     <h3>Eksport etter type, faste priser, med kjedingsavvik som egen post</h3>
   </figcaption>
-<div class="chart-mount" data-chart="eksport-faste" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "eksport-faste", "kind": "dataset", "title": "Eksport etter type, faste priser, med kjedingsavvik som egen post", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "data/okonomi/eksport_faste.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="eksport-faste" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "eksport-faste", "kind": "dataset", "title": "Eksport etter type, faste priser, med kjedingsavvik som egen post", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "data/okonomi/eksport_faste.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-eksport-faste">
+  <p class="mono" id="ex-eksport-faste">Slik leser du figuren</p>
+<p>I faste priser summerer ikke delene til totalen. Differansen vises som en egen post, «kjedingsavvik», slik at ingenting er skjult.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li><li><strong>Stablet:</strong> Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1716,7 +1751,13 @@
     <h3>Handelsbalanse, løpende priser</h3>
 <span class="claim claim-utledet" title="Utledet">ƒ Utledet</span>
   </figcaption>
-<div class="chart-mount" data-chart="handelsbalanse-lopende" data-config='{"id": "handelsbalanse-lopende", "kind": "series", "labels": ["Alle varer og tjenester", "Uten r\u00e5olje og naturgass"], "title": "Handelsbalanse, l\u00f8pende priser", "urls": ["data/okonomi/handelsbalanse_i_alt.json", "data/okonomi/handelsbalanse_uten_olje_gass.json"], "views": ["timeseries-bars", "timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="handelsbalanse-lopende" data-config='{"id": "handelsbalanse-lopende", "kind": "series", "labels": ["Alle varer og tjenester", "Uten r\u00e5olje og naturgass"], "title": "Handelsbalanse, l\u00f8pende priser", "urls": ["data/okonomi/handelsbalanse_i_alt.json", "data/okonomi/handelsbalanse_uten_olje_gass.json"], "views": ["timeseries-bars", "timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-handelsbalanse-lopende">
+  <p class="mono" id="ex-handelsbalanse-lopende">Slik leser du figuren</p>
+<p>Eksport minus import. Positive søyler er overskudd, negative er underskudd. Begge seriene er regnet ut av oss fra nasjonalregnskapet (merket ƒ), og formelen står under figuren.</p>  <ul>
+<li><strong>Søyler over tid:</strong> Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li><li><strong>Linjer:</strong> Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1964,7 +2005,13 @@
   <figcaption>
     <h3>Statens pensjonsfond utland, siste tall</h3>
   </figcaption>
-<div class="chart-mount" data-chart="spu-siste" data-config='{"id": "spu-siste", "kind": "dataset", "title": "Statens pensjonsfond utland, siste tall", "url": "data/okonomi/spu_fondsverdi.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+<div class="chart-mount" data-chart="spu-siste" data-config='{"id": "spu-siste", "kind": "dataset", "title": "Statens pensjonsfond utland, siste tall", "url": "data/okonomi/spu_fondsverdi.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div><aside class="explain" aria-labelledby="ex-spu-siste">
+  <p class="mono" id="ex-spu-siste">Slik leser du figuren</p>
+<p>Fondets verdi delt i netto tilførsel, avkastning og kronekurs, slik NBIM oppgir det. Bare siste oppgitte tall vises, ingen historikk.</p>  <ul>
+<li><strong>Søyler:</strong> Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.</li>    <li><strong>Merking:</strong> Skravering viser foreløpige tall, budsjett eller anslag. Striper og «ƒ» viser tall vi har regnet ut selv, og prikket kant og «≈» viser estimater. Tallene står også i tabellen under, med kilde.</li>
+  </ul>
+</aside>
+  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>

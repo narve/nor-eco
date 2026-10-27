@@ -2,7 +2,7 @@
 // parent total as a reference bar on top. «Øvrig / ikke fordelt» is always last, always grey, never hidden.
 // Bars start at zero (or at a visible zero line when values are negative). HTML/CSS, so it scales with the
 // container and works with touch: a tap selects a row (readout below), a second tap on it drills.
-import { h, colorVar, isPreliminary, valueText, decimalsFor, CLAIM_LABEL, STATUS_LABEL } from "./common.js";
+import { h, fill, colorVar, isPreliminary, valueText, decimalsFor, CLAIM_LABEL, STATUS_LABEL } from "./common.js";
 import { fmt } from "../core/format.js";
 
 export function renderHierBars(container, node, opts = {}) {
@@ -40,7 +40,7 @@ export function renderHierBars(container, node, opts = {}) {
 
   const showReadout = (r) => {
     const share = node.unit === "prosent" ? null : pctOfParent(r);
-    readout.replaceChildren(
+    fill(readout, 
       h("strong", {}, r.label), ": ",
       h("span", { class: "num" }, valueText(r.value, r.unit, dec)),
       share !== null && r.value !== null ? h("span", { class: "muted" }, ` (${fmt(share, 1)} % av ${node.label})`) : null,

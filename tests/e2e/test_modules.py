@@ -133,3 +133,38 @@ def test_gallery_charts_have_table_and_source_line(desktop, site_url):
     desktop.wait_for_selector(".chart-ui")
     bad = desktop.locator(".chart").evaluate_all("els => els.filter(e => !e.querySelector('details.datatable table') || !e.querySelector('.source')).map(e => e.id)")
     assert bad == []
+
+
+@pytest.mark.parametrize("page", ["okonomi.html", "statsbudsjett.html", "sysselsetting.html", "galleri/index.html"])
+def test_no_readout_or_note_ever_shows_null_undefined_or_nan(desktop, site_url, page):
+    """For every chart, switch through every view and click into it (first bar / tile / waffle key); check all chart text."""
+    import re
+    # «null» is ordinary Norwegian («ved null»); the defect is the literal glued onto text («foreløpignull»)
+    bad = re.compile(r"[A-Za-zæøåÆØÅ0-9)]null\b|\bundefined\b|\bNaN\b|\[object ")
+    desktop.goto(site_url + page)
+    desktop.wait_for_selector(".chart-ui")
+    desktop.wait_for_timeout(1200)
+    checked = 0
+    for i in range(desktop.locator(".chart-ui").count()):
+        ui = desktop.locator(".chart-ui").nth(i)
+        n_views = ui.locator('.seg[aria-label="Vis som"] button').count() or 1
+        for v in range(n_views):
+            if ui.locator('.seg[aria-label="Vis som"] button').count():
+                ui.locator('.seg[aria-label="Vis som"] button').nth(v).click()
+            for sel in (".hb-row", ".tm-tile", ".wf-key"):
+                if ui.locator(sel).count():
+                    ui.locator(sel).first.click()
+                    checked += 1
+            txt = ui.inner_text()
+            assert not bad.search(txt), (page, i, v, bad.search(txt).group(0), txt[:300])
+    assert checked > 0
+
+
+def test_readout_of_a_preliminary_leaf_ends_cleanly(desktop, site_url):
+    """The reported case: «… Offisielt tall · foreløpig» had a trailing «null»."""
+    desktop.goto(site_url + "sysselsetting.html?chart=register-15-74&view=hier-bars&path=statusgruppe%3AA%2Fstatusgruppe%3AA.01")
+    desktop.wait_for_selector('#register-15-74 .hb-row[data-path$="A.01xU03"]')
+    desktop.locator('#register-15-74 .hb-row[data-path$="A.01xU03"]').click()
+    t = desktop.locator("#register-15-74 .readout").inner_text()
+    assert t.startswith("Sysselsatte og under ordinær utdanning") and "Offisielt tall" in t
+    assert t.rstrip().endswith("foreløpig"), repr(t)

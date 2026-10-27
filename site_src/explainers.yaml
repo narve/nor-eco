@@ -1,0 +1,102 @@
+# «Slik leser du figuren»: one entry per chart id. `text` = short neutral sentences about what is counted and what to
+# watch for (no numbers: figures come from the data); `quotes` = definition ids from definitions/*.yaml shown under the text.
+# The part about how to use each view is generated from the views the chart offers (templates/macros.html).
+explainers:
+  # ---- Økonomi ----
+  bnp-lopende:
+    text:
+      - "Tre linjer i løpende priser: BNP, BNP Fastlands-Norge og posten oljevirksomhet og utenriks sjøfart. I løpende priser er BNP lik BNP Fastlands-Norge pluss den siste posten."
+  bnp-faste:
+    text:
+      - "Faste priser fjerner prisvekst, men delene summerer ikke til totalen (kjedingsavvik). Derfor vises bare BNP og BNP Fastlands-Norge, og forskjellen mellom dem er ikke lik oljevirksomhet og utenriks sjøfart."
+  eksport-lopende:
+    text:
+      - "Eksporten delt etter type for året du velger. Velg «% av BNP» eller «kr per innbygger» for å sette tallene i forhold til økonomiens størrelse."
+      - "«Råolje og naturgass» er nasjonalregnskapets avgrensning. Varehandelsstatistikken under bruker en annen, og tallene kan derfor ikke sammenlignes én til én."
+    quotes: [rolje-naturgass-samlebegrep]
+  vareeksport-olje-gass:
+    text:
+      - "Råolje, naturgass og kondensater hver for seg, slik varehandelsstatistikken viser dem. Kondensat er ikke oppgitt for de første årene."
+  eksport-faste:
+    text:
+      - "I faste priser summerer ikke delene til totalen. Differansen vises som en egen post, «kjedingsavvik», slik at ingenting er skjult."
+  handelsbalanse-lopende:
+    text:
+      - "Eksport minus import. Positive søyler er overskudd, negative er underskudd. Begge seriene er regnet ut av oss fra nasjonalregnskapet (merket ƒ), og formelen står under figuren."
+  spu-siste:
+    text:
+      - "Fondets verdi delt i netto tilførsel, avkastning og kronekurs, slik NBIM oppgir det. Bare siste oppgitte tall vises, ingen historikk."
+  # ---- Statsbudsjettet ----
+  overskudd-for-avsetning:
+    text:
+      - "Regnskap og budsjett er to separate serier og blandes aldri. Positivt tall er overskudd før avsetning til Statens pensjonsfond utland."
+    quotes: [overskudd-for-avsetning]
+  inntekter-hovedpost:
+    text:
+      - "Statens inntekter etter SSBs hovedposter. Velg «Regnskap» eller «Budsjett» under «Tall». Petroleumsinntekter ligger i flere poster, og skatt på petroleum ligger inne i «Skatter og avgifter»."
+  utgifter-hovedpost:
+    text:
+      - "Statens utgifter etter SSBs hovedposter, uten lånetransaksjoner. Velg «Regnskap» eller «Budsjett» under «Tall»."
+  petroleum-kontantstrom:
+    text:
+      - "Statens netto kontantstrøm fra petroleumsvirksomheten delt på skatter, avgifter, SDØE og utbytte fra Equinor. SDØE er regnet netto, ikke brutto."
+  forslag-inntekter-petroleum:
+    text:
+      - "Budsjettforslaget for ett år, delt i inntekter utenom petroleum og fra petroleumsvirksomheten. Lånetransaksjoner er ikke med."
+    quotes: [lanetransaksjoner-ikke-medregnet]
+  forslag-utgifter-petroleum:
+    text:
+      - "Samme inndeling for utgiftene. Forskjellen mellom petroleumsinntektene og -utgiftene er statens netto kontantstrøm fra petroleumsvirksomheten."
+  forslag-utgifter-detalj:
+    text:
+      - "Utgifter utenom petroleum og lånetransaksjoner etter hovedområde. Åpne «Sum folketrygden» for å se ytelsene. «Andre utgifter» er en restpost hos kilden."
+  forslag-inntekter-detalj:
+    text:
+      - "Inntekter utenom petroleum. Åpne «Sum skatter og avgifter fra Fastlands-Norge» for å se hvilke skatter og avgifter det består av."
+  lanetransaksjoner-regnskap:
+    text:
+      - "Netto utlån, avdrag på statsgjelden og finansieringsbehov er egne linjer. De er ikke utgifter i budsjettbalansen. Mangler SSB et tall for et år, er det et hull i linjen."
+  kjede-waterfall:
+    text:
+      - "Hvert trinn er forskjellen fra summen før trinnet. De to summene er kontrollpunkter mot publiserte tall. Det første kontrollpunktet er regnet ut av oss (utledet), det andre er Finansdepartementets tall."
+    quotes: [strukturelt-underskudd]
+  oljekorrigert-pst:
+    text:
+      - "Negative tall er underskudd, målt som andel av trend-BNP for Fastlands-Norge. Oljekorrigert og strukturelt er ikke det samme. Tall for året etter siste regnskapsår er anslag, og budsjettåret er forslag."
+  oljekorrigert-kr:
+    text:
+      - "Samme størrelse som over, men i kroner og regnet ut av oss fra statsregnskapet. Ved å regne i kroner i stedet for prosent av trend-BNP kan tallene avvike litt fra Finansdepartementets prosenttall."
+  handlingsregel:
+    text:
+      - "Uttaksprosenten er det strukturelle underskuddet som andel av fondets verdi. Den andre linjen er rettesnoren. Den endrer seg ett år, og endringen er markert i serien."
+    quotes: [handlingsregel-rettesnor]
+  fondsbruk-utgifter:
+    text:
+      - "Bruk av fondsmidler som andel av statsbudsjettets utgifter. Dette er et annet mål enn andelen av fondets verdi."
+  utgifter-formaal:
+    text:
+      - "Offentlig forvaltnings utgifter etter formål (COFOG) for stat og kommuner. Bruk «Del etter» for å bytte mellom formål, forvaltningsnivå og utgiftsart; summen er alltid den samme."
+      - "Offentlig forvaltning samlet er ikke lik summen av stat og kommune. Differansen vises som en egen, grå post når du deler etter forvaltningsnivå, og som et utledet tall."
+    quotes: [cofog]
+  # ---- Sysselsetting ----
+  register-15-74:
+    text:
+      - "Alle bosatte i aldersgruppen i ett rutenett. Hver person har én status, og sysselsatte vises også med sin nest høyest prioriterte status (stripete ruter). Arbeidsstyrken er sysselsatte pluss registrerte arbeidsledige hos Nav; alle andre er utenfor arbeidsstyrken."
+      - "Registrerte arbeidsledige hos Nav og arbeidsledige i AKU er definert ulikt og gir ulike tall. Se avsnittet om AKU og registerstatistikk lenger ned."
+    quotes: [reg-arbeidsstyrken, reg-utenfor]
+  register-20-66:
+    text:
+      - "Samme inndeling som over, for aldersgruppen som ofte brukes når sysselsettingsandeler sammenlignes. Gruppene er de samme."
+  sysselsatte-aku-register:
+    text:
+      - "Antall sysselsatte etter AKU og etter registerstatistikken, i samme enhet. De to kildene er ulikt bygget opp, men gir nesten samme tall. AKU er et utvalg med feilmargin; registertallet er regnet om til tusen av oss (ƒ)."
+  ledige-aku-register:
+    text:
+      - "Arbeidsledige etter AKU og registrerte arbeidsledige hos Nav. De to kildene bruker ulike definisjoner og gir ulike tall, og begge er riktige for sin definisjon."
+    quotes: [aku-arbeidsledig, reg-ledige]
+  aku-15-74:
+    text:
+      - "AKU viser tre grupper: sysselsatte, arbeidsledige og utenfor arbeidsstyrken. AKU har ikke de samme overlappene som registerstatistikken. Tallene er anslag og er justert for et brudd i serien."
+  personer-arsverk:
+    text:
+      - "Sysselsatte personer og årsverk (heltidsekvivalenter) fra nasjonalregnskapet. En person som jobber deltid teller som én person, men som en del av et årsverk, så årsverkene er færre enn personene. Begge seriene vises i tusen."
