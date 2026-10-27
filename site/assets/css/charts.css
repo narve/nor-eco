@@ -68,9 +68,9 @@ svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .wf-value { text-align: right; white-space: nowrap; }
 .wf-track { grid-column: 1 / -1; position: relative; height: 0.9rem; background: var(--line); border-radius: 2px; }
 .wf-bar { position: absolute; top: 0; bottom: 0; border-radius: 2px; background: var(--bar, var(--c1)); }
-.wf-total { --bar: var(--c1); }
-.wf-up { --bar: var(--c4); }
-.wf-down { --bar: var(--c5); }
+.wf-total { --bar: var(--total); }
+.wf-up { --bar: var(--div-pos); }
+.wf-down { --bar: var(--div-neg); }
 .wf-residual { --bar: var(--other); outline: 1px dashed var(--text); }
 .wf-zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--text); }
 .wf-link { position: absolute; top: 100%; width: 1px; height: 0.55rem; background: var(--muted); }

@@ -108,3 +108,28 @@ def test_slope_labels_stay_inside_the_svg_on_phone_and_desktop(site_url, browser
                 "els => els.map(e => { const r = e.getBoundingClientRect(); return [r.left, r.right]; })"):
             assert b[0] >= box["x"] - 1 and b[1] <= box["x"] + box["width"] + 1, (width, b, box)
         ctx.close()
+
+
+def test_gallery_mounts_every_view_without_errors(desktop, site_url):
+    import yaml
+    from paths import ROOT
+    cfg = yaml.safe_load((ROOT / "site_src" / "gallery.yaml").read_text(encoding="utf-8"))["items"]
+    expected = sum(len(g["views"]) for g in cfg)
+    errors = []
+    desktop.on("pageerror", lambda e: errors.append(str(e)))
+    desktop.goto(site_url + "galleri/index.html")
+    desktop.wait_for_function(f"document.querySelectorAll('.chart-ui').length === {expected}", timeout=15000)
+    desktop.wait_for_timeout(800)
+    empty = desktop.locator(".chart-body").evaluate_all("els => els.filter(e => !e.querySelector('.hb-row, .tm-tile, svg')).map(e => e.closest('figure').id)")
+    assert empty == [] and errors == []
+    assert desktop.locator(".chart").count() == expected
+    # the overview table lists every registered view
+    reg = yaml.safe_load((ROOT / "site_src" / "views.yaml").read_text(encoding="utf-8"))["views"]
+    assert desktop.locator("#oversikt tbody tr").count() == len(reg)
+
+
+def test_gallery_charts_have_table_and_source_line(desktop, site_url):
+    desktop.goto(site_url + "galleri/index.html")
+    desktop.wait_for_selector(".chart-ui")
+    bad = desktop.locator(".chart").evaluate_all("els => els.filter(e => !e.querySelector('details.datatable table') || !e.querySelector('.source')).map(e => e.id)")
+    assert bad == []

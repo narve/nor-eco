@@ -170,7 +170,7 @@ Taken from the CSS of https://narve.github.io, so the look is the same:
   - the gradient accent → accent-2 on a key word in h1
 - **Numbers in charts and key figures** are set in JetBrains Mono with `font-variant-numeric: tabular-nums`, in Norwegian format (`1 234,5 mrd. kr`).
 - **Chart palette:**
-  - The categorical palette builds on accent (cyan) and accent-2 (violet), with a few extra hues tested for colour blindness and contrast in both themes. Use the `dataviz` skill's validator.
+  - The categorical palette is the `dataviz` skill's reference palette (8 hues, fixed order), validated with its `validate_palette.js` on this site's own surfaces in both themes; the sets and results are recorded in `site_src/assets/css/palette.json` and a test fails if `tokens.css` drifts from them. It does not reuse the brand cyan/violet because those fail the lightness, chroma and colour-blind gates. Light mode has a contrast warning for four hues, which the skill allows only with visible labels or a table view; every chart has a legend, a readout and a «Vis tallene» table. Increases and decreases use the blue/red polarity pair, sums use a neutral grey, and «Øvrig» is one fixed grey.
   - Petroleum vs non-oil always gets the same pair of colours across all pages.
   - Claim levels: as defined under «Guiding principles» (offisiell solid; utledet hatched with «ƒ»; estimat dotted outline with «≈»).
 - **Restraint:** the effects must never compete with the data. The plot area has no glow and no 3D, and the gridlines in charts use `--line`. Animation is only for drill-down transitions (≤300ms) and is turned off with `prefers-reduced-motion`.

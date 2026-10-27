@@ -125,10 +125,18 @@ def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare",
             level = [c for p in level for c in kids.get(p, [])]
         cols = [by_code[c] for c in level]
     members = {n["code"]: leaves_under(n["code"]) for n in cols}
+    # Never add statuses together: when none is asked for, each period uses its best status (the engine's rule).
+    order = ["regnskap", "saldert", "vedtatt", "budsjett", "forslag", "anslag", "foreløpig"]
+    have: dict[str, set[str]] = {}
+    for r in ds["rows"]:
+        have.setdefault(r["period"], set()).add(r["status"])
+    chosen = {p: (status if status in sts else next(x for x in order if x in sts)) for p, sts in have.items()} if not status else None
     rank = {"offisiell": 0, "utledet": 1, "estimat": 2}
     acc: dict[tuple[str, str], dict] = {}
     for r in ds["rows"]:
         if status and r["status"] != status:
+            continue
+        if chosen is not None and r["status"] != chosen[r["period"]]:
             continue
         for n in cols:
             if r[dim] in members[n["code"]]:
@@ -256,6 +264,8 @@ def build(
     for p in pages_cfg:
         p.setdefault("secondary", False)
     definitions = load_definitions(definitions_dir)
+    views_cfg = yaml.safe_load((SRC / "views.yaml").read_text(encoding="utf-8"))["views"]
+    gallery_cfg = yaml.safe_load((SRC / "gallery.yaml").read_text(encoding="utf-8"))["items"]
     series, datasets = load_processed(processed)
     if include_fixture:
         fs, fd = load_processed(FIXTURE / "processed")
@@ -286,6 +296,8 @@ def build(
             defs_by_id={d["id"]: d for d in definitions},
             series=series,
             datasets=datasets,
+            views_cfg=views_cfg,
+            gallery_cfg=gallery_cfg,
             series_table=lambda ids, **kw: series_table(series, ids, **kw),
             dataset_table=lambda ds_id, **kw: dataset_table(datasets, ds_id, **kw),
             datasets_value=lambda ds_id, code, period, dim="vare", status=None: dataset_value(datasets, ds_id, code, period, dim, status),

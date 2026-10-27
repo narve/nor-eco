@@ -1,0 +1,15 @@
+# What the gallery shows: each item is one dataset (or a set of series) in every built view that fits it.
+# `kind: dataset` needs `dataset: <topic>.<name>`; `kind: series` needs `series: [ids]`; `kind: waterfall` is defined in the template.
+items:
+  - {id: utgifter-hovedpost, title: "Statens utgifter etter hovedpost", kind: dataset, dataset: "statsbudsjett.utgifter", dim: hovedpost, depth: 1,
+     views: [hier-bars, treemap, timeseries-stacked, timeseries-lines, slope], units: [pct-parent, pct-bnp-fn, per-innb], sources: [ssb-10486, ssb-10487]}
+  - {id: formaal, title: "Offentlig forvaltnings utgifter etter formål", kind: dataset, dataset: "statsbudsjett.offentlige_utgifter_formaal", dim: formaal, depth: 1,
+     views: [hier-bars, treemap, timeseries-stacked, slope], units: [pct-parent, pct-total, pct-bnp-fn, per-innb], sources: [ssb-14669]}
+  - {id: eksport, title: "Eksport etter type", kind: dataset, dataset: "okonomi.eksport_lopende", dim: vare,
+     views: [hier-bars, treemap, timeseries-stacked, timeseries-lines, slope], units: [pct-parent, pct-bnp, per-innb], sources: [ssb-09189]}
+  - {id: bnp, title: "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart", kind: series,
+     series: ["okonomi.bnp_lopende", "okonomi.bnp_fastland_lopende", "okonomi.olje_sjofart_lopende"], labels: ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sjøfart"],
+     views: [timeseries-lines, timeseries-bars, slope], sources: [ssb-09189]}
+  - {id: balanse, title: "Handelsbalanse med og uten råolje og naturgass", kind: series,
+     series: ["okonomi.handelsbalanse_i_alt", "okonomi.handelsbalanse_uten_olje_gass"], labels: ["Alle varer og tjenester", "Uten råolje og naturgass"],
+     views: [timeseries-bars, timeseries-lines, slope], sources: [ssb-09189]}

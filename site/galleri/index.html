@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Galleri over visninger – Norsk statsøkonomi – fra kildene</title>
-  <meta name="description" content="Tall om norsk statsøkonomi, hentet fra offisielle kilder, med kildehenvisning for hvert tall.">
+  <meta name="description" content="De samme dataene vist i alle ferdige visninger, side om side.">
   <meta name="color-scheme" content="dark light">
   <script>
     /* Apply a stored theme choice before first paint (no flash). Storage may be unavailable. */
@@ -60,11 +60,5699 @@
 <header class="page-head">
   <p class="mono">Visninger</p>
   <h1>Galleri over visninger</h1>
-  <p class="lede">Her vises hver ferdig visning side om side med de samme dataene.</p>
+  <p class="lede">Hvert datasett vises her i alle ferdige visninger, med de samme tallene. Bruk det til å velge hvilke visninger som skal beholdes, forbedres eller fjernes.</p>
 </header>
-<section id="visninger">
-  <h2>Visninger</h2>
-  <p class="muted">Ingen visninger er bygget ennå.</p>
+
+<section id="oversikt">
+  <h2>Visningene</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Visning</th><th scope="col">Status</th><th scope="col">Størrelse</th><th scope="col">Krever</th><th scope="col">Valg</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Søyler <span class="muted small">hier-bars</span></th><td>ferdig</td><td>S</td><td>hierarkisk datasett</td><td>–</td></tr>
+        <tr><th scope="row">Flisekart <span class="muted small">treemap</span></th><td>ferdig</td><td>M</td><td>hierarkisk datasett, positive verdier</td><td>–</td></tr>
+        <tr><th scope="row">Linjer <span class="muted small">timeseries-lines</span></th><td>ferdig</td><td>S</td><td>serier eller datasett over tid</td><td>–</td></tr>
+        <tr><th scope="row">Stablet <span class="muted small">timeseries-stacked</span></th><td>ferdig</td><td>S</td><td>hierarkisk datasett over tid</td><td>–</td></tr>
+        <tr><th scope="row">Søyler over tid <span class="muted small">timeseries-bars</span></th><td>ferdig</td><td>S</td><td>serier (også negative verdier)</td><td>–</td></tr>
+        <tr><th scope="row">Før og nå <span class="muted small">slope</span></th><td>ferdig</td><td>S</td><td>to år, samme enhet</td><td>–</td></tr>
+        <tr><th scope="row">Trinn for trinn <span class="muted small">waterfall</span></th><td>ferdig</td><td>M</td><td>trinn med kontrollpunkt</td><td>–</td></tr>
+        <tr><th scope="row">Solstråle <span class="muted small">sunburst</span></th><td>planlagt</td><td>M</td><td>hierarkisk datasett</td><td>–</td></tr>
+        <tr><th scope="row">Istapp <span class="muted small">icicle</span></th><td>planlagt</td><td>M</td><td>hierarkisk datasett</td><td>–</td></tr>
+        <tr><th scope="row">Marimekko <span class="muted small">marimekko</span></th><td>planlagt</td><td>M</td><td>to dimensjoner</td><td>–</td></tr>
+        <tr><th scope="row">Rutenett <span class="muted small">waffle</span></th><td>planlagt</td><td>M</td><td>andeler av en helhet (sysselsetting)</td><td>–</td></tr>
+        <tr><th scope="row">Ringer <span class="muted small">rings</span></th><td>planlagt</td><td>M</td><td>statlig sysselsetting</td><td>–</td></tr>
+        <tr><th scope="row">Kvittering <span class="muted small">receipt</span></th><td>planlagt</td><td>M</td><td>per innbygger</td><td>–</td></tr>
+        <tr><th scope="row">Strøm <span class="muted small">sankey</span></th><td>planlagt</td><td>L</td><td>kilde til mål med bevaring</td><td>–</td></tr>
+        <tr><th scope="row">Overlapp <span class="muted small">euler-upset</span></th><td>planlagt</td><td>L</td><td>snitt mellom grupper</td><td>–</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted small">«Valg» fylles ut i <code>site_src/views.yaml</code> (beholde, forbedre eller fjerne).</p>
+</section>
+
+<section id="g-utgifter-hovedpost">
+  <h2>Statens utgifter etter hovedpost</h2>
+<figure class="chart" id="gal-utgifter-hovedpost-hier-bars">
+  <figcaption>
+    <h3>Søyler</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-utgifter-hovedpost-hier-bars" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-utgifter-hovedpost-hier-bars", "kind": "dataset", "title": "S\u00f8yler", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/utgifter.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Statens egne driftsutgifter i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Driftsresultat i statens forretningsdrift<br><span class="muted">mrd. kr</span></th><th scope="col">Nybygg, anlegg mv i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Overføringer i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Utgifter i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2026</th>
+      <td>317,3</td>
+      <td>−0,3</td>
+      <td>107,5</td>
+      <td>1 785,6</td>
+      <td>2 210,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2025</th>
+      <td>278,3</td>
+      <td>−0,2</td>
+      <td>113,1</td>
+      <td>1 710,6</td>
+      <td>2 101,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>248,8</td>
+      <td>−0,3</td>
+      <td>116,8</td>
+      <td>1 588,0</td>
+      <td>1 953,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>237,0</td>
+      <td>−0,3</td>
+      <td>86,7</td>
+      <td>1 483,3</td>
+      <td>1 806,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>224,5</td>
+      <td>−1,1</td>
+      <td>79,8</td>
+      <td>1 362,8</td>
+      <td>1 665,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>201,7</td>
+      <td>−2,8</td>
+      <td>72,9</td>
+      <td>1 312,4</td>
+      <td>1 584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>184,7</td>
+      <td>−0,5</td>
+      <td>76,0</td>
+      <td>1 292,4</td>
+      <td>1 552,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>178,8</td>
+      <td>−0,3</td>
+      <td>74,0</td>
+      <td>1 125,6</td>
+      <td>1 378,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>172,7</td>
+      <td>−0,4</td>
+      <td>68,6</td>
+      <td>1 077,3</td>
+      <td>1 318,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>167,0</td>
+      <td>−0,2</td>
+      <td>69,9</td>
+      <td>1 044,2</td>
+      <td>1 280,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>182,9</td>
+      <td>−0,3</td>
+      <td>78,5</td>
+      <td>985,1</td>
+      <td>1 246,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>168,0</td>
+      <td>−0,6</td>
+      <td>74,9</td>
+      <td>952,2</td>
+      <td>1 194,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>157,3</td>
+      <td>−0,3</td>
+      <td>77,5</td>
+      <td>892,6</td>
+      <td>1 127,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>150,2</td>
+      <td>0,2</td>
+      <td>69,1</td>
+      <td>843,6</td>
+      <td>1 063,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>144,0</td>
+      <td>0,0</td>
+      <td>52,9</td>
+      <td>799,2</td>
+      <td>996,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>139,6</td>
+      <td>0,0</td>
+      <td>47,2</td>
+      <td>765,4</td>
+      <td>952,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>131,0</td>
+      <td>−1,4</td>
+      <td>44,4</td>
+      <td>718,9</td>
+      <td>892,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>127,7</td>
+      <td>−1,2</td>
+      <td>51,0</td>
+      <td>691,2</td>
+      <td>868,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>115,7</td>
+      <td>−1,0</td>
+      <td>45,3</td>
+      <td>618,6</td>
+      <td>778,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>107,0</td>
+      <td>−0,9</td>
+      <td>41,8</td>
+      <td>567,2</td>
+      <td>715,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>101,3</td>
+      <td>−0,9</td>
+      <td>38,6</td>
+      <td>544,5</td>
+      <td>683,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>92,7</td>
+      <td>−0,9</td>
+      <td>40,2</td>
+      <td>518,1</td>
+      <td>650,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>89,7</td>
+      <td>−1,1</td>
+      <td>37,1</td>
+      <td>496,6</td>
+      <td>622,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>83,5</td>
+      <td>−0,9</td>
+      <td>34,6</td>
+      <td>475,5</td>
+      <td>592,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>91,5</td>
+      <td>−0,2</td>
+      <td>33,3</td>
+      <td>459,6</td>
+      <td>584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>95,8</td>
+      <td>−0,3</td>
+      <td>34,0</td>
+      <td>387,4</td>
+      <td>516,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>88,7</td>
+      <td>−0,1</td>
+      <td>40,0</td>
+      <td>361,7</td>
+      <td>490,2</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/10486" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10486: Inntekter og utgifter i statsregnskapet, etter hovedpost (mill. kr) 1985-2025 (tabell 10486)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10486" aria-label="Om kilden ssb-10486">[1]</a>;   <a href="https://www.ssb.no/statbank/table/10487" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10487: Inntekter og utgifter i statsbudsjettet, etter hovedpost (mill. kr) 1991-2026 (tabell 10487)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10487" aria-label="Om kilden ssb-10487">[2]</a></p>
+
+</figure>
+<figure class="chart" id="gal-utgifter-hovedpost-treemap">
+  <figcaption>
+    <h3>Flisekart</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-utgifter-hovedpost-treemap" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-utgifter-hovedpost-treemap", "kind": "dataset", "title": "Flisekart", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/utgifter.json", "views": ["treemap"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Statens egne driftsutgifter i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Driftsresultat i statens forretningsdrift<br><span class="muted">mrd. kr</span></th><th scope="col">Nybygg, anlegg mv i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Overføringer i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Utgifter i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2026</th>
+      <td>317,3</td>
+      <td>−0,3</td>
+      <td>107,5</td>
+      <td>1 785,6</td>
+      <td>2 210,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2025</th>
+      <td>278,3</td>
+      <td>−0,2</td>
+      <td>113,1</td>
+      <td>1 710,6</td>
+      <td>2 101,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>248,8</td>
+      <td>−0,3</td>
+      <td>116,8</td>
+      <td>1 588,0</td>
+      <td>1 953,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>237,0</td>
+      <td>−0,3</td>
+      <td>86,7</td>
+      <td>1 483,3</td>
+      <td>1 806,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>224,5</td>
+      <td>−1,1</td>
+      <td>79,8</td>
+      <td>1 362,8</td>
+      <td>1 665,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>201,7</td>
+      <td>−2,8</td>
+      <td>72,9</td>
+      <td>1 312,4</td>
+      <td>1 584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>184,7</td>
+      <td>−0,5</td>
+      <td>76,0</td>
+      <td>1 292,4</td>
+      <td>1 552,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>178,8</td>
+      <td>−0,3</td>
+      <td>74,0</td>
+      <td>1 125,6</td>
+      <td>1 378,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>172,7</td>
+      <td>−0,4</td>
+      <td>68,6</td>
+      <td>1 077,3</td>
+      <td>1 318,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>167,0</td>
+      <td>−0,2</td>
+      <td>69,9</td>
+      <td>1 044,2</td>
+      <td>1 280,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>182,9</td>
+      <td>−0,3</td>
+      <td>78,5</td>
+      <td>985,1</td>
+      <td>1 246,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>168,0</td>
+      <td>−0,6</td>
+      <td>74,9</td>
+      <td>952,2</td>
+      <td>1 194,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>157,3</td>
+      <td>−0,3</td>
+      <td>77,5</td>
+      <td>892,6</td>
+      <td>1 127,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>150,2</td>
+      <td>0,2</td>
+      <td>69,1</td>
+      <td>843,6</td>
+      <td>1 063,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>144,0</td>
+      <td>0,0</td>
+      <td>52,9</td>
+      <td>799,2</td>
+      <td>996,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>139,6</td>
+      <td>0,0</td>
+      <td>47,2</td>
+      <td>765,4</td>
+      <td>952,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>131,0</td>
+      <td>−1,4</td>
+      <td>44,4</td>
+      <td>718,9</td>
+      <td>892,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>127,7</td>
+      <td>−1,2</td>
+      <td>51,0</td>
+      <td>691,2</td>
+      <td>868,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>115,7</td>
+      <td>−1,0</td>
+      <td>45,3</td>
+      <td>618,6</td>
+      <td>778,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>107,0</td>
+      <td>−0,9</td>
+      <td>41,8</td>
+      <td>567,2</td>
+      <td>715,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>101,3</td>
+      <td>−0,9</td>
+      <td>38,6</td>
+      <td>544,5</td>
+      <td>683,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>92,7</td>
+      <td>−0,9</td>
+      <td>40,2</td>
+      <td>518,1</td>
+      <td>650,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>89,7</td>
+      <td>−1,1</td>
+      <td>37,1</td>
+      <td>496,6</td>
+      <td>622,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>83,5</td>
+      <td>−0,9</td>
+      <td>34,6</td>
+      <td>475,5</td>
+      <td>592,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>91,5</td>
+      <td>−0,2</td>
+      <td>33,3</td>
+      <td>459,6</td>
+      <td>584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>95,8</td>
+      <td>−0,3</td>
+      <td>34,0</td>
+      <td>387,4</td>
+      <td>516,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>88,7</td>
+      <td>−0,1</td>
+      <td>40,0</td>
+      <td>361,7</td>
+      <td>490,2</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/10486" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10486: Inntekter og utgifter i statsregnskapet, etter hovedpost (mill. kr) 1985-2025 (tabell 10486)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10486" aria-label="Om kilden ssb-10486">[1]</a>;   <a href="https://www.ssb.no/statbank/table/10487" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10487: Inntekter og utgifter i statsbudsjettet, etter hovedpost (mill. kr) 1991-2026 (tabell 10487)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10487" aria-label="Om kilden ssb-10487">[2]</a></p>
+
+</figure>
+<figure class="chart" id="gal-utgifter-hovedpost-timeseries-stacked">
+  <figcaption>
+    <h3>Stablet</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-utgifter-hovedpost-timeseries-stacked" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-utgifter-hovedpost-timeseries-stacked", "kind": "dataset", "title": "Stablet", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/utgifter.json", "views": ["timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Statens egne driftsutgifter i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Driftsresultat i statens forretningsdrift<br><span class="muted">mrd. kr</span></th><th scope="col">Nybygg, anlegg mv i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Overføringer i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Utgifter i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2026</th>
+      <td>317,3</td>
+      <td>−0,3</td>
+      <td>107,5</td>
+      <td>1 785,6</td>
+      <td>2 210,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2025</th>
+      <td>278,3</td>
+      <td>−0,2</td>
+      <td>113,1</td>
+      <td>1 710,6</td>
+      <td>2 101,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>248,8</td>
+      <td>−0,3</td>
+      <td>116,8</td>
+      <td>1 588,0</td>
+      <td>1 953,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>237,0</td>
+      <td>−0,3</td>
+      <td>86,7</td>
+      <td>1 483,3</td>
+      <td>1 806,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>224,5</td>
+      <td>−1,1</td>
+      <td>79,8</td>
+      <td>1 362,8</td>
+      <td>1 665,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>201,7</td>
+      <td>−2,8</td>
+      <td>72,9</td>
+      <td>1 312,4</td>
+      <td>1 584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>184,7</td>
+      <td>−0,5</td>
+      <td>76,0</td>
+      <td>1 292,4</td>
+      <td>1 552,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>178,8</td>
+      <td>−0,3</td>
+      <td>74,0</td>
+      <td>1 125,6</td>
+      <td>1 378,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>172,7</td>
+      <td>−0,4</td>
+      <td>68,6</td>
+      <td>1 077,3</td>
+      <td>1 318,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>167,0</td>
+      <td>−0,2</td>
+      <td>69,9</td>
+      <td>1 044,2</td>
+      <td>1 280,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>182,9</td>
+      <td>−0,3</td>
+      <td>78,5</td>
+      <td>985,1</td>
+      <td>1 246,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>168,0</td>
+      <td>−0,6</td>
+      <td>74,9</td>
+      <td>952,2</td>
+      <td>1 194,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>157,3</td>
+      <td>−0,3</td>
+      <td>77,5</td>
+      <td>892,6</td>
+      <td>1 127,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>150,2</td>
+      <td>0,2</td>
+      <td>69,1</td>
+      <td>843,6</td>
+      <td>1 063,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>144,0</td>
+      <td>0,0</td>
+      <td>52,9</td>
+      <td>799,2</td>
+      <td>996,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>139,6</td>
+      <td>0,0</td>
+      <td>47,2</td>
+      <td>765,4</td>
+      <td>952,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>131,0</td>
+      <td>−1,4</td>
+      <td>44,4</td>
+      <td>718,9</td>
+      <td>892,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>127,7</td>
+      <td>−1,2</td>
+      <td>51,0</td>
+      <td>691,2</td>
+      <td>868,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>115,7</td>
+      <td>−1,0</td>
+      <td>45,3</td>
+      <td>618,6</td>
+      <td>778,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>107,0</td>
+      <td>−0,9</td>
+      <td>41,8</td>
+      <td>567,2</td>
+      <td>715,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>101,3</td>
+      <td>−0,9</td>
+      <td>38,6</td>
+      <td>544,5</td>
+      <td>683,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>92,7</td>
+      <td>−0,9</td>
+      <td>40,2</td>
+      <td>518,1</td>
+      <td>650,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>89,7</td>
+      <td>−1,1</td>
+      <td>37,1</td>
+      <td>496,6</td>
+      <td>622,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>83,5</td>
+      <td>−0,9</td>
+      <td>34,6</td>
+      <td>475,5</td>
+      <td>592,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>91,5</td>
+      <td>−0,2</td>
+      <td>33,3</td>
+      <td>459,6</td>
+      <td>584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>95,8</td>
+      <td>−0,3</td>
+      <td>34,0</td>
+      <td>387,4</td>
+      <td>516,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>88,7</td>
+      <td>−0,1</td>
+      <td>40,0</td>
+      <td>361,7</td>
+      <td>490,2</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/10486" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10486: Inntekter og utgifter i statsregnskapet, etter hovedpost (mill. kr) 1985-2025 (tabell 10486)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10486" aria-label="Om kilden ssb-10486">[1]</a>;   <a href="https://www.ssb.no/statbank/table/10487" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10487: Inntekter og utgifter i statsbudsjettet, etter hovedpost (mill. kr) 1991-2026 (tabell 10487)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10487" aria-label="Om kilden ssb-10487">[2]</a></p>
+
+</figure>
+<figure class="chart" id="gal-utgifter-hovedpost-timeseries-lines">
+  <figcaption>
+    <h3>Linjer</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-utgifter-hovedpost-timeseries-lines" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-utgifter-hovedpost-timeseries-lines", "kind": "dataset", "title": "Linjer", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/utgifter.json", "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Statens egne driftsutgifter i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Driftsresultat i statens forretningsdrift<br><span class="muted">mrd. kr</span></th><th scope="col">Nybygg, anlegg mv i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Overføringer i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Utgifter i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2026</th>
+      <td>317,3</td>
+      <td>−0,3</td>
+      <td>107,5</td>
+      <td>1 785,6</td>
+      <td>2 210,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2025</th>
+      <td>278,3</td>
+      <td>−0,2</td>
+      <td>113,1</td>
+      <td>1 710,6</td>
+      <td>2 101,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>248,8</td>
+      <td>−0,3</td>
+      <td>116,8</td>
+      <td>1 588,0</td>
+      <td>1 953,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>237,0</td>
+      <td>−0,3</td>
+      <td>86,7</td>
+      <td>1 483,3</td>
+      <td>1 806,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>224,5</td>
+      <td>−1,1</td>
+      <td>79,8</td>
+      <td>1 362,8</td>
+      <td>1 665,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>201,7</td>
+      <td>−2,8</td>
+      <td>72,9</td>
+      <td>1 312,4</td>
+      <td>1 584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>184,7</td>
+      <td>−0,5</td>
+      <td>76,0</td>
+      <td>1 292,4</td>
+      <td>1 552,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>178,8</td>
+      <td>−0,3</td>
+      <td>74,0</td>
+      <td>1 125,6</td>
+      <td>1 378,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>172,7</td>
+      <td>−0,4</td>
+      <td>68,6</td>
+      <td>1 077,3</td>
+      <td>1 318,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>167,0</td>
+      <td>−0,2</td>
+      <td>69,9</td>
+      <td>1 044,2</td>
+      <td>1 280,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>182,9</td>
+      <td>−0,3</td>
+      <td>78,5</td>
+      <td>985,1</td>
+      <td>1 246,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>168,0</td>
+      <td>−0,6</td>
+      <td>74,9</td>
+      <td>952,2</td>
+      <td>1 194,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>157,3</td>
+      <td>−0,3</td>
+      <td>77,5</td>
+      <td>892,6</td>
+      <td>1 127,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>150,2</td>
+      <td>0,2</td>
+      <td>69,1</td>
+      <td>843,6</td>
+      <td>1 063,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>144,0</td>
+      <td>0,0</td>
+      <td>52,9</td>
+      <td>799,2</td>
+      <td>996,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>139,6</td>
+      <td>0,0</td>
+      <td>47,2</td>
+      <td>765,4</td>
+      <td>952,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>131,0</td>
+      <td>−1,4</td>
+      <td>44,4</td>
+      <td>718,9</td>
+      <td>892,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>127,7</td>
+      <td>−1,2</td>
+      <td>51,0</td>
+      <td>691,2</td>
+      <td>868,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>115,7</td>
+      <td>−1,0</td>
+      <td>45,3</td>
+      <td>618,6</td>
+      <td>778,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>107,0</td>
+      <td>−0,9</td>
+      <td>41,8</td>
+      <td>567,2</td>
+      <td>715,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>101,3</td>
+      <td>−0,9</td>
+      <td>38,6</td>
+      <td>544,5</td>
+      <td>683,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>92,7</td>
+      <td>−0,9</td>
+      <td>40,2</td>
+      <td>518,1</td>
+      <td>650,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>89,7</td>
+      <td>−1,1</td>
+      <td>37,1</td>
+      <td>496,6</td>
+      <td>622,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>83,5</td>
+      <td>−0,9</td>
+      <td>34,6</td>
+      <td>475,5</td>
+      <td>592,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>91,5</td>
+      <td>−0,2</td>
+      <td>33,3</td>
+      <td>459,6</td>
+      <td>584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>95,8</td>
+      <td>−0,3</td>
+      <td>34,0</td>
+      <td>387,4</td>
+      <td>516,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>88,7</td>
+      <td>−0,1</td>
+      <td>40,0</td>
+      <td>361,7</td>
+      <td>490,2</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/10486" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10486: Inntekter og utgifter i statsregnskapet, etter hovedpost (mill. kr) 1985-2025 (tabell 10486)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10486" aria-label="Om kilden ssb-10486">[1]</a>;   <a href="https://www.ssb.no/statbank/table/10487" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10487: Inntekter og utgifter i statsbudsjettet, etter hovedpost (mill. kr) 1991-2026 (tabell 10487)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10487" aria-label="Om kilden ssb-10487">[2]</a></p>
+
+</figure>
+<figure class="chart" id="gal-utgifter-hovedpost-slope">
+  <figcaption>
+    <h3>Før og nå</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-utgifter-hovedpost-slope" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-utgifter-hovedpost-slope", "kind": "dataset", "title": "F\u00f8r og n\u00e5", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/utgifter.json", "views": ["slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Statens egne driftsutgifter i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Driftsresultat i statens forretningsdrift<br><span class="muted">mrd. kr</span></th><th scope="col">Nybygg, anlegg mv i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Overføringer i alt<br><span class="muted">mrd. kr</span></th><th scope="col">Utgifter i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2026</th>
+      <td>317,3</td>
+      <td>−0,3</td>
+      <td>107,5</td>
+      <td>1 785,6</td>
+      <td>2 210,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2025</th>
+      <td>278,3</td>
+      <td>−0,2</td>
+      <td>113,1</td>
+      <td>1 710,6</td>
+      <td>2 101,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>248,8</td>
+      <td>−0,3</td>
+      <td>116,8</td>
+      <td>1 588,0</td>
+      <td>1 953,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>237,0</td>
+      <td>−0,3</td>
+      <td>86,7</td>
+      <td>1 483,3</td>
+      <td>1 806,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>224,5</td>
+      <td>−1,1</td>
+      <td>79,8</td>
+      <td>1 362,8</td>
+      <td>1 665,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>201,7</td>
+      <td>−2,8</td>
+      <td>72,9</td>
+      <td>1 312,4</td>
+      <td>1 584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>184,7</td>
+      <td>−0,5</td>
+      <td>76,0</td>
+      <td>1 292,4</td>
+      <td>1 552,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>178,8</td>
+      <td>−0,3</td>
+      <td>74,0</td>
+      <td>1 125,6</td>
+      <td>1 378,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>172,7</td>
+      <td>−0,4</td>
+      <td>68,6</td>
+      <td>1 077,3</td>
+      <td>1 318,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>167,0</td>
+      <td>−0,2</td>
+      <td>69,9</td>
+      <td>1 044,2</td>
+      <td>1 280,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>182,9</td>
+      <td>−0,3</td>
+      <td>78,5</td>
+      <td>985,1</td>
+      <td>1 246,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>168,0</td>
+      <td>−0,6</td>
+      <td>74,9</td>
+      <td>952,2</td>
+      <td>1 194,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>157,3</td>
+      <td>−0,3</td>
+      <td>77,5</td>
+      <td>892,6</td>
+      <td>1 127,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>150,2</td>
+      <td>0,2</td>
+      <td>69,1</td>
+      <td>843,6</td>
+      <td>1 063,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>144,0</td>
+      <td>0,0</td>
+      <td>52,9</td>
+      <td>799,2</td>
+      <td>996,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>139,6</td>
+      <td>0,0</td>
+      <td>47,2</td>
+      <td>765,4</td>
+      <td>952,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>131,0</td>
+      <td>−1,4</td>
+      <td>44,4</td>
+      <td>718,9</td>
+      <td>892,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>127,7</td>
+      <td>−1,2</td>
+      <td>51,0</td>
+      <td>691,2</td>
+      <td>868,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>115,7</td>
+      <td>−1,0</td>
+      <td>45,3</td>
+      <td>618,6</td>
+      <td>778,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>107,0</td>
+      <td>−0,9</td>
+      <td>41,8</td>
+      <td>567,2</td>
+      <td>715,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>101,3</td>
+      <td>−0,9</td>
+      <td>38,6</td>
+      <td>544,5</td>
+      <td>683,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>92,7</td>
+      <td>−0,9</td>
+      <td>40,2</td>
+      <td>518,1</td>
+      <td>650,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>89,7</td>
+      <td>−1,1</td>
+      <td>37,1</td>
+      <td>496,6</td>
+      <td>622,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>83,5</td>
+      <td>−0,9</td>
+      <td>34,6</td>
+      <td>475,5</td>
+      <td>592,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>91,5</td>
+      <td>−0,2</td>
+      <td>33,3</td>
+      <td>459,6</td>
+      <td>584,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>95,8</td>
+      <td>−0,3</td>
+      <td>34,0</td>
+      <td>387,4</td>
+      <td>516,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>88,7</td>
+      <td>−0,1</td>
+      <td>40,0</td>
+      <td>361,7</td>
+      <td>490,2</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/10486" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10486: Inntekter og utgifter i statsregnskapet, etter hovedpost (mill. kr) 1985-2025 (tabell 10486)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10486" aria-label="Om kilden ssb-10486">[1]</a>;   <a href="https://www.ssb.no/statbank/table/10487" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 10487: Inntekter og utgifter i statsbudsjettet, etter hovedpost (mill. kr) 1991-2026 (tabell 10487)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-10487" aria-label="Om kilden ssb-10487">[2]</a></p>
+
+</figure>
+</section>
+<section id="g-formaal">
+  <h2>Offentlig forvaltnings utgifter etter formål</h2>
+<figure class="chart" id="gal-formaal-hier-bars">
+  <figcaption>
+    <h3>Søyler</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-formaal-hier-bars" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-formaal-hier-bars", "kind": "dataset", "title": "S\u00f8yler", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-total", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Alminnelig offentlig tjenesteyting<br><span class="muted">mrd. kr</span></th><th scope="col">Forsvar<br><span class="muted">mrd. kr</span></th><th scope="col">Offentlig orden og trygghet<br><span class="muted">mrd. kr</span></th><th scope="col">Næringsøkonomiske formål<br><span class="muted">mrd. kr</span></th><th scope="col">Miljøvern<br><span class="muted">mrd. kr</span></th><th scope="col">Bolig og nærmiljø<br><span class="muted">mrd. kr</span></th><th scope="col">Helse<br><span class="muted">mrd. kr</span></th><th scope="col">Fritid, kultur og religion<br><span class="muted">mrd. kr</span></th><th scope="col">Utdanning<br><span class="muted">mrd. kr</span></th><th scope="col">Sosial beskyttelse<br><span class="muted">mrd. kr</span></th><th scope="col">Alle formål<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>274,6</td>
+      <td>171,8</td>
+      <td>59,1</td>
+      <td>313,9</td>
+      <td>46,1</td>
+      <td>44,9</td>
+      <td>392,0</td>
+      <td>78,9</td>
+      <td>254,6</td>
+      <td>1 048,8</td>
+      <td>2 684,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>275,0</td>
+      <td>114,9</td>
+      <td>55,1</td>
+      <td>297,1</td>
+      <td>43,4</td>
+      <td>45,1</td>
+      <td>379,8</td>
+      <td>76,9</td>
+      <td>250,1</td>
+      <td>994,9</td>
+      <td>2 532,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>244,0</td>
+      <td>91,2</td>
+      <td>51,6</td>
+      <td>286,7</td>
+      <td>42,2</td>
+      <td>40,1</td>
+      <td>362,3</td>
+      <td>74,0</td>
+      <td>233,6</td>
+      <td>923,2</td>
+      <td>2 348,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>188,6</td>
+      <td>80,9</td>
+      <td>49,4</td>
+      <td>284,3</td>
+      <td>40,3</td>
+      <td>35,4</td>
+      <td>338,6</td>
+      <td>71,0</td>
+      <td>219,7</td>
+      <td>849,1</td>
+      <td>2 157,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>164,5</td>
+      <td>72,5</td>
+      <td>44,9</td>
+      <td>246,6</td>
+      <td>35,5</td>
+      <td>29,8</td>
+      <td>320,1</td>
+      <td>69,0</td>
+      <td>207,2</td>
+      <td>813,3</td>
+      <td>2 003,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>163,2</td>
+      <td>69,4</td>
+      <td>43,7</td>
+      <td>285,7</td>
+      <td>33,6</td>
+      <td>30,6</td>
+      <td>288,2</td>
+      <td>65,5</td>
+      <td>200,8</td>
+      <td>788,9</td>
+      <td>1 969,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>158,5</td>
+      <td>67,7</td>
+      <td>43,4</td>
+      <td>210,4</td>
+      <td>32,0</td>
+      <td>28,8</td>
+      <td>269,9</td>
+      <td>63,0</td>
+      <td>198,8</td>
+      <td>730,6</td>
+      <td>1 803,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>145,9</td>
+      <td>60,8</td>
+      <td>40,6</td>
+      <td>197,1</td>
+      <td>30,2</td>
+      <td>27,4</td>
+      <td>253,4</td>
+      <td>58,2</td>
+      <td>190,8</td>
+      <td>702,1</td>
+      <td>1 706,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>140,2</td>
+      <td>56,1</td>
+      <td>37,8</td>
+      <td>182,8</td>
+      <td>28,5</td>
+      <td>25,5</td>
+      <td>241,5</td>
+      <td>56,0</td>
+      <td>183,1</td>
+      <td>682,1</td>
+      <td>1 633,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>136,0</td>
+      <td>49,0</td>
+      <td>35,9</td>
+      <td>174,9</td>
+      <td>27,7</td>
+      <td>25,5</td>
+      <td>231,0</td>
+      <td>52,1</td>
+      <td>174,4</td>
+      <td>662,3</td>
+      <td>1 568,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>137,5</td>
+      <td>48,0</td>
+      <td>33,1</td>
+      <td>166,1</td>
+      <td>26,6</td>
+      <td>22,8</td>
+      <td>222,6</td>
+      <td>48,9</td>
+      <td>169,4</td>
+      <td>631,9</td>
+      <td>1 506,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>131,4</td>
+      <td>45,5</td>
+      <td>31,2</td>
+      <td>159,4</td>
+      <td>25,3</td>
+      <td>21,0</td>
+      <td>210,5</td>
+      <td>47,4</td>
+      <td>160,4</td>
+      <td>596,9</td>
+      <td>1 429,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>125,6</td>
+      <td>41,6</td>
+      <td>29,4</td>
+      <td>146,1</td>
+      <td>24,2</td>
+      <td>19,1</td>
+      <td>195,8</td>
+      <td>45,5</td>
+      <td>150,1</td>
+      <td>567,3</td>
+      <td>1 344,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>121,6</td>
+      <td>40,0</td>
+      <td>26,5</td>
+      <td>132,0</td>
+      <td>22,4</td>
+      <td>16,9</td>
+      <td>183,4</td>
+      <td>42,8</td>
+      <td>144,3</td>
+      <td>535,4</td>
+      <td>1 265,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>123,6</td>
+      <td>42,2</td>
+      <td>25,1</td>
+      <td>124,2</td>
+      <td>22,0</td>
+      <td>16,6</td>
+      <td>173,0</td>
+      <td>41,9</td>
+      <td>139,6</td>
+      <td>507,6</td>
+      <td>1 215,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>122,3</td>
+      <td>37,7</td>
+      <td>23,8</td>
+      <td>120,5</td>
+      <td>21,1</td>
+      <td>15,7</td>
+      <td>165,0</td>
+      <td>39,8</td>
+      <td>135,8</td>
+      <td>478,7</td>
+      <td>1 160,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>122,9</td>
+      <td>39,5</td>
+      <td>22,5</td>
+      <td>113,9</td>
+      <td>19,5</td>
+      <td>14,7</td>
+      <td>156,9</td>
+      <td>39,0</td>
+      <td>131,0</td>
+      <td>453,9</td>
+      <td>1 113,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>131,8</td>
+      <td>39,0</td>
+      <td>20,7</td>
+      <td>101,0</td>
+      <td>16,1</td>
+      <td>13,9</td>
+      <td>148,3</td>
+      <td>34,5</td>
+      <td>121,4</td>
+      <td>416,2</td>
+      <td>1 043,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>132,9</td>
+      <td>36,5</td>
+      <td>19,2</td>
+      <td>87,2</td>
+      <td>12,8</td>
+      <td>12,2</td>
+      <td>139,2</td>
+      <td>30,7</td>
+      <td>113,8</td>
+      <td>382,7</td>
+      <td>967,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>120,0</td>
+      <td>34,4</td>
+      <td>18,3</td>
+      <td>78,3</td>
+      <td>11,8</td>
+      <td>12,1</td>
+      <td>132,1</td>
+      <td>25,5</td>
+      <td>108,6</td>
+      <td>359,6</td>
+      <td>900,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>97,2</td>
+      <td>29,6</td>
+      <td>17,0</td>
+      <td>74,9</td>
+      <td>11,2</td>
+      <td>10,9</td>
+      <td>124,9</td>
+      <td>24,1</td>
+      <td>103,4</td>
+      <td>341,3</td>
+      <td>834,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>87,8</td>
+      <td>30,7</td>
+      <td>17,6</td>
+      <td>69,1</td>
+      <td>10,7</td>
+      <td>11,3</td>
+      <td>117,0</td>
+      <td>23,3</td>
+      <td>100,6</td>
+      <td>332,2</td>
+      <td>800,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>89,0</td>
+      <td>30,3</td>
+      <td>17,2</td>
+      <td>68,9</td>
+      <td>8,8</td>
+      <td>11,1</td>
+      <td>111,3</td>
+      <td>21,8</td>
+      <td>99,0</td>
+      <td>316,3</td>
+      <td>773,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>83,4</td>
+      <td>31,1</td>
+      <td>17,1</td>
+      <td>66,5</td>
+      <td>8,2</td>
+      <td>4,8</td>
+      <td>103,2</td>
+      <td>21,2</td>
+      <td>89,8</td>
+      <td>296,5</td>
+      <td>721,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>84,9</td>
+      <td>27,4</td>
+      <td>15,0</td>
+      <td>63,4</td>
+      <td>8,3</td>
+      <td>4,1</td>
+      <td>97,2</td>
+      <td>19,5</td>
+      <td>85,1</td>
+      <td>272,0</td>
+      <td>677,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>64,5</td>
+      <td>27,9</td>
+      <td>14,4</td>
+      <td>64,6</td>
+      <td>9,8</td>
+      <td>7,3</td>
+      <td>89,5</td>
+      <td>19,0</td>
+      <td>77,9</td>
+      <td>248,9</td>
+      <td>623,7</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/14669" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 14669: Offentlig forvaltnings utgifter, etter sektor, art og formål (mill. kr) 1995-2025 (tabell 14669)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-14669" aria-label="Om kilden ssb-14669">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-formaal-treemap">
+  <figcaption>
+    <h3>Flisekart</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-formaal-treemap" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-formaal-treemap", "kind": "dataset", "title": "Flisekart", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-total", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["treemap"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Alminnelig offentlig tjenesteyting<br><span class="muted">mrd. kr</span></th><th scope="col">Forsvar<br><span class="muted">mrd. kr</span></th><th scope="col">Offentlig orden og trygghet<br><span class="muted">mrd. kr</span></th><th scope="col">Næringsøkonomiske formål<br><span class="muted">mrd. kr</span></th><th scope="col">Miljøvern<br><span class="muted">mrd. kr</span></th><th scope="col">Bolig og nærmiljø<br><span class="muted">mrd. kr</span></th><th scope="col">Helse<br><span class="muted">mrd. kr</span></th><th scope="col">Fritid, kultur og religion<br><span class="muted">mrd. kr</span></th><th scope="col">Utdanning<br><span class="muted">mrd. kr</span></th><th scope="col">Sosial beskyttelse<br><span class="muted">mrd. kr</span></th><th scope="col">Alle formål<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>274,6</td>
+      <td>171,8</td>
+      <td>59,1</td>
+      <td>313,9</td>
+      <td>46,1</td>
+      <td>44,9</td>
+      <td>392,0</td>
+      <td>78,9</td>
+      <td>254,6</td>
+      <td>1 048,8</td>
+      <td>2 684,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>275,0</td>
+      <td>114,9</td>
+      <td>55,1</td>
+      <td>297,1</td>
+      <td>43,4</td>
+      <td>45,1</td>
+      <td>379,8</td>
+      <td>76,9</td>
+      <td>250,1</td>
+      <td>994,9</td>
+      <td>2 532,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>244,0</td>
+      <td>91,2</td>
+      <td>51,6</td>
+      <td>286,7</td>
+      <td>42,2</td>
+      <td>40,1</td>
+      <td>362,3</td>
+      <td>74,0</td>
+      <td>233,6</td>
+      <td>923,2</td>
+      <td>2 348,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>188,6</td>
+      <td>80,9</td>
+      <td>49,4</td>
+      <td>284,3</td>
+      <td>40,3</td>
+      <td>35,4</td>
+      <td>338,6</td>
+      <td>71,0</td>
+      <td>219,7</td>
+      <td>849,1</td>
+      <td>2 157,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>164,5</td>
+      <td>72,5</td>
+      <td>44,9</td>
+      <td>246,6</td>
+      <td>35,5</td>
+      <td>29,8</td>
+      <td>320,1</td>
+      <td>69,0</td>
+      <td>207,2</td>
+      <td>813,3</td>
+      <td>2 003,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>163,2</td>
+      <td>69,4</td>
+      <td>43,7</td>
+      <td>285,7</td>
+      <td>33,6</td>
+      <td>30,6</td>
+      <td>288,2</td>
+      <td>65,5</td>
+      <td>200,8</td>
+      <td>788,9</td>
+      <td>1 969,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>158,5</td>
+      <td>67,7</td>
+      <td>43,4</td>
+      <td>210,4</td>
+      <td>32,0</td>
+      <td>28,8</td>
+      <td>269,9</td>
+      <td>63,0</td>
+      <td>198,8</td>
+      <td>730,6</td>
+      <td>1 803,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>145,9</td>
+      <td>60,8</td>
+      <td>40,6</td>
+      <td>197,1</td>
+      <td>30,2</td>
+      <td>27,4</td>
+      <td>253,4</td>
+      <td>58,2</td>
+      <td>190,8</td>
+      <td>702,1</td>
+      <td>1 706,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>140,2</td>
+      <td>56,1</td>
+      <td>37,8</td>
+      <td>182,8</td>
+      <td>28,5</td>
+      <td>25,5</td>
+      <td>241,5</td>
+      <td>56,0</td>
+      <td>183,1</td>
+      <td>682,1</td>
+      <td>1 633,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>136,0</td>
+      <td>49,0</td>
+      <td>35,9</td>
+      <td>174,9</td>
+      <td>27,7</td>
+      <td>25,5</td>
+      <td>231,0</td>
+      <td>52,1</td>
+      <td>174,4</td>
+      <td>662,3</td>
+      <td>1 568,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>137,5</td>
+      <td>48,0</td>
+      <td>33,1</td>
+      <td>166,1</td>
+      <td>26,6</td>
+      <td>22,8</td>
+      <td>222,6</td>
+      <td>48,9</td>
+      <td>169,4</td>
+      <td>631,9</td>
+      <td>1 506,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>131,4</td>
+      <td>45,5</td>
+      <td>31,2</td>
+      <td>159,4</td>
+      <td>25,3</td>
+      <td>21,0</td>
+      <td>210,5</td>
+      <td>47,4</td>
+      <td>160,4</td>
+      <td>596,9</td>
+      <td>1 429,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>125,6</td>
+      <td>41,6</td>
+      <td>29,4</td>
+      <td>146,1</td>
+      <td>24,2</td>
+      <td>19,1</td>
+      <td>195,8</td>
+      <td>45,5</td>
+      <td>150,1</td>
+      <td>567,3</td>
+      <td>1 344,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>121,6</td>
+      <td>40,0</td>
+      <td>26,5</td>
+      <td>132,0</td>
+      <td>22,4</td>
+      <td>16,9</td>
+      <td>183,4</td>
+      <td>42,8</td>
+      <td>144,3</td>
+      <td>535,4</td>
+      <td>1 265,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>123,6</td>
+      <td>42,2</td>
+      <td>25,1</td>
+      <td>124,2</td>
+      <td>22,0</td>
+      <td>16,6</td>
+      <td>173,0</td>
+      <td>41,9</td>
+      <td>139,6</td>
+      <td>507,6</td>
+      <td>1 215,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>122,3</td>
+      <td>37,7</td>
+      <td>23,8</td>
+      <td>120,5</td>
+      <td>21,1</td>
+      <td>15,7</td>
+      <td>165,0</td>
+      <td>39,8</td>
+      <td>135,8</td>
+      <td>478,7</td>
+      <td>1 160,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>122,9</td>
+      <td>39,5</td>
+      <td>22,5</td>
+      <td>113,9</td>
+      <td>19,5</td>
+      <td>14,7</td>
+      <td>156,9</td>
+      <td>39,0</td>
+      <td>131,0</td>
+      <td>453,9</td>
+      <td>1 113,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>131,8</td>
+      <td>39,0</td>
+      <td>20,7</td>
+      <td>101,0</td>
+      <td>16,1</td>
+      <td>13,9</td>
+      <td>148,3</td>
+      <td>34,5</td>
+      <td>121,4</td>
+      <td>416,2</td>
+      <td>1 043,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>132,9</td>
+      <td>36,5</td>
+      <td>19,2</td>
+      <td>87,2</td>
+      <td>12,8</td>
+      <td>12,2</td>
+      <td>139,2</td>
+      <td>30,7</td>
+      <td>113,8</td>
+      <td>382,7</td>
+      <td>967,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>120,0</td>
+      <td>34,4</td>
+      <td>18,3</td>
+      <td>78,3</td>
+      <td>11,8</td>
+      <td>12,1</td>
+      <td>132,1</td>
+      <td>25,5</td>
+      <td>108,6</td>
+      <td>359,6</td>
+      <td>900,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>97,2</td>
+      <td>29,6</td>
+      <td>17,0</td>
+      <td>74,9</td>
+      <td>11,2</td>
+      <td>10,9</td>
+      <td>124,9</td>
+      <td>24,1</td>
+      <td>103,4</td>
+      <td>341,3</td>
+      <td>834,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>87,8</td>
+      <td>30,7</td>
+      <td>17,6</td>
+      <td>69,1</td>
+      <td>10,7</td>
+      <td>11,3</td>
+      <td>117,0</td>
+      <td>23,3</td>
+      <td>100,6</td>
+      <td>332,2</td>
+      <td>800,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>89,0</td>
+      <td>30,3</td>
+      <td>17,2</td>
+      <td>68,9</td>
+      <td>8,8</td>
+      <td>11,1</td>
+      <td>111,3</td>
+      <td>21,8</td>
+      <td>99,0</td>
+      <td>316,3</td>
+      <td>773,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>83,4</td>
+      <td>31,1</td>
+      <td>17,1</td>
+      <td>66,5</td>
+      <td>8,2</td>
+      <td>4,8</td>
+      <td>103,2</td>
+      <td>21,2</td>
+      <td>89,8</td>
+      <td>296,5</td>
+      <td>721,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>84,9</td>
+      <td>27,4</td>
+      <td>15,0</td>
+      <td>63,4</td>
+      <td>8,3</td>
+      <td>4,1</td>
+      <td>97,2</td>
+      <td>19,5</td>
+      <td>85,1</td>
+      <td>272,0</td>
+      <td>677,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>64,5</td>
+      <td>27,9</td>
+      <td>14,4</td>
+      <td>64,6</td>
+      <td>9,8</td>
+      <td>7,3</td>
+      <td>89,5</td>
+      <td>19,0</td>
+      <td>77,9</td>
+      <td>248,9</td>
+      <td>623,7</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/14669" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 14669: Offentlig forvaltnings utgifter, etter sektor, art og formål (mill. kr) 1995-2025 (tabell 14669)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-14669" aria-label="Om kilden ssb-14669">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-formaal-timeseries-stacked">
+  <figcaption>
+    <h3>Stablet</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-formaal-timeseries-stacked" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-formaal-timeseries-stacked", "kind": "dataset", "title": "Stablet", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-total", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Alminnelig offentlig tjenesteyting<br><span class="muted">mrd. kr</span></th><th scope="col">Forsvar<br><span class="muted">mrd. kr</span></th><th scope="col">Offentlig orden og trygghet<br><span class="muted">mrd. kr</span></th><th scope="col">Næringsøkonomiske formål<br><span class="muted">mrd. kr</span></th><th scope="col">Miljøvern<br><span class="muted">mrd. kr</span></th><th scope="col">Bolig og nærmiljø<br><span class="muted">mrd. kr</span></th><th scope="col">Helse<br><span class="muted">mrd. kr</span></th><th scope="col">Fritid, kultur og religion<br><span class="muted">mrd. kr</span></th><th scope="col">Utdanning<br><span class="muted">mrd. kr</span></th><th scope="col">Sosial beskyttelse<br><span class="muted">mrd. kr</span></th><th scope="col">Alle formål<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>274,6</td>
+      <td>171,8</td>
+      <td>59,1</td>
+      <td>313,9</td>
+      <td>46,1</td>
+      <td>44,9</td>
+      <td>392,0</td>
+      <td>78,9</td>
+      <td>254,6</td>
+      <td>1 048,8</td>
+      <td>2 684,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>275,0</td>
+      <td>114,9</td>
+      <td>55,1</td>
+      <td>297,1</td>
+      <td>43,4</td>
+      <td>45,1</td>
+      <td>379,8</td>
+      <td>76,9</td>
+      <td>250,1</td>
+      <td>994,9</td>
+      <td>2 532,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>244,0</td>
+      <td>91,2</td>
+      <td>51,6</td>
+      <td>286,7</td>
+      <td>42,2</td>
+      <td>40,1</td>
+      <td>362,3</td>
+      <td>74,0</td>
+      <td>233,6</td>
+      <td>923,2</td>
+      <td>2 348,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>188,6</td>
+      <td>80,9</td>
+      <td>49,4</td>
+      <td>284,3</td>
+      <td>40,3</td>
+      <td>35,4</td>
+      <td>338,6</td>
+      <td>71,0</td>
+      <td>219,7</td>
+      <td>849,1</td>
+      <td>2 157,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>164,5</td>
+      <td>72,5</td>
+      <td>44,9</td>
+      <td>246,6</td>
+      <td>35,5</td>
+      <td>29,8</td>
+      <td>320,1</td>
+      <td>69,0</td>
+      <td>207,2</td>
+      <td>813,3</td>
+      <td>2 003,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>163,2</td>
+      <td>69,4</td>
+      <td>43,7</td>
+      <td>285,7</td>
+      <td>33,6</td>
+      <td>30,6</td>
+      <td>288,2</td>
+      <td>65,5</td>
+      <td>200,8</td>
+      <td>788,9</td>
+      <td>1 969,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>158,5</td>
+      <td>67,7</td>
+      <td>43,4</td>
+      <td>210,4</td>
+      <td>32,0</td>
+      <td>28,8</td>
+      <td>269,9</td>
+      <td>63,0</td>
+      <td>198,8</td>
+      <td>730,6</td>
+      <td>1 803,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>145,9</td>
+      <td>60,8</td>
+      <td>40,6</td>
+      <td>197,1</td>
+      <td>30,2</td>
+      <td>27,4</td>
+      <td>253,4</td>
+      <td>58,2</td>
+      <td>190,8</td>
+      <td>702,1</td>
+      <td>1 706,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>140,2</td>
+      <td>56,1</td>
+      <td>37,8</td>
+      <td>182,8</td>
+      <td>28,5</td>
+      <td>25,5</td>
+      <td>241,5</td>
+      <td>56,0</td>
+      <td>183,1</td>
+      <td>682,1</td>
+      <td>1 633,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>136,0</td>
+      <td>49,0</td>
+      <td>35,9</td>
+      <td>174,9</td>
+      <td>27,7</td>
+      <td>25,5</td>
+      <td>231,0</td>
+      <td>52,1</td>
+      <td>174,4</td>
+      <td>662,3</td>
+      <td>1 568,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>137,5</td>
+      <td>48,0</td>
+      <td>33,1</td>
+      <td>166,1</td>
+      <td>26,6</td>
+      <td>22,8</td>
+      <td>222,6</td>
+      <td>48,9</td>
+      <td>169,4</td>
+      <td>631,9</td>
+      <td>1 506,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>131,4</td>
+      <td>45,5</td>
+      <td>31,2</td>
+      <td>159,4</td>
+      <td>25,3</td>
+      <td>21,0</td>
+      <td>210,5</td>
+      <td>47,4</td>
+      <td>160,4</td>
+      <td>596,9</td>
+      <td>1 429,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>125,6</td>
+      <td>41,6</td>
+      <td>29,4</td>
+      <td>146,1</td>
+      <td>24,2</td>
+      <td>19,1</td>
+      <td>195,8</td>
+      <td>45,5</td>
+      <td>150,1</td>
+      <td>567,3</td>
+      <td>1 344,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>121,6</td>
+      <td>40,0</td>
+      <td>26,5</td>
+      <td>132,0</td>
+      <td>22,4</td>
+      <td>16,9</td>
+      <td>183,4</td>
+      <td>42,8</td>
+      <td>144,3</td>
+      <td>535,4</td>
+      <td>1 265,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>123,6</td>
+      <td>42,2</td>
+      <td>25,1</td>
+      <td>124,2</td>
+      <td>22,0</td>
+      <td>16,6</td>
+      <td>173,0</td>
+      <td>41,9</td>
+      <td>139,6</td>
+      <td>507,6</td>
+      <td>1 215,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>122,3</td>
+      <td>37,7</td>
+      <td>23,8</td>
+      <td>120,5</td>
+      <td>21,1</td>
+      <td>15,7</td>
+      <td>165,0</td>
+      <td>39,8</td>
+      <td>135,8</td>
+      <td>478,7</td>
+      <td>1 160,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>122,9</td>
+      <td>39,5</td>
+      <td>22,5</td>
+      <td>113,9</td>
+      <td>19,5</td>
+      <td>14,7</td>
+      <td>156,9</td>
+      <td>39,0</td>
+      <td>131,0</td>
+      <td>453,9</td>
+      <td>1 113,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>131,8</td>
+      <td>39,0</td>
+      <td>20,7</td>
+      <td>101,0</td>
+      <td>16,1</td>
+      <td>13,9</td>
+      <td>148,3</td>
+      <td>34,5</td>
+      <td>121,4</td>
+      <td>416,2</td>
+      <td>1 043,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>132,9</td>
+      <td>36,5</td>
+      <td>19,2</td>
+      <td>87,2</td>
+      <td>12,8</td>
+      <td>12,2</td>
+      <td>139,2</td>
+      <td>30,7</td>
+      <td>113,8</td>
+      <td>382,7</td>
+      <td>967,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>120,0</td>
+      <td>34,4</td>
+      <td>18,3</td>
+      <td>78,3</td>
+      <td>11,8</td>
+      <td>12,1</td>
+      <td>132,1</td>
+      <td>25,5</td>
+      <td>108,6</td>
+      <td>359,6</td>
+      <td>900,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>97,2</td>
+      <td>29,6</td>
+      <td>17,0</td>
+      <td>74,9</td>
+      <td>11,2</td>
+      <td>10,9</td>
+      <td>124,9</td>
+      <td>24,1</td>
+      <td>103,4</td>
+      <td>341,3</td>
+      <td>834,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>87,8</td>
+      <td>30,7</td>
+      <td>17,6</td>
+      <td>69,1</td>
+      <td>10,7</td>
+      <td>11,3</td>
+      <td>117,0</td>
+      <td>23,3</td>
+      <td>100,6</td>
+      <td>332,2</td>
+      <td>800,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>89,0</td>
+      <td>30,3</td>
+      <td>17,2</td>
+      <td>68,9</td>
+      <td>8,8</td>
+      <td>11,1</td>
+      <td>111,3</td>
+      <td>21,8</td>
+      <td>99,0</td>
+      <td>316,3</td>
+      <td>773,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>83,4</td>
+      <td>31,1</td>
+      <td>17,1</td>
+      <td>66,5</td>
+      <td>8,2</td>
+      <td>4,8</td>
+      <td>103,2</td>
+      <td>21,2</td>
+      <td>89,8</td>
+      <td>296,5</td>
+      <td>721,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>84,9</td>
+      <td>27,4</td>
+      <td>15,0</td>
+      <td>63,4</td>
+      <td>8,3</td>
+      <td>4,1</td>
+      <td>97,2</td>
+      <td>19,5</td>
+      <td>85,1</td>
+      <td>272,0</td>
+      <td>677,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>64,5</td>
+      <td>27,9</td>
+      <td>14,4</td>
+      <td>64,6</td>
+      <td>9,8</td>
+      <td>7,3</td>
+      <td>89,5</td>
+      <td>19,0</td>
+      <td>77,9</td>
+      <td>248,9</td>
+      <td>623,7</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/14669" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 14669: Offentlig forvaltnings utgifter, etter sektor, art og formål (mill. kr) 1995-2025 (tabell 14669)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-14669" aria-label="Om kilden ssb-14669">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-formaal-slope">
+  <figcaption>
+    <h3>Før og nå</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-formaal-slope" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-formaal-slope", "kind": "dataset", "title": "F\u00f8r og n\u00e5", "unitDefs": [{"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_fastland_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-total", "pct-bnp-fn", "per-innb"], "url": "../data/statsbudsjett/offentlige_utgifter_formaal.json", "views": ["slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Alminnelig offentlig tjenesteyting<br><span class="muted">mrd. kr</span></th><th scope="col">Forsvar<br><span class="muted">mrd. kr</span></th><th scope="col">Offentlig orden og trygghet<br><span class="muted">mrd. kr</span></th><th scope="col">Næringsøkonomiske formål<br><span class="muted">mrd. kr</span></th><th scope="col">Miljøvern<br><span class="muted">mrd. kr</span></th><th scope="col">Bolig og nærmiljø<br><span class="muted">mrd. kr</span></th><th scope="col">Helse<br><span class="muted">mrd. kr</span></th><th scope="col">Fritid, kultur og religion<br><span class="muted">mrd. kr</span></th><th scope="col">Utdanning<br><span class="muted">mrd. kr</span></th><th scope="col">Sosial beskyttelse<br><span class="muted">mrd. kr</span></th><th scope="col">Alle formål<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>274,6</td>
+      <td>171,8</td>
+      <td>59,1</td>
+      <td>313,9</td>
+      <td>46,1</td>
+      <td>44,9</td>
+      <td>392,0</td>
+      <td>78,9</td>
+      <td>254,6</td>
+      <td>1 048,8</td>
+      <td>2 684,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>275,0</td>
+      <td>114,9</td>
+      <td>55,1</td>
+      <td>297,1</td>
+      <td>43,4</td>
+      <td>45,1</td>
+      <td>379,8</td>
+      <td>76,9</td>
+      <td>250,1</td>
+      <td>994,9</td>
+      <td>2 532,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>244,0</td>
+      <td>91,2</td>
+      <td>51,6</td>
+      <td>286,7</td>
+      <td>42,2</td>
+      <td>40,1</td>
+      <td>362,3</td>
+      <td>74,0</td>
+      <td>233,6</td>
+      <td>923,2</td>
+      <td>2 348,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>188,6</td>
+      <td>80,9</td>
+      <td>49,4</td>
+      <td>284,3</td>
+      <td>40,3</td>
+      <td>35,4</td>
+      <td>338,6</td>
+      <td>71,0</td>
+      <td>219,7</td>
+      <td>849,1</td>
+      <td>2 157,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>164,5</td>
+      <td>72,5</td>
+      <td>44,9</td>
+      <td>246,6</td>
+      <td>35,5</td>
+      <td>29,8</td>
+      <td>320,1</td>
+      <td>69,0</td>
+      <td>207,2</td>
+      <td>813,3</td>
+      <td>2 003,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>163,2</td>
+      <td>69,4</td>
+      <td>43,7</td>
+      <td>285,7</td>
+      <td>33,6</td>
+      <td>30,6</td>
+      <td>288,2</td>
+      <td>65,5</td>
+      <td>200,8</td>
+      <td>788,9</td>
+      <td>1 969,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>158,5</td>
+      <td>67,7</td>
+      <td>43,4</td>
+      <td>210,4</td>
+      <td>32,0</td>
+      <td>28,8</td>
+      <td>269,9</td>
+      <td>63,0</td>
+      <td>198,8</td>
+      <td>730,6</td>
+      <td>1 803,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>145,9</td>
+      <td>60,8</td>
+      <td>40,6</td>
+      <td>197,1</td>
+      <td>30,2</td>
+      <td>27,4</td>
+      <td>253,4</td>
+      <td>58,2</td>
+      <td>190,8</td>
+      <td>702,1</td>
+      <td>1 706,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>140,2</td>
+      <td>56,1</td>
+      <td>37,8</td>
+      <td>182,8</td>
+      <td>28,5</td>
+      <td>25,5</td>
+      <td>241,5</td>
+      <td>56,0</td>
+      <td>183,1</td>
+      <td>682,1</td>
+      <td>1 633,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>136,0</td>
+      <td>49,0</td>
+      <td>35,9</td>
+      <td>174,9</td>
+      <td>27,7</td>
+      <td>25,5</td>
+      <td>231,0</td>
+      <td>52,1</td>
+      <td>174,4</td>
+      <td>662,3</td>
+      <td>1 568,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>137,5</td>
+      <td>48,0</td>
+      <td>33,1</td>
+      <td>166,1</td>
+      <td>26,6</td>
+      <td>22,8</td>
+      <td>222,6</td>
+      <td>48,9</td>
+      <td>169,4</td>
+      <td>631,9</td>
+      <td>1 506,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>131,4</td>
+      <td>45,5</td>
+      <td>31,2</td>
+      <td>159,4</td>
+      <td>25,3</td>
+      <td>21,0</td>
+      <td>210,5</td>
+      <td>47,4</td>
+      <td>160,4</td>
+      <td>596,9</td>
+      <td>1 429,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>125,6</td>
+      <td>41,6</td>
+      <td>29,4</td>
+      <td>146,1</td>
+      <td>24,2</td>
+      <td>19,1</td>
+      <td>195,8</td>
+      <td>45,5</td>
+      <td>150,1</td>
+      <td>567,3</td>
+      <td>1 344,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>121,6</td>
+      <td>40,0</td>
+      <td>26,5</td>
+      <td>132,0</td>
+      <td>22,4</td>
+      <td>16,9</td>
+      <td>183,4</td>
+      <td>42,8</td>
+      <td>144,3</td>
+      <td>535,4</td>
+      <td>1 265,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>123,6</td>
+      <td>42,2</td>
+      <td>25,1</td>
+      <td>124,2</td>
+      <td>22,0</td>
+      <td>16,6</td>
+      <td>173,0</td>
+      <td>41,9</td>
+      <td>139,6</td>
+      <td>507,6</td>
+      <td>1 215,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>122,3</td>
+      <td>37,7</td>
+      <td>23,8</td>
+      <td>120,5</td>
+      <td>21,1</td>
+      <td>15,7</td>
+      <td>165,0</td>
+      <td>39,8</td>
+      <td>135,8</td>
+      <td>478,7</td>
+      <td>1 160,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>122,9</td>
+      <td>39,5</td>
+      <td>22,5</td>
+      <td>113,9</td>
+      <td>19,5</td>
+      <td>14,7</td>
+      <td>156,9</td>
+      <td>39,0</td>
+      <td>131,0</td>
+      <td>453,9</td>
+      <td>1 113,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>131,8</td>
+      <td>39,0</td>
+      <td>20,7</td>
+      <td>101,0</td>
+      <td>16,1</td>
+      <td>13,9</td>
+      <td>148,3</td>
+      <td>34,5</td>
+      <td>121,4</td>
+      <td>416,2</td>
+      <td>1 043,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>132,9</td>
+      <td>36,5</td>
+      <td>19,2</td>
+      <td>87,2</td>
+      <td>12,8</td>
+      <td>12,2</td>
+      <td>139,2</td>
+      <td>30,7</td>
+      <td>113,8</td>
+      <td>382,7</td>
+      <td>967,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>120,0</td>
+      <td>34,4</td>
+      <td>18,3</td>
+      <td>78,3</td>
+      <td>11,8</td>
+      <td>12,1</td>
+      <td>132,1</td>
+      <td>25,5</td>
+      <td>108,6</td>
+      <td>359,6</td>
+      <td>900,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>97,2</td>
+      <td>29,6</td>
+      <td>17,0</td>
+      <td>74,9</td>
+      <td>11,2</td>
+      <td>10,9</td>
+      <td>124,9</td>
+      <td>24,1</td>
+      <td>103,4</td>
+      <td>341,3</td>
+      <td>834,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>87,8</td>
+      <td>30,7</td>
+      <td>17,6</td>
+      <td>69,1</td>
+      <td>10,7</td>
+      <td>11,3</td>
+      <td>117,0</td>
+      <td>23,3</td>
+      <td>100,6</td>
+      <td>332,2</td>
+      <td>800,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>89,0</td>
+      <td>30,3</td>
+      <td>17,2</td>
+      <td>68,9</td>
+      <td>8,8</td>
+      <td>11,1</td>
+      <td>111,3</td>
+      <td>21,8</td>
+      <td>99,0</td>
+      <td>316,3</td>
+      <td>773,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>83,4</td>
+      <td>31,1</td>
+      <td>17,1</td>
+      <td>66,5</td>
+      <td>8,2</td>
+      <td>4,8</td>
+      <td>103,2</td>
+      <td>21,2</td>
+      <td>89,8</td>
+      <td>296,5</td>
+      <td>721,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>84,9</td>
+      <td>27,4</td>
+      <td>15,0</td>
+      <td>63,4</td>
+      <td>8,3</td>
+      <td>4,1</td>
+      <td>97,2</td>
+      <td>19,5</td>
+      <td>85,1</td>
+      <td>272,0</td>
+      <td>677,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>64,5</td>
+      <td>27,9</td>
+      <td>14,4</td>
+      <td>64,6</td>
+      <td>9,8</td>
+      <td>7,3</td>
+      <td>89,5</td>
+      <td>19,0</td>
+      <td>77,9</td>
+      <td>248,9</td>
+      <td>623,7</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/14669" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 14669: Offentlig forvaltnings utgifter, etter sektor, art og formål (mill. kr) 1995-2025 (tabell 14669)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-14669" aria-label="Om kilden ssb-14669">[1]</a></p>
+
+</figure>
+</section>
+<section id="g-eksport">
+  <h2>Eksport etter type</h2>
+<figure class="chart" id="gal-eksport-hier-bars">
+  <figcaption>
+    <h3>Søyler</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-eksport-hier-bars" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-eksport-hier-bars", "kind": "dataset", "title": "S\u00f8yler", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "../data/okonomi/eksport_lopende.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Tradisjonelle varer<br><span class="muted">mrd. kr</span></th><th scope="col">Råolje og naturgass<br><span class="muted">mrd. kr</span></th><th scope="col">Skip, plattformer og fly<br><span class="muted">mrd. kr</span></th><th scope="col">Tjenester<br><span class="muted">mrd. kr</span></th><th scope="col">Eksport i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>721,9<sup title="Foreløpig tall">f</sup></td>
+      <td>1 099,9<sup title="Foreløpig tall">f</sup></td>
+      <td>14,7<sup title="Foreløpig tall">f</sup></td>
+      <td>675,4<sup title="Foreløpig tall">f</sup></td>
+      <td>2 511,8<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>671,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 169,3<sup title="Foreløpig tall">f</sup></td>
+      <td>12,1<sup title="Foreløpig tall">f</sup></td>
+      <td>643,2<sup title="Foreløpig tall">f</sup></td>
+      <td>2 496,3<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>658,6</td>
+      <td>1 225,9</td>
+      <td>9,1</td>
+      <td>568,1</td>
+      <td>2 461,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>631,9</td>
+      <td>2 015,9</td>
+      <td>12,0</td>
+      <td>520,2</td>
+      <td>3 180,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>493,2</td>
+      <td>981,3</td>
+      <td>20,1</td>
+      <td>377,5</td>
+      <td>1 872,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>410,6</td>
+      <td>369,0</td>
+      <td>9,6</td>
+      <td>339,0</td>
+      <td>1 128,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>429,3</td>
+      <td>488,1</td>
+      <td>12,6</td>
+      <td>402,6</td>
+      <td>1 332,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>408,3</td>
+      <td>593,2</td>
+      <td>12,3</td>
+      <td>365,2</td>
+      <td>1 379,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>381,0</td>
+      <td>479,2</td>
+      <td>18,0</td>
+      <td>352,0</td>
+      <td>1 230,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>360,7</td>
+      <td>387,9</td>
+      <td>17,4</td>
+      <td>363,4</td>
+      <td>1 129,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>388,8</td>
+      <td>460,3</td>
+      <td>11,7</td>
+      <td>359,9</td>
+      <td>1 220,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>355,9</td>
+      <td>569,1</td>
+      <td>10,1</td>
+      <td>332,8</td>
+      <td>1 268,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>332,5</td>
+      <td>597,5</td>
+      <td>9,2</td>
+      <td>303,3</td>
+      <td>1 242,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>315,0</td>
+      <td>627,6</td>
+      <td>8,8</td>
+      <td>289,5</td>
+      <td>1 240,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>316,2</td>
+      <td>583,1</td>
+      <td>13,7</td>
+      <td>265,6</td>
+      <td>1 178,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>300,9</td>
+      <td>482,1</td>
+      <td>8,9</td>
+      <td>260,7</td>
+      <td>1 052,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>284,7</td>
+      <td>448,8</td>
+      <td>12,0</td>
+      <td>231,1</td>
+      <td>976,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>319,2</td>
+      <td>635,1</td>
+      <td>13,3</td>
+      <td>248,3</td>
+      <td>1 215,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>285,9</td>
+      <td>488,4</td>
+      <td>11,7</td>
+      <td>229,8</td>
+      <td>1 015,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>260,5</td>
+      <td>505,6</td>
+      <td>12,7</td>
+      <td>212,1</td>
+      <td>990,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>223,7</td>
+      <td>434,1</td>
+      <td>10,7</td>
+      <td>199,1</td>
+      <td>867,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>204,4</td>
+      <td>341,6</td>
+      <td>9,8</td>
+      <td>179,3</td>
+      <td>735,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>182,7</td>
+      <td>284,0</td>
+      <td>15,6</td>
+      <td>162,0</td>
+      <td>644,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>178,8</td>
+      <td>277,6</td>
+      <td>13,5</td>
+      <td>163,1</td>
+      <td>633,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>195,4</td>
+      <td>317,2</td>
+      <td>19,0</td>
+      <td>173,3</td>
+      <td>704,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>193,4</td>
+      <td>322,7</td>
+      <td>11,3</td>
+      <td>161,0</td>
+      <td>688,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>166,5</td>
+      <td>169,5</td>
+      <td>18,2</td>
+      <td>132,0</td>
+      <td>486,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>164,9</td>
+      <td>125,4</td>
+      <td>12,1</td>
+      <td>125,4</td>
+      <td>427,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>149,3</td>
+      <td>175,0</td>
+      <td>14,2</td>
+      <td>118,4</td>
+      <td>456,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>139,8</td>
+      <td>164,8</td>
+      <td>9,7</td>
+      <td>101,6</td>
+      <td>415,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>129,0</td>
+      <td>119,7</td>
+      <td>11,2</td>
+      <td>92,7</td>
+      <td>352,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>115,6</td>
+      <td>111,6</td>
+      <td>11,3</td>
+      <td>91,2</td>
+      <td>329,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>101,7</td>
+      <td>107,4</td>
+      <td>13,8</td>
+      <td>91,0</td>
+      <td>313,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>98,1</td>
+      <td>100,2</td>
+      <td>15,8</td>
+      <td>83,4</td>
+      <td>297,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>99,8</td>
+      <td>99,8</td>
+      <td>15,6</td>
+      <td>89,7</td>
+      <td>304,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>101,1</td>
+      <td>91,8</td>
+      <td>13,9</td>
+      <td>83,6</td>
+      <td>290,4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-eksport-treemap">
+  <figcaption>
+    <h3>Flisekart</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-eksport-treemap" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-eksport-treemap", "kind": "dataset", "title": "Flisekart", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "../data/okonomi/eksport_lopende.json", "views": ["treemap"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Tradisjonelle varer<br><span class="muted">mrd. kr</span></th><th scope="col">Råolje og naturgass<br><span class="muted">mrd. kr</span></th><th scope="col">Skip, plattformer og fly<br><span class="muted">mrd. kr</span></th><th scope="col">Tjenester<br><span class="muted">mrd. kr</span></th><th scope="col">Eksport i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>721,9<sup title="Foreløpig tall">f</sup></td>
+      <td>1 099,9<sup title="Foreløpig tall">f</sup></td>
+      <td>14,7<sup title="Foreløpig tall">f</sup></td>
+      <td>675,4<sup title="Foreløpig tall">f</sup></td>
+      <td>2 511,8<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>671,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 169,3<sup title="Foreløpig tall">f</sup></td>
+      <td>12,1<sup title="Foreløpig tall">f</sup></td>
+      <td>643,2<sup title="Foreløpig tall">f</sup></td>
+      <td>2 496,3<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>658,6</td>
+      <td>1 225,9</td>
+      <td>9,1</td>
+      <td>568,1</td>
+      <td>2 461,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>631,9</td>
+      <td>2 015,9</td>
+      <td>12,0</td>
+      <td>520,2</td>
+      <td>3 180,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>493,2</td>
+      <td>981,3</td>
+      <td>20,1</td>
+      <td>377,5</td>
+      <td>1 872,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>410,6</td>
+      <td>369,0</td>
+      <td>9,6</td>
+      <td>339,0</td>
+      <td>1 128,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>429,3</td>
+      <td>488,1</td>
+      <td>12,6</td>
+      <td>402,6</td>
+      <td>1 332,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>408,3</td>
+      <td>593,2</td>
+      <td>12,3</td>
+      <td>365,2</td>
+      <td>1 379,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>381,0</td>
+      <td>479,2</td>
+      <td>18,0</td>
+      <td>352,0</td>
+      <td>1 230,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>360,7</td>
+      <td>387,9</td>
+      <td>17,4</td>
+      <td>363,4</td>
+      <td>1 129,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>388,8</td>
+      <td>460,3</td>
+      <td>11,7</td>
+      <td>359,9</td>
+      <td>1 220,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>355,9</td>
+      <td>569,1</td>
+      <td>10,1</td>
+      <td>332,8</td>
+      <td>1 268,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>332,5</td>
+      <td>597,5</td>
+      <td>9,2</td>
+      <td>303,3</td>
+      <td>1 242,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>315,0</td>
+      <td>627,6</td>
+      <td>8,8</td>
+      <td>289,5</td>
+      <td>1 240,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>316,2</td>
+      <td>583,1</td>
+      <td>13,7</td>
+      <td>265,6</td>
+      <td>1 178,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>300,9</td>
+      <td>482,1</td>
+      <td>8,9</td>
+      <td>260,7</td>
+      <td>1 052,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>284,7</td>
+      <td>448,8</td>
+      <td>12,0</td>
+      <td>231,1</td>
+      <td>976,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>319,2</td>
+      <td>635,1</td>
+      <td>13,3</td>
+      <td>248,3</td>
+      <td>1 215,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>285,9</td>
+      <td>488,4</td>
+      <td>11,7</td>
+      <td>229,8</td>
+      <td>1 015,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>260,5</td>
+      <td>505,6</td>
+      <td>12,7</td>
+      <td>212,1</td>
+      <td>990,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>223,7</td>
+      <td>434,1</td>
+      <td>10,7</td>
+      <td>199,1</td>
+      <td>867,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>204,4</td>
+      <td>341,6</td>
+      <td>9,8</td>
+      <td>179,3</td>
+      <td>735,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>182,7</td>
+      <td>284,0</td>
+      <td>15,6</td>
+      <td>162,0</td>
+      <td>644,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>178,8</td>
+      <td>277,6</td>
+      <td>13,5</td>
+      <td>163,1</td>
+      <td>633,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>195,4</td>
+      <td>317,2</td>
+      <td>19,0</td>
+      <td>173,3</td>
+      <td>704,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>193,4</td>
+      <td>322,7</td>
+      <td>11,3</td>
+      <td>161,0</td>
+      <td>688,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>166,5</td>
+      <td>169,5</td>
+      <td>18,2</td>
+      <td>132,0</td>
+      <td>486,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>164,9</td>
+      <td>125,4</td>
+      <td>12,1</td>
+      <td>125,4</td>
+      <td>427,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>149,3</td>
+      <td>175,0</td>
+      <td>14,2</td>
+      <td>118,4</td>
+      <td>456,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>139,8</td>
+      <td>164,8</td>
+      <td>9,7</td>
+      <td>101,6</td>
+      <td>415,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>129,0</td>
+      <td>119,7</td>
+      <td>11,2</td>
+      <td>92,7</td>
+      <td>352,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>115,6</td>
+      <td>111,6</td>
+      <td>11,3</td>
+      <td>91,2</td>
+      <td>329,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>101,7</td>
+      <td>107,4</td>
+      <td>13,8</td>
+      <td>91,0</td>
+      <td>313,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>98,1</td>
+      <td>100,2</td>
+      <td>15,8</td>
+      <td>83,4</td>
+      <td>297,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>99,8</td>
+      <td>99,8</td>
+      <td>15,6</td>
+      <td>89,7</td>
+      <td>304,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>101,1</td>
+      <td>91,8</td>
+      <td>13,9</td>
+      <td>83,6</td>
+      <td>290,4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-eksport-timeseries-stacked">
+  <figcaption>
+    <h3>Stablet</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-eksport-timeseries-stacked" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-eksport-timeseries-stacked", "kind": "dataset", "title": "Stablet", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "../data/okonomi/eksport_lopende.json", "views": ["timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Tradisjonelle varer<br><span class="muted">mrd. kr</span></th><th scope="col">Råolje og naturgass<br><span class="muted">mrd. kr</span></th><th scope="col">Skip, plattformer og fly<br><span class="muted">mrd. kr</span></th><th scope="col">Tjenester<br><span class="muted">mrd. kr</span></th><th scope="col">Eksport i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>721,9<sup title="Foreløpig tall">f</sup></td>
+      <td>1 099,9<sup title="Foreløpig tall">f</sup></td>
+      <td>14,7<sup title="Foreløpig tall">f</sup></td>
+      <td>675,4<sup title="Foreløpig tall">f</sup></td>
+      <td>2 511,8<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>671,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 169,3<sup title="Foreløpig tall">f</sup></td>
+      <td>12,1<sup title="Foreløpig tall">f</sup></td>
+      <td>643,2<sup title="Foreløpig tall">f</sup></td>
+      <td>2 496,3<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>658,6</td>
+      <td>1 225,9</td>
+      <td>9,1</td>
+      <td>568,1</td>
+      <td>2 461,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>631,9</td>
+      <td>2 015,9</td>
+      <td>12,0</td>
+      <td>520,2</td>
+      <td>3 180,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>493,2</td>
+      <td>981,3</td>
+      <td>20,1</td>
+      <td>377,5</td>
+      <td>1 872,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>410,6</td>
+      <td>369,0</td>
+      <td>9,6</td>
+      <td>339,0</td>
+      <td>1 128,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>429,3</td>
+      <td>488,1</td>
+      <td>12,6</td>
+      <td>402,6</td>
+      <td>1 332,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>408,3</td>
+      <td>593,2</td>
+      <td>12,3</td>
+      <td>365,2</td>
+      <td>1 379,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>381,0</td>
+      <td>479,2</td>
+      <td>18,0</td>
+      <td>352,0</td>
+      <td>1 230,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>360,7</td>
+      <td>387,9</td>
+      <td>17,4</td>
+      <td>363,4</td>
+      <td>1 129,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>388,8</td>
+      <td>460,3</td>
+      <td>11,7</td>
+      <td>359,9</td>
+      <td>1 220,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>355,9</td>
+      <td>569,1</td>
+      <td>10,1</td>
+      <td>332,8</td>
+      <td>1 268,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>332,5</td>
+      <td>597,5</td>
+      <td>9,2</td>
+      <td>303,3</td>
+      <td>1 242,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>315,0</td>
+      <td>627,6</td>
+      <td>8,8</td>
+      <td>289,5</td>
+      <td>1 240,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>316,2</td>
+      <td>583,1</td>
+      <td>13,7</td>
+      <td>265,6</td>
+      <td>1 178,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>300,9</td>
+      <td>482,1</td>
+      <td>8,9</td>
+      <td>260,7</td>
+      <td>1 052,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>284,7</td>
+      <td>448,8</td>
+      <td>12,0</td>
+      <td>231,1</td>
+      <td>976,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>319,2</td>
+      <td>635,1</td>
+      <td>13,3</td>
+      <td>248,3</td>
+      <td>1 215,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>285,9</td>
+      <td>488,4</td>
+      <td>11,7</td>
+      <td>229,8</td>
+      <td>1 015,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>260,5</td>
+      <td>505,6</td>
+      <td>12,7</td>
+      <td>212,1</td>
+      <td>990,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>223,7</td>
+      <td>434,1</td>
+      <td>10,7</td>
+      <td>199,1</td>
+      <td>867,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>204,4</td>
+      <td>341,6</td>
+      <td>9,8</td>
+      <td>179,3</td>
+      <td>735,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>182,7</td>
+      <td>284,0</td>
+      <td>15,6</td>
+      <td>162,0</td>
+      <td>644,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>178,8</td>
+      <td>277,6</td>
+      <td>13,5</td>
+      <td>163,1</td>
+      <td>633,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>195,4</td>
+      <td>317,2</td>
+      <td>19,0</td>
+      <td>173,3</td>
+      <td>704,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>193,4</td>
+      <td>322,7</td>
+      <td>11,3</td>
+      <td>161,0</td>
+      <td>688,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>166,5</td>
+      <td>169,5</td>
+      <td>18,2</td>
+      <td>132,0</td>
+      <td>486,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>164,9</td>
+      <td>125,4</td>
+      <td>12,1</td>
+      <td>125,4</td>
+      <td>427,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>149,3</td>
+      <td>175,0</td>
+      <td>14,2</td>
+      <td>118,4</td>
+      <td>456,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>139,8</td>
+      <td>164,8</td>
+      <td>9,7</td>
+      <td>101,6</td>
+      <td>415,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>129,0</td>
+      <td>119,7</td>
+      <td>11,2</td>
+      <td>92,7</td>
+      <td>352,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>115,6</td>
+      <td>111,6</td>
+      <td>11,3</td>
+      <td>91,2</td>
+      <td>329,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>101,7</td>
+      <td>107,4</td>
+      <td>13,8</td>
+      <td>91,0</td>
+      <td>313,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>98,1</td>
+      <td>100,2</td>
+      <td>15,8</td>
+      <td>83,4</td>
+      <td>297,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>99,8</td>
+      <td>99,8</td>
+      <td>15,6</td>
+      <td>89,7</td>
+      <td>304,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>101,1</td>
+      <td>91,8</td>
+      <td>13,9</td>
+      <td>83,6</td>
+      <td>290,4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-eksport-timeseries-lines">
+  <figcaption>
+    <h3>Linjer</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-eksport-timeseries-lines" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-eksport-timeseries-lines", "kind": "dataset", "title": "Linjer", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "../data/okonomi/eksport_lopende.json", "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Tradisjonelle varer<br><span class="muted">mrd. kr</span></th><th scope="col">Råolje og naturgass<br><span class="muted">mrd. kr</span></th><th scope="col">Skip, plattformer og fly<br><span class="muted">mrd. kr</span></th><th scope="col">Tjenester<br><span class="muted">mrd. kr</span></th><th scope="col">Eksport i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>721,9<sup title="Foreløpig tall">f</sup></td>
+      <td>1 099,9<sup title="Foreløpig tall">f</sup></td>
+      <td>14,7<sup title="Foreløpig tall">f</sup></td>
+      <td>675,4<sup title="Foreløpig tall">f</sup></td>
+      <td>2 511,8<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>671,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 169,3<sup title="Foreløpig tall">f</sup></td>
+      <td>12,1<sup title="Foreløpig tall">f</sup></td>
+      <td>643,2<sup title="Foreløpig tall">f</sup></td>
+      <td>2 496,3<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>658,6</td>
+      <td>1 225,9</td>
+      <td>9,1</td>
+      <td>568,1</td>
+      <td>2 461,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>631,9</td>
+      <td>2 015,9</td>
+      <td>12,0</td>
+      <td>520,2</td>
+      <td>3 180,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>493,2</td>
+      <td>981,3</td>
+      <td>20,1</td>
+      <td>377,5</td>
+      <td>1 872,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>410,6</td>
+      <td>369,0</td>
+      <td>9,6</td>
+      <td>339,0</td>
+      <td>1 128,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>429,3</td>
+      <td>488,1</td>
+      <td>12,6</td>
+      <td>402,6</td>
+      <td>1 332,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>408,3</td>
+      <td>593,2</td>
+      <td>12,3</td>
+      <td>365,2</td>
+      <td>1 379,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>381,0</td>
+      <td>479,2</td>
+      <td>18,0</td>
+      <td>352,0</td>
+      <td>1 230,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>360,7</td>
+      <td>387,9</td>
+      <td>17,4</td>
+      <td>363,4</td>
+      <td>1 129,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>388,8</td>
+      <td>460,3</td>
+      <td>11,7</td>
+      <td>359,9</td>
+      <td>1 220,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>355,9</td>
+      <td>569,1</td>
+      <td>10,1</td>
+      <td>332,8</td>
+      <td>1 268,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>332,5</td>
+      <td>597,5</td>
+      <td>9,2</td>
+      <td>303,3</td>
+      <td>1 242,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>315,0</td>
+      <td>627,6</td>
+      <td>8,8</td>
+      <td>289,5</td>
+      <td>1 240,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>316,2</td>
+      <td>583,1</td>
+      <td>13,7</td>
+      <td>265,6</td>
+      <td>1 178,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>300,9</td>
+      <td>482,1</td>
+      <td>8,9</td>
+      <td>260,7</td>
+      <td>1 052,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>284,7</td>
+      <td>448,8</td>
+      <td>12,0</td>
+      <td>231,1</td>
+      <td>976,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>319,2</td>
+      <td>635,1</td>
+      <td>13,3</td>
+      <td>248,3</td>
+      <td>1 215,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>285,9</td>
+      <td>488,4</td>
+      <td>11,7</td>
+      <td>229,8</td>
+      <td>1 015,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>260,5</td>
+      <td>505,6</td>
+      <td>12,7</td>
+      <td>212,1</td>
+      <td>990,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>223,7</td>
+      <td>434,1</td>
+      <td>10,7</td>
+      <td>199,1</td>
+      <td>867,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>204,4</td>
+      <td>341,6</td>
+      <td>9,8</td>
+      <td>179,3</td>
+      <td>735,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>182,7</td>
+      <td>284,0</td>
+      <td>15,6</td>
+      <td>162,0</td>
+      <td>644,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>178,8</td>
+      <td>277,6</td>
+      <td>13,5</td>
+      <td>163,1</td>
+      <td>633,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>195,4</td>
+      <td>317,2</td>
+      <td>19,0</td>
+      <td>173,3</td>
+      <td>704,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>193,4</td>
+      <td>322,7</td>
+      <td>11,3</td>
+      <td>161,0</td>
+      <td>688,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>166,5</td>
+      <td>169,5</td>
+      <td>18,2</td>
+      <td>132,0</td>
+      <td>486,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>164,9</td>
+      <td>125,4</td>
+      <td>12,1</td>
+      <td>125,4</td>
+      <td>427,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>149,3</td>
+      <td>175,0</td>
+      <td>14,2</td>
+      <td>118,4</td>
+      <td>456,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>139,8</td>
+      <td>164,8</td>
+      <td>9,7</td>
+      <td>101,6</td>
+      <td>415,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>129,0</td>
+      <td>119,7</td>
+      <td>11,2</td>
+      <td>92,7</td>
+      <td>352,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>115,6</td>
+      <td>111,6</td>
+      <td>11,3</td>
+      <td>91,2</td>
+      <td>329,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>101,7</td>
+      <td>107,4</td>
+      <td>13,8</td>
+      <td>91,0</td>
+      <td>313,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>98,1</td>
+      <td>100,2</td>
+      <td>15,8</td>
+      <td>83,4</td>
+      <td>297,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>99,8</td>
+      <td>99,8</td>
+      <td>15,6</td>
+      <td>89,7</td>
+      <td>304,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>101,1</td>
+      <td>91,8</td>
+      <td>13,9</td>
+      <td>83,6</td>
+      <td>290,4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-eksport-slope">
+  <figcaption>
+    <h3>Før og nå</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-eksport-slope" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "../data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_fastland_lopende": "../data/okonomi/bnp_fastland_lopende.json", "okonomi.bnp_lopende": "../data/okonomi/bnp_lopende.json"}, "id": "gal-eksport-slope", "kind": "dataset", "title": "F\u00f8r og n\u00e5", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "../data/okonomi/eksport_lopende.json", "views": ["slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Tradisjonelle varer<br><span class="muted">mrd. kr</span></th><th scope="col">Råolje og naturgass<br><span class="muted">mrd. kr</span></th><th scope="col">Skip, plattformer og fly<br><span class="muted">mrd. kr</span></th><th scope="col">Tjenester<br><span class="muted">mrd. kr</span></th><th scope="col">Eksport i alt<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>721,9<sup title="Foreløpig tall">f</sup></td>
+      <td>1 099,9<sup title="Foreløpig tall">f</sup></td>
+      <td>14,7<sup title="Foreløpig tall">f</sup></td>
+      <td>675,4<sup title="Foreløpig tall">f</sup></td>
+      <td>2 511,8<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>671,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 169,3<sup title="Foreløpig tall">f</sup></td>
+      <td>12,1<sup title="Foreløpig tall">f</sup></td>
+      <td>643,2<sup title="Foreløpig tall">f</sup></td>
+      <td>2 496,3<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>658,6</td>
+      <td>1 225,9</td>
+      <td>9,1</td>
+      <td>568,1</td>
+      <td>2 461,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>631,9</td>
+      <td>2 015,9</td>
+      <td>12,0</td>
+      <td>520,2</td>
+      <td>3 180,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>493,2</td>
+      <td>981,3</td>
+      <td>20,1</td>
+      <td>377,5</td>
+      <td>1 872,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>410,6</td>
+      <td>369,0</td>
+      <td>9,6</td>
+      <td>339,0</td>
+      <td>1 128,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>429,3</td>
+      <td>488,1</td>
+      <td>12,6</td>
+      <td>402,6</td>
+      <td>1 332,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>408,3</td>
+      <td>593,2</td>
+      <td>12,3</td>
+      <td>365,2</td>
+      <td>1 379,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>381,0</td>
+      <td>479,2</td>
+      <td>18,0</td>
+      <td>352,0</td>
+      <td>1 230,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>360,7</td>
+      <td>387,9</td>
+      <td>17,4</td>
+      <td>363,4</td>
+      <td>1 129,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>388,8</td>
+      <td>460,3</td>
+      <td>11,7</td>
+      <td>359,9</td>
+      <td>1 220,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>355,9</td>
+      <td>569,1</td>
+      <td>10,1</td>
+      <td>332,8</td>
+      <td>1 268,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>332,5</td>
+      <td>597,5</td>
+      <td>9,2</td>
+      <td>303,3</td>
+      <td>1 242,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>315,0</td>
+      <td>627,6</td>
+      <td>8,8</td>
+      <td>289,5</td>
+      <td>1 240,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>316,2</td>
+      <td>583,1</td>
+      <td>13,7</td>
+      <td>265,6</td>
+      <td>1 178,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>300,9</td>
+      <td>482,1</td>
+      <td>8,9</td>
+      <td>260,7</td>
+      <td>1 052,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>284,7</td>
+      <td>448,8</td>
+      <td>12,0</td>
+      <td>231,1</td>
+      <td>976,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>319,2</td>
+      <td>635,1</td>
+      <td>13,3</td>
+      <td>248,3</td>
+      <td>1 215,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>285,9</td>
+      <td>488,4</td>
+      <td>11,7</td>
+      <td>229,8</td>
+      <td>1 015,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>260,5</td>
+      <td>505,6</td>
+      <td>12,7</td>
+      <td>212,1</td>
+      <td>990,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>223,7</td>
+      <td>434,1</td>
+      <td>10,7</td>
+      <td>199,1</td>
+      <td>867,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>204,4</td>
+      <td>341,6</td>
+      <td>9,8</td>
+      <td>179,3</td>
+      <td>735,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>182,7</td>
+      <td>284,0</td>
+      <td>15,6</td>
+      <td>162,0</td>
+      <td>644,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>178,8</td>
+      <td>277,6</td>
+      <td>13,5</td>
+      <td>163,1</td>
+      <td>633,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>195,4</td>
+      <td>317,2</td>
+      <td>19,0</td>
+      <td>173,3</td>
+      <td>704,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>193,4</td>
+      <td>322,7</td>
+      <td>11,3</td>
+      <td>161,0</td>
+      <td>688,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>166,5</td>
+      <td>169,5</td>
+      <td>18,2</td>
+      <td>132,0</td>
+      <td>486,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>164,9</td>
+      <td>125,4</td>
+      <td>12,1</td>
+      <td>125,4</td>
+      <td>427,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>149,3</td>
+      <td>175,0</td>
+      <td>14,2</td>
+      <td>118,4</td>
+      <td>456,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>139,8</td>
+      <td>164,8</td>
+      <td>9,7</td>
+      <td>101,6</td>
+      <td>415,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>129,0</td>
+      <td>119,7</td>
+      <td>11,2</td>
+      <td>92,7</td>
+      <td>352,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>115,6</td>
+      <td>111,6</td>
+      <td>11,3</td>
+      <td>91,2</td>
+      <td>329,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>101,7</td>
+      <td>107,4</td>
+      <td>13,8</td>
+      <td>91,0</td>
+      <td>313,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>98,1</td>
+      <td>100,2</td>
+      <td>15,8</td>
+      <td>83,4</td>
+      <td>297,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>99,8</td>
+      <td>99,8</td>
+      <td>15,6</td>
+      <td>89,7</td>
+      <td>304,9</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>101,1</td>
+      <td>91,8</td>
+      <td>13,9</td>
+      <td>83,6</td>
+      <td>290,4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+</section>
+<section id="g-bnp">
+  <h2>BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart</h2>
+<figure class="chart" id="gal-bnp-timeseries-lines">
+  <figcaption>
+    <h3>Linjer</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-bnp-timeseries-lines" data-config='{"id": "gal-bnp-timeseries-lines", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sj\u00f8fart"], "title": "Linjer", "urls": ["../data/okonomi/bnp_lopende.json", "../data/okonomi/bnp_fastland_lopende.json", "../data/okonomi/olje_sjofart_lopende.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">BNP, markedsverdi, løpende priser<br><span class="muted">mrd. kr</span></th><th scope="col">BNP Fastlands-Norge, markedsverdi, løpende priser<br><span class="muted">mrd. kr</span></th><th scope="col">Oljevirksomhet og utenriks sjøfart, løpende priser<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>5 511,3<sup title="Foreløpig tall">f</sup></td>
+      <td>4 397,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 113,6<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>5 382,4<sup title="Foreløpig tall">f</sup></td>
+      <td>4 191,8<sup title="Foreløpig tall">f</sup></td>
+      <td>1 190,6<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>5 304,9</td>
+      <td>4 021,6</td>
+      <td>1 283,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>5 935,0</td>
+      <td>3 864,9</td>
+      <td>2 070,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>4 480,5</td>
+      <td>3 458,1</td>
+      <td>1 022,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>3 599,2</td>
+      <td>3 197,8</td>
+      <td>401,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>3 733,4</td>
+      <td>3 193,8</td>
+      <td>539,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>3 696,9</td>
+      <td>3 041,3</td>
+      <td>655,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>3 438,3</td>
+      <td>2 904,1</td>
+      <td>534,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>3 219,6</td>
+      <td>2 787,9</td>
+      <td>431,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>3 231,1</td>
+      <td>2 707,0</td>
+      <td>524,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>3 250,6</td>
+      <td>2 613,7</td>
+      <td>636,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>3 173,3</td>
+      <td>2 493,2</td>
+      <td>680,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>3 054,7</td>
+      <td>2 358,4</td>
+      <td>696,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>2 874,4</td>
+      <td>2 216,4</td>
+      <td>658,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>2 660,2</td>
+      <td>2 125,5</td>
+      <td>534,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>2 488,1</td>
+      <td>2 006,2</td>
+      <td>481,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>2 662,4</td>
+      <td>1 980,0</td>
+      <td>682,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>2 390,5</td>
+      <td>1 855,9</td>
+      <td>534,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>2 243,2</td>
+      <td>1 676,8</td>
+      <td>566,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>2 006,3</td>
+      <td>1 520,9</td>
+      <td>485,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>1 790,8</td>
+      <td>1 408,2</td>
+      <td>382,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>1 622,7</td>
+      <td>1 304,5</td>
+      <td>318,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>1 559,7</td>
+      <td>1 252,2</td>
+      <td>307,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>1 560,9</td>
+      <td>1 202,8</td>
+      <td>358,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>1 501,8</td>
+      <td>1 135,4</td>
+      <td>366,3</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>1 258,0</td>
+      <td>1 066,1</td>
+      <td>192,0</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>1 154,1</td>
+      <td>1 010,4</td>
+      <td>143,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>1 131,8</td>
+      <td>937,1</td>
+      <td>194,8</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>1 047,6</td>
+      <td>869,4</td>
+      <td>178,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>957,1</td>
+      <td>822,7</td>
+      <td>134,5</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>891,5</td>
+      <td>764,2</td>
+      <td>127,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>850,2</td>
+      <td>725,8</td>
+      <td>124,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>807,9</td>
+      <td>692,2</td>
+      <td>115,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>785,4</td>
+      <td>665,3</td>
+      <td>120,1</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>747,1</td>
+      <td>636,9</td>
+      <td>110,1</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-bnp-timeseries-bars">
+  <figcaption>
+    <h3>Søyler over tid</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-bnp-timeseries-bars" data-config='{"id": "gal-bnp-timeseries-bars", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sj\u00f8fart"], "title": "S\u00f8yler over tid", "urls": ["../data/okonomi/bnp_lopende.json", "../data/okonomi/bnp_fastland_lopende.json", "../data/okonomi/olje_sjofart_lopende.json"], "views": ["timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">BNP, markedsverdi, løpende priser<br><span class="muted">mrd. kr</span></th><th scope="col">BNP Fastlands-Norge, markedsverdi, løpende priser<br><span class="muted">mrd. kr</span></th><th scope="col">Oljevirksomhet og utenriks sjøfart, løpende priser<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>5 511,3<sup title="Foreløpig tall">f</sup></td>
+      <td>4 397,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 113,6<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>5 382,4<sup title="Foreløpig tall">f</sup></td>
+      <td>4 191,8<sup title="Foreløpig tall">f</sup></td>
+      <td>1 190,6<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>5 304,9</td>
+      <td>4 021,6</td>
+      <td>1 283,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>5 935,0</td>
+      <td>3 864,9</td>
+      <td>2 070,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>4 480,5</td>
+      <td>3 458,1</td>
+      <td>1 022,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>3 599,2</td>
+      <td>3 197,8</td>
+      <td>401,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>3 733,4</td>
+      <td>3 193,8</td>
+      <td>539,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>3 696,9</td>
+      <td>3 041,3</td>
+      <td>655,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>3 438,3</td>
+      <td>2 904,1</td>
+      <td>534,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>3 219,6</td>
+      <td>2 787,9</td>
+      <td>431,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>3 231,1</td>
+      <td>2 707,0</td>
+      <td>524,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>3 250,6</td>
+      <td>2 613,7</td>
+      <td>636,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>3 173,3</td>
+      <td>2 493,2</td>
+      <td>680,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>3 054,7</td>
+      <td>2 358,4</td>
+      <td>696,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>2 874,4</td>
+      <td>2 216,4</td>
+      <td>658,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>2 660,2</td>
+      <td>2 125,5</td>
+      <td>534,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>2 488,1</td>
+      <td>2 006,2</td>
+      <td>481,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>2 662,4</td>
+      <td>1 980,0</td>
+      <td>682,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>2 390,5</td>
+      <td>1 855,9</td>
+      <td>534,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>2 243,2</td>
+      <td>1 676,8</td>
+      <td>566,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>2 006,3</td>
+      <td>1 520,9</td>
+      <td>485,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>1 790,8</td>
+      <td>1 408,2</td>
+      <td>382,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>1 622,7</td>
+      <td>1 304,5</td>
+      <td>318,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>1 559,7</td>
+      <td>1 252,2</td>
+      <td>307,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>1 560,9</td>
+      <td>1 202,8</td>
+      <td>358,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>1 501,8</td>
+      <td>1 135,4</td>
+      <td>366,3</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>1 258,0</td>
+      <td>1 066,1</td>
+      <td>192,0</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>1 154,1</td>
+      <td>1 010,4</td>
+      <td>143,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>1 131,8</td>
+      <td>937,1</td>
+      <td>194,8</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>1 047,6</td>
+      <td>869,4</td>
+      <td>178,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>957,1</td>
+      <td>822,7</td>
+      <td>134,5</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>891,5</td>
+      <td>764,2</td>
+      <td>127,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>850,2</td>
+      <td>725,8</td>
+      <td>124,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>807,9</td>
+      <td>692,2</td>
+      <td>115,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>785,4</td>
+      <td>665,3</td>
+      <td>120,1</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>747,1</td>
+      <td>636,9</td>
+      <td>110,1</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-bnp-slope">
+  <figcaption>
+    <h3>Før og nå</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-bnp-slope" data-config='{"id": "gal-bnp-slope", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sj\u00f8fart"], "title": "F\u00f8r og n\u00e5", "urls": ["../data/okonomi/bnp_lopende.json", "../data/okonomi/bnp_fastland_lopende.json", "../data/okonomi/olje_sjofart_lopende.json"], "views": ["slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">BNP, markedsverdi, løpende priser<br><span class="muted">mrd. kr</span></th><th scope="col">BNP Fastlands-Norge, markedsverdi, løpende priser<br><span class="muted">mrd. kr</span></th><th scope="col">Oljevirksomhet og utenriks sjøfart, løpende priser<br><span class="muted">mrd. kr</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>5 511,3<sup title="Foreløpig tall">f</sup></td>
+      <td>4 397,7<sup title="Foreløpig tall">f</sup></td>
+      <td>1 113,6<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>5 382,4<sup title="Foreløpig tall">f</sup></td>
+      <td>4 191,8<sup title="Foreløpig tall">f</sup></td>
+      <td>1 190,6<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>5 304,9</td>
+      <td>4 021,6</td>
+      <td>1 283,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>5 935,0</td>
+      <td>3 864,9</td>
+      <td>2 070,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>4 480,5</td>
+      <td>3 458,1</td>
+      <td>1 022,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>3 599,2</td>
+      <td>3 197,8</td>
+      <td>401,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>3 733,4</td>
+      <td>3 193,8</td>
+      <td>539,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>3 696,9</td>
+      <td>3 041,3</td>
+      <td>655,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>3 438,3</td>
+      <td>2 904,1</td>
+      <td>534,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>3 219,6</td>
+      <td>2 787,9</td>
+      <td>431,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>3 231,1</td>
+      <td>2 707,0</td>
+      <td>524,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>3 250,6</td>
+      <td>2 613,7</td>
+      <td>636,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>3 173,3</td>
+      <td>2 493,2</td>
+      <td>680,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>3 054,7</td>
+      <td>2 358,4</td>
+      <td>696,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>2 874,4</td>
+      <td>2 216,4</td>
+      <td>658,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>2 660,2</td>
+      <td>2 125,5</td>
+      <td>534,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>2 488,1</td>
+      <td>2 006,2</td>
+      <td>481,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>2 662,4</td>
+      <td>1 980,0</td>
+      <td>682,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>2 390,5</td>
+      <td>1 855,9</td>
+      <td>534,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>2 243,2</td>
+      <td>1 676,8</td>
+      <td>566,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>2 006,3</td>
+      <td>1 520,9</td>
+      <td>485,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>1 790,8</td>
+      <td>1 408,2</td>
+      <td>382,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>1 622,7</td>
+      <td>1 304,5</td>
+      <td>318,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>1 559,7</td>
+      <td>1 252,2</td>
+      <td>307,5</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>1 560,9</td>
+      <td>1 202,8</td>
+      <td>358,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>1 501,8</td>
+      <td>1 135,4</td>
+      <td>366,3</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>1 258,0</td>
+      <td>1 066,1</td>
+      <td>192,0</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>1 154,1</td>
+      <td>1 010,4</td>
+      <td>143,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>1 131,8</td>
+      <td>937,1</td>
+      <td>194,8</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>1 047,6</td>
+      <td>869,4</td>
+      <td>178,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>957,1</td>
+      <td>822,7</td>
+      <td>134,5</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>891,5</td>
+      <td>764,2</td>
+      <td>127,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>850,2</td>
+      <td>725,8</td>
+      <td>124,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>807,9</td>
+      <td>692,2</td>
+      <td>115,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>785,4</td>
+      <td>665,3</td>
+      <td>120,1</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>747,1</td>
+      <td>636,9</td>
+      <td>110,1</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+</section>
+<section id="g-balanse">
+  <h2>Handelsbalanse med og uten råolje og naturgass</h2>
+<figure class="chart" id="gal-balanse-timeseries-bars">
+  <figcaption>
+    <h3>Søyler over tid</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-balanse-timeseries-bars" data-config='{"id": "gal-balanse-timeseries-bars", "kind": "series", "labels": ["Alle varer og tjenester", "Uten r\u00e5olje og naturgass"], "title": "S\u00f8yler over tid", "urls": ["../data/okonomi/handelsbalanse_i_alt.json", "../data/okonomi/handelsbalanse_uten_olje_gass.json"], "views": ["timeseries-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Handelsbalanse (eksport minus import), alle varer og tjenester<br><span class="muted">mrd. kr, utledet</span></th><th scope="col">Handelsbalanse uten råolje og naturgass<br><span class="muted">mrd. kr, utledet</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>650,4<sup title="Foreløpig tall">f</sup></td>
+      <td>−429,0<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>709,4<sup title="Foreløpig tall">f</sup></td>
+      <td>−439,2<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>817,4</td>
+      <td>−382,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>1 616,6</td>
+      <td>−373,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>648,0</td>
+      <td>−313,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>−24,3</td>
+      <td>−376,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>93,7</td>
+      <td>−370,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>237,6</td>
+      <td>−332,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>150,1</td>
+      <td>−315,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>90,9</td>
+      <td>−288,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>217,3</td>
+      <td>−232,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>332,9</td>
+      <td>−222,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>369,6</td>
+      <td>−212,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>426,2</td>
+      <td>−186,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>393,7</td>
+      <td>−175,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>320,2</td>
+      <td>−150,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>301,3</td>
+      <td>−133,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>465,1</td>
+      <td>−159,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>330,4</td>
+      <td>−143,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>385,3</td>
+      <td>−114,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>325,7</td>
+      <td>−101,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>239,9</td>
+      <td>−96,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>209,4</td>
+      <td>−69,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>207,7</td>
+      <td>−65,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>261,5</td>
+      <td>−50,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>253,6</td>
+      <td>−62,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>90,6</td>
+      <td>−73,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>20,6</td>
+      <td>−100,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>89,3</td>
+      <td>−81,0</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>89,7</td>
+      <td>−70,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>55,6</td>
+      <td>−60,3</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>51,0</td>
+      <td>−57,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>51,4</td>
+      <td>−52,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>51,5</td>
+      <td>−45,5</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>58,6</td>
+      <td>−37,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>44,1</td>
+      <td>−43,5</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-balanse-timeseries-lines">
+  <figcaption>
+    <h3>Linjer</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-balanse-timeseries-lines" data-config='{"id": "gal-balanse-timeseries-lines", "kind": "series", "labels": ["Alle varer og tjenester", "Uten r\u00e5olje og naturgass"], "title": "Linjer", "urls": ["../data/okonomi/handelsbalanse_i_alt.json", "../data/okonomi/handelsbalanse_uten_olje_gass.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Handelsbalanse (eksport minus import), alle varer og tjenester<br><span class="muted">mrd. kr, utledet</span></th><th scope="col">Handelsbalanse uten råolje og naturgass<br><span class="muted">mrd. kr, utledet</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>650,4<sup title="Foreløpig tall">f</sup></td>
+      <td>−429,0<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>709,4<sup title="Foreløpig tall">f</sup></td>
+      <td>−439,2<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>817,4</td>
+      <td>−382,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>1 616,6</td>
+      <td>−373,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>648,0</td>
+      <td>−313,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>−24,3</td>
+      <td>−376,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>93,7</td>
+      <td>−370,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>237,6</td>
+      <td>−332,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>150,1</td>
+      <td>−315,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>90,9</td>
+      <td>−288,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>217,3</td>
+      <td>−232,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>332,9</td>
+      <td>−222,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>369,6</td>
+      <td>−212,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>426,2</td>
+      <td>−186,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>393,7</td>
+      <td>−175,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>320,2</td>
+      <td>−150,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>301,3</td>
+      <td>−133,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>465,1</td>
+      <td>−159,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>330,4</td>
+      <td>−143,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>385,3</td>
+      <td>−114,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>325,7</td>
+      <td>−101,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>239,9</td>
+      <td>−96,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>209,4</td>
+      <td>−69,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>207,7</td>
+      <td>−65,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>261,5</td>
+      <td>−50,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>253,6</td>
+      <td>−62,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>90,6</td>
+      <td>−73,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>20,6</td>
+      <td>−100,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>89,3</td>
+      <td>−81,0</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>89,7</td>
+      <td>−70,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>55,6</td>
+      <td>−60,3</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>51,0</td>
+      <td>−57,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>51,4</td>
+      <td>−52,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>51,5</td>
+      <td>−45,5</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>58,6</td>
+      <td>−37,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>44,1</td>
+      <td>−43,5</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
+<figure class="chart" id="gal-balanse-slope">
+  <figcaption>
+    <h3>Før og nå</h3>
+  </figcaption>
+<div class="chart-mount" data-chart="gal-balanse-slope" data-config='{"id": "gal-balanse-slope", "kind": "series", "labels": ["Alle varer og tjenester", "Uten r\u00e5olje og naturgass"], "title": "F\u00f8r og n\u00e5", "urls": ["../data/okonomi/handelsbalanse_i_alt.json", "../data/okonomi/handelsbalanse_uten_olje_gass.json"], "views": ["slope"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
+    <summary class="mono">Vis tallene</summary>
+    <div class="table-wrap">      <table>
+  <thead>
+    <tr>
+      <th scope="col">Periode</th>
+<th scope="col">Handelsbalanse (eksport minus import), alle varer og tjenester<br><span class="muted">mrd. kr, utledet</span></th><th scope="col">Handelsbalanse uten råolje og naturgass<br><span class="muted">mrd. kr, utledet</span></th>    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">2025</th>
+      <td>650,4<sup title="Foreløpig tall">f</sup></td>
+      <td>−429,0<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2024</th>
+      <td>709,4<sup title="Foreløpig tall">f</sup></td>
+      <td>−439,2<sup title="Foreløpig tall">f</sup></td>
+    </tr>
+    <tr>
+      <th scope="row">2023</th>
+      <td>817,4</td>
+      <td>−382,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2022</th>
+      <td>1 616,6</td>
+      <td>−373,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2021</th>
+      <td>648,0</td>
+      <td>−313,7</td>
+    </tr>
+    <tr>
+      <th scope="row">2020</th>
+      <td>−24,3</td>
+      <td>−376,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2019</th>
+      <td>93,7</td>
+      <td>−370,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2018</th>
+      <td>237,6</td>
+      <td>−332,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2017</th>
+      <td>150,1</td>
+      <td>−315,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2016</th>
+      <td>90,9</td>
+      <td>−288,4</td>
+    </tr>
+    <tr>
+      <th scope="row">2015</th>
+      <td>217,3</td>
+      <td>−232,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2014</th>
+      <td>332,9</td>
+      <td>−222,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2013</th>
+      <td>369,6</td>
+      <td>−212,1</td>
+    </tr>
+    <tr>
+      <th scope="row">2012</th>
+      <td>426,2</td>
+      <td>−186,6</td>
+    </tr>
+    <tr>
+      <th scope="row">2011</th>
+      <td>393,7</td>
+      <td>−175,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2010</th>
+      <td>320,2</td>
+      <td>−150,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2009</th>
+      <td>301,3</td>
+      <td>−133,8</td>
+    </tr>
+    <tr>
+      <th scope="row">2008</th>
+      <td>465,1</td>
+      <td>−159,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2007</th>
+      <td>330,4</td>
+      <td>−143,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2006</th>
+      <td>385,3</td>
+      <td>−114,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2005</th>
+      <td>325,7</td>
+      <td>−101,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2004</th>
+      <td>239,9</td>
+      <td>−96,3</td>
+    </tr>
+    <tr>
+      <th scope="row">2003</th>
+      <td>209,4</td>
+      <td>−69,9</td>
+    </tr>
+    <tr>
+      <th scope="row">2002</th>
+      <td>207,7</td>
+      <td>−65,2</td>
+    </tr>
+    <tr>
+      <th scope="row">2001</th>
+      <td>261,5</td>
+      <td>−50,0</td>
+    </tr>
+    <tr>
+      <th scope="row">2000</th>
+      <td>253,6</td>
+      <td>−62,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1999</th>
+      <td>90,6</td>
+      <td>−73,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1998</th>
+      <td>20,6</td>
+      <td>−100,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1997</th>
+      <td>89,3</td>
+      <td>−81,0</td>
+    </tr>
+    <tr>
+      <th scope="row">1996</th>
+      <td>89,7</td>
+      <td>−70,7</td>
+    </tr>
+    <tr>
+      <th scope="row">1995</th>
+      <td>55,6</td>
+      <td>−60,3</td>
+    </tr>
+    <tr>
+      <th scope="row">1994</th>
+      <td>51,0</td>
+      <td>−57,4</td>
+    </tr>
+    <tr>
+      <th scope="row">1993</th>
+      <td>51,4</td>
+      <td>−52,6</td>
+    </tr>
+    <tr>
+      <th scope="row">1992</th>
+      <td>51,5</td>
+      <td>−45,5</td>
+    </tr>
+    <tr>
+      <th scope="row">1991</th>
+      <td>58,6</td>
+      <td>−37,2</td>
+    </tr>
+    <tr>
+      <th scope="row">1990</th>
+      <td>44,1</td>
+      <td>−43,5</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted small">f = foreløpig tall.</p>
+
+</div>
+  </details>
+  <p class="source mono">Kilde:
+  <a href="https://www.ssb.no/statbank/table/09189" rel="noopener">Statistisk sentralbyrå (SSB): Tabell 09189: Makroøkonomiske hovedstørrelser 1970-2025 (tabell 09189)</a>
+  <a class="src-detail" href="../kilder.html#kilde-ssb-09189" aria-label="Om kilden ssb-09189">[1]</a></p>
+
+</figure>
 </section>
     </div>
   </main>
@@ -81,5 +5769,7 @@
     </div>
   </footer>
   <script src="../assets/js/site.js" defer></script>
+<script src="../assets/vendor/d3-7.9.0.min.js"></script>
+<script type="module" src="../assets/js/mount.js"></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "validated_with": "dataviz skill, scripts/validate_palette.js (OKLab ΔE×100, Machado 2009 CVD simulation)",
+  "validated": "2026-10-27",
+  "surfaces": {"dark": "#07090d", "light": "#f3f5f8"},
+  "categorical": {
+    "dark":  ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767"],
+    "light": ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+  },
+  "results": {
+    "dark":  {"adjacent": "ALL PASS (CVD worst 8.4, normal-vision worst 19.3, contrast >= 3:1)", "first3_all_pairs": "ALL PASS (CVD worst 9.4, normal-vision 20.9)"},
+    "light": {"adjacent": "PASS with contrast WARN for slots 2-5 (relief: legend, readout and table view on every chart)", "first3_all_pairs": "PASS with contrast WARN for slots 2-3"}
+  },
+  "rules": [
+    "fixed slot order, never cycled; more than 8 series fold into Øvrig or are split",
+    "treemap/scatter forms (all pairs can touch): direct labels always, first three slots validated all-pairs",
+    "increase/decrease use the blue/red polarity pair, never good/bad semantics",
+    "re-run the validator when changing any value, and update this file"
+  ]
+}

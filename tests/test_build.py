@@ -74,3 +74,14 @@ def test_link_check_catches_duplicate_ids(tmp_path):
     p = out / "index.html"
     p.write_text(p.read_text(encoding="utf-8").replace('id="temaer"', 'id="kildepolitikk"', 1), encoding="utf-8")
     assert any("duplicate id 'kildepolitikk'" in e for e in links.check_site_links(out))
+
+
+def test_dataset_table_never_adds_statuses_together(tmp_path):
+    ds = {"d": {"meta": {"unit": "mrd. kr"}, "dimensions": {"x": {"nodes": [{"code": "r", "label": "R", "parent": None}, {"code": "a", "label": "A", "parent": "r"}]}},
+                "rows": [{"period": "2024", "value": "10", "status": "regnskap", "claim_level": "offisiell", "x": "a"},
+                         {"period": "2024", "value": "99", "status": "budsjett", "claim_level": "offisiell", "x": "a"},
+                         {"period": "2026", "value": "7", "status": "budsjett", "claim_level": "offisiell", "x": "a"}]}}
+    t = site_build.dataset_table(ds, "d", dim="x")
+    cells = {p: row[0]["value"] for p, row in zip(t["periods"], t["rows"])}
+    assert cells == {"2026": 7.0, "2024": 10.0}  # best status per period (accounts), never 109
+    assert site_build.dataset_table(ds, "d", dim="x", status="budsjett")["rows"][-1][0]["value"] == 99.0

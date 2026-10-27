@@ -1,12 +1,55 @@
 {% extends "base.html" %}
+{% from "macros.html" import chart, data_table, chart_scripts with context %}
+{% set U_BNP = {"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "unit": "prosent", "series": "okonomi.bnp_lopende", "scale": 100, "price_basis": "løpende"} %}
+{% set U_FN = {"id": "pct-bnp-fn", "kind": "ratio", "label": "% av BNP Fastlands-Norge", "unit": "prosent", "series": "okonomi.bnp_fastland_lopende", "scale": 100, "price_basis": "løpende"} %}
+{% set U_INNB = {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "unit": "kr per innbygger", "series": "okonomi.befolkning_gjennomsnitt", "scale": 1000000000} %}
+{% set DEN = {"okonomi.bnp_lopende": root ~ "data/okonomi/bnp_lopende.json", "okonomi.bnp_fastland_lopende": root ~ "data/okonomi/bnp_fastland_lopende.json", "okonomi.befolkning_gjennomsnitt": root ~ "data/okonomi/befolkning_gjennomsnitt.json"} %}
+{% set labels = {} %}
+{% for v in views_cfg %}{% set _ = labels.update({v.id: v.label}) %}{% endfor %}
+{% block description %}De samme dataene vist i alle ferdige visninger, side om side.{% endblock %}
 {% block main %}
 <header class="page-head">
   <p class="mono">Visninger</p>
   <h1>Galleri over visninger</h1>
-  <p class="lede">Her vises hver ferdig visning side om side med de samme dataene.</p>
+  <p class="lede">Hvert datasett vises her i alle ferdige visninger, med de samme tallene. Bruk det til å velge hvilke visninger som skal beholdes, forbedres eller fjernes.</p>
 </header>
-<section id="visninger">
-  <h2>Visninger</h2>
-  <p class="muted">Ingen visninger er bygget ennå.</p>
+
+<section id="oversikt">
+  <h2>Visningene</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Visning</th><th scope="col">Status</th><th scope="col">Størrelse</th><th scope="col">Krever</th><th scope="col">Valg</th></tr></thead>
+      <tbody>
+        {% for v in views_cfg %}
+        <tr><th scope="row">{{ v.label }} <span class="muted small">{{ v.id }}</span></th><td>{{ "ferdig" if v.status == "built" else "planlagt" }}</td><td>{{ v.size }}</td><td>{{ v.requires }}</td><td>{{ v.choice or "–" }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="muted small">«Valg» fylles ut i <code>site_src/views.yaml</code> (beholde, forbedre eller fjerne).</p>
 </section>
+
+{% for g in gallery_cfg %}
+<section id="g-{{ g.id }}">
+  <h2>{{ g.title }}</h2>
+  {% for v in g.views %}
+  {% if g.kind == "dataset" %}
+    {% set ds = datasets[g.dataset] %}
+    {% set topic = g.dataset.split(".")[0] %}{% set name = g.dataset.split(".")[1] %}
+    {% set uds = [] %}{% for u in g.units %}{% set _ = uds.append({"pct-bnp": U_BNP, "pct-bnp-fn": U_FN, "per-innb": U_INNB}[u]) if u in ["pct-bnp", "pct-bnp-fn", "per-innb"] else None %}{% endfor %}
+    {% call chart("gal-" ~ g.id ~ "-" ~ v, labels[v], g.sources, level=None,
+        config={"kind": "dataset", "url": root ~ "data/" ~ topic ~ "/" ~ name ~ ".json", "views": [v], "units": g.units, "unitDefs": uds, "denominators": DEN}) %}
+      {{ data_table(dataset_table(g.dataset, dim=g.dim, depth=g.get("depth")), 1) }}
+    {% endcall %}
+  {% else %}
+    {% set urls = [] %}{% for sid in g.series %}{% set _ = urls.append(root ~ "data/" ~ sid.split(".")[0] ~ "/" ~ sid.split(".")[1] ~ ".json") %}{% endfor %}
+    {% call chart("gal-" ~ g.id ~ "-" ~ v, labels[v], g.sources, level=None,
+        config={"kind": "series", "urls": urls, "labels": g.labels, "views": [v]}) %}
+      {{ data_table(series_table(g.series), 1) }}
+    {% endcall %}
+  {% endif %}
+  {% endfor %}
+</section>
+{% endfor %}
 {% endblock %}
+{% block scripts %}{{ chart_scripts() }}{% endblock %}

@@ -48,19 +48,28 @@
   --glow: rgba(11, 127, 149, 0.07);
 }
 
-/* Chart colours. PROVISIONAL: WS5c replaces these with a palette validated for colour-blind safety and contrast
-   in both themes. Petroleum vs non-oil must get the same pair of colours on every page. */
+/* Chart colours: the dataviz skill's reference categorical palette, fixed order, validated on THIS site's surfaces
+   (dark #07090d, light #f3f5f8) with its validate_palette.js; see palette.json for the sets and results.
+   - Fixed order, never cycled: more than 8 series fold into «Øvrig» or are split up.
+   - Adjacent-pair gates (bars, stacks, lines) all pass in both modes. For forms where every pair can touch
+     (treemap tiles, scatter) only the first three slots clear the all-pairs gates; treemap tiles are therefore
+     always labelled directly, and the table view is always present.
+   - Light mode: slots 2, 3, 4 and 5 are below 3:1 contrast on the surface (validator WARN), which is legal only with
+     visible labels or a table view; every chart has a legend, a readout and a «Vis tallene» table.
+   - --div-pos / --div-neg: the blue↔red polarity pair for increases and decreases (not good/bad). --other is the
+     one neutral grey for «Øvrig / ikke fordelt»; --total is the neutral for sums and checkpoints. */
 :root {
-  --c1: #6fd6e8; --c2: #b59cff; --c3: #f2b05e; --c4: #6fe39a; --c5: #ff8a9a; --c6: #8fb4ff; --c7: #d9d36a; --c8: #e08ee0;
-  --other: #6b7685;
+  --c1: #3987e5; --c2: #d95926; --c3: #199e70; --c4: #c98500; --c5: #d55181; --c6: #008300; --c7: #9085e9; --c8: #e66767;
+  --div-pos: var(--c1); --div-neg: var(--c8);
+  --other: #6b7685; --total: #8a96a6;
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --c1: #0b7f95; --c2: #6a4fd1; --c3: #b3640c; --c4: #1d8a4c; --c5: #c23a55; --c6: #2c5fcf; --c7: #8a7f0a; --c8: #a63ea6;
-    --other: #98a2b0;
+    --c1: #2a78d6; --c2: #eb6834; --c3: #1baf7a; --c4: #eda100; --c5: #e87ba4; --c6: #008300; --c7: #6250d6; --c8: #e34948;
+    --other: #7a8696; --total: #5b6776;
   }
 }
 :root[data-theme="light"] {
-  --c1: #0b7f95; --c2: #6a4fd1; --c3: #b3640c; --c4: #1d8a4c; --c5: #c23a55; --c6: #2c5fcf; --c7: #8a7f0a; --c8: #a63ea6;
-  --other: #98a2b0;
+  --c1: #2a78d6; --c2: #eb6834; --c3: #1baf7a; --c4: #eda100; --c5: #e87ba4; --c6: #008300; --c7: #6250d6; --c8: #e34948;
+  --other: #7a8696; --total: #5b6776;
 }
