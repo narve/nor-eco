@@ -1,33 +1,42 @@
 # Plan: «Norsk statsøkonomi – fra kildene» (static site, nor-eco)
 
 ## Context
-The user is dissatisfied with how media report on the Norwegian state economy. The goal is a static website in Norwegian (bokmål) that presents three topics using **only official sources**, where every number has a citation:
+The user lacks clear presentations of the actual data on the Norwegian state economy, and wants to see exactly what is being measured and how the numbers relate. The intent of any third party is not relevant to the site. The goal is a static website in Norwegian (bokmål) that presents three topics using **only official sources**, where every number has a citation:
 
 1. **Statsbudsjettet**: income and expenses, with and without petroleum revenue.
 2. **Statens/nasjonens økonomi**: BNP and exports, with and without oil and gas.
 3. **Sysselsetting**: what actually counts as «sysselsatt» (uføre, students, tiltak, sick leave …), and how many people work for the state, directly and indirectly.
 
-The repo `/home/narve/code/nor-eco` is empty (no commits). Implementation will be done by a multi-agent workflow afterwards, so the plan is split into workstreams that can run in parallel.
+The repo `/home/narve/code/nor-eco` holds only these docs so far (`docs/PLAN.md`, `docs/VISUALIZATIONS.md`); there is no code yet. Implementation will be done by a multi-agent workflow afterwards, so the plan is split into workstreams that can run in parallel.
 
-Decisions so far: language is Norwegian (bokmål). Data comes from fetch scripts into versioned data, then a static build. Hosting is GitHub Pages, with the user's VPS as fallback; the output is plain static files, so both work. The time span is 2000 to present where comparable. Showing fewer years, or only the latest year, is acceptable when the history is hard to get or the series break. «BA» means statsforetak and særlovsselskap. Indirect state employment covers all four rings: state-owned companies, the municipal sector, publicly funded private actors, and subsidised work programs (tiltak).
+Decisions so far: language is Norwegian (bokmål). Data comes from fetch scripts into versioned data, then a static build. Hosting is GitHub Pages, with the user's VPS as fallback; the output is plain static files, so both work. Historical depth is not critical: a series may start at the first year where it is clean and comparable, and a view may show only the latest year or a short range. Skip years or series whenever that makes implementation safer or the visualisation clearer, and note the choice in `metode`. No view or text may hard-code a start year; the range comes from the data. «BA» means statsforetak and særlovsselskap. Indirect state employment covers the state-owned companies, the municipal sector, publicly funded private actors, and subsidised work programs (tiltak), i.e. rings 3–7 on the «staten som arbeidsgiver» page. Helseforetak (ring 2) are a subset of ring 1 and add nothing to the cumulative total.
+- **Relative links only.** Every internal link and asset path is relative (`../assets/...`, never `/assets/...`), so the same `site/` works on a GitHub Pages subpath and on a separate domain. A test fails the build on any root-absolute `href` or `src`.
+- **Views are phased, and data decides.** First the ★ default view per data type plus the S-size modules; then the rest. A view is only built where its required data exists in the sources. Each view declares its required datasets and dimensions in `site_src/views.yaml`, and the build hides (or greys out with a short explanation) any view whose data is missing. Nothing is estimated just to fill a view.
+- **Repo size policy:** every git-tracked file is under 5 MB (hard limit, enforced by CI). Raw files that are easily downloaded again from the source (PDFs, large Excel files, bulk downloads) are not committed. They are gitignored and listed in `data/raw/MANIFEST.yaml` (url, sha256, retrieved date, size), and `fetch` can re-download and verify them against the hash. Only small raw files that are hard to re-obtain exactly (for example API responses that the source later revises) are committed. If a dataset would exceed the limit, drop early years (or coarse-grain it) rather than split or compress the file. No LFS.
+- **JS and mobile tests use Playwright only** (no jsdom).
 
 ## Guiding principles (apply to every workstream)
 - **Every displayed number traces to a source record.** No number is typed into a template by hand. Numbers come from `data/processed/*.json`, and each one carries `source_ids`.
 - **Three levels of claim, marked visually:**
   - *Offisielt tall*: published as-is.
-  - *Utledet*: our own arithmetic on official numbers, with the formula shown.
-  - *Estimat*: our own method with assumptions. Shown with a dashed or hatched style and a method note.
+  - *Utledet*: our own arithmetic on official numbers, with the formula shown. Hatched fill with a thin outline, and a «ƒ» marker on labels.
+  - *Estimat*: our own method with assumptions. Dotted outline with no fill (or 40 % alpha), an «≈» prefix on labels, and a method note.
+  - This encoding is the single definition; `docs/VISUALIZATIONS.md` and the design work use it unchanged.
 - **Raw snapshots are kept.** Each fetch stores the raw response with the retrieval date, so a number can be reproduced even after the source revises it. Store `vintage` (publication date) separately from `retrieved` date.
 - **Definitions are explicit.** Each chart has a «Hva telles?» box with the official definition, quoted and cited.
-- **Neutral tone.** Each page gets a «Vanlige misforståelser» section that contrasts common claims with the definitions. It contains no political conclusions.
+- **No downloads.** The site offers no download or export functionality (no CSV, Excel, image or PDF export buttons). It is not an official source and must not present itself as a distributor of official data. Readers get the numbers on screen and a link to the original source for each one. The `facts.csv` files are internal build inputs and are not linked from any page.
+- **Neutral tone.** Page text describes definitions, numbers and how they relate. It never mentions media, politicians or other actors, never says anyone is wrong, and draws no political conclusions. Each page gets an «Ofte blandet sammen» section that sets pairs of definitions side by side (for example vedtatt vs regnskap, AKU vs register, oljekorrigert vs strukturelt underskudd), with the official definition of each. **Every entry must link to its sources**: the quoted definition of each side comes from `definitions/*.yaml` with a `source_id` and a link to the exact publication, table or «Om statistikken» page. Any statement about how the two differ (scope, reference period, population, what is included) is itself cited to such a source. An entry that cannot be sourced is left out. The pairs are listed in the page's YAML so the build can fail if an entry has no `source_ids`.
 - Licences: SSB data is CC BY 4.0, regjeringen.no and NAV use NLOD. The site credits them per page and in the source list.
 
 ## Tech stack
 - **Python 3.12 + uv**, with a minimal set of dependencies: `httpx`, `pyyaml`, `jinja2`, `openpyxl` (for Excel files from regjeringen and NAV), `pypdf` (fallback for tables only published as PDF), and `pytest`.
 - **SSB data** comes from the PxWebApi via JSON-stat2. Use **API v2** (`https://data.ssb.no/api/pxwebapi/v2/`) if it is live, otherwise v0; verify at start. Write one shared helper, not a fetcher per table.
 - **Templates:** Jinja2 renders to `site/`. No JS framework.
-- **Charts:** d3 v7 (including d3-hierarchy and d3-sankey) for the hierarchical and flow views, and Observable Plot for the simple time series. Both are **vendored** into `site/assets/vendor/` at pinned versions, so there are no CDN dependencies on GitHub Pages. A small in-house view library (`assets/js/views/`) has one module per view type. Every module takes the same data contract (see «Datamodell for drill-down»). Each chart also gets a `<table>` fallback (accessibility, and the numbers can be copied) and a «Kilde:» line under it.
-- **Deploy:** a GitHub Action builds and publishes `site/` to Pages. A second Action runs a scheduled monthly re-fetch and opens a PR when data changes. The VPS fallback is an rsync of `site/`.
+- **Charts:** d3 v7 (including d3-hierarchy and d3-sankey) for the hierarchical and flow views, and Observable Plot for the simple time series. Both are **vendored** into `site/assets/vendor/` at pinned versions, so there are no CDN dependencies on GitHub Pages. A small in-house view library (`assets/js/views/`) has one module per view type. Every module takes the same data contract (see «Datamodell for drill-down»). Each chart also gets a `<table>` fallback (accessibility, and a way to read the exact numbers) and a «Kilde:» line under it.
+- **Build and deploy: everything is built locally.** Fetch, transform, build and all checks run on the developer's machine (or the agent's sandbox). The generated `data/processed/` and the built `site/` are committed and pushed to `main`. GitHub Actions does not build anything. One minimal workflow, `publish.yml`, uploads the committed `site/` folder as the Pages artifact and deploys it (Pages branch deploys only support `/` or `/docs`, and `docs/` holds the planning docs). The VPS fallback is an rsync of `site/`. The GitHub remote is `origin` = `git@github.com:narve/nor-eco.git`, so the Pages URL is a subpath (`https://narve.github.io/nor-eco/`), which is why relative links are mandatory.
+- **Reproducible output:** because `site/` is committed, the build must be deterministic: no timestamps or random ids in the output, stable sort order, and the retrieval date shown only where it comes from the data. This keeps commits small and diffs reviewable. Rebuilt and committed together: a data change commits `data/raw` (small files), `data/processed` and `site/` in one commit.
+- **Local gate:** a single command, `uv run python -m checks` (also installed as a git pre-push hook), runs the full pipeline checks: schema, reconciliation, size guard, relative links, link checker and Playwright tests. The Action does not rerun them. Data refresh is manual and run when wanted, for example monthly: `uv run python -m fetch all && uv run python -m transform all && uv run python build.py`.
+- **Network access in the dev sandbox:** outbound requests are allowed for the sandbox, so fetch scripts and vendoring can reach the source sites directly. Fetch code still sets a descriptive User-Agent, caches responses, and rate-limits itself.
 
 ## Repo layout
 ```
@@ -45,18 +54,21 @@ nor-eco/
   transform/
     budget.py  economy.py  employment.py  state_employment.py
   data/
-    raw/<source_id>/<retrieved-date>.<ext>   # immutable snapshots (git-tracked; large ones LFS or gitignored + hash)
+    raw/<source_id>/<retrieved-date>.<ext>   # immutable snapshots (git-tracked only if <5 MB and not easily re-downloadable; PDFs and other re-downloadable files are gitignored and listed in raw/MANIFEST.yaml with sha256)
     processed/<topic>/<series>.json          # {series, unit, values[], source_ids[], derivation?, claim_level, notes}
   site_src/
     templates/ (base.html, page partials, chart macro, citation macro)
     pages/ index, statsbudsjett, okonomi, sysselsetting, staten-som-arbeidsgiver, begreper, kilder, metode
     assets/ css, js/charts.js, vendor/
-  build.py                  # processed data + templates -> site/
+  build.py                  # processed data + templates -> site/ (committed)
+  checks/                   # local gate: python -m checks
   tests/                    # schema, consistency, reconciliation, link checks
-  .github/workflows/ build-deploy.yml, refresh-data.yml
+  .github/workflows/ publish.yml   # uploads the committed site/ to Pages; no build
 ```
 
-**Processed series schema**, defined in WS0 and used everywhere:
+**Two processed formats, one metadata model.** Plain time series use the series JSON below. Hierarchical datasets use the fact-table format in the next section. Both carry the same metadata (`source_ids`, `claim_level`, `breaks`, `notes`, `price_basis`), and WS0's validator covers both.
+
+**Processed series schema**, defined in WS0, for plain time series:
 ```json
 { "id": "budget.oljekorrigert_underskudd", "title": "...", "unit": "mrd. kr", "price_basis": "løpende|faste-2024",
   "claim_level": "offisiell|utledet|estimat", "derivation": "A - B (se metode)",
@@ -77,9 +89,9 @@ data/processed/<topic>/<dataset>/
 - A **dimension** is one way of splitting the data, for example *formål (COFOG)*, *forvaltningsnivå*, *art* or *kapittel/post*. Each dimension is a tree, so drill-down follows the tree.
 - **The reader can switch dimension at any node.** Example: Helse → (by forvaltningsnivå) stat/helseforetak, fylke, kommune → (by funksjon) behandling, forebygging, forskning, administrasjon. The breadcrumb shows the path, for example «Utgifter › Helse [formål] › Spesialisthelsetjenesten [nivå] › …».
 - **Each node sums to its parent.** If the source doesn't cover the whole parent, the gap is an explicit node, «Øvrig / ikke fordelt i kilden». It is never hidden.
-- **Different sources mean different totals.** Statsbudsjettet (kapittel/post), offentlig forvaltning by COFOG (SSB) and the helseregnskapet (SHA: funksjon × tjenesteyter × finansiering) don't measure the same thing. They become separate datasets that are linked through a **reconciliation bridge**: a waterfall from total A to total B with named differences. This is central to «correct» presentation, because media often mix these totals.
+- **Different sources mean different totals.** Statsbudsjettet (kapittel/post), offentlig forvaltning by COFOG (SSB) and the helseregnskapet (SHA: funksjon × tjenesteyter × finansiering) don't measure the same thing. They become separate datasets that are linked through a **reconciliation bridge**: a waterfall from total A to total B with named differences. This is central to a correct presentation, because the totals have different scopes and must not be compared directly.
 - **Units are computed at view time** from the same facts: kr (løpende), kr (faste priser), % of total, % of BNP / BNP Fastland, per innbygger, per sysselsatt, or «av hver 100-lapp».
-- **The URL holds the view state** (`?view=treemap&path=utg/07/nivå:stat&unit=per_innb&år=2025`). Every view can then be linked and cited exactly. The view also has a «Last ned data (CSV)» button for the current node.
+- **The URL holds the view state**, with one grammar everywhere: `?view=<view-id>&year=<yyyy>&unit=<unit-id>&status=<vedtatt|saldert|regnskap>&def=<definition-id>&path=<segment>/<segment>`. Each path segment is `<dimension>:<code>`, meaning «split the previous node by this dimension and select this code». Example: `?view=utg-treemap&year=2025&unit=per_innb&path=formaal:helse/niva:stat`. A dimension switch at a mid-path node just changes the dimension in the next segment. Every view can then be linked and cited exactly.
 
 **Planned drill-down dimensions per dataset** (WS1–4 verify which ones exist in the sources):
 | Dataset | Dimensions |
@@ -92,8 +104,20 @@ data/processed/<topic>/<dataset>/
 | Befolkning og sysselsetting | status (sysselsatt/ledig/utenfor) → undergrupper; alder; kjønn; definisjon (AKU / register / NAV); personer vs årsverk |
 | Statlig sysselsetting | ring (1–7) → organisasjon/selskap; eierandel; Norge vs utland; personer vs årsverk |
 
-## Visualiseringsalternativer (same data, several views; **all are implemented**)
-The full catalogue, with drill-down behaviour, honesty risks and how to mitigate them, unit handling, mobile behaviour and complexity for each view, is in **`docs/VISUALIZATIONS.md`**. A background Fable agent drafted it. It has 35 views over 7 data types, built from 14 shared modules. Every topic page gets a «Vis som»-switcher, and `site/galleri/` shows all views side by side with the same data. The user then picks which views to keep, improve or remove (`site_src/views.yaml`).
+## View data contract (defined by WS0, used by WS5a/b)
+Every view module receives a `Node` tree and a props object, and nothing else:
+```
+Node  = { path, dim, label, value, unit, status, claim_level, source_ids[], definition_id?,
+          children: Node[], other?: Node /* «Øvrig / ikke fordelt» */, breaks?: [{period, note}] }
+Props = { node, dim, year, unit, status, claimStyle }
+Events: drill(path), switchDim(path, dim)
+```
+`value` is already in the chosen unit. Unit conversion happens in the dimension engine, never inside a view. WS0 also ships a small synthetic test dataset (hierarchy with an «Øvrig» node, a series with a break, an estimat node) so WS5a can develop and test without real data.
+
+## Visualiseringsalternativer (same data, several views, built in phases)
+The full catalogue, with drill-down behaviour, honesty risks and how to mitigate them, unit handling, mobile behaviour and complexity for each view, is in **`docs/VISUALIZATIONS.md`**. A background Fable agent drafted it. It has 35 views over 7 data types, built from 14 shared modules. Every topic page gets a «Vis som»-switcher listing the views available for that page's data, and `site/galleri/` shows the built views side by side with the same data. The user then picks which views to keep, improve or remove (`site_src/views.yaml`).
+
+**Phasing:** phase 1 is the ★ default view per data type plus the other S-size views. Phase 2 is the M-size views. Phase 3 is the L-size views (`flow-sankey`, `bef-euler`, `bef-sankey-status`, `flow-alluvial-time`). A later phase starts only after the earlier one is reviewed, and each view only where its data exists (see `views.yaml` above).
 
 Type: S = snapshot (single year), T = timeline, S/T = both. Size: S/M/L is implementation effort. ★ = proposed default view.
 
@@ -119,7 +143,7 @@ Each module takes `{node, dim, year, unit, status, claimStyle}` and emits `drill
 - unit selector (disabled where meaningless)
 - definition selector (AKU/register/NAV, brutto/netto, full/eierandelsvektet, Norge/inkl. utland)
 - claim-level legend + «skjul estimater»
-- source footer + «vis tallene» table with CSV
+- source footer + «vis tallene» table (view only)
 - «Øvrig» always visible
 - shared registry of break/reform markers
 - permalink
@@ -137,7 +161,7 @@ Taken from the CSS of https://narve.github.io, so the look is the same:
 - **Fonts:** Space Grotesk (400/500/600) for body text and headings, JetBrains Mono (400/500) for labels, numbers, breadcrumbs, source lines and «mono» captions in uppercase with letter-spacing 0.08em. Both are **self-hosted woff2** files (SIL OFL) in `assets/fonts/`, with no Google dependency.
 - **Tokens:** these are the same in `:root`. Dark is the default, and light comes from `prefers-color-scheme: light`, plus a manual toggle via `data-theme`.
   - Dark: `--bg #07090d`, `--bg-card rgba(18,24,33,.72)`, `--line rgba(120,200,230,.12)`, `--line-strong rgba(120,200,230,.32)`, `--text #d6dde6`, `--muted #7d8a99`, `--accent #6fd6e8`, `--accent-2 #b59cff`, `--grid rgba(111,214,232,.045)`, `--glow rgba(111,214,232,.08)`
-  - Light: `--bg #f3f5f8`, `--text #18202b`, `--muted #5b6776`, `--accent #0b7f95`, `--accent-2 #6a4fd1`, and so on, exactly as on that site.
+  - Light: `--bg #f3f5f8`, `--text #18202b`, `--muted #5b6776`, `--accent #0b7f95`, `--accent-2 #6a4fd1`. The remaining light tokens are copied from the CSS of https://narve.github.io. WS0 fetches that CSS and commits the complete set to `site_src/assets/css/tokens.css`, so no later agent has to guess.
 - **Effects, used sparingly:**
   - a 40px grid in the background, with a radial glow at the top
   - cards with a blurred background, a thin border, and corner brackets in the accent colour
@@ -148,9 +172,14 @@ Taken from the CSS of https://narve.github.io, so the look is the same:
 - **Chart palette:**
   - The categorical palette builds on accent (cyan) and accent-2 (violet), with a few extra hues tested for colour blindness and contrast in both themes. Use the `dataviz` skill's validator.
   - Petroleum vs non-oil always gets the same pair of colours across all pages.
-  - Claim levels: *offisiell* is solid, *utledet* is solid with a «ƒ» marker, and *estimat* is hatched or dashed.
+  - Claim levels: as defined under «Guiding principles» (offisiell solid; utledet hatched with «ƒ»; estimat dotted outline with «≈»).
 - **Restraint:** the effects must never compete with the data. The plot area has no glow and no 3D, and the gridlines in charts use `--line`. Animation is only for drill-down transitions (≤300ms) and is turned off with `prefers-reduced-motion`.
-- No tracking by default. The GoatCounter snippet from narve.github.io is only added if the user wants it.
+- **Visitor statistics: GoatCounter**, privacy-friendly and cookie-free, using the same snippet and endpoint as narve.github.io. It is the only third-party script on the site. The `path` function prefixes the host, so GitHub Pages and the separate domain are counted separately:
+  ```html
+  <script>window.goatcounter = { path: function(p) { return location.host + p } }</script>
+  <script data-goatcounter="https://dv8.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  ```
+  The `src` uses `https:` explicitly (not protocol-relative) so the pages also work when opened from disk. The snippet lives in `base.html` only, and `metode.html` states what is collected (page views, no cookies, no personal data). No other tracking.
 
 ## Responsivt og mobilvennlig
 **The data and visualisations come first.** Navigation is secondary on a phone.
@@ -185,7 +214,7 @@ Taken from the CSS of https://narve.github.io, so the look is the same:
 Key figures for the latest year, one tile per topic, each linking to its page. Includes a short explanation of the source policy and of the three claim levels.
 
 ### 2. `statsbudsjett.html`: Statsbudsjettet
-- Total income and expenses for the state budget and statsregnskapet. Shows **vedtatt / saldert / regnskap** clearly, because media often mix budget figures with accounts.
+- Total income and expenses for the state budget and statsregnskapet. Shows **vedtatt / saldert / regnskap** clearly, because budget figures and accounts are different things.
 - **With and without petroleum:**
   - petroleum revenue (skatt, SDØE, Equinor-utbytte), together forming «statens netto kontantstrøm fra petroleumsvirksomheten»
   - non-oil income
@@ -214,7 +243,7 @@ Key figures for the latest year, one tile per topic, each linking to its page. I
 - Candidate sources: SSB AKU, SSB registerbasert sysselsetting, SSB nasjonalregnskap (timeverk/årsverk), NAV statistikk (helt ledige, arbeidssøkere på tiltak, AAP, uføretrygd, sykefravær), and SSB/NAV analyses of uføre in work. Use the definitions as stated in SSB's «Om statistikken».
 
 ### 5. `staten-som-arbeidsgiver.html`: Hvor mange jobber for staten?
-Concentric rings, each counted separately and shown with an accumulated total. Duplicates are marked explicitly.
+Concentric rings, each counted separately and shown with an accumulated total. Duplicates are marked explicitly. **This list is the single source of truth for ring numbers**; `docs/VISUALIZATIONS.md` refers to these numbers. Ring 2 is a subset of ring 1 and adds 0 to the cumulative total. Ring 5 (kommunesektoren) is not employed by the state; it is shown as its own band labelled «finansiert i stor grad av staten», and the narrow cumulative total (rings 1, 3, 4) excludes it.
 1. **Statsforvaltningen**: departements, directorates, universities, police, defence, and so on (SSB sector «statsforvaltningen», DFØ's statistics on statsansatte).
 2. **Helseforetakene (RHF/HF)**: SSB counts these in statsforvaltningen, so show them as a sub-ring to avoid double counting.
 3. **Statsforetak (SF) and særlovsselskap**: Statkraft SF, Statnett SF, Avinor, Bane NOR SF, Enova SF, and others. Employee counts come from **Statens eierberetning** (NFD) and the companies' annual reports.
@@ -234,13 +263,13 @@ Concentric rings, each counted separately and shown with an accumulated total. D
 ## Workstreams (for the multi-agent workflow)
 | WS | Content | Depends on |
 |----|---------|-----------|
-| **WS0 Fundament** | Repo layout, `pyproject`, the series schema plus validator, `fetch/common.py` (snapshots, JSON-stat2 parser, SSB API v2/v0 check), `build.py` skeleton, base template, chart and citation macros, vendored Plot/d3, GitHub Actions | none (runs first) |
+| **WS0 Fundament** | Repo layout, `pyproject`, the series schema plus validator, `fetch/common.py` (snapshots, JSON-stat2 parser, SSB API v2/v0 check), `build.py` skeleton, base template, chart and citation macros, vendored Plot/d3, `checks` command and pre-push hook, `publish.yml` | none (runs first) |
 | **WS1 Statsbudsjett** | Find, register and fetch the sources; transforms; page text; definitions | WS0 |
 | **WS2 Økonomi** | Same, for BNP, exports, SPU and petroleum | WS0 |
 | **WS3 Sysselsetting** | Same, for the population accounts, definition comparison and årsverk | WS0 |
 | **WS4 Staten som arbeidsgiver** | Same, for the rings 1–7, including the list of state companies with ownership shares and employee counts | WS0 (shares definitions with WS3) |
-| **WS5a Visningsbibliotek** | One JS module per view type (A–E above) against the shared data contract; the drill-down/dimension engine; URL state; units; table fallback and CSV export. Developed against **test data** that WS0 defines, so it doesn't wait for real data | WS0 (runs in parallel with WS1–4) |
-| **WS5b Galleri** | **All proposals are implemented** (3–6 per data type, snapshot and timeline). `site/galleri/<datatype>/` shows each dataset in every view, side by side and with the same data. The topic pages get a view switcher with every view available. After user feedback, `site_src/views.yaml` marks the default, the views to keep, the views to improve and the views to remove | WS5a + the first real data from WS1–4 |
+| **WS5a Visningsbibliotek** | One JS module per view type (A–E above) against the shared data contract; the drill-down/dimension engine; URL state; units; table fallback (no export). Developed against **test data** that WS0 defines, so it doesn't wait for real data | WS0 (runs in parallel with WS1–4) |
+| **WS5b Galleri** | The proposals are implemented in the phases described under «Visualiseringsalternativer», and only where the data exists. `site/galleri/<datatype>/` shows each dataset in every built view, side by side and with the same data. The topic pages get a view switcher with every available view. After user feedback, `site_src/views.yaml` marks the default, the views to keep, the views to improve and the views to remove | WS5a + the first real data from WS1–4 |
 | **WS5c Design** | The theme as described under «Tema» (tokens, fonts, cards, grid background), the validated chart palette, claim-level styling, responsive layout and hamburger navigation (see «Responsivt og mobilvennlig»), index page. **WS0 delivers the tokens and base CSS first**, so WS5a/b use them from the start | WS0; finished last |
 | **WS6 Verifisering** (independent agent) | For each page: sample the numbers and check them against the original sources by hand; check the definition quotes; cover reconciliation tests, the link checker, and Norwegian language and tone | WS1–5 |
 
@@ -248,13 +277,16 @@ Rules for WS1–4 agents:
 - Register each source in the registry before using it.
 - Never invent table ids or numbers. When a series can't be found, document the gap in `metode` instead of filling it in.
 - Prefer machine-readable sources over PDF.
-- Write page text in bokmål, in a neutral tone.
+- Write page text in bokmål, in a neutral tone: describe definitions and numbers only, and never refer to media, politicians or other actors.
+- If a series is hard to get, has breaks, or is hard to compare across years, shorten it or show a single year instead of working around the problem.
 
 ## Verification
-- `uv run python -m fetch all && uv run python -m transform all && uv run python build.py` must run without errors from an empty `data/processed`.
+- `uv run python -m fetch all && uv run python -m transform all && uv run python build.py` must run without errors from an empty `data/processed`. This is run locally on demand (and before any change to fetch or transform), not on every push.
 - `pytest`:
   - **schema check:** every processed series has `source_ids` that exist in the registry, plus a `claim_level`.
-  - **no orphan numbers:** templates may not contain hard-coded digits in number fields.
+  - **no orphan numbers:** in templates, numbers are only rendered through the `fmt()` / `cite()` macros that take a processed value. A lint step flags digit sequences in template text outside an allow-list (years in headings, ring numbers, the 3 % rule).
+  - **file size guard:** the local gate fails if any git-tracked file is larger than 5 MB, or if a tracked file under `data/raw/` has a `.pdf` extension. Re-downloadable raw files must be listed in `data/raw/MANIFEST.yaml` instead.
+  - **relative links:** no root-absolute `href`/`src` in `site/`, and every relative link resolves.
   - **reconciliation:**
     - income minus expenses matches the published result
     - non-oil income + petroleum income = total income
@@ -263,10 +295,10 @@ Rules for WS1–4 agents:
     - the rings in WS4 do not double count (helseforetak inside statsforvaltningen)
     - **hierarchy sum:** every node in every dimension equals the sum of its children (including «Øvrig»), and every dimension gives the same total for the same dataset
     - **reconciliation bridges** close: total A + named differences = total B
-  - **view consistency:** a JS test (node + jsdom, or Playwright) renders the same node in every view and checks that the numbers shown in the table fallback are identical
+  - **view consistency:** a Playwright test renders the same node in every view and checks that the numbers shown in the table fallback are identical
   - **headline check:** a short list of known headline numbers from Gul bok, AKU and SSB press releases is checked against our processed values.
 - The link checker verifies that all source URLs in the registry return 200.
 - Manual check: run `python -m http.server -d site` and inspect every page at 360px, 768px and 1280px width, in light and dark mode. Every chart must have a source line and a table fallback.
 - Mobile, automated: Playwright with an iPhone/Pixel profile renders every view in the gallery. It checks that there is no horizontal page scroll and that tap targets are at least 44px, takes screenshots, and confirms that drill-down + back works via tap and history.
 - WS6 sample check: at least 5 numbers per page are traced by hand all the way to the original source.
-- Deploy: the Action publishes to GitHub Pages. If that fails, rsync to the VPS.
+- Deploy: after the push, `publish.yml` deploys the committed `site/` to GitHub Pages. If that fails, rsync to the VPS. Before pushing, confirm that `site/` is up to date with the sources (the gate rebuilds and fails on any diff in `site/`). Serving `site/` from a subpath (for example `python -m http.server` from the parent directory) must work identically to serving it from the root.

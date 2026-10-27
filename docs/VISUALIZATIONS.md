@@ -1,6 +1,6 @@
 # Visualiseringskatalog for nor-eco
 
-Drafted by a background design agent (Fable) as input to `docs/PLAN.md`. **All proposals are implemented** in the gallery (`site/galleri/`), and the user then chooses the defaults and which views to keep, improve or remove.
+Drafted by a background design agent (Fable) as input to `docs/PLAN.md`. The proposals are built in phases (S first, then M, then L; see PLAN.md) and only where the data exists, and appear in the gallery (`site/galleri/`). The user then chooses the defaults and which views to keep, improve or remove.
 
 Conventions used below:
 - **Claim levels** are encoded the same way everywhere:
@@ -8,7 +8,7 @@ Conventions used below:
   - *utledet*: hatched or lighter fill with a thin outline
   - *estimat*: dotted outline with no fill (or 40 % alpha), and an «≈» prefix on the label
 - «Øvrig / ikke fordelt» always gets the same neutral grey and is never hidden.
-- All hierarchical views bind to the same tidy fact table and the same `path` state in the URL (`?dim=cofog&path=utg/helse&dim2=niva&unit=pct-bnp&year=2024`).
+- All hierarchical views bind to the same tidy fact table and the same `path` state in the URL (`?view=utg-treemap&path=formaal:helse/niva:stat&unit=pct-bnp&year=2024`; the grammar is defined in PLAN.md).
 
 Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
@@ -18,7 +18,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `utg-hier-bars` — Nivåbasert søylevisning ★ default
 - **type**: both
-- **description**: One level at a time: sorted horizontal bars of the children of the current node, with the parent total as a thin reference bar on top. In timeline mode, each bar gets a small horizon strip or sparkline (2000–now) next to the current-year value.
+- **description**: One level at a time: sorted horizontal bars of the children of the current node, with the parent total as a thin reference bar on top. In timeline mode, each bar gets a small horizon strip or sparkline (full available range) next to the current-year value.
 - **drill-down**: Click a bar and its children slide in from the right, while the clicked bar grows to become the new reference bar (d3 transition on the y-scale). A breadcrumb `Utgifter › Helse › Stat` sits on top. Each crumb has a dimension dropdown («vis etter: formål | nivå | art | kap/post»), so the dimension switch happens *at a node*. Back-swipe on mobile.
 - **honesty**: Bars are the most accurately read encoding (length on a common baseline). Risk: the reader forgets the parent total. Mitigate with the reference bar and «= 100 % av Helse». Vedtatt and regnskap are shown as paired bars (vedtatt as outline, regnskap filled), so the statuses are never mixed silently. The remainder bar is always present.
 - **unit handling**: all units; best for kr, % of parent and per innbygger. The reference bar makes «av hver 100-lapp» natural.
@@ -56,7 +56,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 - **complexity**: M
 - **reuse**: `icicle`
 
-### `utg-streamgraph` — Utgiftsstrøm 2000–i dag
+### `utg-streamgraph` — Utgiftsstrøm over tid
 - **type**: timeline
 - **description**: Stacked area (no wiggle offset, baseline at zero) of the current node's children over time, in faste priser or % BNP. Shows how the composition of e.g. Helse has shifted.
 - **drill-down**: Click a stream and it becomes the new 100 %, splitting into its children: the others shrink to zero while the chosen one expands. Breadcrumb as before. Toggle «stablet | 100 %-stablet | separate linjer».
@@ -86,7 +86,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
   - Left, «Uten petroleum»: skatt på inntekt/formue, mva, arbeidsgiveravgift, særavgifter, øvrig.
   - Right, «Petroleum»: petroleumsskatt, SDØE netto kontantstrøm, Equinor-utbytte.
 
-  The timeline shows the same stacks per year, 2000–now.
+  The timeline shows the same stacks per year over the available range.
 - **drill-down**: Click a segment and it becomes the full bar, split by its children (same transition as `hier-bars`). Breadcrumb.
 - **honesty**: Petroleum revenue for SDØE is net cash flow, not gross; label it exactly as SSB and Finansdep do. The Equinor dividend is offisiell, but counting it as «petroleum» is utledet, so it gets the hatch. Never add petroleum to the budget silently: the chart must state that petroleum goes to SPU.
 - **unit handling**: kr løpende/faste, % BNP, and % BNP Fastland. The last matters: petroleum as a share of BNP Fastland is the honest ratio.
@@ -100,7 +100,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
   - Main: inntekter uten petroleum → minus utgifter → *oljekorrigert underskudd* → ± konjunktur- og engangsjusteringer → *strukturelt oljekorrigert underskudd*, compared with 3 % av SPU (handlingsregelen) as a reference line.
   - Second: petroleumsinntekter → overføring til SPU → fondsuttak = oljekorrigert underskudd.
 - **drill-down**: Click a step and the step bar expands into its components; e.g. «utgifter» opens the utgifter hierarchy in a side panel. The identity «uttak = oljekorrigert underskudd» is shown as an equals bridge.
-- **honesty**: The strongest view for correcting media reporting. It shows that the *fondsuttak* is a residual, and that 3 % is a guideline against the *structural* deficit, not the actual withdrawal. Risks:
+- **honesty**: The clearest view of the chain from inntekter to fondsuttak. It shows that the *fondsuttak* is a residual, and that 3 % is a guideline against the *structural* deficit, not the actual withdrawal. Risks:
   - The structural adjustment is an estimate (Finansdep), so it is coloured as estimat.
   - Vedtatt vs regnskap must be chosen explicitly.
   - «3 % of SPU» uses the fund value at the start of the year, so print the date.
@@ -109,7 +109,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 - **complexity**: M
 - **reuse**: `waterfall` (also pengestrømmer and reconciliation)
 
-### `innt-timeline-gap` — Oljekorrigert underskudd og handlingsregelen 2001–i dag
+### `innt-timeline-gap` — Oljekorrigert underskudd og handlingsregelen over tid
 - **type**: timeline
 - **description**: Line chart of the strukturelt oljekorrigert underskudd, the actual fondsuttak, and 4 %/3 % av SPU as a step line (the rule changed in 2017). The band between uttak and the rule is shaded. A secondary line shows the SPU value, preferably in a separate panel rather than on a right axis.
 - **drill-down**: Click a year to open `innt-waterfall` for that year.
@@ -135,7 +135,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `innt-slope` — Inntektsmiks før og nå
 - **type**: timeline (two points)
-- **description**: Slope chart comparing the share of each source in year A vs year B (default 2004 vs the latest year), in % BNP Fastland. Shows the petroleum swing directly.
+- **description**: Slope chart comparing the share of each source in year A vs year B (default: first and latest year in the data), in % BNP Fastland. Shows the petroleum swing directly.
 - **drill-down**: Click a slope to show the children of that source as slopes.
 - **honesty**: Cherry-picked years can mislead, so expose both year pickers and show a faint sparkline on hover.
 - **unit handling**: shares, % BNP Fastland, per innbygger in faste priser.
@@ -171,7 +171,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 - **type**: snapshot
 - **description**: Waterfall that starts at «Petroleumsinntekter» and steps down through «avsatt til SPU», «fondsavkastning» and «uttak» to «brutto utgifter». A final negative step, «hvorav utlån/kapitalinnskudd (gjennomstrømning)», gives «netto utgifter».
 - **drill-down**: Each step opens its hierarchy in a side panel.
-- **honesty**: Makes gross vs gjennomstrømning explicit; this is often where media numbers differ (e.g. «1 900 mrd budsjett»). Avoid implying that lending is free: label it «utlån, tilbakebetales», with an estimat badge for the expected repayment.
+- **honesty**: Makes gross vs gjennomstrømning explicit; the gross budget total and the net spending differ by exactly this item. Avoid implying that lending is free: label it «utlån, tilbakebetales», with an estimat badge for the expected repayment.
 - **unit handling**: kr, % BNP Fastland.
 - **mobile**: vertical steps.
 - **complexity**: M
@@ -179,7 +179,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `flow-alluvial-time` — Strømmer år for år
 - **type**: timeline
-- **description**: Small multiples of a simplified 3-column sankey for selected years (2005, 2010, 2015, 2020, latest), on the same scale, so the growth of the SPU-uttak ribbon relative to skatter is visible. Alternatively an animated sankey scrubbing through the years, with fixed node positions.
+- **description**: Small multiples of a simplified 3-column sankey for a few selected years (default: evenly spaced across the available range, plus the latest), on the same scale, so the growth of the SPU-uttak ribbon relative to skatter is visible. Alternatively an animated sankey scrubbing through the years, with fixed node positions.
 - **drill-down**: Click a multiple to open the full `flow-sankey` for that year.
 - **honesty**: The same scale across years is essential; otherwise the growth disappears. Use faste priser or % BNP Fastland. The animation must keep the node order fixed to avoid false «movement».
 - **unit handling**: faste priser, % BNP Fastland.
@@ -191,7 +191,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 - **type**: timeline
 - **description**: 100 % stacked area showing the share of budget expenditure financed by skatter uten petroleum vs fondsuttak, plus a line for «uttak i % av SPU».
 - **drill-down**: Click the «skatter» area to split it by tax type.
-- **honesty**: 100 % stacking hides growth, so pair it with an absolute-value toggle. Mark the regime changes: the handlingsregel in 2001, 3 % in 2017, covid in 2020.
+- **honesty**: 100 % stacking hides growth, so pair it with an absolute-value toggle. Mark the regime changes from the shared break registry (for example the handlingsregel, the change to 3 %, covid), but only those that fall inside the plotted range.
 - **unit handling**: %, % BNP Fastland, faste priser.
 - **mobile**: fine.
 - **complexity**: S
@@ -299,11 +299,11 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 - **complexity**: L
 - **reuse**: `sankey`
 
-### `bef-stacked-timeline` — Statusfordeling 2000–i dag
+### `bef-stacked-timeline` — Statusfordeling over tid
 - **type**: timeline
 - **description**: 100 % stacked area of the status shares over time, with a definition toggle. A separate line panel compares the three unemployment measures: AKU, registrert hos NAV, and bruttoledighet including tiltak.
 - **drill-down**: Click an area to split it by subgroup over time.
-- **honesty**: AKU breaks (2006, and the new EU regulation in 2021) must be drawn as discontinuities. Register data starts in 2015 (a-ordningen); show the series only where it exists and never interpolate. Mark the covid permitteringer in 2020.
+- **honesty**: AKU breaks (2006, and the new EU regulation in 2021) must be drawn as discontinuities. Show each series only for the years where it exists (verify each series' start year in its source; the a-ordningen-based series is shorter) and never interpolate. Mark the covid permitteringer in 2020.
 - **unit handling**: %, persons, per 1000 innbyggere.
 - **mobile**: fine.
 - **complexity**: S
@@ -336,7 +336,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 ### `ssys-rings` — Ringene rundt staten
 - **type**: snapshot
 - **description**: Concentric rings (nested circles or arcs) with ring 1 (statsforvaltningen) innermost. Each ring's *band width* is proportional to the persons it adds. Helseforetak are drawn inside ring 1 as a highlighted sector, not as a separate ring, to avoid double counting. The outer rings 5–7 use estimat styling. A faint outermost circle stands for alle sysselsatte, so the share is visible.
-- **drill-down**: Click a ring to open it as `hier-bars`; e.g. ring 4 becomes a list of companies with the full count and the ownership-weighted count. Toggles: personer | årsverk; full count | eierandelsvektet; Norge | inkl. utlandet.
+- **drill-down**: Click a ring to open it as `hier-bars`; e.g. ring 3 or 4 becomes a list of companies with the full count and the ownership-weighted count. Toggles: personer | årsverk; full count | eierandelsvektet; Norge | inkl. utlandet.
 - **honesty**: Concentric rings encode by band *area*, which grows with the radius. Either make the band *width* proportional and print the cumulative numbers at each ring, or use an equal-area «target» layout with explicit numeric labels. In SSB, helseforetak are a subset of statsforvaltningen; draw that as containment, not addition. Kommunesektoren is not employed by the state, so label it «finansiert i stor grad av staten», with a visible gap or dashed ring between rings 4 and 5.
 - **unit handling**: persons, årsverk, % av alle sysselsatte.
 - **mobile**: square, with a legend list of cumulative totals below.
@@ -355,7 +355,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `ssys-waffle` — Av 100 sysselsatte
 - **type**: snapshot
-- **description**: 10×10 waffle of all employed people in Norway, with cells coloured by ring. Ring 4 uses partially filled cells weighted by ownership (e.g. 67 % Equinor = a two-thirds filled cell). Toggle persons/årsverk.
+- **description**: 10×10 waffle of all employed people in Norway, with cells coloured by ring. Rings 3–4 (companies) use partially filled cells weighted by ownership (e.g. 67 % Equinor = a two-thirds filled cell). Toggle persons/årsverk.
 - **drill-down**: Click a ring's cells to re-fill the waffle with that ring's breakdown.
 - **honesty**: Partial fill makes the ownership weighting visible instead of hiding it in a footnote. Estimat rings get dotted borders.
 - **unit handling**: %, «av 100 sysselsatte».
@@ -365,7 +365,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `ssys-timeline` — Ringene over tid
 - **type**: timeline
-- **description**: Stacked area of rings 1–5 as % of all employed, 2000–now, with rings 6–7 as a dashed estimat band on top. Vertical markers flag structural changes: the helseforetak reform in 2002, the conversions of Mesta, Posten and others, and the partial privatisation of Equinor.
+- **description**: Stacked area of rings 1, 3 and 4 as % of all employed over the available range (ring 2 is contained in ring 1 and not stacked), with ring 5 (kommunesektoren) as its own labelled band and rings 6–7 as a dashed estimat band on top. Vertical markers flag structural changes: the helseforetak reform in 2002, the conversions of Mesta, Posten and others, and the partial privatisation of Equinor.
 - **drill-down**: Click a ring to see its subcomponents over time.
 - **honesty**: Many of the breaks are reclassifications, not real changes in employment, so the markers and a hover note «omklassifisering» are mandatory. The ownership-weighted share over time depends on changes in the stakes, so show the weight line separately.
 - **unit handling**: %, persons, årsverk.
@@ -375,7 +375,7 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `ssys-marimekko-eier` — Selskaper: ansatte × eierandel
 - **type**: snapshot
-- **description**: Marimekko for ring 4. Column width = the company's employees (full count). Each column's height is split into the state's ownership share vs other owners, with Norway vs abroad as a second split. The area of the state's portion = ownership-weighted employment.
+- **description**: Marimekko for rings 3–4 (statsforetak/særlov and AS/ASA). Column width = the company's employees (full count). Each column's height is split into the state's ownership share vs other owners, with Norway vs abroad as a second split. The area of the state's portion = ownership-weighted employment.
 - **drill-down**: Click a company to see its subsidiaries or segments, if published (Statens eierberetning).
 - **honesty**: Shows that Equinor dominates the full count, but much of it is abroad. Here the area (the weighted count) is genuinely meaningful. Companies that don't report the Norway/abroad split get an estimat hatch.
 - **unit handling**: persons, weighted persons.
@@ -427,9 +427,9 @@ Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
 ### `rec-timeline-gap` — Avviket over tid
 - **type**: timeline
-- **description**: Lines for Total A and Total B, 2000–now, with the gap shaded. A lower panel breaks the gap down into the bridge items as a stacked area, with the residual on top in grey. For employment, the same compares AKU sysselsatte with register sysselsatte. There the gap breaks down into foreign commuters, the age bounds (15–74 vs 15–89), the reference week, and so on.
+- **description**: Lines for Total A and Total B over the available range, with the gap shaded. A lower panel breaks the gap down into the bridge items as a stacked area, with the residual on top in grey. For employment, the same compares AKU sysselsatte with register sysselsatte. There the gap breaks down into foreign commuters, the age bounds (15–74 vs 15–89), the reference week, and so on.
 - **drill-down**: Click a year to open `rec-bridge-waterfall` for that year.
-- **honesty**: Growth of the residual over time is information in itself (the crosswalk drifting). Register employment begins in 2015; don't extend the line.
+- **honesty**: Growth of the residual over time is information in itself (the crosswalk drifting). Show each line only where the series exists; don't extend it.
 - **unit handling**: kr/persons, % of Total A.
 - **mobile**: fine.
 - **complexity**: S
@@ -471,7 +471,7 @@ Every module accepts the same props, `{node, dim, year, unit, status, claimStyle
 ## (b) Recommended default view per data type
 
 1. **Utgifter**: `utg-hier-bars`. It's the most accurate to read and the cheapest to build, and the breadcrumb dropdown for switching dimension is clearest here. The treemap is the «picture» alternative, one click away.
-2. **Inntekter**: `innt-waterfall`. It's the one view that explains oljekorrigert underskudd, strukturelt underskudd and handlingsregelen as one chain, and that is the misunderstanding the site exists to fix.
+2. **Inntekter**: `innt-waterfall`. It's the one view that explains oljekorrigert underskudd, strukturelt underskudd and handlingsregelen as one chain, and it is the view that shows how these concepts relate.
 3. **Pengestrømmer**: `flow-sankey`. A question about flows deserves a flow chart, and gjennomstrømning as a separate ribbon is the honesty win.
 4. **Makro**: `makro-bnp-lines`. The gap with and without oil over time is the core message, and a line chart carries it without distortion.
 5. **Befolkning og sysselsetting**: `bef-waffle`. Animating the cells with the definition toggle is the most honest and most mobile-friendly way to show AKU vs register vs NAV. Link prominently to `bef-euler` for overlaps.
@@ -486,7 +486,7 @@ Every module accepts the same props, `{node, dim, year, unit, status, claimStyle
 - **Unit selector**: kr løpende | kr faste (base year shown) | % av total | % BNP | % BNP Fastland | per innbygger | av hver 100-lapp. Units that are meaningless for a view are disabled (e.g. per innbygger for ranks).
 - **Definition selector** where relevant: AKU | register | NAV; brutto | netto; full count | eierandelsvektet; Norge | inkl. utlandet.
 - **Claim-level legend** (offisiell / utledet / estimat), drawn the same way on every chart, plus a «skjul estimater» toggle.
-- **Source footer** with the SSB table id or document for every number, and a «vis tallene» table drawer (sorted, copyable CSV) under each chart. This is the ultimate honesty fallback, and the mobile fallback for dense charts.
+- **Source footer** with the SSB table id or document for every number, and a «vis tallene» table drawer (sorted, view only; no download or export) under each chart. This is the ultimate honesty fallback, and the mobile fallback for dense charts.
 - **«Øvrig / ikke fordelt» always visible**, with a tooltip explaining what it contains.
 - **A shared registry of break and regime markers** (reform years, definition changes) used by all timelines.
 - **Permalink / copy-link button** reflecting the full URL state. **Back** restores the previous node with a reverse animation.
