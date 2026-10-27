@@ -13,10 +13,13 @@ class _Collect(HTMLParser):
         super().__init__()
         self.links: list[tuple[str, str]] = []  # (attr, value)
         self.ids: set[str] = set()
+        self.duplicate_ids: set[str] = set()
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if a.get("id"):
+            if a["id"] in self.ids:
+                self.duplicate_ids.add(a["id"])
             self.ids.add(a["id"])
         if tag == "a" and a.get("name"):
             self.ids.add(a["name"])
@@ -37,6 +40,7 @@ def check_site_links(site: Path) -> list[str]:
         parsed[p] = c
     for p, c in parsed.items():
         rel = p.relative_to(site)
+        errors.extend(f"{rel}: duplicate id '{i}'" for i in sorted(c.duplicate_ids))
         for attr, value in c.links:
             if not value or value.startswith(("mailto:", "tel:", "javascript:", "data:")):
                 continue

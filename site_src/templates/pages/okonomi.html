@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-{% from "macros.html" import chart, cite, data_table, claim_badge, quote with context %}
+{% from "macros.html" import chart, cite, data_table, claim_badge, quote, chart_scripts with context %}
 {% block description %}BNP og BNP Fastlands-Norge, eksport og handelsbalanse, med og uten råolje og naturgass, fra SSBs nasjonalregnskap og utenrikshandelsstatistikk.{% endblock %}
+{% set U_BNP = {"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "unit": "prosent", "series": "okonomi.bnp_lopende", "scale": 100, "price_basis": "løpende"} %}
+{% set U_INNB = {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "unit": "kr per innbygger", "series": "okonomi.befolkning_gjennomsnitt", "scale": 1000000000} %}
+{% set DEN = {"okonomi.bnp_lopende": root ~ "data/okonomi/bnp_lopende.json", "okonomi.befolkning_gjennomsnitt": root ~ "data/okonomi/befolkning_gjennomsnitt.json"} %}
 {% set bnp = series["okonomi.bnp_lopende"]["values"][-1] %}
 {% set fn = series["okonomi.bnp_fastland_lopende"]["values"][-1] %}
 {% set andel = series["okonomi.olje_sjofart_andel_av_bnp"]["values"][-1] %}
@@ -44,14 +47,16 @@
   <p>I løpende priser er BNP lik BNP Fastlands-Norge pluss posten «Oljevirksomhet og utenriks sjøfart». Posten er definert slik:</p>
   {{ quote("olje-sjofart") }}
 
-  {% call chart("bnp-lopende", "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart, løpende priser", ["ssb-09189"], level=None) %}
+  {% call chart("bnp-lopende", "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart, løpende priser", ["ssb-09189"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/okonomi/bnp_lopende.json", root ~ "data/okonomi/bnp_fastland_lopende.json", root ~ "data/okonomi/olje_sjofart_lopende.json"], "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sjøfart"], "views": ["timeseries-lines"]}) %}
     {{ data_table(series_table(["okonomi.bnp_lopende", "okonomi.bnp_fastland_lopende", "okonomi.olje_sjofart_lopende", "okonomi.olje_sjofart_andel_av_bnp"]), 1) }}
   {% endcall %}
 
   <h3>Faste priser og tall per innbygger</h3>
   <p>I faste priser er tallene korrigert for prisvekst, men delene summerer ikke til totalen:</p>
   {{ quote("kjedingsavvik") }}
-  {% call chart("bnp-faste", "BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger", ["ssb-09189", "ssb-06913"], level=None) %}
+  {% call chart("bnp-faste", "BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger", ["ssb-09189", "ssb-06913"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/okonomi/bnp_faste.json", root ~ "data/okonomi/bnp_fastland_faste.json"], "labels": ["BNP", "BNP Fastlands-Norge"], "views": ["timeseries-lines"]}) %}
     {{ data_table(series_table(["okonomi.bnp_faste", "okonomi.bnp_fastland_faste", "okonomi.bnp_volumvekst", "okonomi.bnp_fastland_volumvekst", "okonomi.bnp_per_innbygger_faste", "okonomi.bnp_fastland_per_innbygger_faste"]), 1) }}
   {% endcall %}
   <p class="muted small">Tall per innbygger er utledet: {{ series["okonomi.bnp_per_innbygger_faste"].derivation }}.</p>
@@ -60,19 +65,22 @@
 <section id="eksport">
   <h2>Eksport med og uten råolje og naturgass</h2>
   <p>Nasjonalregnskapet deler eksporten i tradisjonelle varer, råolje og naturgass, skip, plattformer og fly, og tjenester.</p>
-  {% call chart("eksport-lopende", "Eksport etter type, løpende priser", ["ssb-09189"], definition=defs_by_id["rolje-naturgass-samlebegrep"].quote) %}
+  {% call chart("eksport-lopende", "Eksport etter type, løpende priser", ["ssb-09189"], definition=defs_by_id["rolje-naturgass-samlebegrep"].quote,
+      config={"kind": "dataset", "url": root ~ "data/okonomi/eksport_lopende.json", "views": ["hier-bars", "timeseries-stacked", "timeseries-lines"], "units": ["pct-parent", "pct-bnp", "per-innb"], "unitDefs": [U_BNP, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table("okonomi.eksport_lopende"), 1) }}
   {% endcall %}
 
   <h3>Råolje, naturgass og kondensater i varehandelsstatistikken</h3>
   <p>Utenrikshandelsstatistikken for varer viser råolje, naturgass og kondensater hver for seg. Rørledningstransport behandles slik:</p>
   {{ quote("rorledning-tjenesteeksport") }}
-  {% call chart("vareeksport-olje-gass", "Eksport av råolje, naturgass og kondensater, løpende priser", ["ssb-08800"]) %}
+  {% call chart("vareeksport-olje-gass", "Eksport av råolje, naturgass og kondensater, løpende priser", ["ssb-08800"],
+      config={"kind": "dataset", "url": root ~ "data/okonomi/vareeksport_olje_gass_lopende.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp"], "unitDefs": [U_BNP], "denominators": DEN}) %}
     {{ data_table(dataset_table("okonomi.vareeksport_olje_gass_lopende"), 1) }}
   {% endcall %}
 
   <h3>Faste priser</h3>
-  {% call chart("eksport-faste", "Eksport etter type, faste priser, med kjedingsavvik som egen post", ["ssb-09189"], level=None) %}
+  {% call chart("eksport-faste", "Eksport etter type, faste priser, med kjedingsavvik som egen post", ["ssb-09189"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/okonomi/eksport_faste.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "per-innb"], "unitDefs": [U_BNP, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table("okonomi.eksport_faste"), 1) }}
   {% endcall %}
 </section>
@@ -80,7 +88,8 @@
 <section id="handelsbalanse">
   <h2>Handelsbalanse med og uten råolje og naturgass</h2>
   <p>Handelsbalansen er eksport minus import av varer og tjenester. Den er regnet to ganger, med og uten råolje og naturgass.</p>
-  {% call chart("handelsbalanse", "Handelsbalanse, løpende priser", ["ssb-09189"], level="utledet") %}
+  {% call chart("handelsbalanse-lopende", "Handelsbalanse, løpende priser", ["ssb-09189"], level="utledet",
+      config={"kind": "series", "urls": [root ~ "data/okonomi/handelsbalanse_i_alt.json", root ~ "data/okonomi/handelsbalanse_uten_olje_gass.json"], "labels": ["Alle varer og tjenester", "Uten råolje og naturgass"], "views": ["timeseries-bars", "timeseries-lines"]}) %}
     {{ data_table(series_table(["okonomi.handelsbalanse_i_alt", "okonomi.handelsbalanse_uten_olje_gass"]), 1) }}
   {% endcall %}
   <ul class="muted small">
@@ -109,7 +118,8 @@
     {% endfor %}
   </div>
   <p class="muted small">Fondets verdi er summen av disse tre delene, slik NBIM oppgir det. Delene er avrundet av NBIM, så summen kan avvike fra totalen med noen få milliarder kroner. Tallene er halvårstall.</p>
-  {% call chart("spu-siste", "Statens pensjonsfond utland, siste tall", spu["meta"]["source_ids"], level=None) %}
+  {% call chart("spu-siste", "Statens pensjonsfond utland, siste tall", spu["meta"]["source_ids"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/okonomi/spu_fondsverdi.json", "views": ["hier-bars"]}) %}
     {{ data_table(dataset_table("okonomi.spu_fondsverdi", dim="komponent"), 0) }}
   {% endcall %}
 </section>
@@ -145,3 +155,4 @@
   </article>
 </section>
 {% endblock %}
+{% block scripts %}{{ chart_scripts() }}{% endblock %}

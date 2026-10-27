@@ -28,7 +28,7 @@
 
 {# A chart frame: title, «Hva telles?» box, mount point for a view module, table fallback, source line.
    `caller()` should render the <table> with the exact numbers shown. #}
-{% macro chart(id, title, source_ids, definition=None, level="offisiell", mount=False) %}
+{% macro chart(id, title, source_ids, definition=None, level="offisiell", config=None) %}
 <figure class="chart" id="{{ id }}">
   <figcaption>
     <h3>{{ title }}</h3>
@@ -40,7 +40,7 @@
     <div>{{ definition }}</div>
   </details>
   {% endif %}
-  {% if mount %}<div class="chart-mount" data-chart="{{ id }}"></div>{% endif %}
+  {% if config %}<div class="chart-mount" data-chart="{{ id }}" data-config='{{ dict(config, id=id, title=title) | tojson }}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>{% endif %}
   <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">{{ caller() }}</div>
@@ -80,4 +80,10 @@
 {% set d = defs_by_id[id] %}
 <blockquote>{{ d.quote }}</blockquote>
 {{ cite([d.source_id]) }}
+{% endmacro %}
+
+{# Scripts a page with charts needs: d3 (vendored) and the mount controller. Put in {% block scripts %}. #}
+{% macro chart_scripts() %}
+<script src="{{ root }}assets/vendor/d3-7.9.0.min.js"></script>
+<script type="module" src="{{ root }}assets/js/mount.js"></script>
 {% endmacro %}

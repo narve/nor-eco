@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart, data_table, chart_scripts with context %}
+{% block main %}
+<header class="page-head">
+  <p class="mono">Testside</p>
+  <h1>Syntetiske testdata</h1>
+  <p class="lede">Bare for utvikling og tester. Tallene her er ikke ekte.</p>
+</header>
+<section id="visning">
+  <h2>Visning</h2>
+  {% call chart("syntetisk", "SYNTETISK: Utgifter etter formål og nivå", ["test-kilde-a", "test-kilde-b"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/_fixture/test/utgifter.json", "views": ["hier-bars", "timeseries-stacked", "timeseries-lines"], "units": ["pct-parent", "pct-total"]}) %}
+    {{ data_table(dataset_table("test.utgifter", dim="formaal"), 1) }}
+  {% endcall %}
+</section>
+{% endblock %}
+{% block scripts %}{{ chart_scripts() }}{% endblock %}

@@ -67,3 +67,10 @@ def test_template_numbers_lint_passes():
 def test_template_numbers_lint_catches_hardcoded_number():
     assert numbers.lint_template("<p>Underskuddet var 123,4 mrd.</p>", ["CC BY 4\\.0"], r"(19|20)\d\d") == ["123,4"]
     assert numbers.lint_template("<p>{{ fmt(x) }} i 2024, ring 3, CC BY 4.0</p>", ["CC BY 4\\.0", r"[Rr]ing [1-7]"], r"(19|20)\d\d") == []
+
+
+def test_link_check_catches_duplicate_ids(tmp_path):
+    out = _build(tmp_path)
+    p = out / "index.html"
+    p.write_text(p.read_text(encoding="utf-8").replace('id="temaer"', 'id="kildepolitikk"', 1), encoding="utf-8")
+    assert any("duplicate id 'kildepolitikk'" in e for e in links.check_site_links(out))

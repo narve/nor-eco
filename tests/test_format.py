@@ -19,3 +19,11 @@ def test_negative_uses_minus_sign_and_none_is_dash():
 
 def test_sign_flag():
     assert fmt(4.2, 1, sign=True) == "+4,2"
+
+
+def test_ties_round_half_away_from_zero_on_the_decimal_value():
+    assert fmt(0.25, 1) == "0,3"
+    assert fmt(2.5, 0) == "3"
+    assert fmt(0.125, 2) == "0,13"
+    assert fmt(-0.25, 1) == "−0,3"
+    assert fmt(1.005, 2) == "1,01"

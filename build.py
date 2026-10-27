@@ -147,6 +147,7 @@ def make_env() -> Environment:
     )
     env.globals["fmt"] = fmt
     env.globals["period_label"] = period_label
+    env.globals["dict"] = dict
     return env
 
 
@@ -219,6 +220,8 @@ def build(
         s.setdefault("table_id", None)
         s.setdefault("notes", None)
     pages_cfg = yaml.safe_load((SRC / "pages.yaml").read_text(encoding="utf-8"))["pages"]
+    if include_fixture:  # test-only page showing the synthetic dataset; never part of the real site
+        pages_cfg.append({"path": "galleri/fixture.html", "template": "fixture.html", "title": "Syntetiske testdata", "nav": "Testdata", "secondary": True})
     for p in pages_cfg:
         p.setdefault("secondary", False)
     definitions = load_definitions(definitions_dir)

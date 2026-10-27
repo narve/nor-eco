@@ -95,6 +95,9 @@ def run(out: Path = PROCESSED) -> None:
                                 vintage=pop_js.updated), out)
     per_cap_years = [t for t in years if str(int(t) + 1) in pop and t in pop]
     avg_pop = {t: (pop[t] + pop[str(int(t) + 1)]) / 2 for t in per_cap_years}
+    write_series(TOPIC, _series("befolkning_gjennomsnitt", "Gjennomsnittlig folkemengde (start av året og start av året etter)", "personer",
+                                [{"period": t, "value": avg_pop[t]} for t in per_cap_years], source_ids=[POP], claim="utledet",
+                                derivation="(folkemengde 1. januar i året + folkemengde 1. januar året etter) / 2", vintage=pop_js.updated), out)
     for key, label in (("bnp", "BNP"), ("bnp_fastland", "BNP Fastlands-Norge")):
         for cc, pb, tag, extra in (("Priser", "løpende", "lopende", "løpende priser"), ("Faste", "faste", "faste", f"faste {BASE_YEAR}-priser")):
             vals = [{"period": t, "value": round(na[(key, cc, t)] * 1_000_000 / avg_pop[t]), "status": na_status[t]} for t in per_cap_years]

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/charts.css">
   <script>window.goatcounter = { path: function(p) { return location.host + p } }</script>
   <script data-goatcounter="https://dv8.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -116,7 +117,7 @@
   <figcaption>
     <h3>BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sjøfart, løpende priser</h3>
   </figcaption>
-  <details class="datatable">
+<div class="chart-mount" data-chart="bnp-lopende" data-config='{"id": "bnp-lopende", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge", "Oljevirksomhet og utenriks sj\u00f8fart"], "title": "BNP, BNP Fastlands-Norge og oljevirksomhet og utenriks sj\u00f8fart, l\u00f8pende priser", "urls": ["data/okonomi/bnp_lopende.json", "data/okonomi/bnp_fastland_lopende.json", "data/okonomi/olje_sjofart_lopende.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -172,7 +173,7 @@
       <td>3 733,4</td>
       <td>3 193,8</td>
       <td>539,6</td>
-      <td>14,4</td>
+      <td>14,5</td>
     </tr>
     <tr>
       <th scope="row">2018</th>
@@ -185,7 +186,7 @@
       <th scope="row">2017</th>
       <td>3 438,3</td>
       <td>2 904,1</td>
-      <td>534,2</td>
+      <td>534,3</td>
       <td>15,5</td>
     </tr>
     <tr>
@@ -226,7 +227,7 @@
     <tr>
       <th scope="row">2011</th>
       <td>2 874,4</td>
-      <td>2 216,3</td>
+      <td>2 216,4</td>
       <td>658,1</td>
       <td>22,9</td>
     </tr>
@@ -263,7 +264,7 @@
       <td>2 243,2</td>
       <td>1 676,8</td>
       <td>566,4</td>
-      <td>25,2</td>
+      <td>25,3</td>
     </tr>
     <tr>
       <th scope="row">2005</th>
@@ -319,7 +320,7 @@
       <td>1 154,1</td>
       <td>1 010,4</td>
       <td>143,6</td>
-      <td>12,4</td>
+      <td>12,5</td>
     </tr>
     <tr>
       <th scope="row">1997</th>
@@ -401,7 +402,7 @@
   <figcaption>
     <h3>BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger</h3>
   </figcaption>
-  <details class="datatable">
+<div class="chart-mount" data-chart="bnp-faste" data-config='{"id": "bnp-faste", "kind": "series", "labels": ["BNP", "BNP Fastlands-Norge"], "title": "BNP og BNP Fastlands-Norge, faste priser, volumvekst og per innbygger", "urls": ["data/okonomi/bnp_faste.json", "data/okonomi/bnp_fastland_faste.json"], "views": ["timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -761,7 +762,7 @@
     <summary class="mono">Hva telles?</summary>
     <div>I publiseringen av tall for utenrikshandelen med varer gir vi tall for råolje, naturgass og naturlige gasskondensater, mens utenriksregnskapet bruker samlebegrepet ”råolje og naturgass” for varene råolje, naturgass, naturlige gasskondensater, nafta, propan og butan.</div>
   </details>
-  <details class="datatable">
+<div class="chart-mount" data-chart="eksport-lopende" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "eksport-lopende", "kind": "dataset", "title": "Eksport etter type, l\u00f8pende priser", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "data/okonomi/eksport_lopende.json", "views": ["hier-bars", "timeseries-stacked", "timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1083,7 +1084,7 @@
     <h3>Eksport av råolje, naturgass og kondensater, løpende priser</h3>
 <span class="claim claim-offisiell" title="Offisielt tall">Offisielt tall</span>
   </figcaption>
-  <details class="datatable">
+<div class="chart-mount" data-chart="vareeksport-olje-gass" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "vareeksport-olje-gass", "kind": "dataset", "title": "Eksport av r\u00e5olje, naturgass og kondensater, l\u00f8pende priser", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}], "units": ["pct-parent", "pct-bnp"], "url": "data/okonomi/vareeksport_olje_gass_lopende.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1361,7 +1362,7 @@
   <figcaption>
     <h3>Eksport etter type, faste priser, med kjedingsavvik som egen post</h3>
   </figcaption>
-  <details class="datatable">
+<div class="chart-mount" data-chart="eksport-faste" data-config='{"denominators": {"okonomi.befolkning_gjennomsnitt": "data/okonomi/befolkning_gjennomsnitt.json", "okonomi.bnp_lopende": "data/okonomi/bnp_lopende.json"}, "id": "eksport-faste", "kind": "dataset", "title": "Eksport etter type, faste priser, med kjedingsavvik som egen post", "unitDefs": [{"id": "pct-bnp", "kind": "ratio", "label": "% av BNP", "price_basis": "l\u00f8pende", "scale": 100, "series": "okonomi.bnp_lopende", "unit": "prosent"}, {"id": "per-innb", "kind": "ratio", "label": "kr per innbygger", "scale": 1000000000, "series": "okonomi.befolkning_gjennomsnitt", "unit": "kr per innbygger"}], "units": ["pct-parent", "pct-bnp", "per-innb"], "url": "data/okonomi/eksport_faste.json", "views": ["hier-bars", "timeseries-stacked"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1589,7 +1590,7 @@
     <tr>
       <th scope="row">2001</th>
       <td>422,1</td>
-      <td>1 439,3</td>
+      <td>1 439,4</td>
       <td>38,1</td>
       <td>296,6</td>
       <td>−135,3</td>
@@ -1655,7 +1656,7 @@
       <td>1 045,1</td>
       <td>28,0</td>
       <td>211,1</td>
-      <td>−116,3</td>
+      <td>−116,4</td>
       <td>1 455,3</td>
     </tr>
     <tr>
@@ -1710,12 +1711,12 @@
 <section id="handelsbalanse">
   <h2>Handelsbalanse med og uten råolje og naturgass</h2>
   <p>Handelsbalansen er eksport minus import av varer og tjenester. Den er regnet to ganger, med og uten råolje og naturgass.</p>
-<figure class="chart" id="handelsbalanse">
+<figure class="chart" id="handelsbalanse-lopende">
   <figcaption>
     <h3>Handelsbalanse, løpende priser</h3>
 <span class="claim claim-utledet" title="Utledet">ƒ Utledet</span>
   </figcaption>
-  <details class="datatable">
+<div class="chart-mount" data-chart="handelsbalanse-lopende" data-config='{"id": "handelsbalanse-lopende", "kind": "series", "labels": ["Alle varer og tjenester", "Uten r\u00e5olje og naturgass"], "title": "Handelsbalanse, l\u00f8pende priser", "urls": ["data/okonomi/handelsbalanse_i_alt.json", "data/okonomi/handelsbalanse_uten_olje_gass.json"], "views": ["timeseries-bars", "timeseries-lines"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -1762,7 +1763,7 @@
     <tr>
       <th scope="row">2018</th>
       <td>237,6</td>
-      <td>−331,9</td>
+      <td>−332,0</td>
     </tr>
     <tr>
       <th scope="row">2017</th>
@@ -1876,7 +1877,7 @@
     </tr>
     <tr>
       <th scope="row">1995</th>
-      <td>55,5</td>
+      <td>55,6</td>
       <td>−60,3</td>
     </tr>
     <tr>
@@ -1963,7 +1964,7 @@
   <figcaption>
     <h3>Statens pensjonsfond utland, siste tall</h3>
   </figcaption>
-  <details class="datatable">
+<div class="chart-mount" data-chart="spu-siste" data-config='{"id": "spu-siste", "kind": "dataset", "title": "Statens pensjonsfond utland, siste tall", "url": "data/okonomi/spu_fondsverdi.json", "views": ["hier-bars"]}'><p class="muted">Tabellen under viser tallene. Visningen krever JavaScript.</p></div>  <details class="datatable">
     <summary class="mono">Vis tallene</summary>
     <div class="table-wrap">    <table>
   <thead>
@@ -2060,5 +2061,7 @@
     </div>
   </footer>
   <script src="assets/js/site.js" defer></script>
+<script src="assets/vendor/d3-7.9.0.min.js"></script>
+<script type="module" src="assets/js/mount.js"></script>
 </body>
 </html>

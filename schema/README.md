@@ -34,6 +34,19 @@ published or linked (the site offers no downloads).
 `node.schema.json` describes the `Node` every view receives. Props: `{node, dim, year, unit, status,
 claimStyle}`. Events: `drill(path)` and `switchDim(path, dim)`.
 
+## Time-series contract: `SeriesSet`
+Timeline views receive `{title, unit, claim_level, series: [{id, label, other?, values: [{period, value, raw, status, claim}]}], breaks: [{period, note}], periods}`.
+`engine.timeline()` builds it from a dataset (one series per child of the current node, split by the chosen
+dimension); `engine.seriesSet()` builds it from plain series JSON. Gaps stay `null` and are never interpolated.
+
+## Dimension engine (`site_src/assets/js/core/engine.js`)
+View state is `{path, dim}`: `path` selects `dimension:code` filters (last code per dimension wins), `dim` is the
+dimension the next level is split by. `nodeFor(ds, state)` returns the Node tree, `timeline(ds, state)` the SeriesSet,
+`breadcrumb()` and `splittableDims()` feed the controls. Units: `raw`, `pct-parent`, `pct-total`, and `ratio`
+units defined per chart (`% av BNP`, `kr per innbygger`) with a denominator series; a unit that does not apply
+(for example `% av BNP` on fixed prices) is disabled with a reason.
+
 ## URL state
-`?view=<view-id>&year=<yyyy>&unit=<unit-id>&status=<status>&def=<definition-id>&path=<dim>:<code>/<dim>:<code>`
+`?chart=<chart-id>&view=<view-id>&year=<yyyy>&unit=<unit-id>&status=<status>&def=<definition-id>&dim=<dim>&path=<dim>:<code>/<dim>:<code>`
+Only the chart named by `chart` reads or writes the state, so a page can hold several charts.
 Each path segment means «split the previous node by this dimension, select this code».

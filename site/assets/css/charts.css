@@ -1,0 +1,61 @@
+/* Chart chrome and view styling. Marks use the --c1..--c8 / --other tokens (provisional palette, see tokens.css). */
+.chart-ui { display: grid; gap: 0.75rem; }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; overflow-x: auto; }
+.crumb { min-height: var(--tap); padding: 0 0.5rem; background: none; border: 0; color: var(--muted); font: inherit; cursor: pointer; }
+.crumb[aria-current="true"] { color: var(--text); font-weight: 600; cursor: default; }
+.sep { color: var(--muted); }
+.settings { border: 1px solid var(--line); border-radius: var(--radius); padding: 0 0.75rem; }
+.settings > summary { cursor: pointer; min-height: var(--tap); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.chips { display: inline-flex; gap: 0.35rem; flex-wrap: wrap; }
+.chip { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.1rem 0.5rem; border: 1px solid var(--line-strong); border-radius: 999px; text-transform: none; letter-spacing: 0; color: var(--text); }
+.ctl-row { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; padding: 0.25rem 0 0.75rem; align-items: flex-end; }
+.ctl { display: grid; gap: 0.2rem; }
+.ctl.inline { display: inline-grid; margin-left: 0.5rem; }
+.ctl select, .btn, .seg button { min-height: var(--tap); font: inherit; color: var(--text); background: var(--bg-card); border: 1px solid var(--line-strong); border-radius: 4px; padding: 0 0.6rem; }
+.btn { cursor: pointer; }
+.btn:hover, .seg button:hover { border-color: var(--accent); }
+.seg { display: inline-flex; }
+.seg button { border-radius: 0; cursor: pointer; }
+.seg button:first-child { border-radius: 4px 0 0 4px; }
+.seg button:last-child { border-radius: 0 4px 4px 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+/* hier-bars */
+.hb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+.hb-row, .hb-ref { display: grid; grid-template-columns: 1fr auto; column-gap: 0.75rem; row-gap: 0.25rem; align-items: baseline; width: 100%; text-align: left; font: inherit; color: var(--text); background: none; border: 0; border-bottom: 1px solid var(--line); padding: 0.5rem 0.25rem; min-height: var(--tap); }
+.hb-row { cursor: pointer; }
+.hb-row:hover, .hb-row[aria-pressed="true"] { background: var(--bg-card); }
+.hb-ref { border-bottom: 2px solid var(--line-strong); }
+.hb-ref .hb-label { color: var(--muted); }
+.hb-sub { color: var(--muted); font-size: 0.85rem; }
+.hb-more { color: var(--accent); }
+.hb-value { text-align: right; white-space: nowrap; }
+.hb-track { grid-column: 1 / -1; position: relative; height: 0.7rem; background: var(--line); border-radius: 2px; }
+.hb-ref .hb-track { height: 0.4rem; }
+.hb-bar { position: absolute; top: 0; bottom: 0; background: var(--bar); border-radius: 2px; }
+.hb-zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--text); }
+.hb-bar.claim-utledet { background: repeating-linear-gradient(135deg, var(--bar) 0 4px, transparent 4px 6px); outline: 1px solid var(--bar); }
+.hb-bar.claim-estimat { background: transparent; outline: 1px dotted var(--bar); outline-offset: -1px; opacity: 0.9; }
+.hb-bar.is-prelim:not(.claim-utledet):not(.claim-estimat) { background: repeating-linear-gradient(135deg, var(--bar) 0 5px, color-mix(in srgb, var(--bar) 45%, transparent) 5px 7px); }
+.is-other .hb-label { color: var(--muted); }
+
+/* timeseries */
+.ts-plot svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ts-axis text { fill: var(--muted); font-family: var(--font-mono); font-size: 10.5px; }
+.ts-unit { fill: var(--muted); font-family: var(--font-mono); font-size: 10.5px; }
+.ts-grid { stroke: var(--line); }
+.ts-zero { stroke: var(--line-strong); }
+.ts-break { stroke: var(--muted); stroke-dasharray: 3 3; }
+.ts-cursor { stroke: var(--text); stroke-opacity: 0.45; }
+.ts-legend { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.ts-key { text-align: left; display: inline-flex; align-items: center; gap: 0.4rem; min-height: var(--tap); background: none; border: 0; color: var(--text); font: inherit; cursor: pointer; }
+.ts-swatch { width: 0.8rem; height: 0.8rem; border-radius: 2px; background: var(--bar); flex: none; }
+svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* readout (selected value; used instead of a tooltip so it works with touch) */
+.readout { min-height: 3rem; padding: 0.5rem 0.75rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-card); }
+.readout .btn { margin-left: 0.75rem; min-height: 36px; }
+.ro-list { list-style: none; margin: 0.25rem 0 0; padding: 0; display: grid; gap: 0.15rem; }
+.ro-list li { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.ro-label { flex: 1 1 10rem; }
+.chart-note:empty { display: none; }

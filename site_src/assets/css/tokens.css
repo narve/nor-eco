@@ -47,3 +47,20 @@
   --grid: rgba(11, 127, 149, 0.06);
   --glow: rgba(11, 127, 149, 0.07);
 }
+
+/* Chart colours. PROVISIONAL: WS5c replaces these with a palette validated for colour-blind safety and contrast
+   in both themes. Petroleum vs non-oil must get the same pair of colours on every page. */
+:root {
+  --c1: #6fd6e8; --c2: #b59cff; --c3: #f2b05e; --c4: #6fe39a; --c5: #ff8a9a; --c6: #8fb4ff; --c7: #d9d36a; --c8: #e08ee0;
+  --other: #6b7685;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --c1: #0b7f95; --c2: #6a4fd1; --c3: #b3640c; --c4: #1d8a4c; --c5: #c23a55; --c6: #2c5fcf; --c7: #8a7f0a; --c8: #a63ea6;
+    --other: #98a2b0;
+  }
+}
+:root[data-theme="light"] {
+  --c1: #0b7f95; --c2: #6a4fd1; --c3: #b3640c; --c4: #1d8a4c; --c5: #c23a55; --c6: #2c5fcf; --c7: #8a7f0a; --c8: #a63ea6;
+  --other: #98a2b0;
+}
