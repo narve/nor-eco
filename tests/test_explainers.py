@@ -10,7 +10,7 @@ from checks import numbers
 from paths import ROOT
 
 EX = yaml.safe_load((ROOT / "site_src" / "explainers.yaml").read_text(encoding="utf-8"))["explainers"]
-PAGES = ["okonomi.html", "statsbudsjett.html", "sysselsetting.html"]  # the gallery reuses the same data, with generic help only
+PAGES = ["okonomi.html", "statsbudsjett.html", "sysselsetting.html", "staten-som-arbeidsgiver.html"]  # the gallery reuses the same data, with generic help only
 
 
 class _Charts(HTMLParser):

@@ -6,3 +6,6 @@ allow_phrases:
   - '\b3 ?%'                 # the 3 % rule, if mentioned in text
   - '\b15[–-]74\b'           # age groups the employment datasets are defined for (a population definition, not a statistic)
   - '\b20[–-]66\b'
+  - '[Kk]ategori 1 og 2'
+  - '[Kk]ategori [12]\b'     # the report's own category names (Statens eierrapport), not statistics
+  - '\b4\. kvartal\b'        # the reference quarter of SSB's sector table

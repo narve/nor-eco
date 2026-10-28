@@ -1,0 +1,50 @@
+# Verbatim quotes from SSB's table notes (12623, 13472) and from Statens eierrapport 2025. `python -m checks` (online step) verifies each quote still appears at its source.
+definitions:
+  - id: staten-ansatte-omfang
+    term: Ansatte i staten (SSB)
+    quote: "Statistikken over ansatte i staten dekker de samme enhetene som inngår i statsregnskapet.no. Dermed dekker statistikken departementene, Stortinget, Sametinget, Domstolene i Norge, statsministerens kontor, med underliggende virksomheter."
+    source_id: ssb-12623
+  - id: staten-ansatte-ikke
+    term: Hva som ikke inngår i «ansatte i staten»
+    quote: "Helseforetakene og offentlig kontrollerte enheter som statens forretningsdrift og statlig eide aksjeselskap (som Equinor, Telenor, Statskraft, mv.) inngår ikke i populasjonen."
+    source_id: ssb-12623
+  - id: staten-forskjell-forvaltningen
+    term: Ansatte i staten og statsforvaltningen
+    quote: "Den største forskjellen mellom statistikken over ansatte i staten og andre statistikker som gir tall for statsforvaltningen (definert som alle enheter med sektorkode 6100), er at statsforvaltningen også inkluderer helseforetakene."
+    source_id: ssb-12623
+  - id: staten-ansatte-telling
+    term: Hvem som telles som ansatt
+    quote: "Videre omfatter tallene alle ordinære og maritime arbeidsforhold, alle jobber (hoved- og biarbeidsforhold), både bosatte og ikke-bosatte og alle uansett alder. Statistikken omfatter ikke selvstendig næringsdrivende, vernepliktige eller oppdragstakere/frilansere."
+    source_id: ssb-12623
+  - id: staten-ansatte-gjennomsnitt
+    term: Årsgjennomsnitt
+    quote: "Tallene er gjennomsnitt av alle månedene i året."
+    source_id: ssb-12623
+  - id: sektor-statsforvaltningen
+    term: Statsforvaltningen (SSB-sektor)
+    quote: "Statlig forvaltning (statsforvaltningen) omfatter stats- og trygdeforvaltningen. Helseforetakene er inkludert."
+    source_id: ssb-13472
+  - id: sektor-kommune
+    term: Kommunal og fylkeskommunal forvaltning (SSB-sektor)
+    quote: "Kommunal- og fylkeskommunal forvaltning (kommuneforvaltningen) omfatter kommunal- og fylkeskommunal forvaltning. Består av virksomheter som ikke er næringsrettet, dvs. vei, skole, kultur mv."
+    source_id: ssb-13472
+  - id: sektor-offentlig-foretak
+    term: Offentlig eide foretak (SSB-sektor)
+    quote: "Offentlig foretak omfatter foretak som ikke er med i stats- eller kommuneforvaltningen, men som er offentlig kontrollerte foretak. Det gjelder statens forretningsdrift samt foretak hvor det offentlige kontrollerer mer enn 50 prosent av aksjekapitalen."
+    source_id: ssb-13472
+  - id: sektor-privat
+    term: Privat sektor (SSB-sektor)
+    quote: "Privat sektor omfatter det som ikke er med i stats- eller kommuneforvaltningen, dvs. privat næringsvirksomhet unntatt offentlig kontrollerte foretak."
+    source_id: ssb-13472
+  - id: eier-kategori-1
+    term: Kategori 1 (Statens eierrapport)
+    quote: "Kategori 1 består av selskapene der statens mål som eier er høyest mulig avkastning over tid innenfor bærekraftige rammer."
+    source_id: nfd-eierrapport-2025
+  - id: eier-kategori-2
+    term: Kategori 2 (Statens eierrapport)
+    quote: "For selskapene i kategori 2, de sektorpolitiske selskapene som primært ikke opererer i konkurranse med andre, er statens mål som eier bærekraftig og mest mulig effektiv oppnåelse av sektorpolitiske mål."
+    source_id: nfd-eierrapport-2025
+  - id: eier-anslag
+    term: Anslag i Statens eierrapport
+    quote: "Tallene er å anse som anslag som senere kan bli revidert."
+    source_id: nfd-eierrapport-2025

@@ -5,7 +5,7 @@ from __future__ import annotations
 import shutil
 import sys
 
-from . import okonomi, statsbudsjett, sysselsetting
+from . import okonomi, staten, statsbudsjett, sysselsetting
 from .common import PROCESSED
 
 
@@ -22,6 +22,9 @@ def main(argv: list[str]) -> int:
     statsbudsjett.sb2027()
     shutil.rmtree(PROCESSED / sysselsetting.TOPIC, ignore_errors=True)
     sysselsetting.run()
+    shutil.rmtree(PROCESSED / staten.TOPIC, ignore_errors=True)
+    staten.run()
+    print("staten: done")
     print("sysselsetting: done")
     print("statsbudsjett: done")
     print("okonomi: done")

@@ -1,0 +1,19 @@
+dimensions:
+  ring:
+    label: Ring
+    nodes:
+    - code: SUM
+      label: Fire grupper lagt sammen
+      parent: null
+    - code: R1
+      label: Ansatte i staten (SSB)
+      parent: SUM
+    - code: R2
+      label: Regionale helseforetak (Statens eierrapport)
+      parent: SUM
+    - code: R3
+      label: Øvrige sektorpolitiske selskaper, kategori 2
+      parent: SUM
+    - code: R4
+      label: Selskaper med mål om høyest mulig avkastning, kategori 1
+      parent: SUM

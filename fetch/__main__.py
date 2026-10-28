@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import sys
 
-from . import nbim, okonomi, ssb, statsbudsjett, sysselsetting
+from . import nbim, okonomi, ssb, staten, statsbudsjett, sysselsetting
 
 
 def main(argv: list[str]) -> int:
@@ -21,6 +21,7 @@ def main(argv: list[str]) -> int:
         nbim.run()
         statsbudsjett.run()
         sysselsetting.run()
+        staten.run()
         return 0
     print(__doc__)
     return 2

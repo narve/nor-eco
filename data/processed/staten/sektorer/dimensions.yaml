@@ -1,0 +1,22 @@
+dimensions:
+  sektor:
+    label: Sektor
+    nodes:
+    - code: ALLE
+      label: Alle sysselsatte
+      parent: null
+    - code: STAT
+      label: Statsforvaltningen (inkl. helseforetak)
+      parent: ALLE
+    - code: KOMM
+      label: Kommunal forvaltning
+      parent: ALLE
+    - code: FYLK
+      label: Fylkeskommunal forvaltning
+      parent: ALLE
+    - code: OFFF
+      label: Offentlig eide foretak
+      parent: ALLE
+    - code: PRIV
+      label: Privat sektor
+      parent: ALLE

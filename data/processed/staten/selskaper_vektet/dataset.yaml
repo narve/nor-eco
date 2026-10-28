@@ -1,0 +1,14 @@
+price_basis: ikke-relevant
+source_ids:
+- nfd-eierrapport-2025
+dimensions:
+- selskap
+default_dimension: selskap
+id: staten.selskaper_vektet
+title: Ansatte i selskaper med statlig eierandel, vektet med eierandel, 2025
+unit: personer (vektet)
+claim_level: estimat
+derivation: Antall ansatte i konsernet multiplisert med statens eierandel, avrundet
+  til hele personer
+notes: 'Anslag: ansatte multiplisert med statens eierandel. Det er et regnestykke,
+  ikke en telling; ingen ansatte er faktisk «delvis» statlig ansatt.'

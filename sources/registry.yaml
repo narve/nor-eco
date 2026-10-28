@@ -165,3 +165,24 @@ sources:
     title: Tilknytning til arbeid, utdanning og velferdsordninger – statistikkside og Om statistikken
     url: https://www.ssb.no/arbeid-og-lonn/sysselsetting/statistikk/tilknytning-til-arbeid-utdanning-og-velferdsordninger
     licence: CC BY 4.0
+  # ---- WS4 Staten som arbeidsgiver ----
+  - id: ssb-12623
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 12623: Ansatte i staten, etter enhet. Årsgjennomsnitt 2016-2025"
+    url: https://www.ssb.no/statbank/table/12623
+    table_id: "12623"
+    licence: CC BY 4.0
+    notes: Ansatte, arbeidsforhold og avtalte årsverk for enhetene i statsregnskapet. Helseforetak og statlig eide selskaper inngår ikke.
+  - id: ssb-13472
+    publisher: Statistisk sentralbyrå (SSB)
+    title: "Tabell 13472: Sektor- (5 grupper) og næringsfordeling (8 grupper) for sysselsatte (15-74 år). 4. kvartal (K) 2008-2025"
+    url: https://www.ssb.no/statbank/table/13472
+    table_id: "13472"
+    licence: CC BY 4.0
+    notes: Sysselsatte personer etter arbeidssted fordelt på sektor (statsforvaltningen inkludert helseforetak, kommunal, fylkeskommunal, offentlig eide foretak, privat sektor).
+  - id: nfd-eierrapport-2025
+    publisher: Regjeringen / Nærings- og fiskeridepartementet
+    title: Statens eierrapport 2025, kapittel «Omfang og hovedtall»
+    url: https://www.regjeringen.no/no/dokumenter/statens-eierrapport-2025/id3165665/?ch=2
+    licence: Ikke oppgitt på siden.
+    notes: Tabeller over selskaper i kategori 1 og 2 med statens eierandel og antall ansatte. Tallene er konsernets ansatte, ikke vektet med eierandel.

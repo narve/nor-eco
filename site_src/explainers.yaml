@@ -100,3 +100,21 @@ explainers:
   personer-arsverk:
     text:
       - "Sysselsatte personer og årsverk (heltidsekvivalenter) fra nasjonalregnskapet. En person som jobber deltid teller som én person, men som en del av et årsverk, så årsverkene er færre enn personene. Begge seriene vises i tusen."
+  sektorfordeling:
+    text:
+      - "Alle sysselsatte fordelt på fem sektorer etter arbeidssted. Hver person tilhører én sektor, så delene summerer til totalen."
+    quotes: [sektor-statsforvaltningen]
+  ansatte-staten-tid:
+    text:
+      - "Tre serier med ulik avgrensning: ansatte i staten (årsgjennomsnitt), sysselsatte i statsforvaltningen (fjerde kvartal) og differansen mellom dem. Differansen er utledet (ƒ) og bare en pekepinn, siden målingene ikke er like."
+    quotes: [staten-ansatte-omfang]
+  selskaper-ansatte:
+    text:
+      - "Ansatte i konsernene til selskapene staten eier direkte, gruppert etter kategoriene i Statens eierrapport. Eierandelen står i parentes etter navnet. Tallene er konsernets ansatte, uten vekting."
+    quotes: [eier-kategori-1, eier-kategori-2]
+  selskaper-vektet:
+    text:
+      - "Samme selskaper som over, men antall ansatte er multiplisert med statens eierandel. Det er et regnestykke (≈), ikke en telling."
+  ringer-ansatte:
+    text:
+      - "Fire tall fra to kilder, lagt ved siden av hverandre. Ansatte i staten er årsgjennomsnitt av ansatte i statlige virksomheter. De tre andre er konsernenes ansatte ved årsskiftet. Summen er utledet (ƒ)."

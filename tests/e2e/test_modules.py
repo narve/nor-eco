@@ -135,7 +135,7 @@ def test_gallery_charts_have_table_and_source_line(desktop, site_url):
     assert bad == []
 
 
-@pytest.mark.parametrize("page", ["okonomi.html", "statsbudsjett.html", "sysselsetting.html", "galleri/index.html"])
+@pytest.mark.parametrize("page", ["okonomi.html", "statsbudsjett.html", "sysselsetting.html", "staten-som-arbeidsgiver.html", "galleri/index.html"])
 def test_no_readout_or_note_ever_shows_null_undefined_or_nan(desktop, site_url, page):
     """For every chart, switch through every view and click into it (first bar / tile / waffle key); check all chart text."""
     import re

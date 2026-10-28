@@ -29,18 +29,25 @@ files:
   size: 84416
   committed: true
 - source_id: nbim-fondsverdi
+  file: nbim-fondsverdi/2026-10-27.html
+  url: https://www.nbim.no/en/investments/the-funds-value/
+  sha256: e97d702c16ba0f1b3a4b9c7c2c2ae0a92398af74e17d21cda94716f2cea30100
+  retrieved: '2026-10-27'
+  size: 97676
+  committed: true
+- source_id: nbim-fondsverdi
   file: nbim-fondsverdi/2026-10-27-2.html
   url: https://www.nbim.no/en/investments/the-funds-value/
   sha256: 5eeb6d03aa0ca55714a142340c6d0c57ff077bc267d7fc72b1b5c07898b509bd
   retrieved: '2026-10-27'
   size: 97693
   committed: true
-- source_id: nbim-fondsverdi
-  file: nbim-fondsverdi/2026-10-27.html
-  url: https://www.nbim.no/en/investments/the-funds-value/
-  sha256: e97d702c16ba0f1b3a4b9c7c2c2ae0a92398af74e17d21cda94716f2cea30100
-  retrieved: '2026-10-27'
-  size: 97676
+- source_id: nfd-eierrapport-2025
+  file: nfd-eierrapport-2025/2026-10-28.html
+  url: https://www.regjeringen.no/no/dokumenter/statens-eierrapport-2025/id3165665/?ch=2
+  sha256: 883f8cc28b0035394f204af29b23f00b9fbdb85edff99ed0272a9ecdc012504c
+  retrieved: '2026-10-28'
+  size: 309445
   committed: true
 - source_id: ssb-06913
   file: ssb-06913/2026-10-27.json
@@ -99,6 +106,14 @@ files:
   size: 4504
   committed: true
 - source_id: ssb-12423
+  file: ssb-12423/2026-10-27.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/12423/data?lang=no&outputFormat=json-stat2&valuecodes%5BKjonn%5D=0%2C1%2C2&valuecodes%5BAlder%5D=15-74%2C20-66&valuecodes%5BUtdNivaa%5D=TOT&valuecodes%5BInnvandrKat%5D=A-G&valuecodes%5BHovArbStyrkStatus%5D=%2A&valuecodes%5BContentsCode%5D=Bosatte&valuecodes%5BTid%5D=2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 5e85d9081b54490bfbec62fac08cc75b145cfa102405c1d5dec349426d9ed2f3
+  retrieved: '2026-10-27'
+  vintage: '2026-09-04T06:00:00Z'
+  size: 20559
+  committed: true
+- source_id: ssb-12423
   file: ssb-12423/2026-10-27-2.json
   url: https://data.ssb.no/api/pxwebapi/v2/tables/12423/data?lang=no&outputFormat=json-stat2&valuecodes%5BKjonn%5D=0%2C1%2C2&valuecodes%5BAlder%5D=15-74%2C20-66%2C15%2B&valuecodes%5BUtdNivaa%5D=TOT&valuecodes%5BInnvandrKat%5D=A-G&valuecodes%5BHovArbStyrkStatus%5D=%2A&valuecodes%5BContentsCode%5D=Bosatte&valuecodes%5BTid%5D=2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
   sha256: 01536f5139e16010d068011465eb08a2b16aa035260fa90e16ffb970ed89dbfa
@@ -106,13 +121,21 @@ files:
   vintage: '2026-09-04T06:00:00Z'
   size: 27481
   committed: true
-- source_id: ssb-12423
-  file: ssb-12423/2026-10-27.json
-  url: https://data.ssb.no/api/pxwebapi/v2/tables/12423/data?lang=no&outputFormat=json-stat2&valuecodes%5BKjonn%5D=0%2C1%2C2&valuecodes%5BAlder%5D=15-74%2C20-66&valuecodes%5BUtdNivaa%5D=TOT&valuecodes%5BInnvandrKat%5D=A-G&valuecodes%5BHovArbStyrkStatus%5D=%2A&valuecodes%5BContentsCode%5D=Bosatte&valuecodes%5BTid%5D=2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
-  sha256: 5e85d9081b54490bfbec62fac08cc75b145cfa102405c1d5dec349426d9ed2f3
-  retrieved: '2026-10-27'
-  vintage: '2026-09-04T06:00:00Z'
-  size: 20559
+- source_id: ssb-12623
+  file: ssb-12623/2026-10-28.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/12623/data?lang=no&outputFormat=json-stat2&valuecodes%5BStatligEnhet%5D=0&valuecodes%5BContentsCode%5D=Ansatte%2CAvtalteArsverk&valuecodes%5BTid%5D=2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: 440a165cd7ca2604c94ad03b5c071b051572e5cd87c04183a5041df67fcf035f
+  retrieved: '2026-10-28'
+  vintage: '2026-02-26T07:00:00Z'
+  size: 4219
+  committed: true
+- source_id: ssb-13472
+  file: ssb-13472/2026-10-28.json
+  url: https://data.ssb.no/api/pxwebapi/v2/tables/13472/data?lang=no&outputFormat=json-stat2&valuecodes%5BRegion%5D=0&valuecodes%5BNACE2007%5D=00-99&valuecodes%5BSektor%5D=%2A&valuecodes%5BContentsCode%5D=SysselEtterArbste&valuecodes%5BTid%5D=2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%2C2025
+  sha256: bf844cba0d50100ffe864997a33c8a79fecd2fbb32e7372248a468ed3de15879
+  retrieved: '2026-10-28'
+  vintage: '2026-02-26T07:00:00Z'
+  size: 6415
   committed: true
 - source_id: ssb-13618
   file: ssb-13618/2026-10-27.json

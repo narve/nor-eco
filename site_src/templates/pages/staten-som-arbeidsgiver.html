@@ -1,13 +1,138 @@
 {% extends "base.html" %}
-{% block description %}Ringene rundt staten, direkte og indirekte.{% endblock %}
+{% from "macros.html" import chart, cite, data_table, claim_badge, quote, chart_scripts with context %}
+{% block description %}Hvor mange som er ansatt i staten, i helseforetak og i selskaper staten eier hele eller deler av, og hvordan tallene avhenger av hva som telles.{% endblock %}
+{% set S = "staten." %}
+{% set ans = series[S ~ "ansatte_staten"]["values"][-1] %}
+{% set yr = ans.period %}
+{% set ars = series[S ~ "arsverk_staten"].by_period[yr] %}
+{% set sf = series[S ~ "statsforvaltningen"].by_period[yr] %}
+{% set diff = series[S ~ "differanse_statsforvaltningen"].by_period[yr] %}
+{% set sel = datasets_value(S ~ "selskaper", None, "2025", "selskap") %}
+{% set sel_w = datasets_value(S ~ "selskaper_vektet", None, "2025", "selskap") %}
+{% set rhf = datasets_value(S ~ "selskaper", "K2H", "2025", "selskap") %}
+{% set k1 = datasets_value(S ~ "selskaper", "K1", "2025", "selskap") %}
+{% set k2 = datasets_value(S ~ "selskaper", "K2", "2025", "selskap") %}
+{% set all_emp = datasets_value(S ~ "sektorer", None, yr, "sektor") %}
+{% set komm = datasets_value(S ~ "sektorer", "KOMM", yr, "sektor") + datasets_value(S ~ "sektorer", "FYLK", yr, "sektor") %}
 {% block main %}
 <header class="page-head">
   <p class="mono">Tema</p>
-  <h1>Hvor mange jobber for staten?</h1>
-  <p class="lede">Ringene rundt staten, direkte og indirekte.</p>
+  <h1>Hvor mange <span>jobber for staten</span>?</h1>
+  <p class="lede">Svaret avhenger av hva som telles: ansatte i statlige virksomheter, alle i statsforvaltningen inkludert helseforetak, eller ansatte i selskaper der staten er eier. Her vises hvert av tallene med kildens egen avgrensning.</p>
 </header>
-<section id="innhold">
-  <h2>Innhold</h2>
-  <p class="muted">Denne siden er ikke bygget ennå.</p>
+
+<section id="nokkeltall">
+  <h2>Nøkkeltall {{ yr }}</h2>
+  <div class="grid">
+    <div class="card"><span class="mono">Ansatte i staten (SSB)</span>
+      <p class="num big">{{ fmt(ans.value, 0) }} <span class="unit">personer</span></p>
+      <p class="muted small">{{ fmt(ars.value, 0) }} avtalte årsverk</p>{{ cite(series[S ~ "ansatte_staten"].source_ids) }}</div>
+    <div class="card"><span class="mono">Sysselsatte i statsforvaltningen, inkl. helseforetak (SSB)</span>
+      <p class="num big">{{ fmt(sf.value, 0) }} <span class="unit">personer</span></p>
+      <p class="muted small">{{ fmt(sf.value / all_emp * 100, 1) }} % av alle sysselsatte</p>{{ cite(series[S ~ "statsforvaltningen"].source_ids) }}</div>
+    <div class="card"><span class="mono">Ansatte i selskaper i kategori 1 og 2 (Statens eierrapport)</span>
+      <p class="num big">{{ fmt(sel, 0) }} <span class="unit">personer</span></p>
+      <p class="muted small">Hele konsernenes ansatte, ikke vektet</p>{{ cite(["nfd-eierrapport-2025"]) }}</div>
+    <div class="card"><span class="mono">Kommuner og fylkeskommuner (SSB) {{ claim_badge("utledet") }}</span>
+      <p class="num big">{{ fmt(komm, 0) }} <span class="unit">personer</span></p>
+      <p class="muted small">Ikke statlig ansatte</p>{{ cite(["ssb-13472"]) }}</div>
+  </div>
+</section>
+
+<section id="avgrensninger">
+  <h2>Tre avgrensninger</h2>
+  <h3>Ansatte i staten</h3>
+  {{ quote("staten-ansatte-omfang") }}
+  {{ quote("staten-ansatte-ikke") }}
+  {{ quote("staten-ansatte-telling") }}
+  {{ quote("staten-ansatte-gjennomsnitt") }}
+  <h3>Statsforvaltningen</h3>
+  {{ quote("sektor-statsforvaltningen") }}
+  {{ quote("staten-forskjell-forvaltningen") }}
+  <h3>Selskaper med statlig eierandel</h3>
+  {{ quote("eier-kategori-1") }}
+  {{ quote("eier-kategori-2") }}
+</section>
+
+<section id="sektorer">
+  <h2>Sysselsatte etter sektor</h2>
+  <p>SSB deler alle sysselsatte inn i fem sektorer etter arbeidssted. Hver sysselsatt hører til én sektor, så delene summerer til alle sysselsatte.</p>
+  {{ quote("sektor-offentlig-foretak") }}
+  {{ quote("sektor-kommune") }}
+  {% call chart("sektorfordeling", "Sysselsatte personer etter sektor, 4. kvartal", ["ssb-13472"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/staten/sektorer.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["raw", "pct-parent"]}) %}
+    {{ data_table(dataset_table(S ~ "sektorer", dim="sektor"), 0) }}
+  {% endcall %}
+  <p class="muted small">{{ datasets[S ~ "sektorer"]["meta"]["notes"] }}</p>
+</section>
+
+<section id="ansatte-i-staten">
+  <h2>Ansatte i staten og statsforvaltningen over tid</h2>
+  <p>De to seriene måler ulikt: den ene er årsgjennomsnitt av ansatte i statlige virksomheter, den andre sysselsatte 15–74 år i fjerde kvartal i hele statsforvaltningen. Differansen mellom dem er vist som en utledet serie.</p>
+  {% call chart("ansatte-staten-tid", "Ansatte i staten og sysselsatte i statsforvaltningen", ["ssb-12623", "ssb-13472"], level=None,
+      config={"kind": "series", "urls": [root ~ "data/staten/ansatte_staten.json", root ~ "data/staten/statsforvaltningen.json", root ~ "data/staten/differanse_statsforvaltningen.json"], "labels": ["Ansatte i staten (årsgjennomsnitt)", "Statsforvaltningen (4. kvartal)", "Differanse (utledet)"], "views": ["timeseries-lines", "slope"]}) %}
+    {{ data_table(series_table([S ~ "ansatte_staten", S ~ "arsverk_staten", S ~ "statsforvaltningen", S ~ "differanse_statsforvaltningen"]), 0) }}
+  {% endcall %}
+  <p class="muted small">{{ series[S ~ "differanse_statsforvaltningen"].notes }}</p>
+</section>
+
+<section id="selskaper">
+  <h2>Selskaper med statlig eierandel</h2>
+  <p>Statens eierrapport lister selskapene staten eier direkte, med eierandel og antall ansatte i konsernet. Tallene omfatter hele konsernet, også ansatte utenfor Norge. Rapporten deler selskapene i kategorier etter statens mål som eier.</p>
+  {% call chart("selskaper-ansatte", "Ansatte i selskaper med statlig eierandel (eierandel i parentes)", ["nfd-eierrapport-2025"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/staten/selskaper.json", "views": ["hier-bars", "treemap"], "units": ["raw", "pct-parent", "pct-total"]}) %}
+    {{ data_table(dataset_table(S ~ "selskaper", dim="selskap", depth=2), 0, caption="Grupper") }}
+  {% endcall %}
+  <p class="muted small">{{ datasets[S ~ "selskaper"]["meta"]["notes"] }}</p>
+  {{ quote("eier-anslag") }}
+  <h3>Vektet med eierandel</h3>
+  <p>Hvis ansatte i hvert selskap regnes om med statens eierandel, blir summen lavere. Det er et regnestykke og ikke en telling, og er derfor merket som anslag.</p>
+  {% call chart("selskaper-vektet", "Ansatte vektet med statens eierandel (anslag)", ["nfd-eierrapport-2025"], level=None,
+      config={"kind": "dataset", "url": root ~ "data/staten/selskaper_vektet.json", "views": ["hier-bars", "treemap"], "units": ["raw", "pct-parent"]}) %}
+    {{ data_table(dataset_table(S ~ "selskaper_vektet", dim="selskap", depth=2), 0, caption="Grupper") }}
+  {% endcall %}
+  <p class="muted small">{{ datasets[S ~ "selskaper_vektet"]["meta"]["notes"] }}</p>
+</section>
+
+<section id="ringer">
+  <h2>Fire grupper side ved side</h2>
+  <p>Tallene fra de to kildene er lagt ved siden av hverandre. De har ikke felles målemetode og er ikke en offisiell telling.</p>
+  {% call chart("ringer-ansatte", "Ansatte i fire grupper rundt staten", ["ssb-12623", "nfd-eierrapport-2025"], level="utledet",
+      config={"kind": "dataset", "url": root ~ "data/staten/ringer.json", "views": ["hier-bars", "treemap"], "units": ["raw", "pct-parent"]}) %}
+    {{ data_table(dataset_table(S ~ "ringer", dim="ring"), 0) }}
+  {% endcall %}
+  <p class="muted small">{{ datasets[S ~ "ringer"]["meta"]["notes"] }}</p>
+</section>
+
+<section id="forvekslinger">
+  <h2>Ofte blandet sammen</h2>
+  <article class="pair">
+    <h3>Ansatte i staten og statsforvaltningen</h3>
+    <p>For {{ yr }} er antallet {{ fmt(ans.value, 0) }} ansatte i staten og {{ fmt(sf.value, 0) }} sysselsatte i statsforvaltningen. SSB oppgir hvorfor de to ikke er like:</p>
+    {{ quote("staten-forskjell-forvaltningen") }}
+  </article>
+  <article class="pair">
+    <h3>Helseforetak</h3>
+    <p>De fire regionale helseforetakene har {{ fmt(rhf, 0) }} ansatte i Statens eierrapport. De er ikke med i SSBs tall for ansatte i staten, men er med i statsforvaltningen:</p>
+    {{ quote("staten-ansatte-ikke") }}
+    {{ quote("sektor-statsforvaltningen") }}
+  </article>
+  <article class="pair">
+    <h3>Ansatte i selskaper: hele konsernet eller eierandelen</h3>
+    <p>Eierrapporten oppgir {{ fmt(sel, 0) }} ansatte i konsernene. Vektet med statens eierandel blir tallet {{ fmt(sel_w, 0) }}, et anslag. Kategori 1 har {{ fmt(k1, 0) }} og kategori 2 har {{ fmt(k2, 0) }} ansatte:</p>
+    {{ quote("eier-kategori-1") }}
+    {{ quote("eier-kategori-2") }}
+  </article>
+  <article class="pair">
+    <h3>Offentlig eide foretak</h3>
+    <p>SSBs sektor for offentlig eide foretak omfatter både statlig og kommunalt eide foretak:</p>
+    {{ quote("sektor-offentlig-foretak") }}
+  </article>
+</section>
+
+<section id="ikke-dekket">
+  <h2>Hva siden ikke dekker</h2>
+  <p>Kommunesektoren er vist som egen sektor ovenfor. Ansatte i private virksomheter som er finansiert av det offentlige, og deltakere i arbeidsmarkedstiltak, har ikke en samlet offisiell kilde og er ikke regnet med. Selskaper utenfor kategori 1 og 2 i Statens eierrapport er heller ikke med.</p>
 </section>
 {% endblock %}
+{% block scripts %}{{ chart_scripts() }}{% endblock %}

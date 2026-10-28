@@ -1,0 +1,57 @@
+id: staten.sektorer
+title: Sysselsatte personer etter arbeidssted og sektor, 4. kvartal
+unit: personer
+price_basis: ikke-relevant
+claim_level: offisiell
+source_ids:
+- ssb-13472
+dimensions:
+- sektor
+default_dimension: sektor
+published_totals:
+- period: '2016'
+  status: regnskap
+  value: 2613654
+  source_id: ssb-13472
+- period: '2017'
+  status: regnskap
+  value: 2647296
+  source_id: ssb-13472
+- period: '2018'
+  status: regnskap
+  value: 2683447
+  source_id: ssb-13472
+- period: '2019'
+  status: regnskap
+  value: 2710436
+  source_id: ssb-13472
+- period: '2020'
+  status: regnskap
+  value: 2681542
+  source_id: ssb-13472
+- period: '2021'
+  status: regnskap
+  value: 2762175
+  source_id: ssb-13472
+- period: '2022'
+  status: regnskap
+  value: 2818122
+  source_id: ssb-13472
+- period: '2023'
+  status: regnskap
+  value: 2845307
+  source_id: ssb-13472
+- period: '2024'
+  status: regnskap
+  value: 2863317
+  source_id: ssb-13472
+- period: '2025'
+  status: regnskap
+  value: 2872855
+  source_id: ssb-13472
+tolerance: 0.0005
+notes: Sysselsatte 15–74 år etter arbeidssted, 4. kvartal. Statsforvaltningen omfatter
+  stats- og trygdeforvaltningen og inkluderer helseforetakene. Offentlig eide foretak
+  omfatter foretak der det offentlige kontrollerer mer enn 50 prosent av aksjekapitalen,
+  både statlig og kommunalt eide. SSB runder av celler med få personer, så summen
+  kan avvike litt fra totalen.

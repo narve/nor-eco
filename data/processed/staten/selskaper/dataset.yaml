@@ -1,0 +1,20 @@
+price_basis: ikke-relevant
+source_ids:
+- nfd-eierrapport-2025
+dimensions:
+- selskap
+default_dimension: selskap
+id: staten.selskaper
+title: Ansatte i selskaper med statlig eierandel (kategori 1 og 2), 2025
+unit: personer
+claim_level: offisiell
+published_totals:
+- period: '2025'
+  status: foreløpig
+  value: 333096
+  source_id: nfd-eierrapport-2025
+tolerance: 0
+notes: Antall ansatte i konsernet slik Statens eierrapport 2025 oppgir det, uten vekting
+  med eierandel. Eierandelen står i parentes. Tallene i kategori 2-tabellen omtales
+  i rapporten som anslag som senere kan bli revidert. Rapporten oppgir ikke hvor mange
+  av de ansatte som er i Norge.
