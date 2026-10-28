@@ -66,3 +66,15 @@ def test_sankey_is_balanced_with_the_difference_as_its_own_band(desktop, site_ur
     ut = sum(num(r.locator("td").nth(1).inner_text()) for r in rows if r.locator("td").nth(0).inner_text() == "ut")
     assert abs(inn - ut) <= len(rows)  # equal up to rounding once the difference band is included
     assert any("Differanse" in r.inner_text() for r in rows)
+
+
+def test_fullscreen_button_toggles_the_chart_ui(desktop, site_url):
+    desktop.goto(site_url + "statsbudsjett.html")
+    desktop.wait_for_selector("#utgifter-hovedpost .chart-ui, .chart-ui")
+    btn = desktop.locator(".chart-ui").first.get_by_role("button", name="Fullskjerm")
+    if btn.count() == 0:
+        pytest.skip("fullscreen not available in this browser context")
+    btn.click()
+    desktop.wait_for_function("document.fullscreenElement && document.fullscreenElement.classList.contains('chart-ui')")
+    desktop.get_by_role("button", name="Avslutt fullskjerm").first.click()
+    desktop.wait_for_function("!document.fullscreenElement")

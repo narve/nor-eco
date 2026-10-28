@@ -87,7 +87,7 @@
 
 <section id="aku-og-register">
   <h2>AKU og registerstatistikk</h2>
-  <p>De to kildene gir nesten samme antall sysselsatte, men svært ulikt antall arbeidsledige. SSB oppgir flere årsaker til at tallene ikke er like:</p>
+  <p>AKU og registerstatistikken er to ulike målinger. SSB oppgir årsaker til at tallene ikke er like:</p>
   {{ quote("aku-vs-register-kilde") }}
   {{ quote("aku-vs-register-metode") }}
   {{ quote("aku-vs-register-permittering") }}
@@ -104,7 +104,7 @@
   {{ quote("aku-feilmargin") }}
   <p>AKU-tallene er justert for et brudd i serien:</p>
   {{ quote("aku-brudd") }}
-  <p>Registerserien starter i 2015:</p>
+  <p>Om registerserien:</p>
   {{ quote("reg-a-ordningen") }}
   {% call chart("aku-15-74", "AKU: personer 15–74 år etter arbeidsstyrkestatus", ["ssb-13618"], level=None,
       config={"kind": "dataset", "url": root ~ "data/sysselsetting/aku_15_74.json", "views": ["waffle", "hier-bars", "timeseries-stacked"], "groups": AKU_GROUPS}) %}

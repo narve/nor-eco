@@ -29,7 +29,7 @@
       <p class="muted small">{{ fmt(ars.value, 0) }} avtalte årsverk</p>{{ cite(series[S ~ "ansatte_staten"].source_ids) }}</div>
     <div class="card"><span class="mono">Sysselsatte i statsforvaltningen, inkl. helseforetak (SSB)</span>
       <p class="num big">{{ fmt(sf.value, 0) }} <span class="unit">personer</span></p>
-      <p class="muted small">{{ fmt(sf.value / all_emp * 100, 1) }} % av alle sysselsatte</p>{{ cite(series[S ~ "statsforvaltningen"].source_ids) }}</div>
+      <p class="muted small">{{ fmt(sf.value / all_emp * 100, 1) }} % av alle sysselsatte (utledet: statsforvaltningen delt på alle sysselsatte)</p>{{ cite(series[S ~ "statsforvaltningen"].source_ids) }}</div>
     <div class="card"><span class="mono">Ansatte i selskaper i kategori 1 og 2 (Statens eierrapport)</span>
       <p class="num big">{{ fmt(sel, 0) }} <span class="unit">personer</span></p>
       <p class="muted small">Hele konsernenes ansatte, ikke vektet</p>{{ cite(["nfd-eierrapport-2025"]) }}</div>

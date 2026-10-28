@@ -161,3 +161,6 @@ svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .sk-plot svg, .mk-plot svg, .ic-plot svg { display: block; max-width: 100%; height: auto; }
 .sk-plot, .mk-plot, .ic-plot, .sb-plot, .rg-plot { min-width: 0; overflow: hidden; }
 .chart-ui > *, .chart-body { min-width: 0; }
+
+/* fullscreen: the chart UI fills the screen on the page background */
+.chart-ui:fullscreen { background: var(--bg); padding: 1rem; overflow: auto; align-content: start; }

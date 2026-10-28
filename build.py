@@ -160,8 +160,24 @@ def dataset_table(datasets: dict[str, dict], dataset_id: str, dim: str = "vare",
 
 
 def dataset_value(datasets: dict[str, dict], dataset_id: str, code: str | None, period: str, dim: str = "vare", status: str | None = None) -> float:
-    """One fact (code given) or the sum over all leaves (code None) for a period, as a number. `status` picks one status."""
-    rows = [r for r in datasets[dataset_id]["rows"] if r["period"] == period and (code is None or r[dim] == code) and (status is None or r["status"] == status)]
+    """The sum of the facts under `code` (a leaf or any parent node; None = everything) for a period, as a number.
+
+    `status` picks one status. A selection that matches no fact is an error, never 0."""
+    ds = datasets[dataset_id]
+    wanted = None
+    if code is not None:
+        kids: dict[str, list[str]] = {}
+        for n in ds["dimensions"][dim]["nodes"]:
+            if n["parent"] is not None:
+                kids.setdefault(n["parent"], []).append(n["code"])
+
+        def leaves_under(c: str) -> set[str]:
+            return {c} if c not in kids else {x for k in kids[c] for x in leaves_under(k)}
+
+        wanted = leaves_under(code)
+    rows = [r for r in ds["rows"] if r["period"] == period and (wanted is None or r[dim] in wanted) and (status is None or r["status"] == status)]
+    if not rows:
+        raise ValueError(f"dataset_value: no facts for {dataset_id} {dim}={code} period={period} status={status}")
     return round(sum(float(r["value"]) for r in rows), 3)
 
 

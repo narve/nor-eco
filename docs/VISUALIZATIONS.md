@@ -12,6 +12,11 @@ Conventions used below:
 
 Type: snapshot = single year, timeline = over time. Complexity: S/M/L.
 
+## Status
+Built (id in `site_src/views.yaml`): `hier-bars`, `treemap`, `waffle`, `sunburst`, `icicle`, `rings`, `receipt`, `marimekko`, `euler-upset` (an UpSet plot), `sankey`, `slope`, `waterfall`, `timeseries-lines`, `timeseries-stacked`, `timeseries-bars`. The catalogue below lists more ideas than were built; a catalogue entry is covered when its id appears under `catalogue:` in `views.yaml`.
+Not built: `utg-bump` (rank over time), `flow-alluvial-time`, `bef-dot-units`, `makro-spu-vs-bnp`, small multiples, and the unit-dots variant of the waffle. Euler diagrams with areas were replaced by the UpSet plot, because each person belongs to exactly one combination and the bars then add up without estimating any areas.
+Shared view code lives in `site_src/assets/js/views/` (`common.js` has `h`, `fill` and `put`; `hierarchy.js` has the shared helpers for the sunburst, icicle and rings). The owner's choice per view (keep, improve, remove) goes in the `choice` column of `views.yaml`.
+
 ---
 
 ## 1. Statens utgifter (hierarchical, multi-dimension)

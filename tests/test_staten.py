@@ -58,3 +58,16 @@ def test_difference_is_statsforvaltningen_minus_state_employees():
     d, a, s = series("differanse_statsforvaltningen"), series("ansatte_staten"), series("statsforvaltningen")
     for y in d:
         assert d[y]["value"] == s[y]["value"] - a[y]["value"]
+
+
+def test_dataset_value_sums_parent_nodes_and_rejects_empty_selections():
+    """Regression: a parent code (K2H, K1) used to give 0 because facts only hold leaves."""
+    import build
+    from paths import ROOT
+    _, datasets = build.load_processed(ROOT / "data" / "processed")
+    assert build.dataset_value(datasets, "staten.selskaper", "K2H", "2025", "selskap") == 162401
+    assert build.dataset_value(datasets, "staten.selskaper", "K1", "2025", "selskap") == 147345
+    assert build.dataset_value(datasets, "staten.selskaper", "K2", "2025", "selskap") == 185751
+    import pytest
+    with pytest.raises(ValueError):
+        build.dataset_value(datasets, "staten.selskaper", "K1", "1900", "selskap")

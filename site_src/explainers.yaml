@@ -89,10 +89,10 @@ explainers:
       - "Samme inndeling som over, for aldersgruppen som ofte brukes når sysselsettingsandeler sammenlignes. Gruppene er de samme."
   sysselsatte-aku-register:
     text:
-      - "Antall sysselsatte etter AKU og etter registerstatistikken, i samme enhet. De to kildene er ulikt bygget opp, men gir nesten samme tall. AKU er et utvalg med feilmargin; registertallet er regnet om til tusen av oss (ƒ)."
+      - "Antall sysselsatte etter AKU og etter registerstatistikken, i samme enhet. De to kildene er ulikt bygget opp, så tallene kan avvike. AKU har en oppgitt feilmargin; registertallet er regnet om til tusen av oss (ƒ)."
   ledige-aku-register:
     text:
-      - "Arbeidsledige etter AKU og registrerte arbeidsledige hos Nav. De to kildene bruker ulike definisjoner og gir ulike tall, og begge er riktige for sin definisjon."
+      - "Arbeidsledige etter AKU og registrerte arbeidsledige hos Nav. De to kildene bruker ulike definisjoner og gir ulike tall, og de måler ulike ting."
     quotes: [aku-arbeidsledig, reg-ledige]
   aku-15-74:
     text:

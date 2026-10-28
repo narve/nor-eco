@@ -148,6 +148,7 @@ async function init(el) {
       }), (v) => push({ unit: v })));
     }
     parts.push(h("button", { type: "button", class: "btn", onclick: copyLink }, "Kopier lenke"));
+    if (document.fullscreenEnabled) parts.push(h("button", { type: "button", class: "btn", onclick: toggleFullscreen }, document.fullscreenElement === root ? "Avslutt fullskjerm" : "Fullskjerm"));
     const active = [VIEWS[state.view].label, ds && view.snapshot ? periodLabel(state.year) : null, view.compare ? `${periodLabel(state.year2)} → ${periodLabel(state.year)}` : null, ds && ds.statuses.length > 1 ? (STATUS_UI[state.status] ?? state.status) : null, ds ? (state.unit === "raw" ? ds.meta.unit : unitById[state.unit].label) : null].filter(Boolean);
     chips.replaceChildren(...active.map((a) => h("span", { class: "chip" }, a)));
     settings.replaceChildren(h("summary", { class: "mono" }, "Innstillinger ", chips), h("div", { class: "ctl-row" }, parts));
@@ -157,6 +158,12 @@ async function init(el) {
     try { await navigator.clipboard.writeText(location.href); status.textContent = "Lenken er kopiert."; }
     catch { status.textContent = "Kunne ikke kopiere. Kopier adressen fra nettleseren."; }
   }
+
+  function toggleFullscreen() {
+    if (document.fullscreenElement === root) document.exitFullscreen();
+    else root.requestFullscreen?.().catch(() => { status.textContent = "Nettleseren tillot ikke fullskjerm."; });
+  }
+  document.addEventListener("fullscreenchange", () => { if (document.fullscreenElement === root || !document.fullscreenElement) controls(); });
 
   function crumbsUI() {
     if (!ds || cfg.kind === "flow") { crumbs.hidden = true; return; }

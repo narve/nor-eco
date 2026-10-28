@@ -1,5 +1,26 @@
 # Plan: «Norsk statsøkonomi – fra kildene» (static site, nor-eco)
 
+## Status (read this first)
+The plan below is the original design. Where the implementation differs, this section wins.
+
+| WS | State |
+|----|-------|
+| WS0 Fundament | Done |
+| WS1 Statsbudsjett | Done. The fund (SPU) shows only the latest figures, by decision, labelled as such. A Finansdepartementet workbook (`kap_3_nb_2027.xlsx`, sheet Fig3-6) has yearly values back to 1996 if history is wanted later |
+| WS2 Økonomi | Done |
+| WS3 Sysselsetting | Done (register-based status, AKU, persons, årsverk, hours) |
+| WS4 Staten som arbeidsgiver | Done in part, by design: employees in the state (SSB), sectors, companies with state ownership (Statens eierrapport 2025), four groups. Not covered, and stated on the page and in `metode`: publicly funded private providers, NAV tiltak, the Norway-versus-abroad split, companies outside category 1 and 2. The «ring 1–7» numbering of the original plan is not used on the page |
+| WS5a/b/c Views, gallery, design | Done: every view in `site_src/views.yaml` is built. The shared controls are built except the ones listed below |
+| WS6 Verifisering | See `docs/VERIFICATION.md` |
+
+Shared controls, as built: breadcrumb with a dimension switch per node, «Vis som», year, status, unit, claim-level marks, source line, table drawer, copy link, fullscreen.
+Deliberately not built, with the reason:
+- **Skjul estimater:** the only estimate dataset (`staten.selskaper_vektet`) is estimate as a whole, so a toggle would only empty the chart. The unweighted chart sits beside it.
+- **Compare mode:** the «Før og nå» view takes two years; a second source is compared on the page itself by showing two charts.
+- **Definition selector:** the alternative definitions (AKU, register) are separate datasets with their own charts and the same unit, so they are shown side by side instead of switched.
+- **Bottom-sheet tooltips:** every view shows its details in a readout line on tap or click instead of a floating tooltip.
+- **Sankey in the gallery:** the gallery handles one dataset per item; the sankey (two datasets) is on the statsbudsjett page.
+
 ## Context
 The user lacks clear presentations of the actual data on the Norwegian state economy, and wants to see exactly what is being measured and how the numbers relate. The intent of any third party is not relevant to the site. The goal is a static website in Norwegian (bokmål) that presents three topics using **only official sources**, where every number has a citation:
 

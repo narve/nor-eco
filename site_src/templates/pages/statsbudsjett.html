@@ -207,7 +207,7 @@
   <h2>Ofte blandet sammen</h2>
   <article class="pair">
     <h3>Regnskap og budsjett</h3>
-    <p>Statsregnskapet viser hva som faktisk er betalt inn og ut. Budsjettet viser planlagte tall. SSBs budsjettall endres også i løpet av året:</p>
+    <p>SSB oppgir både regnskaps- og budsjettall. Budsjettall endres i løpet av året:</p>
     {{ quote("budsjettall-oppdateres") }}
   </article>
   <article class="pair">
@@ -227,7 +227,7 @@
   </article>
   <article class="pair">
     <h3>Statens utgifter og offentlig forvaltnings utgifter</h3>
-    <p>Statsregnskapets utgifter og SSBs offentlig forvaltning er ulike avgrensninger. For {{ yr }} er «Utgifter i alt» i statsregnskapet {{ fmt(utg, 0) }} mrd. kr, utgiftene i statsforvaltningen {{ fmt(datasets_value(S ~ "offentlige_utgifter_formaal", "6100", yr, "sektor"), 0) }} mrd. kr og i offentlig forvaltning samlet {{ fmt(datasets_value(S ~ "offentlige_utgifter_formaal", None, yr, "formaal"), 0) }} mrd. kr. SSB beskriver den siste statistikken slik:</p>
+    <p>Statsregnskapets utgifter og SSBs offentlig forvaltning gjelder ulike avgrensninger. For {{ yr }} er «Utgifter i alt» i statsregnskapet {{ fmt(utg, 0) }} mrd. kr, utgiftene i statsforvaltningen {{ fmt(datasets_value(S ~ "offentlige_utgifter_formaal", "6100", yr, "sektor"), 0) }} mrd. kr og i offentlig forvaltning samlet {{ fmt(datasets_value(S ~ "offentlige_utgifter_formaal", None, yr, "formaal"), 0) }} mrd. kr. SSB beskriver statistikken over offentlig forvaltning slik:</p>
     {{ quote("offinnut-omfang") }}
   </article>
   <article class="pair">

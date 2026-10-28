@@ -50,3 +50,18 @@ units defined per chart (`% av BNP`, `kr per innbygger`) with a denominator seri
 `?chart=<chart-id>&view=<view-id>&year=<yyyy>&unit=<unit-id>&status=<status>&def=<definition-id>&dim=<dim>&path=<dim>:<code>/<dim>:<code>`
 Only the chart named by `chart` reads or writes the state, so a page can hold several charts.
 Each path segment means «split the previous node by this dimension, select this code».
+
+## Node fields beyond the basics
+A node in `dimensions.yaml` may carry `other: true` (the explicit «Øvrig / ikke fordelt» leaf) or `overlap: [codes]`
+(the leaf is a group that sits in the intersection of several named groups; the UpSet view draws it as a combination).
+Node codes match `^[A-Za-z0-9_.-]+$`; source codes with other characters are mapped to a code in the transform.
+Statuses are `regnskap`, `saldert`, `vedtatt`, `budsjett`, `forslag`, `anslag` and `foreløpig`; the engine indexes facts
+by `period|status` and never adds statuses together. Preliminary values are drawn hatched.
+
+## Chart config (`data-config` on `.chart-mount`)
+Written in the page template through the `chart()` macro; `site_src/assets/js/mount.js` is the reference.
+- `kind: dataset` (`url`), `series` (`urls[]`), `waterfall` (`steps[]`, each with `url`, `period`, `role`, optional `expected` checkpoint), or
+  `flow` (`left`, `right` datasets, `mid` label, `gapLeft`/`gapRight` labels for the explicit difference band).
+- `views[]`, `defaultView`, `units[]`, `unitDefs[]`, `denominators`, and for the marimekko `dim2` (the dimension that stacks the columns) and for the waffle `groups`.
+- Every chart id must differ from every section id on the page (duplicate ids are caught by `checks/links.py`).
+- Text nodes written into the DOM go through `fill()` or `put()` in `views/common.js`; passing `null` to `append()` writes the text «null».

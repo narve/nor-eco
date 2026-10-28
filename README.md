@@ -5,6 +5,12 @@ Alle tall kommer fra offisielle kilder og har en kildehenvisning. Nettstedet er 
 og tilbyr ingen nedlasting. Plan: [`docs/PLAN.md`](docs/PLAN.md). Visningskatalog:
 [`docs/VISUALIZATIONS.md`](docs/VISUALIZATIONS.md). Dataformater: [`schema/README.md`](schema/README.md).
 
+## Sider
+`statsbudsjett`, `okonomi`, `sysselsetting` og `staten-som-arbeidsgiver`, pluss `begreper`, `kilder`, `metode` og `galleri/`
+(alle visninger side om side, med samme data). Hvert diagram har en forklaring, en kildelinje og en tabell med tallene.
+Ikke dekket, og oppgitt på sidene og i `metode`: offentlig finansierte private tilbydere og tiltak i NAV, ansatte i Norge
+kontra utlandet, og SPU-historikk (bare siste tall vises). Verifiseringen er beskrevet i [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
+
 ## Kommandoer
 
 Krever [uv](https://docs.astral.sh/uv/) (Python ≥ 3.12). Alt bygges lokalt; `data/processed/` og
