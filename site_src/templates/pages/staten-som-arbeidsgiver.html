@@ -60,7 +60,7 @@
   {{ quote("sektor-offentlig-foretak") }}
   {{ quote("sektor-kommune") }}
   {% call chart("sektorfordeling", "Sysselsatte personer etter sektor, 4. kvartal", ["ssb-13472"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/staten/sektorer.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["raw", "pct-parent"]}) %}
+      config={"kind": "dataset", "url": root ~ "data/staten/sektorer.json", "views": ["hier-bars", "treemap", "sunburst", "icicle", "timeseries-stacked", "slope"], "units": ["raw", "pct-parent"]}) %}
     {{ data_table(dataset_table(S ~ "sektorer", dim="sektor"), 0) }}
   {% endcall %}
   <p class="muted small">{{ datasets[S ~ "sektorer"]["meta"]["notes"] }}</p>
@@ -80,7 +80,7 @@
   <h2>Selskaper med statlig eierandel</h2>
   <p>Statens eierrapport lister selskapene staten eier direkte, med eierandel og antall ansatte i konsernet. Tallene omfatter hele konsernet, også ansatte utenfor Norge. Rapporten deler selskapene i kategorier etter statens mål som eier.</p>
   {% call chart("selskaper-ansatte", "Ansatte i selskaper med statlig eierandel (eierandel i parentes)", ["nfd-eierrapport-2025"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/staten/selskaper.json", "views": ["hier-bars", "treemap"], "units": ["raw", "pct-parent", "pct-total"]}) %}
+      config={"kind": "dataset", "url": root ~ "data/staten/selskaper.json", "views": ["hier-bars", "treemap", "sunburst", "icicle"], "units": ["raw", "pct-parent", "pct-total"]}) %}
     {{ data_table(dataset_table(S ~ "selskaper", dim="selskap", depth=2), 0, caption="Grupper") }}
   {% endcall %}
   <p class="muted small">{{ datasets[S ~ "selskaper"]["meta"]["notes"] }}</p>
@@ -98,7 +98,7 @@
   <h2>Fire grupper side ved side</h2>
   <p>Tallene fra de to kildene er lagt ved siden av hverandre. De har ikke felles målemetode og er ikke en offisiell telling.</p>
   {% call chart("ringer-ansatte", "Ansatte i fire grupper rundt staten", ["ssb-12623", "nfd-eierrapport-2025"], level="utledet",
-      config={"kind": "dataset", "url": root ~ "data/staten/ringer.json", "views": ["hier-bars", "treemap"], "units": ["raw", "pct-parent"]}) %}
+      config={"kind": "dataset", "url": root ~ "data/staten/ringer.json", "views": ["hier-bars", "rings", "treemap"], "units": ["raw", "pct-parent"]}) %}
     {{ data_table(dataset_table(S ~ "ringer", dim="ring"), 0) }}
   {% endcall %}
   <p class="muted small">{{ datasets[S ~ "ringer"]["meta"]["notes"] }}</p>

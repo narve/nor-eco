@@ -120,7 +120,7 @@ def test_gallery_mounts_every_view_without_errors(desktop, site_url):
     desktop.goto(site_url + "galleri/index.html")
     desktop.wait_for_function(f"document.querySelectorAll('.chart-ui').length === {expected}", timeout=15000)
     desktop.wait_for_timeout(800)
-    empty = desktop.locator(".chart-body").evaluate_all("els => els.filter(e => !e.querySelector('.hb-row, .tm-tile, svg')).map(e => e.closest('figure').id)")
+    empty = desktop.locator(".chart-body").evaluate_all("els => els.filter(e => !e.querySelector('.hb-row, .tm-tile, .receipt, svg')).map(e => e.closest('figure').id)")
     assert empty == [] and errors == []
     assert desktop.locator(".chart").count() == expected
     # the overview table lists every registered view

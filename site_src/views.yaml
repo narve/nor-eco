@@ -8,11 +8,11 @@ views:
   - {id: timeseries-bars,    label: Søyler over tid, status: built,   size: S, type: timeline, catalogue: [makro-export-stacked], requires: "serier (også negative verdier)", choice: ""}
   - {id: slope,              label: Før og nå,       status: built,   size: S, type: compare,  catalogue: [innt-slope, bef-slope-persons-aarsverk], requires: "to år, samme enhet", choice: ""}
   - {id: waterfall,          label: Trinn for trinn, status: built,   size: M, type: steps,    catalogue: [innt-waterfall, flow-waterfall-year, rec-bridge-waterfall], requires: "trinn med kontrollpunkt", default_for: [innt-waterfall, rec-bridge-waterfall], choice: ""}
-  - {id: sunburst,           label: Solstråle,       status: planned, size: M, type: snapshot, catalogue: [utg-sunburst, innt-donut-pair, makro-donut-pair], requires: "hierarkisk datasett", choice: ""}
-  - {id: icicle,             label: Istapp,          status: planned, size: M, type: snapshot, catalogue: [utg-icicle], requires: "hierarkisk datasett", choice: ""}
-  - {id: marimekko,          label: Marimekko,       status: planned, size: M, type: snapshot, catalogue: [makro-marimekko, ssys-marimekko-eier], requires: "to dimensjoner", choice: ""}
-  - {id: waffle,             label: Rutenett,        status: planned, size: M, type: snapshot, catalogue: [bef-waffle, ssys-waffle, bef-dot-units], requires: "andeler av en helhet (sysselsetting)", default_for: [bef-waffle], choice: ""}
-  - {id: rings,              label: Ringer,          status: planned, size: M, type: snapshot, catalogue: [ssys-rings], requires: "statlig sysselsetting", choice: ""}
-  - {id: receipt,            label: Kvittering,      status: planned, size: M, type: snapshot, catalogue: [flow-receipt], requires: "per innbygger", choice: ""}
-  - {id: sankey,             label: Strøm,           status: planned, size: L, type: snapshot, catalogue: [flow-sankey, bef-sankey-status, rec-sankey-bridge, flow-alluvial-time], requires: "kilde til mål med bevaring", choice: ""}
-  - {id: euler-upset,        label: Overlapp,        status: planned, size: L, type: snapshot, catalogue: [bef-euler, rec-euler-defs], requires: "snitt mellom grupper", choice: ""}
+  - {id: sunburst,           label: Solstråle,       status: built  , size: M, type: snapshot, catalogue: [utg-sunburst, innt-donut-pair, makro-donut-pair], requires: "hierarkisk datasett", choice: ""}
+  - {id: icicle,             label: Istapp,          status: built  , size: M, type: snapshot, catalogue: [utg-icicle], requires: "hierarkisk datasett", choice: ""}
+  - {id: marimekko,          label: Marimekko,       status: built  , size: M, type: snapshot, catalogue: [makro-marimekko, ssys-marimekko-eier], requires: "to dimensjoner", choice: ""}
+  - {id: waffle,             label: Rutenett,        status: built,   size: M, type: snapshot, catalogue: [bef-waffle, ssys-waffle, bef-dot-units], requires: "andeler av en helhet (sysselsetting)", default_for: [bef-waffle], choice: ""}
+  - {id: rings,              label: Ringer,          status: built  , size: M, type: snapshot, catalogue: [ssys-rings], requires: "statlig sysselsetting", choice: ""}
+  - {id: receipt,            label: Kvittering,      status: built  , size: M, type: snapshot, catalogue: [flow-receipt], requires: "per innbygger", choice: ""}
+  - {id: sankey,             label: Strøm,           status: built  , size: L, type: snapshot, catalogue: [flow-sankey, bef-sankey-status, rec-sankey-bridge, flow-alluvial-time], requires: "kilde til mål med bevaring", choice: ""}
+  - {id: euler-upset,        label: Overlapp,        status: built  , size: L, type: snapshot, catalogue: [bef-euler, rec-euler-defs], requires: "snitt mellom grupper", choice: ""}

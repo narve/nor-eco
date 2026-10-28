@@ -59,7 +59,7 @@
   <p>Inntektene er delt etter SSBs hovedposter. «Inntekter i alt» er regnet før eventuelle tilbakeføringer fra Statens pensjonsfond utland:</p>
   {{ quote("inntekter-i-alt") }}
   {% call chart("inntekter-hovedpost", "Statens inntekter etter hovedpost", ["ssb-10486", "ssb-10487"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/inntekter.json", "views": ["hier-bars", "treemap", "sunburst", "icicle", "receipt", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "inntekter", dim="hovedpost", status="regnskap"), 1, caption="Regnskap") }}
   {% endcall %}
 </section>
@@ -67,8 +67,19 @@
 <section id="utgifter">
   <h2>Utgifter</h2>
   {% call chart("utgifter-hovedpost", "Statens utgifter etter hovedpost", ["ssb-10486", "ssb-10487"], level=None,
-      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "treemap", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
+      config={"kind": "dataset", "url": root ~ "data/statsbudsjett/utgifter.json", "views": ["hier-bars", "treemap", "sunburst", "icicle", "receipt", "timeseries-stacked", "slope"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn", "per-innb"], "unitDefs": [U_BNP, U_FN, U_INNB], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "utgifter", dim="hovedpost", status="regnskap"), 1, caption="Regnskap") }}
+  {% endcall %}
+</section>
+
+<section id="strom">
+  <h2>Fra inntekter til utgifter</h2>
+  <p>Inntektene til venstre og utgiftene til høyre, i samme år og med samme tall som i figurene over. Når inntekter og utgifter ikke er like store, vises differansen som eget bånd.</p>
+  {% call chart("kontantstrom-sankey", "Statens inntekter og utgifter som strøm", ["ssb-10486", "ssb-10487"], level="utledet",
+      config={"kind": "flow", "left": root ~ "data/statsbudsjett/inntekter.json", "right": root ~ "data/statsbudsjett/utgifter.json", "views": ["sankey"], "mid": "Statens kontantstrøm",
+              "gapLeft": "Differanse: utgifter utover inntekter", "gapRight": "Differanse: inntekter utover utgifter"}) %}
+    {{ data_table(dataset_table(S ~ "inntekter", dim="hovedpost", status="regnskap"), 1, caption="Inntekter, regnskap") }}
+    {{ data_table(dataset_table(S ~ "utgifter", dim="hovedpost", status="regnskap"), 1, caption="Utgifter, regnskap") }}
   {% endcall %}
 </section>
 

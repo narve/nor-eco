@@ -2,7 +2,7 @@
 // loads data, holds the view state {view, year, unit, status, path, dim}, keeps it in the URL, draws controls
 // (breadcrumb with a dimension switch per node, «Vis som», year, unit) and the chosen view module.
 //
-// config: {id, kind: "dataset"|"series"|"waterfall", url | urls[] | steps[], title, views[], defaultView, units[],
+// config: {id, kind: "dataset"|"series"|"waterfall"|"flow" (urls left/right, mid, gapLeft, gapRight), url | urls[] | steps[], title, views[], defaultView, units[],
 //          unitDefs[], denominators: {seriesId: url}}
 // waterfall steps: [{label, url, period, mult?, role: "start"|"delta"|"total", claim?, expected?: {url, period, mult?}, note?}]
 import { fmt, periodLabel } from "./core/format.js";
@@ -15,6 +15,13 @@ import { renderTreemap } from "./views/treemap.js";
 import { renderSlope } from "./views/slope.js";
 import { renderWaterfall } from "./views/waterfall.js";
 import { renderWaffle } from "./views/waffle.js";
+import { renderSunburst } from "./views/sunburst.js";
+import { renderIcicle } from "./views/icicle.js";
+import { renderRings } from "./views/rings.js";
+import { renderReceipt } from "./views/receipt.js";
+import { renderMarimekko } from "./views/marimekko.js";
+import { renderSankey } from "./views/sankey.js";
+import { renderUpset } from "./views/euler-upset.js";
 
 const STATUS_UI = { regnskap: "Regnskap", budsjett: "Budsjett", saldert: "Saldert", vedtatt: "Vedtatt", forslag: "Forslag", anslag: "Anslag", foreløpig: "Foreløpig" };
 
@@ -22,6 +29,13 @@ const VIEWS = {
   "hier-bars": { label: "Søyler", snapshot: true },
   treemap: { label: "Flisekart", snapshot: true },
   waffle: { label: "Rutenett", snapshot: true },
+  sunburst: { label: "Solstråle", snapshot: true },
+  icicle: { label: "Istapp", snapshot: true },
+  rings: { label: "Ringer", snapshot: true },
+  receipt: { label: "Kvittering", snapshot: true },
+  marimekko: { label: "Marimekko", snapshot: true },
+  "euler-upset": { label: "Overlapp", snapshot: true },
+  sankey: { label: "Strøm", snapshot: true },
   slope: { label: "Før og nå", snapshot: false, compare: true },
   waterfall: { label: "Trinn for trinn", snapshot: false, steps: true },
   "timeseries-lines": { label: "Linjer", snapshot: false, mode: "lines" },
@@ -39,10 +53,11 @@ async function init(el) {
   const cfg = JSON.parse(el.dataset.config);
   const root = h("div", { class: "chart-ui" });
   el.replaceChildren(root);
-  let ds = null, lines = null, steps = null, denominators = {};
+  let ds = null, ds2 = null, lines = null, steps = null, denominators = {};
 
   try {
     if (cfg.kind === "dataset") ds = createDataset(await json(cfg.url));
+    else if (cfg.kind === "flow") { ds = createDataset(await json(cfg.left)); ds2 = createDataset(await json(cfg.right)); }
     else if (cfg.kind === "waterfall") {
       const urls = [...new Set(cfg.steps.flatMap((st) => [st.url, st.expected?.url]).filter(Boolean))];
       const loaded = Object.fromEntries(await Promise.all(urls.map(async (u) => [u, await json(u)])));
@@ -144,7 +159,7 @@ async function init(el) {
   }
 
   function crumbsUI() {
-    if (!ds) { crumbs.hidden = true; return; }
+    if (!ds || cfg.kind === "flow") { crumbs.hidden = true; return; }
     crumbs.hidden = false;
     const trail = breadcrumb(ds, state);
     const dims = splittableDims(ds, state);
@@ -172,6 +187,45 @@ async function init(el) {
     const base = ds ? { path: state.path, dim: state.dim, unit, denominators, period: state.year, status: state.status } : null;
     if (cfg.kind === "waterfall") {
       current = renderWaterfall(body, steps, { unit: cfg.unit ?? "mrd. kr", tol: cfg.tol });
+      return;
+    }
+    if (cfg.kind === "flow") {
+      const at = (d) => nodeFor(d, { ...base, depth: 1, unit: BUILTIN_UNITS.raw });
+      const l = at(ds), r = at(ds2);
+      const kids = (n) => [...(n.children ?? []), ...(n.other ? [n.other] : [])];
+      const diff = r.value - l.value;
+      const gap = Math.abs(diff) < 1e-9 ? null
+        : diff > 0 ? { side: "left", label: cfg.gapLeft, value: diff, claim_level: "utledet" } : { side: "right", label: cfg.gapRight, value: -diff, claim_level: "utledet" };
+      current = renderSankey(body, { left: kids(l), right: kids(r), mid: cfg.mid, gap, unit: l.unit });
+      status.textContent = l.status === "foreløpig" ? "Foreløpige tall." : "";
+      return;
+    }
+    if (state.view === "sunburst" || state.view === "icicle" || state.view === "rings" || state.view === "receipt") {
+      const node = nodeFor(ds, { ...base, depth: state.view === "sunburst" || state.view === "icicle" ? 3 : 1 });
+      const canDrill = (r) => {
+        const sel = parsePath(r.path);
+        const last = sel[sel.length - 1];
+        return ds.dims[last.dim]?.byCode.get(last.code)?.children.length > 0;
+      };
+      const draw = { sunburst: renderSunburst, icicle: renderIcicle, rings: renderRings, receipt: renderReceipt }[state.view];
+      current = draw(body, node, { canDrill, onDrill: (path) => push({ path }) });
+      status.textContent = node.status === "foreløpig" ? "Foreløpige tall." : "";
+      return;
+    }
+    if (state.view === "euler-upset") {
+      const node = nodeFor(ds, { ...base, unit: BUILTIN_UNITS.raw, depth: 6 });
+      current = renderUpset(body, node);
+      status.textContent = node.status === "foreløpig" ? "Foreløpige tall." : "";
+      return;
+    }
+    if (state.view === "marimekko") {
+      const first = nodeFor(ds, { ...base, depth: 1 });
+      const dimA = first.dim;
+      const other = (cfg.dim2 && ds.dimIds.includes(cfg.dim2) ? cfg.dim2 : ds.dimIds.find((d) => d !== dimA));
+      if (!other) { body.append(h("p", { class: "muted" }, "Datasettet har bare én dimensjon.")); current = null; return; }
+      const cols = [...(first.children ?? []), ...(first.other ? [first.other] : [])].map((c) => ({ node: c, parts: nodeFor(ds, { ...base, path: c.path, dim: other, depth: 1 }) }));
+      current = renderMarimekko(body, cols, { dimLabels: [ds.dims[dimA].label, ds.dims[other].label], unit: first.unit });
+      status.textContent = first.status === "foreløpig" ? "Foreløpige tall." : "";
       return;
     }
     if (state.view === "waffle") {

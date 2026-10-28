@@ -20,6 +20,11 @@ export function fill(el, ...children) {
   el.replaceChildren(...children.flat().filter((c) => c !== null && c !== undefined && c !== false));
 }
 
+// Append, skipping null/undefined/false (the DOM's own append writes the text «null» for them).
+export function put(el, ...children) {
+  el.append(...children.flat().filter((c) => c !== null && c !== undefined && c !== false));
+}
+
 const SVG = "http://www.w3.org/2000/svg";
 export function s(tag, attrs = {}, ...children) {
   const el = document.createElementNS(SVG, tag);

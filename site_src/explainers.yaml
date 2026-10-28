@@ -118,3 +118,6 @@ explainers:
   ringer-ansatte:
     text:
       - "Fire tall fra to kilder, lagt ved siden av hverandre. Ansatte i staten er årsgjennomsnitt av ansatte i statlige virksomheter. De tre andre er konsernenes ansatte ved årsskiftet. Summen er utledet (ƒ)."
+  kontantstrom-sankey:
+    text:
+      - "Inntektene (til venstre) og utgiftene (til høyre) for samme år, med samme tall som figurene for inntekter og utgifter. Sidene er ikke nødvendigvis like store. Differansen er regnet ut av oss (ƒ) og tegnet som eget bånd, så figuren går opp."

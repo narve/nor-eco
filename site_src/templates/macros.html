@@ -33,6 +33,13 @@
   "hier-bars": "Hver søyle er en del av helheten øverst. Trykk på en søyle for detaljer, og to ganger for å åpne den. «Del etter» bytter inndeling. Søylene starter ved null, og «Øvrig» står sist og er alltid grå.",
   "treemap": "Arealet er verdien. Areal er vanskelig å sammenligne når forskjellen er liten, så verdi og andel står i flisene som har plass. Verdier som ikke kan tegnes som areal er listet under figuren.",
   "waffle": "Hele gruppen er ett rutenett der alle ruter er like store. Antall ruter er avrundet; de nøyaktige tallene står i listen. Stripete ruter er personer med to statuser. Hold musen over en rad i listen for å fremheve gruppen.",
+  "sunburst": "Vinkelen er verdien, og hver ring er et nivå under det du ser på. Vinkler er vanskelige å sammenligne, så verdi og andel står i feltet under figuren. Trykk på en del for detaljer, og to ganger for å åpne den.",
+  "icicle": "Bredden er verdien, og hver rad er et nivå under det du ser på. Trykk på en blokk for detaljer, og to ganger for å åpne den. «Øvrig» er alltid grå.",
+  "rings": "Hver ring har et areal som tilsvarer summen av delene til og med ringen, så den ytterste ringen er alt sammen. Delene står med egne tall i listen ved siden av.",
+  "receipt": "Delene står som linjer i en liste med sum nederst, slik en kvittering ser ut. Trykk på en linje for å åpne den. Skift enhet for å se for eksempel kroner per innbygger.",
+  "marimekko": "To inndelinger i ett bilde: kolonnenes bredde viser den første inndelingen, og stablingen i hver kolonne viser den andre. Hver kolonne summerer til hundre prosent av seg selv. Alle tall står i tabellen under figuren.",
+  "euler-upset": "Hver søyle er én kombinasjon av grupper, og prikkene under viser hvilke grupper som er med. Hver person er med i én kombinasjon, så søylene overlapper ikke. Bare grupper som inngår i en overlapp er med.",
+  "sankey": "Båndenes bredde er verdien. Inntekter går inn fra venstre og utgifter ut til høyre. Når sidene ikke er like store, er differansen tegnet som eget bånd, så figuren går opp. Alle strømmer står i tabellen under figuren.",
   "timeseries-lines": "Hver linje er én serie. Hull betyr at tall mangler, og linjen trekkes ikke gjennom hull. Stiplet strekning og hul prikk er foreløpige tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.",
   "timeseries-stacked": "Delene stables oppå hverandre og summerer til helheten. Deler i midten er vanskeligere å lese enn de ytterste. Hold musen over en forklaring for å fremheve en del.",
   "timeseries-bars": "Positive søyler går opp fra null, negative ned. Skravert søyle er foreløpig tall eller anslag. Trykk i figuren eller bruk piltastene for å velge år.",
@@ -114,5 +121,6 @@
 {# Scripts a page with charts needs: d3 (vendored) and the mount controller. Put in {% block scripts %}. #}
 {% macro chart_scripts() %}
 <script src="{{ root }}assets/vendor/d3-7.9.0.min.js"></script>
+<script src="{{ root }}assets/vendor/d3-sankey-0.12.3.min.js"></script>
 <script type="module" src="{{ root }}assets/js/mount.js"></script>
 {% endmacro %}
