@@ -33,7 +33,7 @@ explainers:
     quotes: [overskudd-for-avsetning]
   inntekter-hovedpost:
     text:
-      - "Statens inntekter etter SSBs hovedposter. Velg «Regnskap» eller «Budsjett» under «Tall». Petroleumsinntekter ligger i flere poster, og skatt på petroleum ligger inne i «Skatter og avgifter»."
+      - "Statens inntekter etter SSBs hovedposter. Velg «Regnskap» eller «Budsjett» under «Tall»."
   utgifter-hovedpost:
     text:
       - "Statens utgifter etter SSBs hovedposter, uten lånetransaksjoner. Velg «Regnskap» eller «Budsjett» under «Tall»."
@@ -99,7 +99,7 @@ explainers:
       - "AKU viser tre grupper: sysselsatte, arbeidsledige og utenfor arbeidsstyrken. AKU har ikke de samme overlappene som registerstatistikken. Tallene er anslag og er justert for et brudd i serien."
   personer-arsverk:
     text:
-      - "Sysselsatte personer og årsverk (heltidsekvivalenter) fra nasjonalregnskapet. En person som jobber deltid teller som én person, men som en del av et årsverk, så årsverkene er færre enn personene. Begge seriene vises i tusen."
+      - "Sysselsatte personer og årsverk (heltidsekvivalenter) fra nasjonalregnskapet. Personer og årsverk er ulike mål. Begge seriene vises i tusen."
   sektorfordeling:
     text:
       - "Alle sysselsatte fordelt på fem sektorer etter arbeidssted. Hver person tilhører én sektor, så delene summerer til totalen."

@@ -56,7 +56,7 @@
 
 <section id="sektorer">
   <h2>Sysselsatte etter sektor</h2>
-  <p>SSB deler alle sysselsatte inn i fem sektorer etter arbeidssted. Hver sysselsatt hører til én sektor, så delene summerer til alle sysselsatte.</p>
+  <p>SSB deler alle sysselsatte inn i fem sektorer etter arbeidssted. Sektorene summerer til SSBs totalsum for alle sysselsatte.</p>
   {{ quote("sektor-offentlig-foretak") }}
   {{ quote("sektor-kommune") }}
   {% call chart("sektorfordeling", "Sysselsatte personer etter sektor, 4. kvartal", ["ssb-13472"], level=None,
@@ -132,7 +132,7 @@
 
 <section id="ikke-dekket">
   <h2>Hva siden ikke dekker</h2>
-  <p>Kommunesektoren er vist som egen sektor ovenfor. Ansatte i private virksomheter som er finansiert av det offentlige, og deltakere i arbeidsmarkedstiltak, har ikke en samlet offisiell kilde og er ikke regnet med. Selskaper utenfor kategori 1 og 2 i Statens eierrapport er heller ikke med.</p>
+  <p>Kommunesektoren er vist som egen sektor ovenfor. Ansatte i private virksomheter som er finansiert av det offentlige, og deltakere i arbeidsmarkedstiltak, er ikke regnet med i denne oversikten. Selskaper utenfor kategori 1 og 2 i Statens eierrapport er heller ikke med.</p>
 </section>
 {% endblock %}
 {% block scripts %}{{ chart_scripts() }}{% endblock %}

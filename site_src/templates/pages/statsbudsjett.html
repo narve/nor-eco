@@ -102,7 +102,7 @@
 
 <section id="petroleum">
   <h2>Med og uten petroleum</h2>
-  <p>Statsregnskapets hovedposter viser petroleumsinntekter og andre inntekter side om side, og skatter på petroleum ligger inne i «Skatter og avgifter». Statens netto kontantstrøm fra petroleumsvirksomhet er derfor vist som egen tabell, delt på skatter, avgifter, SDØE og utbytte fra Equinor.</p>
+  <p>Statsregnskapets hovedposter viser inntektene etter art. Statens netto kontantstrøm fra petroleumsvirksomhet er vist som egen tabell, delt på skatter, avgifter, SDØE og utbytte fra Equinor.</p>
   {% call chart("petroleum-kontantstrom", "Statens netto kontantstrøm fra petroleumsvirksomhet, etter komponent", ["ssb-11012"], level=None,
       config={"kind": "dataset", "url": root ~ "data/statsbudsjett/petroleum_kontantstrom.json", "views": ["hier-bars", "timeseries-stacked"], "units": ["pct-parent", "pct-bnp", "pct-bnp-fn"], "unitDefs": [U_BNP, U_FN], "denominators": DEN}) %}
     {{ data_table(dataset_table(S ~ "petroleum_kontantstrom", dim="komponent"), 1) }}
@@ -175,6 +175,11 @@
   </div>
   {% endcall %}
   <p>Formlene: {{ ok_kr.derivation }} Aktivitetskorreksjonen: {{ series[S ~ "aktivitetskorreksjon_kr"].derivation }}</p>
+  {% set pst_o = series[S ~ "oljekorrigert_balanse_pst"].by_period[yr].value %}
+  {% set pst_s = series[S ~ "strukturell_balanse_pst"].by_period[yr].value %}
+  {% set kor = series[S ~ "aktivitetskorreksjon_konjunktur_pst"].by_period[yr].value + series[S ~ "aktivitetskorreksjon_ovrige_pst"].by_period[yr].value %}
+  <p><strong>Hva trinnet inneholder.</strong> Trinnet «Aktivitetskorreksjon og andre justeringer» er forskjellen mellom to tall: Finansdepartementets strukturelle underskudd og den oljekorrigerte balansen vi har regnet fra statsregnskapet. Det er ikke en post i noe regnskap. I Finansdepartementets egne tall for {{ yr }} er oljekorrigert balanse {{ fmt(pst_o, 1) }} og strukturell balanse {{ fmt(pst_s, 1) }} prosent av trend-BNP for Fastlands-Norge, en forskjell på {{ fmt(pst_o - pst_s, 1) }} prosentpoeng. Finansdepartementets beregnede aktivitetskorreksjoner for samme år summerer seg til {{ fmt(kor, 1) }} prosent av trend-BNP. Aktivitetskorreksjonene forklarer dermed bare en del av forskjellen, og de tallene vi har funnet spesifiserer ikke resten. Derfor heter trinnet «og andre justeringer» og er merket utledet.</p>
+  <p class="muted small">Kilde for prosenttallene og korreksjonene: {{ cite(["fin-nb2027-vedlegg1"]) }}</p>
   <p>Det strukturelle underskuddet er definert slik:</p>
   {{ quote("strukturelt-underskudd") }}
   {% call chart("oljekorrigert-pst", "Oljekorrigert og strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge", ["fin-nb2027-vedlegg1"], level=None,

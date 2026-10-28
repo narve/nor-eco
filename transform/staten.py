@@ -135,7 +135,7 @@ def ringer(out: Path, ssb_staten: int, eier: dict) -> None:
     meta = {"id": f"{TOPIC}.ringer", "title": "Ansatte i fire grupper rundt staten, 2025", "unit": "personer", "price_basis": "ikke-relevant", "claim_level": "utledet",
             "derivation": "Fire tall fra to kilder lagt ved siden av hverandre. Ansatte i staten er årsgjennomsnitt (SSB); de tre andre er antall ansatte i konsernene ved årsskiftet (Statens eierrapport), uten vekting med eierandel og inkludert ansatte utenfor Norge.",
             "source_ids": [EMP, EIER], "dimensions": ["ring"], "default_dimension": "ring",
-            "notes": "Gruppene har ikke felles målemetode. Ansatte i staten er ansatte i statlige virksomheter i Norge (årsgjennomsnitt). De tre andre er konsernenes ansatte og kan inkludere ansatte utenfor Norge. Summen er derfor en samlet oversikt, ikke en offisiell telling. Kommunesektoren er vist for seg, og privat finansierte tjenesteytere og arbeidsmarkedstiltak har ikke en samlet offisiell kilde og er ikke med."}
+            "notes": "Gruppene har ikke felles målemetode. Ansatte i staten er ansatte i statlige virksomheter i Norge (årsgjennomsnitt). De tre andre er konsernenes ansatte og kan inkludere ansatte utenfor Norge. Summen er derfor en samlet oversikt, ikke en offisiell telling. Kommunesektoren er vist for seg, og privat finansierte tjenesteytere og arbeidsmarkedstiltak er ikke med."}
     write_dataset(TOPIC, "ringer", meta, {"ring": {"label": "Ring", "nodes": nodes}}, rows, out)
 
 

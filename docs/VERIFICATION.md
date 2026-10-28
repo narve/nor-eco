@@ -23,12 +23,13 @@ itself (SSB API, regjeringen.no, NBIM, Statens eierrapport) and did not use `dat
 - Forslag 2027, inntekter utenom petroleum: the table in the source prints 1 725,1 and the text 1 725; the components sum to 1 725,0.
   The site shows 1 725,0 (source rounding, 0,1 mrd. kr).
 - «Aktivitetskorreksjon og andre justeringer» (31,7 mrd. kr) is the residual between the Finansdepartementet's structural figure and our
-  oljekorrigert figure. The Finansdepartementet's own activity corrections for 2025 are much smaller, so the label is hedged
-  and the derivation is shown, but the residual is not itemised by any source.
+  oljekorrigert figure; no source itemises all of it (see below).
 - Definitions of «petroleum» differ between sources (national accounts, varehandel, statsbudsjettet); the pages state this in the pairs section.
-- Some explanatory sentences state general facts without an inline citation (for example what BNP covers, current vs fixed prices,
-  that petroleum tax is part of Skatter og avgifter). They are consistent with the numbers but not quoted.
-- The statement that no single official source covers all publicly funded private providers is not sourced.
+- Wording gaps were closed afterwards: BNP, sysselsetting in the national accounts and AKU comparability now have verbatim SSB quotes;
+  the statements about current/fixed prices, petroleum tax inside Skatter og avgifter and «ingen samlet offisiell kilde» were removed rather than sourced.
+- The step «Aktivitetskorreksjon og andre justeringer» is kept. The page now explains that it is the difference between two numbers and gives
+  the Finansdepartementets own figures for oljekorrigert and strukturell balanse and for the calculated activity corrections (2025: −10,8 and −11,6 per cent,
+  corrections −0,1 per cent of trend-BNP), so the part the sources do not itemise is visible.
 - Statens eierrapport is read from the HTML page, not the PDF; totals and a sample of companies matched, not all 64 rows by hand.
 - Not checked by this agent: year-by-year values of `registerstatus_20_66` and older years of `registerstatus_15_74` (only 2025 and a sample).
   Chart behaviour is covered by the Playwright tests, not by this check.

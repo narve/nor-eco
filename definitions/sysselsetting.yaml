@@ -86,3 +86,11 @@ definitions:
     term: Utenfor arbeidsstyrken (registerstatistikken)
     quote: "Personer utenfor arbeidsstyrken er dermed personer som verken var sysselsatte eller arbeidsledige i referanseuken."
     source_id: ssb-arbstatus-om
+  - id: nr-sysselsetting-mal
+    term: Sysselsetting i nasjonalregnskapet
+    quote: "Sysselsetting beskrives ved antall personer, heltidsekvivalente årsverk og utførte timeverk, årslønn og lønn og lønnskostnader per utførte timeverk."
+    source_id: ssb-nasjonalregnskap-om
+  - id: aku-internasjonal
+    term: AKU og internasjonale standarder
+    quote: "Vi bruker internasjonale standarder i definisjoner og grupperinger, jfr. punkt 4.1, noe som betyr at AKU kan sammenlignes med tilsvarende undersøkelser fra andre land."
+    source_id: ssb-aku-om

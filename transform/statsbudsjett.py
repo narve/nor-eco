@@ -155,7 +155,7 @@ def run(out: Path = PROCESSED) -> None:
     meta = {"id": f"{TOPIC}.petroleum_kontantstrom", "title": "Statens netto kontantstrøm fra petroleumsvirksomhet, etter komponent", "unit": "mrd. kr",
             "price_basis": "løpende", "claim_level": "offisiell", "source_ids": [PET], "dimensions": ["komponent"], "default_dimension": "komponent",
             "published_totals": [{"period": t, "status": "regnskap", "value": mrd(pv[("StatensNettoKont", t)]), "source_id": PET} for t in pyears],
-            "tolerance": 0.001, "notes": "SDØE er netto kontantstrøm (ikke brutto). Skatter og avgifter på utvinning er også regnet med i «Skatter og avgifter» i statsregnskapets hovedposter."}
+            "tolerance": 0.001, "notes": "SDØE er netto kontantstrøm (ikke brutto)."}
     dims = {"komponent": {"label": "Komponent", "nodes": [{"code": "statens_netto_kontantstrom", "label": "Statens netto kontantstrøm fra petroleumsvirksomhet", "parent": None}]
                           + [{"code": c, "label": l, "parent": "statens_netto_kontantstrom"} for c, l, _ in PETROLEUM_PARTS]}}
     write_dataset(TOPIC, "petroleum_kontantstrom", meta, dims, rows, out)
@@ -197,6 +197,8 @@ def run(out: Path = PROCESSED) -> None:
                 notes="Tall for året etter siste regnskapsår er anslag, og budsjettåret er forslag (Nasjonalbudsjettet 2027).")
     series_from(v1, "Figv1-1", [2], "strukturell_balanse_pst", "Strukturell oljekorrigert budsjettbalanse, prosent av trend-BNP for Fastlands-Norge (negativ = underskudd)", "prosent", V1,
                 notes="Tall for året etter siste regnskapsår er anslag, og budsjettåret er forslag (Nasjonalbudsjettet 2027).")
+    series_from(v1, "Figv1-10", [1], "aktivitetskorreksjon_konjunktur_pst", "Beregnet aktivitetskorreksjon fra konjunkturindikatorene, prosent av trend-BNP for Fastlands-Norge", "prosent", V1)
+    series_from(v1, "Figv1-10", [2], "aktivitetskorreksjon_ovrige_pst", "Beregnede øvrige aktivitetskorreksjoner, prosent av trend-BNP for Fastlands-Norge", "prosent", V1)
     series_from(k3, "Fig3-3", [1, 4], "fondsbruk_pst_av_spu", "Strukturelt oljekorrigert underskudd, prosent av Statens pensjonsfond utland (uttaksprosent)", "prosent", K3)
     series_from(k3, "Fig3-4", [1, 2], "fondsbruk_pst_av_utgifter", "Bruk av fondsmidler, prosent av utgiftene i statsbudsjettet", "prosent", K3)
     series_from(k3, "Fig3-3", [2, 3], "handlingsregel_realavkastning", "Forventet realavkastning i Statens pensjonsfond utland (handlingsregelens rettesnor)", "prosent", K3, with_status=False,

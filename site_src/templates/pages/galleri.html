@@ -41,6 +41,13 @@
         config={"kind": "dataset", "url": root ~ "data/" ~ topic ~ "/" ~ name ~ ".json", "views": [v], "units": g.units, "unitDefs": uds, "denominators": DEN}) %}
       {{ data_table(dataset_table(g.dataset, dim=g.dim, depth=g.get("depth")), 1) }}
     {% endcall %}
+  {% elif g.kind == "flow" %}
+    {% set lt = g.left.split(".") %}{% set rt = g.right.split(".") %}
+    {% call chart("gal-" ~ g.id ~ "-" ~ v, labels[v], g.sources, level="utledet",
+        config={"kind": "flow", "left": root ~ "data/" ~ lt[0] ~ "/" ~ lt[1] ~ ".json", "right": root ~ "data/" ~ rt[0] ~ "/" ~ rt[1] ~ ".json", "views": [v], "mid": g.mid, "gapLeft": g.gapLeft, "gapRight": g.gapRight}) %}
+      {{ data_table(dataset_table(g.left, dim=g.dim, depth=1, status="regnskap"), 1, caption="Inntekter, regnskap") }}
+      {{ data_table(dataset_table(g.right, dim=g.dim, depth=1, status="regnskap"), 1, caption="Utgifter, regnskap") }}
+    {% endcall %}
   {% else %}
     {% set urls = [] %}{% for sid in g.series %}{% set _ = urls.append(root ~ "data/" ~ sid.split(".")[0] ~ "/" ~ sid.split(".")[1] ~ ".json") %}{% endfor %}
     {% call chart("gal-" ~ g.id ~ "-" ~ v, labels[v], g.sources, level=None,

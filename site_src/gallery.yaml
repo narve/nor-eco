@@ -1,5 +1,5 @@
 # What the gallery shows: each item is one dataset (or a set of series) in every built view that fits it.
-# `kind: dataset` needs `dataset: <topic>.<name>`; `kind: series` needs `series: [ids]`; `kind: waterfall` is defined in the template.
+# `kind: dataset` needs `dataset: <topic>.<name>`; `kind: series` needs `series: [ids]`; `kind: flow` needs `left`, `right`, `mid`, `gapLeft`, `gapRight`; `kind: waterfall` is defined in the template.
 items:
   - {id: utgifter-hovedpost, title: "Statens utgifter etter hovedpost", kind: dataset, dataset: "statsbudsjett.utgifter", dim: hovedpost, depth: 1,
      views: [hier-bars, treemap, sunburst, icicle, rings, receipt, timeseries-stacked, timeseries-lines, slope], units: [pct-parent, pct-bnp-fn, per-innb], sources: [ssb-10486, ssb-10487]}
@@ -17,3 +17,5 @@ items:
      views: [hier-bars, sunburst, icicle, marimekko, euler-upset], units: [pct-parent], sources: [ssb-12423]}
   - {id: staten-ringer, title: "Ansatte i fire grupper rundt staten", kind: dataset, dataset: "staten.ringer", dim: ring,
      views: [hier-bars, rings, receipt, treemap], units: [pct-parent], sources: [ssb-12623, nfd-eierrapport-2025]}
+  - {id: kontantstrom, title: "Statens inntekter og utgifter som strøm", kind: flow, left: "statsbudsjett.inntekter", right: "statsbudsjett.utgifter", dim: hovedpost, mid: "Statens kontantstrøm",
+     gapLeft: "Differanse: utgifter utover inntekter", gapRight: "Differanse: inntekter utover utgifter", views: [sankey], sources: [ssb-10486, ssb-10487]}
