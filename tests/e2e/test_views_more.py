@@ -78,3 +78,11 @@ def test_fullscreen_button_toggles_the_chart_ui(desktop, site_url):
     desktop.wait_for_function("document.fullscreenElement && document.fullscreenElement.classList.contains('chart-ui')")
     desktop.get_by_role("button", name="Avslutt fullskjerm").first.click()
     desktop.wait_for_function("!document.fullscreenElement")
+
+
+@pytest.mark.parametrize("page", ["index.html", "statsbudsjett.html", "okonomi.html", "sysselsetting.html", "staten-som-arbeidsgiver.html", "begreper.html", "kilder.html", "metode.html", "galleri/index.html"])
+def test_no_page_scrolls_sideways_on_a_phone(mobile, site_url, page):
+    mobile.goto(site_url + page)
+    mobile.wait_for_load_state("networkidle")
+    mobile.wait_for_timeout(800)
+    assert mobile.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth") <= 0, page

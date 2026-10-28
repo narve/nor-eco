@@ -164,3 +164,9 @@ svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 /* fullscreen: the chart UI fills the screen on the page background */
 .chart-ui:fullscreen { background: var(--bg); padding: 1rem; overflow: auto; align-content: start; }
+
+/* narrow screens: long labels plus values («184 959 personer (vektet)») go on separate lines instead of widening the page */
+@media (max-width: 480px) {
+  .hb-row, .hb-ref { grid-template-columns: minmax(0, 1fr); }
+  .hb-value { text-align: left; white-space: normal; }
+}
